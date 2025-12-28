@@ -15,54 +15,50 @@
     *{box-sizing:border-box}
     body{
       margin:0; background:var(--bg); color:var(--fg);
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      fontacet-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
       letter-spacing:.12px;
     }
     a{color:inherit; text-decoration:none}
     a:hover{opacity:.86}
 
-    /* ===== Galaxy background layer ===== */
-    .galaxy-bg {
+    /* ===== HERO GALAXY (stable, full-screen) ===== */
+    .galaxy-bg{
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
-      border: none;
-      pointer-events: none; /* 不抢交互 */
-      z-index: 0;           /* 在内容下 */
+      border: 0;
+      pointer-events: none;  /* never steal clicks */
+      z-index: 0;
       opacity: 0.35;
     }
 
-    /* ===== Optional: mask top-left three.js UI ===== */
-    /* 可选：遮挡 three.js 右上角 UI */
-.galaxy-mask{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 420px;   /* ← 加宽 */
-  height: 160px;  /* ← 加高 */
-  background: #000;
-  z-index: 1;
-  pointer-events: none;
-}
-.galaxy-mask-right{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 360px;
-  height: 220px;
-  background: #000;
-  z-index: 1;
-  pointer-events: none;
-}
-<div class="galaxy-mask-right"></div>
-
-
+    /* ===== HARD MASKS (top-left + top-right) ===== */
+    .galaxy-mask{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 520px;
+      height: 220px;
+      background: #000;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .galaxy-mask-right{
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 520px;
+      height: 300px;
+      background: #000;
+      z-index: 1;
+      pointer-events: none;
+    }
 
     /* ===== Content layer ===== */
     .wrap{
       position: relative;
-      z-index: 2;           /* 内容始终在最上 */
+      z-index: 2;
       max-width:var(--max);
       margin:0 auto;
       padding:56px 24px 72px;
@@ -127,7 +123,6 @@
 </head>
 
 <body>
-  <!-- ✅ iframe 必须放在 body 里 -->
   <iframe
     src="https://threejs.org/examples/webgpu_tsl_galaxy.html"
     class="galaxy-bg"
@@ -135,8 +130,8 @@
     referrerpolicy="no-referrer"
   ></iframe>
 
-  <!-- 可选：遮挡 three.js 左上角 UI（不影响布局） -->
   <div class="galaxy-mask"></div>
+  <div class="galaxy-mask-right"></div>
 
   <div class="wrap">
     <header>
