@@ -221,6 +221,90 @@
         <div class="line"><b>Civilization:</b> incentives as coupling; institutions as repair; crises as failure.</div>
         <div class="line"><b>Humanity:</b> perception pipeline; memory as compression; responsibility as feedback.</div>
       </div>
+      <!-- ===== Figure 1 (Scroll) — Structural coordinate of α ===== -->
+<section class="alpha-scroll" id="alpha-scroll">
+  <div class="alpha-sticky">
+    <div class="alpha-frame">
+      <svg viewBox="0 0 1000 520" width="100%" height="auto" role="img"
+           aria-label="Figure 1 — Structural coordinate of alpha across scales">
+
+        <!-- Header band: Universe as boundary condition (NOT a scale point) -->
+        <rect x="0" y="0" width="1000" height="54" fill="#f5f5f5"></rect>
+        <text x="56" y="32" font-size="14" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">
+          Universal Constraint Manifold (boundary condition)
+        </text>
+        <text x="944" y="32" text-anchor="end" font-size="12" fill="#444"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">
+          spacetime · causality · symmetry · finiteness
+        </text>
+
+        <!-- Plot frame -->
+        <rect x="56" y="56" width="888" height="408" fill="#fff" stroke="#111" stroke-width="1"></rect>
+
+        <!-- Critical band -->
+        <rect x="56" y="236" width="888" height="64" fill="#e9e9e9"></rect>
+        <text x="934" y="270" text-anchor="end" font-size="12" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">
+          Critical band
+        </text>
+
+        <!-- Axis labels -->
+        <text x="24" y="260" transform="rotate(-90 24 260)"
+              font-size="14" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">
+          Structural persistence parameter α
+        </text>
+
+        <text x="500" y="504" text-anchor="middle"
+              font-size="14" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">
+          Scale Λ (Physical → Biological → Cognitive → Civilizational)
+        </text>
+
+        <!-- Partitions -->
+        <line x1="278" y1="56" x2="278" y2="464" stroke="#cfcfcf" stroke-width="1"></line>
+        <line x1="500" y1="56" x2="500" y2="464" stroke="#cfcfcf" stroke-width="1"></line>
+        <line x1="722" y1="56" x2="722" y2="464" stroke="#cfcfcf" stroke-width="1"></line>
+
+        <!-- Partition labels -->
+        <text x="167" y="492" text-anchor="middle" font-size="12" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">Physical</text>
+        <text x="389" y="492" text-anchor="middle" font-size="12" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">Biological</text>
+        <text x="611" y="492" text-anchor="middle" font-size="12" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">Cognitive</text>
+        <text x="833" y="492" text-anchor="middle" font-size="12" fill="#111"
+              font-family="system-ui,-apple-system,Segoe UI,Arial">Civilizational</text>
+
+        <!-- Curve path (conceptual) -->
+        <path id="alpha-curve"
+              d="M56 306
+                 C 170 300, 250 286, 278 276
+                 S 420 252, 500 244
+                 S 650 218, 722 204
+                 S 860 178, 944 168"
+              fill="none"
+              stroke="#111"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-dasharray="1600"
+              stroke-dashoffset="1600"></path>
+
+        <!-- Marker dot (moves along path) -->
+        <circle id="alpha-dot" r="4" fill="#111" opacity="0">
+          <animate attributeName="opacity" dur="0.001s" fill="freeze" from="0" to="1"/>
+        </circle>
+
+      </svg>
+    </div>
+
+    <div class="alpha-note">
+      Figure 1 — Scroll to traverse the cross-scale coordinate of α (conceptual; not fitted data).
+    </div>
+  </div>
+</section>
+
     </section>
 
     <footer>
@@ -228,5 +312,45 @@
       <div>Structure is invariant across languages.</div>
     </footer>
   </div>
+  <script>
+  (function(){
+    const section = document.getElementById("alpha-scroll");
+    const path = document.getElementById("alpha-curve");
+    const dot  = document.getElementById("alpha-dot");
+    if(!section || !path) return;
+
+    const LEN = 1600; // must match stroke-dasharray/offset
+    const pathLen = path.getTotalLength();
+
+    function update(){
+      const r = section.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+
+      // progress window: start when section top enters 80% viewport,
+      // end when section bottom reaches 20% viewport
+      const start = vh * 0.80;
+      const end   = vh * 0.20;
+
+      const total = (r.height - (end - start)) || 1;
+      const raw = (start - r.top) / total;
+      const p = Math.max(0, Math.min(1, raw));
+
+      // draw path
+      path.style.strokeDashoffset = (LEN * (1 - p)).toFixed(2);
+
+      // move dot along path
+      const d = p * pathLen;
+      const pt = path.getPointAtLength(d);
+      dot.setAttribute("cx", pt.x);
+      dot.setAttribute("cy", pt.y);
+      dot.style.opacity = (p > 0.02) ? "1" : "0";
+    }
+
+    update();
+    window.addEventListener("scroll", update, {passive:true});
+    window.addEventListener("resize", update);
+  })();
+</script>
+
 </body>
 </html>
