@@ -83,6 +83,61 @@
     }
     @media (max-width:860px){ .grid{grid-template-columns:1fr} .hero{padding:14vh 0 6vh} }
   </style>
+  /* ===== Galaxy background layer ===== */
+.galaxy-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+
+  /* 关键：不抢交互、不盖内容 */
+  pointer-events: none;
+  z-index: 0;
+
+  /* 宇宙存在感（推荐 0.25–0.4） */
+  opacity: 0.35;
+}
+
+/* ===== Content layer ===== */
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Arial, sans-serif;
+}
+
+/* 顶部导航 */
+.top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px;
+}
+
+/* 主内容包裹 */
+.wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+}
+
+/* 导航样式（可选） */
+.nav a {
+  color: #aaa;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.nav a.active {
+  color: #fff;
+}
+
 </head>
 <body>
   <div class="wrap">
