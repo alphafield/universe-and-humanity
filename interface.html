@@ -279,22 +279,23 @@
 
         <!-- Curve path (conceptual) -->
         <path id="alpha-curve"
-              d="M56 306
-                 C 170 300, 250 286, 278 276
-                 S 420 252, 500 244
-                 S 650 218, 722 204
-                 S 860 178, 944 168"
-              fill="none"
-              stroke="#111"
-              stroke-width="2.6"
-              stroke-linecap="round"
-              stroke-dasharray="1600"
-              stroke-dashoffset="1600"></path>
+      d="M56 314
+         C 120 312, 185 305, 278 286
+         C 355 270, 430 255, 500 246
+         C 585 235, 655 222, 722 206
+         C 795 188, 868 176, 944 166"
+      fill="none"
+      stroke="#111"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-dasharray="1600"
+      stroke-dashoffset="1600"></path>
+
 
         <!-- Marker dot (moves along path) -->
-        <circle id="alpha-dot" r="4" fill="#111" opacity="0">
-          <animate attributeName="opacity" dur="0.001s" fill="freeze" from="0" to="1"/>
-        </circle>
+        <circle id="alpha-dot" cx="56" cy="314" r="5" fill="#111" opacity="0"></circle>
+
 
       </svg>
     </div>
