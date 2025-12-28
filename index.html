@@ -1,40 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Universe and Humanity</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Structural interfaces for universe—civilization—humanity." />
   <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
+    :root{
+      --bg:#000; --fg:#fff; --muted:#b9b9b9; --faint:#7a7a7a;
+      --line:rgba(255,255,255,.14);
+      --max:980px;
     }
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 20vh 24px;
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:var(--bg); color:var(--fg);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      letter-spacing:.1px;
     }
-    h1 {
-      font-weight: 500;
-      font-size: 32px;
-      margin-bottom: 24px;
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:.86}
+    .wrap{max-width:var(--max); margin:0 auto; padding:56px 24px 72px}
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px}
+    .brand{display:flex; align-items:center; gap:10px}
+    .dot{width:10px; height:10px; border-radius:50%; background:#fff; opacity:.85}
+    .brand b{font-weight:600}
+    nav{display:flex; gap:18px; font-size:14px; color:var(--muted)}
+    nav a{padding:6px 0; border-bottom:1px solid transparent}
+    nav a:hover{border-bottom-color:var(--line)}
+    .hero{padding:18vh 0 10vh}
+    h1{
+      margin:0 0 14px;
+      font-size:clamp(30px,3.6vw,44px);
+      font-weight:600;
+      line-height:1.12;
     }
-    p {
-      color: #bbb;
-      line-height: 1.7;
-      max-width: 720px;
+    .sub{
+      max-width:760px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14.5px;
     }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:42px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:18px 16px;
+      min-height:120px;
+      background:rgba(255,255,255,.02);
+    }
+    .k{font-size:12px; color:var(--faint); letter-spacing:.2px}
+    .t{margin-top:10px; font-size:16px; font-weight:600}
+    .p{margin-top:10px; color:var(--muted); font-size:13.5px; line-height:1.6}
+    .cta{margin-top:14px; font-size:13px; color:var(--muted)}
+    .cta span{color:#fff; opacity:.92}
+    footer{
+      margin-top:72px; padding-top:18px; border-top:1px solid var(--line);
+      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      color:var(--faint); font-size:12px;
+    }
+    @media (max-width:860px){ .grid{grid-template-columns:1fr} .hero{padding:14vh 0 6vh} }
   </style>
 </head>
 <body>
-  <main>
-    <h1>A structural interface between the Universe and Humanity.</h1>
-    <p>
-      This project presents a structural view of the universe,
-      civilization, and humanity.
-    </p>
-  </main>
+  <div class="wrap">
+    <header>
+      <div class="brand" aria-label="site brand">
+        <div class="dot"></div>
+        <b>Universe and Humanity</b>
+      </div>
+      <nav aria-label="primary">
+        <a href="/universe.html">Universe</a>
+        <a href="/civilization.html">Civilization</a>
+        <a href="/humanity.html">Humanity</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <!-- 唯一锚句：只允许这一句作为 H1 -->
+      <h1>A structural interface between the Universe and Humanity.</h1>
+
+      <div class="sub">
+        This project presents a structural view of the universe, civilization, and humanity.
+        It does not ask for belief. It specifies interfaces.
+      </div>
+
+      <div class="grid" role="list">
+        <a class="card" role="listitem" href="/universe.html">
+          <div class="k">Layer 1</div>
+          <div class="t">Universe</div>
+          <div class="p">Structure that persists. Forms that stabilize. Interfaces that repeat.</div>
+          <div class="cta">Open <span>Universe</span> →</div>
+        </a>
+
+        <a class="card" role="listitem" href="/civilization.html">
+          <div class="k">Layer 2</div>
+          <div class="t">Civilization</div>
+          <div class="p">Coordination structures: language, law, technology—interfaces at scale.</div>
+          <div class="cta">Open <span>Civilization</span> →</div>
+        </a>
+
+        <a class="card" role="listitem" href="/humanity.html">
+          <div class="k">Layer 3</div>
+          <div class="t">Humanity</div>
+          <div class="p">Not outside the universe: a persistent form with internal interfaces.</div>
+          <div class="cta">Open <span>Humanity</span> →</div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div>v1.1 — Civilization Interface Edition</div>
+      <div>Structure is invariant across languages.</div>
+    </footer>
+  </div>
 </body>
 </html>
