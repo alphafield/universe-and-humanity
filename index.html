@@ -1,10 +1,3 @@
-<iframe
-  src="https://threejs.org/examples/webgpu_tsl_galaxy.html"
-  class="galaxy-bg"
-  loading="lazy"
-  referrerpolicy="no-referrer"
-></iframe>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Universe and Humanity</title>
   <meta name="description" content="Structural interfaces for universe—civilization—humanity." />
+
   <style>
     :root{
       --bg:#000; --fg:#fff; --muted:#b9b9b9; --faint:#7a7a7a;
@@ -26,7 +20,40 @@
     }
     a{color:inherit; text-decoration:none}
     a:hover{opacity:.86}
-    .wrap{max-width:var(--max); margin:0 auto; padding:56px 24px 72px}
+
+    /* ===== Galaxy background layer ===== */
+    .galaxy-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none; /* 不抢交互 */
+      z-index: 0;           /* 在内容下 */
+      opacity: 0.35;
+    }
+
+    /* ===== Optional: mask top-left three.js UI ===== */
+    .galaxy-mask{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 120px;
+      background: #000;
+      z-index: 1;           /* 盖住 iframe */
+      pointer-events: none;
+    }
+
+    /* ===== Content layer ===== */
+    .wrap{
+      position: relative;
+      z-index: 2;           /* 内容始终在最上 */
+      max-width:var(--max);
+      margin:0 auto;
+      padding:56px 24px 72px;
+    }
+
     header{display:flex; align-items:center; justify-content:space-between; gap:16px}
     .brand{display:flex; align-items:center; gap:10px}
     .dot{width:10px; height:10px; border-radius:50%; background:#fff; opacity:.85}
@@ -83,80 +110,36 @@
     }
     @media (max-width:860px){ .grid{grid-template-columns:1fr} .hero{padding:14vh 0 6vh} }
   </style>
-  /* ===== Galaxy background layer ===== */
-.galaxy-bg {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-
-  /* 关键：不抢交互、不盖内容 */
-  pointer-events: none;
-  z-index: 0;
-
-  /* 宇宙存在感（推荐 0.25–0.4） */
-  opacity: 0.35;
-}
-
-/* ===== Content layer ===== */
-body {
-  margin: 0;
-  background: #000;
-  color: #fff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Arial, sans-serif;
-}
-
-/* 顶部导航 */
-.top {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 28px;
-}
-
-/* 主内容包裹 */
-.wrap {
-  position: relative;
-  z-index: 2;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 120px 24px 80px;
-}
-
-/* 导航样式（可选） */
-.nav a {
-  color: #aaa;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-.nav a.active {
-  color: #fff;
-}
-
 </head>
+
 <body>
+  <!-- ✅ iframe 必须放在 body 里 -->
+  <iframe
+    src="https://threejs.org/examples/webgpu_tsl_galaxy.html"
+    class="galaxy-bg"
+    loading="lazy"
+    referrerpolicy="no-referrer"
+  ></iframe>
+
+  <!-- 可选：遮挡 three.js 左上角 UI（不影响布局） -->
+  <div class="galaxy-mask"></div>
+
   <div class="wrap">
     <header>
       <div class="brand" aria-label="site brand">
         <div class="dot"></div>
         <b>Universe and Humanity</b>
       </div>
-     <nav aria-label="primary">
-  <a href="/interface.html">Interface</a>
-  <a href="/universe.html">Universe</a>
-  <a href="/civilization.html">Civilization</a>
-  <a href="/humanity.html">Humanity</a>
-</nav>
 
+      <nav aria-label="primary">
+        <a href="/interface.html">Interface</a>
+        <a href="/universe.html">Universe</a>
+        <a href="/civilization.html">Civilization</a>
+        <a href="/humanity.html">Humanity</a>
+      </nav>
     </header>
 
     <section class="hero">
-      <!-- 唯一锚句：只允许这一句作为 H1 -->
       <h1>A structural interface between the Universe and Humanity.</h1>
 
       <div class="sub">
