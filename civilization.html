@@ -1,31 +1,36 @@
 <!doctype html><html lang="en"><head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Civilization — Universe and Humanity</title>
+<meta name="description" content="Civilization as coordination interface: incentives, feedback, repair, drift."/>
 <style>
 :root{--bg:#000;--fg:#fff;--m:#b9b9b9;--f:#7a7a7a;--l:rgba(255,255,255,.14);--max:980px}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Arial;letter-spacing:.12px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Arial;letter-spacing:.12px}
 a{color:inherit;text-decoration:none}a:hover{opacity:.86}
 .wrap{max-width:var(--max);margin:0 auto;padding:42px 24px 72px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.nav{display:flex;gap:16px;color:var(--m);font-size:14px}
-h1{margin:52px 0 10px;font-size:36px;font-weight:650}
-.sub{color:var(--m);max-width:860px;line-height:1.75;font-size:14.6px}
-.block{margin-top:18px;border:1px solid var(--l);border-radius:14px;padding:16px;background:rgba(255,255,255,.02);max-width:880px}
-.k{font-size:12px;color:var(--f)} .b{margin-top:10px;color:var(--m);line-height:1.75}
+.nav{display:flex;gap:16px;color:var(--m);font-size:14px;flex-wrap:wrap}
+h1{margin:52px 0 10px;font-size:44px;font-weight:650}
+.sub{color:var(--m);max-width:920px;line-height:1.75;font-size:14.6px}
 .hr{margin:26px 0;border-top:1px solid var(--l)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.block{margin-top:18px;border:1px solid var(--l);border-radius:14px;padding:16px;background:rgba(255,255,255,.02);max-width:920px}
+.k{font-size:12px;color:var(--f);letter-spacing:.2px}
+.b{margin-top:10px;color:var(--m);line-height:1.75}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 .card{border:1px solid var(--l);border-radius:14px;padding:16px;background:rgba(255,255,255,.02)}
 .tt{margin-top:8px;font-weight:650}
 .p{margin-top:10px;color:var(--m);font-size:13.6px;line-height:1.65}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+@media(max-width:900px){h1{font-size:36px}.grid{grid-template-columns:1fr}}
 </style></head><body><div class="wrap">
-<div class="nav">
-  <a href="/interface.html">Interface</a>
-  <a href="/universe.html" style="color:#fff">Universe</a>
-  <a href="/civilization.html">Civilization</a>
-  <a href="/humanity.html">Humanity</a>
-</div>
 
+<div class="top">
+  <a href="/"><b>Universe and Humanity</b></a>
+  <div class="nav">
+    <a href="/interface.html">Interface</a>
+    <a href="/universe.html">Universe</a>
+    <a href="/civilization.html" style="color:#fff">Civilization</a>
+    <a href="/humanity.html">Humanity</a>
+  </div>
 </div>
 
 <h1>Civilization</h1>
@@ -44,13 +49,27 @@ h1{margin:52px 0 10px;font-size:36px;font-weight:650}
 <div class="hr"></div>
 
 <div class="grid">
-  <a class="card" href="/c-1-coordination.html">
-    <div class="k">C1</div><div class="tt">Coordination Structures</div>
+  <div class="card">
+    <div class="k">C1</div>
+    <div class="tt">Coordination Structures</div>
     <div class="p">Language, law, and technology as compression + commitment + amplification.</div>
-  </a>
-  <a class="card" href="/c-2-drift.html">
-    <div class="k">C2</div><div class="tt">Collapse and Drift</div>
+  </div>
+  <div class="card">
+    <div class="k">C2</div>
+    <div class="tt">Collapse and Drift</div>
     <div class="p">Delayed feedback → misaligned incentives → coherence loss.</div>
-  </a>
+  </div>
 </div>
+
+<div class="hr"></div>
+
+<div class="block">
+  <div class="k">INTERFACE CHECK</div>
+  <div class="b"><b>Input</b>: resources, attention, legitimacy.</div>
+  <div class="b"><b>Coupling</b>: incentives, rules, enforcement.</div>
+  <div class="b"><b>Feedback</b>: prices, votes, audits, signals of failure.</div>
+  <div class="b"><b>Repair</b>: reform, adaptation, institutional refactoring.</div>
+  <div class="b"><b>Failure</b>: runaway corruption, brittle collapse, irreversible distrust.</div>
+</div>
+
 </div></body></html>
