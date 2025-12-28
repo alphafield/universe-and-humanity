@@ -34,16 +34,18 @@
     }
 
     /* ===== Optional: mask top-left three.js UI ===== */
-    .galaxy-mask{
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 320px;
-      height: 120px;
-      background: #000;
-      z-index: 1;           /* 盖住 iframe */
-      pointer-events: none;
-    }
+    /* 可选：遮挡 three.js 右上角 UI */
+.galaxy-mask{
+  position: fixed;
+  top: 0;
+  right: 0;   /* ← 改这里 */
+  width: 360px;
+  height: 180px;
+  background: #000;
+  z-index: 1;
+  pointer-events: none;
+}
+
 
     /* ===== Content layer ===== */
     .wrap{
