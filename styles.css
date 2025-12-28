@@ -11,3 +11,28 @@
   box-shadow: 0 6px 24px rgba(0,0,0,.28);
   border-color: rgba(255,255,255,.22);
 }
+/* ===== Alpha scroll figure (sticky) ===== */
+.alpha-scroll{
+  margin-top:18px;
+  height:140vh;            /* 控制滚动距离：可改 120~180vh */
+  position:relative;
+}
+
+.alpha-sticky{
+  position:sticky;
+  top:10vh;
+  z-index:2;
+}
+
+.alpha-frame{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;         /* 图必须白底（论文风格） */
+  overflow:hidden;
+}
+
+.alpha-note{
+  margin:10px 2px 0;
+  color:var(--faint);
+  font-size:12px;
+}
