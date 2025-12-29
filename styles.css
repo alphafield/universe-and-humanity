@@ -119,3 +119,53 @@ footer{
   .rule{grid-template-columns:1fr}
   .head{padding:42px 0 12px}
 }
+/* ===== Alpha Interface Table (dark + subtle glow) ===== */
+.alpha-table{
+  margin-top: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+  box-shadow: 0 18px 60px rgba(0,0,0,.55);
+  backdrop-filter: blur(8px);
+}
+
+.alpha-table table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.alpha-table thead th{
+  text-align: left;
+  font-weight: 650;
+  font-size: 13px;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,.86);
+  background: rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  padding: 14px 14px;
+}
+
+.alpha-table tbody td{
+  padding: 14px 14px;
+  color: rgba(255,255,255,.76);
+  font-size: 13.5px;
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.alpha-table tbody tr:hover{
+  background: rgba(255,255,255,.05);
+}
+
+.alpha-table tbody tr:last-child td{
+  border-bottom: none;
+}
+
+/* subtle “micro glow” on key term */
+.alpha-glow{
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 0 10px rgba(170,140,255,.25);
+  font-weight: 650;
+}
+
