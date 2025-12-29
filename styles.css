@@ -1,121 +1,57 @@
-/* =========================================
-   Universe and Humanity — styles.css (clean)
-   Works with interface.html structure:
-   body, .wrap, header, nav, .head, .block,
-   .grid, .card, .rule, footer,
-   + Figure 1 alpha-scroll module
-========================================= */
-
-/* ----- Design tokens ----- */
 :root{
-  --bg:#000;
-  --fg:#fff;
-  --muted:#b9b9b9;
-  --faint:#7a7a7a;
+  --bg:#000; --fg:#fff; --muted:#b9b9b9; --faint:#7a7a7a;
   --line:rgba(255,255,255,.14);
-
   --max:980px;
-
-  --radius:14px;
-  --radius-lg:18px;
-
-  --shadow: 0 16px 60px rgba(0,0,0,0.45);
 }
 
-/* ----- Base reset ----- */
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+*{box-sizing:border-box}
+html,body{margin:0; padding:0}
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--fg);
+  background:var(--bg); color:var(--fg);
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   letter-spacing:.12px;
 }
 
-/* Links */
-a{ color:inherit; text-decoration:none; }
-a:hover{ opacity:.86; }
+a{color:inherit; text-decoration:none}
+a:hover{opacity:.86}
 
-/* ----- Galaxy background layer ----- */
+/* Galaxy background iframe (optional) */
 .galaxy-bg{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  border:none;
-  pointer-events:none;
-  z-index:0;
-  opacity:.35;
+  position:fixed; inset:0; width:100%; height:100%;
+  border:none; pointer-events:none; z-index:0; opacity:.35;
 }
 
-/* ----- Masks to hide three.js UI bits ----- */
+/* Masks to hide three.js UI */
 .galaxy-mask{
-  position:fixed;
-  top:0; left:0;
-  width:420px;
-  height:160px;
-  background:#000;
-  z-index:1;
-  pointer-events:none;
+  position:fixed; top:0; left:0;
+  width:420px; height:160px;
+  background:#000; z-index:1; pointer-events:none;
 }
 .galaxy-mask-right{
-  position:fixed;
-  top:0; right:0;
-  width:360px;
-  height:220px;
-  background:#000;
-  z-index:1;
-  pointer-events:none;
+  position:fixed; top:0; right:0;
+  width:360px; height:220px;
+  background:#000; z-index:1; pointer-events:none;
 }
 
-/* ----- Main content wrapper ----- */
+/* Content wrapper */
 .wrap{
-  position:relative;
-  z-index:2;
+  position:relative; z-index:2;
   max-width:var(--max);
   margin:0 auto;
   padding:56px 24px 72px;
 }
 
-/* ----- Header / Nav ----- */
-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.dot{
-  width:10px; height:10px;
-  border-radius:50%;
-  background:#fff;
-  opacity:.85;
-}
-.brand b{ font-weight:650; }
+header{display:flex; align-items:center; justify-content:space-between; gap:16px}
+.brand{display:flex; align-items:center; gap:10px}
+.dot{width:10px; height:10px; border-radius:50%; background:#fff; opacity:.85}
+.brand b{font-weight:650}
 
-nav{
-  display:flex;
-  gap:18px;
-  font-size:14px;
-  color:var(--muted);
-}
-nav a{
-  padding:6px 0;
-  border-bottom:1px solid transparent;
-}
-nav a:hover{ border-bottom-color:var(--line); }
-nav a.active{
-  color:#fff;
-  border-bottom-color:var(--line);
-}
+nav{display:flex; gap:18px; font-size:14px; color:var(--muted)}
+nav a{padding:6px 0; border-bottom:1px solid transparent}
+nav a:hover{border-bottom-color:var(--line)}
+nav a.active{color:#fff; border-bottom-color:var(--line)}
 
-/* ----- Page head ----- */
-.head{ padding:62px 0 14px; }
+.head{padding:62px 0 14px}
 h1{
   margin:0 0 12px;
   font-size:clamp(34px,4.2vw,56px);
@@ -129,26 +65,16 @@ h1{
   font-size:15px;
 }
 
-/* ----- Blocks / Cards ----- */
 .block{
   margin-top:22px;
   padding:18px 18px;
   border:1px solid var(--line);
-  border-radius:var(--radius);
+  border-radius:14px;
   background:rgba(255,255,255,.02);
 }
-.k{
-  font-size:12px;
-  color:var(--faint);
-  letter-spacing:.2px;
-}
-.line{
-  margin-top:10px;
-  color:var(--muted);
-  line-height:1.7;
-  font-size:14px;
-}
-.line b{ color:#fff; font-weight:650; }
+.k{font-size:12px; color:var(--faint); letter-spacing:.2px}
+.line{margin-top:10px;color:var(--muted);line-height:1.7;font-size:14px}
+.line b{color:#fff; font-weight:650}
 
 .grid{
   display:grid;
@@ -159,56 +85,22 @@ h1{
 }
 .card{
   border:1px solid var(--line);
-  border-radius:var(--radius);
+  border-radius:14px;
   padding:18px 16px;
   background:rgba(255,255,255,.02);
+}
+.t{margin-top:8px; font-size:16px; font-weight:650}
+.p{margin-top:10px; color:var(--muted); font-size:13.6px; line-height:1.65}
 
-  /* micro depth */
-  transition: transform 80ms ease-out,
-              box-shadow 80ms ease-out,
-              border-color 80ms ease-out;
-  will-change: transform;
-}
-.card:hover{
-  transform: translateY(-0.5px);
-  box-shadow:0 6px 24px rgba(0,0,0,.28);
-  border-color: rgba(255,255,255,.22);
-}
-
-.t{
-  margin-top:8px;
-  font-size:16px;
-  font-weight:650;
-}
-.p{
-  margin-top:10px;
-  color:var(--muted);
-  font-size:13.6px;
-  line-height:1.65;
-}
-
-.list{
-  margin-top:10px;
-  display:grid;
-  gap:10px;
-}
-.item{
-  display:flex;
-  gap:10px;
-  color:var(--muted);
-  font-size:13.8px;
-  line-height:1.6;
-}
+.list{margin-top:10px; display:grid; gap:10px}
+.item{display:flex; gap:10px; color:var(--muted); font-size:13.8px; line-height:1.6}
 .num{
-  width:22px;
-  flex:0 0 22px;
-  color:#fff;
-  opacity:.9;
+  width:22px; flex:0 0 22px;
+  color:#fff; opacity:.9;
   font-weight:650;
   text-align:right;
 }
 
-/* Two-rule row */
 .rule{
   margin-top:14px;
   display:grid;
@@ -216,61 +108,14 @@ h1{
   gap:14px;
 }
 
-/* ----- Footer ----- */
 footer{
-  margin-top:72px;
-  padding-top:18px;
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-between;
-  gap:16px;
-  flex-wrap:wrap;
-  color:var(--faint);
-  font-size:12px;
+  margin-top:72px; padding-top:18px; border-top:1px solid var(--line);
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  color:var(--faint); font-size:12px;
 }
 
-/* =========================================
-   Figure 1 — Scroll module (alpha)
-   Requires HTML:
-   <section class="alpha-scroll" id="alpha-scroll">
-     <div class="alpha-sticky">
-       <div class="alpha-frame"> <svg>...</svg> <div class="alpha-note">...</div></div>
-     </div>
-   </section>
-========================================= */
-.alpha-scroll{
-  margin-top:22px;
-  height:160vh;         /* scroll distance; 140–220vh ok */
-  position:relative;
-}
-.alpha-sticky{
-  position:sticky;
-  top:84px;             /* avoid nav overlap */
-}
-.alpha-frame{
-  border:1px solid rgba(255,255,255,.14);
-  border-radius:var(--radius-lg);
-  background:rgba(255,255,255,.06);   /* soft translucent */
-  backdrop-filter: blur(6px);
-  padding:16px;
-  box-shadow: var(--shadow);
-}
-.alpha-frame svg{
-  display:block;
-  width:100%;
-  height:auto;
-}
-.alpha-note{
-  margin-top:10px;
-  font-size:12px;
-  color:rgba(255,255,255,.65);
-  letter-spacing:.2px;
-}
-
-/* ----- Responsive ----- */
 @media (max-width:860px){
-  .grid{ grid-template-columns:1fr; }
-  .rule{ grid-template-columns:1fr; }
-  .head{ padding:42px 0 12px; }
-  .alpha-sticky{ top:72px; }
+  .grid{grid-template-columns:1fr}
+  .rule{grid-template-columns:1fr}
+  .head{padding:42px 0 12px}
 }
