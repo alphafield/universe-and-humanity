@@ -36,3 +36,26 @@
   color:var(--faint);
   font-size:12px;
 }
+/* ===== Figure 1 scroll component ===== */
+.alpha-scroll{
+  margin-top:22px;
+  height:160vh;          /* scroll distance; 可改 140-220vh */
+  position:relative;
+}
+.alpha-sticky{
+  position:sticky;
+  top:84px;              /* 距离顶部，避免压到导航 */
+}
+.alpha-frame{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:rgba(0,0,0,0.10);
+  padding:16px;
+  box-shadow:0 16px 60px rgba(0,0,0,0.45);
+}
+.alpha-note{
+  margin-top:10px;
+  color:var(--faint);
+  font-size:12px;
+  letter-spacing:.2px;
+}
