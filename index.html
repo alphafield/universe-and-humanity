@@ -1,197 +1,588 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
   <title>Universe and Humanity</title>
-  <meta name="description" content="Structural interfaces for universe—civilization—humanity." />
+  <meta name="description" content="不是理论，不是信仰。这里只呈现结构。" />
 
   <style>
     :root{
-      --bg:#000; --fg:#fff; --muted:#b9b9b9; --faint:#7a7a7a;
-      --line:rgba(255,255,255,.14);
-      --max:980px;
+      --bg0:#030612;
+      --bg1:#050b20;
+      --ink:#eaf0ff;
+      --muted:#a9b6d8;
+      --line:rgba(255,255,255,.10);
+
+      --gold:#ffcc33;
+      --gold2:#ffd86b;
+      --cyan:#7fd8ff;
+      --blue:#4f7dff;
+
+      --glass:rgba(255,255,255,.05);
+      --shadow: 0 18px 70px rgba(0,0,0,.45);
+      --radius:18px;
+
+      --max:1080px;
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
-      margin:0; background:var(--bg); color:var(--fg);
-      fontacet-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-      letter-spacing:.12px;
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 700px at 18% 12%, rgba(79,125,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(255,204,51,.14), transparent 62%),
+        radial-gradient(900px 600px at 55% 92%, rgba(127,216,255,.10), transparent 65%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
+
     a{color:inherit; text-decoration:none}
-    a:hover{opacity:.86}
+    a:hover{opacity:.95}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
 
-    /* ===== HERO GALAXY (stable, full-screen) ===== */
-    .galaxy-bg{
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-      pointer-events: none;  /* never steal clicks */
-      z-index: 0;
-      opacity: 0.35;
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(3,6,18,.82), rgba(3,6,18,.48));
+      border-bottom: 1px solid rgba(255,255,255,.06);
     }
-
-    /* ===== HARD MASKS (top-left + top-right) ===== */
-    .galaxy-mask{
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 520px;
-      height: 220px;
-      background: #000;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .galaxy-mask-right{
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 520px;
-      height: 300px;
-      background: #000;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* ===== Content layer ===== */
-    .wrap{
-      position: relative;
-      z-index: 2;
-      max-width:var(--max);
-      margin:0 auto;
-      padding:56px 24px 72px;
-    }
-
-    header{display:flex; align-items:center; justify-content:space-between; gap:16px}
-    .brand{display:flex; align-items:center; gap:10px}
-    .dot{width:10px; height:10px; border-radius:50%; background:#fff; opacity:.85}
-    .brand b{font-weight:650}
-    nav{display:flex; gap:18px; font-size:14px; color:var(--muted)}
-    nav a{padding:6px 0; border-bottom:1px solid transparent}
-    nav a:hover{border-bottom-color:var(--line)}
-    .hero{padding:18vh 0 8vh}
-    h1{
-      margin:0 0 14px;
-      font-size:clamp(30px,3.6vw,44px);
-      font-weight:650;
-      line-height:1.12;
-    }
-    .sub{
-      max-width:820px;
-      color:var(--muted);
-      line-height:1.75;
-      font-size:14.8px;
-    }
-    .manifest{
-      margin-top:22px;
-      padding:16px 16px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:rgba(255,255,255,.02);
-      max-width:860px;
-    }
-    .manifest .k{font-size:12px;color:var(--faint);letter-spacing:.2px}
-    .manifest .line{margin-top:10px;color:var(--muted);line-height:1.7;font-size:14px}
-    .manifest b{color:#fff; font-weight:650}
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
       gap:14px;
-      margin-top:34px;
     }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
+    .mark{
+      width:34px; height:34px; border-radius:999px;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,216,107,.95), rgba(255,204,51,.32) 38%, rgba(79,125,255,.18) 62%, rgba(0,0,0,.0) 70%),
+        radial-gradient(circle at 62% 66%, rgba(127,216,255,.35), transparent 55%);
+      box-shadow: 0 0 24px rgba(255,204,51,.18), 0 0 28px rgba(127,216,255,.10);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .brand h1{
+      font-size:14px; letter-spacing:.14em; margin:0;
+      text-transform:uppercase;
+      color:rgba(234,240,255,.92);
+    }
+    .brand .sub{
+      font-size:12px; margin-top:2px; color:rgba(169,182,216,.86);
+      letter-spacing:.06em;
+    }
+
+    .nav{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:rgba(234,240,255,.90);
+      font-size:13px;
+      letter-spacing:.02em;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,204,51,.28);
+      background: rgba(255,204,51,.06);
+    }
+    .pill.secondary:hover{
+      border-color: rgba(127,216,255,.26);
+      background: rgba(127,216,255,.06);
+    }
+
+    /* Hero */
+    .hero{
+      padding:54px 0 26px;
+      position:relative;
+    }
+    .gridline{
+      position:absolute; inset:-40px -40px auto -40px; height:420px;
+      pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at 25% 20%, rgba(0,0,0,1), rgba(0,0,0,0) 70%);
+      opacity:.25;
+    }
+    .hero .frame{
+      border-radius: calc(var(--radius) + 8px);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero .frame::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(850px 420px at 22% 18%, rgba(255,204,51,.12), transparent 60%),
+        radial-gradient(900px 520px at 78% 30%, rgba(79,125,255,.10), transparent 65%),
+        radial-gradient(900px 540px at 56% 86%, rgba(127,216,255,.08), transparent 65%);
+      pointer-events:none;
+    }
+
+    .hero .content{
+      position:relative;
+      padding:34px 26px 26px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .hero .content{grid-template-columns:1fr}
+      .brand{min-width:auto}
+    }
+
+    .kicker{
+      font-size:12px;
+      color:rgba(169,182,216,.92);
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      margin:0 0 10px;
+    }
+    .title{
+      margin:0;
+      font-size:38px;
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    .title .gold{color:var(--gold)}
+    .lead{
+      margin:14px 0 18px;
+      color:rgba(234,240,255,.86);
+      font-size:15px;
+      line-height:1.75;
+      max-width: 58ch;
+    }
+
+    .thesis{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 11px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+      color:rgba(234,240,255,.90);
+      font-size:13px;
+      line-height:1.25;
+    }
+    .dot{
+      width:9px; height:9px; border-radius:999px;
+      background: rgba(255,204,51,.95);
+      box-shadow: 0 0 18px rgba(255,204,51,.22);
+      flex:0 0 auto;
+    }
+    .dot.cyan{
+      background: rgba(127,216,255,.90);
+      box-shadow: 0 0 18px rgba(127,216,255,.18);
+    }
+    .dot.blue{
+      background: rgba(79,125,255,.92);
+      box-shadow: 0 0 18px rgba(79,125,255,.18);
+    }
+
+    /* Visual anchor (no NASA, no external asset required) */
+    .visual{
+      border-left: 1px solid rgba(255,255,255,.07);
+      padding-left:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:14px;
+    }
+    @media (max-width: 920px){
+      .visual{border-left:none; padding-left:0; border-top:1px solid rgba(255,255,255,.07); padding-top:18px}
+    }
+    .viz-card{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      border-radius: var(--radius);
+      overflow:hidden;
+      position:relative;
+      min-height: 250px;
+    }
+    .viz-card .cap{
+      position:absolute; left:14px; bottom:12px; right:14px;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:14px;
+      color:rgba(234,240,255,.78);
+      font-size:12px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      pointer-events:none;
+    }
+    .mini{
+      font-size:12px; color:rgba(169,182,216,.86); line-height:1.7;
+      margin:0;
+    }
+
+    /* Path */
+    .section{padding: 26px 0}
+    .section h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(234,240,255,.92);
+    }
+    .section p{
+      margin:0;
+      color:rgba(169,182,216,.92);
+      line-height:1.8;
+      font-size:14px;
+      max-width: 78ch;
+    }
+
+    .cards{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 980px){ .cards{grid-template-columns: repeat(2,1fr)} }
+    @media (max-width: 560px){ .cards{grid-template-columns: 1fr} }
+
     .card{
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:18px 16px;
-      min-height:140px;
-      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:14px 14px 12px;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
     }
-    .k{font-size:12px; color:var(--faint); letter-spacing:.2px}
-    .t{margin-top:10px; font-size:16px; font-weight:650}
-    .p{margin-top:10px; color:var(--muted); font-size:13.6px; line-height:1.65}
-    .cta{margin-top:14px; font-size:13px; color:var(--muted)}
-    .cta span{color:#fff; opacity:.92}
+    .card::before{
+      content:"";
+      position:absolute; inset:-60px -60px auto -60px; height:140px;
+      background: radial-gradient(circle at 30% 40%, rgba(255,204,51,.12), transparent 65%);
+      opacity:.85;
+      pointer-events:none;
+    }
+    .card .k{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:10px;
+    }
+    .badge{
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,204,51,.92);
+    }
+    .card h3{
+      margin:0;
+      font-size:15px;
+      letter-spacing:.02em;
+      color:rgba(234,240,255,.94);
+    }
+    .card p{
+      margin:10px 0 0;
+      font-size:13px;
+      color:rgba(169,182,216,.92);
+      line-height:1.8;
+    }
+    .card .go{
+      margin-top:12px;
+      display:inline-flex;
+      font-size:12px;
+      color:rgba(127,216,255,.92);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      border-bottom:1px solid rgba(127,216,255,.26);
+      padding-bottom:2px;
+    }
+    .card .go.muted{
+      color:rgba(169,182,216,.70);
+      border-bottom-color: rgba(169,182,216,.18);
+    }
+
+    /* Footer */
     footer{
-      margin-top:72px; padding-top:18px; border-top:1px solid var(--line);
-      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
-      color:var(--faint); font-size:12px;
+      padding: 26px 0 40px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color:rgba(169,182,216,.80);
+      font-size:12px;
+      line-height:1.7;
     }
-    @media (max-width:860px){ .grid{grid-template-columns:1fr} .hero{padding:14vh 0 6vh} }
+    .foot{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:14px; flex-wrap:wrap;
+    }
+    .foot .right{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .small-pill{
+      padding:7px 10px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+
+    /* Subtle “micro glow” ring SVG */
+    .ring{
+      width:100%;
+      height:100%;
+    }
+    .ring .glow{filter:url(#glow)}
   </style>
 </head>
 
 <body>
-  <iframe
-    src="https://threejs.org/examples/webgpu_tsl_galaxy.html"
-    class="galaxy-bg"
-    loading="lazy"
-    referrerpolicy="no-referrer"
-  ></iframe>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="inner">
+        <div class="brand" aria-label="Universe and Humanity">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <h1>Universe and Humanity</h1>
+            <div class="sub">结构视角 · 宇宙 · 文明 · 人类</div>
+          </div>
+        </div>
 
-  <div class="galaxy-mask"></div>
-  <div class="galaxy-mask-right"></div>
-
-  <div class="wrap">
-    <header>
-      <div class="brand" aria-label="site brand">
-        <div class="dot"></div>
-        <b>Universe and Humanity</b>
+        <nav class="nav" aria-label="Primary">
+          <!-- 先克制：目前 main 只有 index.html；这些链接先留作占位（#） -->
+          <a class="pill" href="#path">路径</a>
+          <a class="pill secondary" href="#anchor">视觉锚点</a>
+          <a class="pill" href="#notes">声明</a>
+        </nav>
       </div>
+    </div>
+  </div>
 
-      <nav aria-label="primary">
-        <a href="/interface.html">Interface</a>
-        <a href="/universe.html">Universe</a>
-        <a href="/civilization.html">Civilization</a>
-        <a href="/humanity.html">Humanity</a>
-      </nav>
-    </header>
-
+  <main>
     <section class="hero">
-      <h1>A structural interface between the Universe and Humanity.</h1>
+      <div class="gridline" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="frame">
+          <div class="content">
+            <!-- Left: message -->
+            <div>
+              <p class="kicker">Not a theory · Not a belief · Structure only</p>
+              <h2 class="title">
+                宇宙与人类不是两件事。<br />
+                它们是同一个系统的<span class="gold">不同尺度</span>。
+              </h2>
+              <p class="lead">
+                这里不“提出”任何信条，也不要求任何相信。我们只做一件事：把反复出现、可复查的结构关系整理出来，
+                让读者能在不同领域（物理、生命、文明）用同一套语言辨认“系统如何持续存在”。
+              </p>
 
-      <div class="sub">
-        This is not a belief system. It is an attempt to state what must hold for complex systems to persist—
-        across physics, life, and civilization—using a shared interface language.
-      </div>
+              <div class="thesis" role="list" aria-label="Thesis tags">
+                <div class="tag" role="listitem"><span class="dot"></span> 结构约束（Constraint）</div>
+                <div class="tag" role="listitem"><span class="dot cyan"></span> 可复查（Re-checkable）</div>
+                <div class="tag" role="listitem"><span class="dot blue"></span> 跨尺度（Cross-scale）</div>
+              </div>
 
-      <div class="manifest" aria-label="manifest">
-        <div class="k">CIVILIZATION INTERFACE — B EDITION</div>
-        <div class="line"><b>We do not worship explanations.</b> We specify constraints.</div>
-        <div class="line"><b>We do not argue identities.</b> We inspect interfaces: input, coupling, feedback, failure.</div>
-        <div class="line"><b>We do not promise meaning.</b> We build coherence: what can persist under stress.</div>
-      </div>
+              <div style="height:14px"></div>
 
-      <div class="grid" role="list">
-        <a class="card" role="listitem" href="/universe.html">
-          <div class="k">Layer 1</div>
-          <div class="t">Universe</div>
-          <div class="p">The deepest constraint layer: invariants, admissible transitions, stability regions.</div>
-          <div class="cta">Open <span>Universe</span> →</div>
-        </a>
+              <div class="thesis" role="list" aria-label="One line">
+                <div class="tag" role="listitem" style="border-color:rgba(255,204,51,.22); background:rgba(255,204,51,.06)">
+                  <span class="dot"></span>
+                  不是解释世界的一套话术，而是把世界里“稳定成立的形状”留存下来。
+                </div>
+              </div>
+            </div>
 
-        <a class="card" role="listitem" href="/civilization.html">
-          <div class="k">Layer 2</div>
-          <div class="t">Civilization</div>
-          <div class="p">Coordination at scale: language, law, technology. Civilizations fail by interface drift.</div>
-          <div class="cta">Open <span>Civilization</span> →</div>
-        </a>
+            <!-- Right: visual anchor -->
+            <div class="visual" id="anchor">
+              <div class="viz-card" aria-label="Visual anchor">
+                <!-- Inline SVG anchor (kept minimal, non-NASA) -->
+                <svg class="ring" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Coherence loop anchor">
+                  <defs>
+                    <radialGradient id="bg" cx="30%" cy="20%" r="90%">
+                      <stop offset="0%" stop-color="rgba(255,204,51,0.14)"/>
+                      <stop offset="55%" stop-color="rgba(79,125,255,0.10)"/>
+                      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                    </radialGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="6" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <linearGradient id="strokeA" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="rgba(127,216,255,0.95)"/>
+                      <stop offset="55%" stop-color="rgba(255,204,51,0.90)"/>
+                      <stop offset="100%" stop-color="rgba(79,125,255,0.80)"/>
+                    </linearGradient>
+                  </defs>
 
-        <a class="card" role="listitem" href="/humanity.html">
-          <div class="k">Layer 3</div>
-          <div class="t">Humanity</div>
-          <div class="p">Perception and responsibility as interfaces: sensing → compression → action → consequence.</div>
-          <div class="cta">Open <span>Humanity</span> →</div>
-        </a>
+                  <!-- background wash -->
+                  <rect x="0" y="0" width="900" height="520" fill="rgba(0,0,0,0.15)"/>
+                  <circle cx="260" cy="140" r="380" fill="url(#bg)" opacity="0.9"/>
+
+                  <!-- grid hints -->
+                  <g opacity="0.22" stroke="rgba(255,255,255,.22)" stroke-width="1">
+                    <path d="M60 420 H840" opacity=".35"/>
+                    <path d="M450 70 V470" opacity=".35"/>
+                    <path d="M120 110 H780" opacity=".18"/>
+                    <path d="M120 360 H780" opacity=".18"/>
+                  </g>
+
+                  <!-- loop -->
+                  <g class="glow">
+                    <path d="M450 90
+                             C 650 90, 780 210, 780 300
+                             C 780 405, 650 460, 520 460
+                             C 350 460, 220 350, 220 280
+                             C 220 180, 320 90, 450 90 Z"
+                          fill="none"
+                          stroke="url(#strokeA)"
+                          stroke-width="20"
+                          opacity="0.9"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <!-- inner faint -->
+                    <path d="M450 125
+                             C 625 125, 740 230, 740 300
+                             C 740 385, 625 430, 520 430
+                             C 360 430, 260 340, 260 280
+                             C 260 200, 340 125, 450 125 Z"
+                          fill="none"
+                          stroke="rgba(255,255,255,.22)"
+                          stroke-width="2"
+                          opacity="0.55"
+                          stroke-dasharray="6 10"/>
+                    <!-- nodes -->
+                    <circle cx="450" cy="90" r="8" fill="rgba(255,204,51,.95)"/>
+                    <circle cx="520" cy="460" r="8" fill="rgba(127,216,255,.92)"/>
+                    <circle cx="220" cy="280" r="7" fill="rgba(79,125,255,.92)"/>
+                  </g>
+
+                  <!-- labels (minimal) -->
+                  <g font-family="ui-sans-serif, system-ui" fill="rgba(234,240,255,.84)">
+                    <text x="450" y="54" text-anchor="middle" font-size="16" letter-spacing="2" fill="rgba(255,204,51,.92)">
+                      α · Loop (visual anchor)
+                    </text>
+                    <text x="450" y="505" text-anchor="middle" font-size="12" fill="rgba(169,182,216,.88)">
+                      这里先作为“镇场锚点”，不承诺解释，只承诺结构可复查。
+                    </text>
+                  </g>
+                </svg>
+
+                <div class="cap">
+                  <div>Anchor</div>
+                  <div style="color:rgba(255,204,51,.88)">structure-first</div>
+                </div>
+              </div>
+
+              <p class="mini">
+                说明：你有大量“方程导出图”。首页只留一张“镇场”即可——
+                既不NASA化，也不科普化；让它像一扇门：普通人看见秩序，认真者看见可复查的结构线索。
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <footer>
-      <div>v1.1 — Civilization Interface Edition (B)</div>
-      <div>Structure is invariant across languages.</div>
-    </footer>
-  </div>
+    <section class="section" id="path">
+      <div class="wrap">
+        <h2>Path 0–3</h2>
+        <p>
+          首页只给四步路径：从“遇到”开始，到“结构”成型，再到“人类的位置”与“文明的展开”。
+          每一步都以“可复查的结构”作为唯一合法输出，不做宏大宣告。
+        </p>
+
+        <div class="cards" role="list" aria-label="Path cards">
+          <article class="card" role="listitem">
+            <div class="k">
+              <div class="badge">Path 0</div>
+              <div class="dot" aria-hidden="true"></div>
+            </div>
+            <h3>Encounter · 遇到</h3>
+            <p>
+              在不同系统里，反复出现同一类“稳定/失稳边界”。
+              我们先记录边界，不解释它。
+            </p>
+            <a class="go muted" href="#" aria-disabled="true">（卷内页面稍后接入）</a>
+          </article>
+
+          <article class="card" role="listitem">
+            <div class="k">
+              <div class="badge">Path 1</div>
+              <div class="dot cyan" aria-hidden="true"></div>
+            </div>
+            <h3>Structure · 结构</h3>
+            <p>
+              把边界写成接口语言：层、门、约束、通道。
+              任何说法都必须能被复查与替换。
+            </p>
+            <a class="go muted" href="#" aria-disabled="true">（卷内页面稍后接入）</a>
+          </article>
+
+          <article class="card" role="listitem">
+            <div class="k">
+              <div class="badge">Path 2</div>
+              <div class="dot blue" aria-hidden="true"></div>
+            </div>
+            <h3>Humanity · 人类位置</h3>
+            <p>
+              人类不是旁观者：我们是同一结构中的局域形态。
+              所谓“认识”本身也是结构响应。
+            </p>
+            <a class="go muted" href="#" aria-disabled="true">（卷内页面稍后接入）</a>
+          </article>
+
+          <article class="card" role="listitem">
+            <div class="k">
+              <div class="badge">Path 3</div>
+              <div class="dot" aria-hidden="true" style="background:rgba(255,216,107,.95)"></div>
+            </div>
+            <h3>Civilization · 文明展开</h3>
+            <p>
+              文明被视为“接口系统”：以约束管理复杂度，以结构保存连续性；
+              这比“文化叙事”更可对齐。
+            </p>
+            <a class="go muted" href="#" aria-disabled="true">（卷内页面稍后接入）</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="notes">
+      <div class="wrap">
+        <h2>Minimal Statement</h2>
+        <p>
+          1）本站内容以“结构呈现”为唯一目标；2）不要求任何相信，不提供宗教式归属；
+          3）所有图与文字都应可被未来版本替换，只保留“可复查的结构关系”。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <div style="letter-spacing:.14em; text-transform:uppercase; color:rgba(234,240,255,.86)">Universe and Humanity</div>
+          <div>Structure is invariant across languages.</div>
+        </div>
+        <div class="right">
+          <span class="small-pill">domain: universeandhumanity.com</span>
+          <span class="small-pill">repo: alphafield / universe-and-humanity</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
