@@ -128,6 +128,79 @@
       .rule{grid-template-columns:1fr}
       .head{padding:42px 0 12px}
     }
+    /* ===== Civil Interface: timeline rail (safe, no JS) ===== */
+.rail{
+  margin-top:18px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.02);
+  overflow:hidden;
+}
+.rail-head{
+  padding:14px 16px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  color:var(--muted);
+  font-size:13px;
+}
+.rail-track{
+  display:flex;
+  gap:12px;
+  padding:14px 14px 16px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+.rail-track::-webkit-scrollbar{height:10px}
+.rail-track::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12); border-radius:20px}
+
+.rail-card{
+  flex:0 0 220px;
+  scroll-snap-align:start;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(0,0,0,.18);
+  padding:12px 12px 10px;
+}
+.rail-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:8px;
+}
+.rail-time{
+  color:rgba(255,255,255,.82);
+  font-weight:650;
+  font-size:12px;
+  letter-spacing:.2px;
+}
+.rail-tag{
+  color:rgba(255,255,255,.55);
+  font-size:12px;
+}
+.rail-name{
+  font-size:14px;
+  font-weight:650;
+  margin:4px 0 8px;
+}
+.rail-eq{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size:12px;
+  color:rgba(255,255,255,.72);
+  border-top:1px dashed rgba(255,255,255,.14);
+  padding-top:8px;
+  line-height:1.4;
+}
+.rail-note{
+  padding:12px 16px 14px;
+  color:rgba(255,255,255,.55);
+  font-size:12px;
+  border-top:1px solid var(--line);
+}
+
   </style>
 </head>
 
@@ -217,6 +290,74 @@
         <div class="line"><b>Humanity:</b> perception pipeline; memory as compression; responsibility as feedback.</div>
       </div>
     </section>
+    <!-- ===== Civil Interface Rail (no JS) ===== -->
+<section class="rail" aria-label="Civil interface: shared reference rail">
+  <div class="rail-head">
+    <div><b>Civil Interface</b> — shared reference rail</div>
+    <div>drag / scroll horizontally</div>
+  </div>
+
+  <div class="rail-track">
+    <div class="rail-card">
+      <div class="rail-top">
+        <div class="rail-time">13.8B yrs</div>
+        <div class="rail-tag">Universe</div>
+      </div>
+      <div class="rail-name">Cosmic timescale</div>
+      <div class="rail-eq">t ≈ 13.8×10⁹ years</div>
+    </div>
+
+    <div class="rail-card">
+      <div class="rail-top">
+        <div class="rail-time">1687</div>
+        <div class="rail-tag">Physics</div>
+      </div>
+      <div class="rail-name">Newton</div>
+      <div class="rail-eq">F = ma</div>
+    </div>
+
+    <div class="rail-card">
+      <div class="rail-top">
+        <div class="rail-time">1865</div>
+        <div class="rail-tag">Field</div>
+      </div>
+      <div class="rail-name">Maxwell</div>
+      <div class="rail-eq">∇·E = ρ/ε₀</div>
+    </div>
+
+    <div class="rail-card">
+      <div class="rail-top">
+        <div class="rail-time">1905</div>
+        <div class="rail-tag">Relativity</div>
+      </div>
+      <div class="rail-name">Einstein</div>
+      <div class="rail-eq">E = mc²</div>
+    </div>
+
+    <div class="rail-card">
+      <div class="rail-top">
+        <div class="rail-time">1927</div>
+        <div class="rail-tag">Quantum</div>
+      </div>
+      <div class="rail-name">Born / Heisenberg</div>
+      <div class="rail-eq">Δx·Δp ≥ ħ/2</div>
+    </div>
+
+    <div class="rail-card">
+      <div class="rail-top">
+        <div class="rail-time">Now</div>
+        <div class="rail-tag">α</div>
+      </div>
+      <div class="rail-name">Structural constraint</div>
+      <div class="rail-eq">α = (persistence)/(renewal)</div>
+    </div>
+  </div>
+
+  <div class="rail-note">
+    Purpose: not to unify beliefs — to place different languages (science / philosophy / faith) on a shared, comparable reference rail.
+  </div>
+</section>
+
 
     <footer>
       <div>v1.1 — Interface Grammar</div>
