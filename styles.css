@@ -25,11 +25,10 @@
 }
 
 .alpha-frame{
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:#fff;         /* 图必须白底（论文风格） */
-  overflow:hidden;
+  background: rgba(255,255,255,0.06);  /* 关键 */
+  backdrop-filter: blur(6px);
 }
+
 
 .alpha-note{
   margin:10px 2px 0;
