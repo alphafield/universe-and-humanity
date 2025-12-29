@@ -323,8 +323,11 @@
     const dot  = document.getElementById("alpha-dot");
     if(!section || !path) return;
 
-    const LEN = 1600; // must match stroke-dasharray/offset
     const pathLen = path.getTotalLength();
+const LEN = Math.ceil(pathLen); 
+path.style.strokeDasharray = LEN;
+path.style.strokeDashoffset = (LEN * (1 - p)).toFixed(2);
+
 
     function update(){
       const r = section.getBoundingClientRect();
