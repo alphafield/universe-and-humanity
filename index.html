@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>宇宙与人类 · Universe and Humanity</title>
+  <meta name="description" content="存在的结构视角：为什么会有宇宙？又为什么，会有人类？" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <!-- Background -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- Top Nav (极简) -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Universe and Humanity</span>
+    </div>
+
+    <nav class="nav">
+      <a href="./interface.html">Interface</a>
+      <a href="./universe.html">Universe</a>
+      <a href="./civilization.html">Civilization</a>
+      <a href="./humanity.html">Humanity</a>
+    </nav>
+
+    <div class="nav-right">
+      <a class="pill" href="./README.md" target="_blank" rel="noopener">README</a>
+      <a class="pill gold" href="#enter">Enter</a>
+    </div>
+  </header>
+
+  <!-- Hero (空是最大的有) -->
+  <main id="enter" class="hero">
+    <div class="hero-inner">
+      <div class="kicker">PATH 0｜入口页（中文版终稿）</div>
+
+      <h1 class="h1">宇宙与人类</h1>
+      <p class="sub">存在的结构视角</p>
+
+      <div class="question">
+        <p>你或许在内心问过：</p>
+        <p>为什么会有宇宙？</p>
+        <p>又为什么，会有人类？</p>
+      </div>
+
+      <a class="scrollhint" href="#q1" aria-label="向下滚动">
+        <span class="mouse"></span>
+        <small>向下滚动</small>
+      </a>
+    </div>
+  </main>
+
+  <!-- Minimal narrative blocks (不拥挤：每屏一句话) -->
+  <section id="q1" class="panel">
+    <div class="panel-inner">
+      <p class="panel-line">宇宙在存在。</p>
+      <p class="panel-line">它无可阻挡。</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-inner">
+      <p class="panel-line">终极问题，一直在那里。</p>
+    </div>
+  </section>
+
+  <!-- Scientist “站台” (可无限加) -->
+  <section class="stage">
+    <div class="stage-inner">
+      <h2 class="stage-title">他们一直在追问</h2>
+      <p class="stage-sub">科学家、哲学家、思想家——跨越时空的探索；解释在增长，答案仍未封闭。</p>
+
+      <div class="marquee" role="region" aria-label="科学家站台滚动">
+        <div class="marquee-track">
+          <!-- 一组 -->
+          <div class="card">
+            <div class="mono">Einstein</div><div class="muted">1905</div><div class="eq">E = mc²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Schrödinger</div><div class="muted">1926</div><div class="eq">iℏ∂ψ/∂t = Ĥψ</div>
+          </div>
+          <div class="card">
+            <div class="mono">Dirac</div><div class="muted">1928</div><div class="eq">(iγ^μ∂_μ - m)ψ = 0</div>
+          </div>
+          <div class="card">
+            <div class="mono">Feynman</div><div class="muted">1948</div><div class="eq">Path Integral</div>
+          </div>
+          <div class="card">
+            <div class="mono">Hawking</div><div class="muted">1974</div><div class="eq">S = kA/4ℓ_p²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Wheeler</div><div class="muted">1989</div><div class="eq">It from Bit</div>
+          </div>
+          <div class="card">
+            <div class="mono">Laozi</div><div class="muted">前 6世纪</div><div class="eq">道可道，非常道</div>
+          </div>
+          <div class="card">
+            <div class="mono">Buddha</div><div class="muted">前 5世纪</div><div class="eq">缘起性空</div>
+          </div>
+
+          <!-- 复制一遍，形成无缝滚动 -->
+          <div class="card">
+            <div class="mono">Einstein</div><div class="muted">1905</div><div class="eq">E = mc²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Schrödinger</div><div class="muted">1926</div><div class="eq">iℏ∂ψ/∂t = Ĥψ</div>
+          </div>
+          <div class="card">
+            <div class="mono">Dirac</div><div class="muted">1928</div><div class="eq">(iγ^μ∂_μ - m)ψ = 0</div>
+          </div>
+          <div class="card">
+            <div class="mono">Feynman</div><div class="muted">1948</div><div class="eq">Path Integral</div>
+          </div>
+          <div class="card">
+            <div class="mono">Hawking</div><div class="muted">1974</div><div class="eq">S = kA/4ℓ_p²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Wheeler</div><div class="muted">1989</div><div class="eq">It from Bit</div>
+          </div>
+          <div class="card">
+            <div class="mono">Laozi</div><div class="muted">前 6世纪</div><div class="eq">道可道，非常道</div>
+          </div>
+          <div class="card">
+            <div class="mono">Buddha</div><div class="muted">前 5世纪</div><div class="eq">缘起性空</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn" href="./interface.html">进入 Interface</a>
+        <a class="btn ghost" href="./universe.html">从 Universe 开始</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© 2025 Universe and Humanity · universeandhumanity.com</div>
+    <div class="footer-links">
+      <a href="./interface.html">Interface</a>
+      <span>·</span>
+      <a href="./universe.html">Universe</a>
+      <span>·</span>
+      <a href="./civilization.html">Civilization</a>
+      <span>·</span>
+      <a href="./humanity.html">Humanity</a>
+    </div>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
