@@ -35,9 +35,22 @@ body::before{
   inset:0;
   z-index:-1;
   pointer-events:none;
+  /* 旧版太黑，会把银河吃掉；改成“轻雾” */
   background:
-    radial-gradient(ellipse at center, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.82) 100%);
+    radial-gradient(ellipse at center,
+      rgba(0,0,0,.05) 0%,
+      rgba(0,0,0,.28) 55%,
+      rgba(0,0,0,.55) 100%);
+  body{
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0 1px, transparent 2px) 0 0/180px 180px,
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0 1px, transparent 2px) 0 0/220px 220px,
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,.05) 0 1px, transparent 2px) 0 0/260px 260px,
+    #000;
 }
+
+}
+
 
 /* NAV */
 .nav{
