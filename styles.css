@@ -277,3 +277,64 @@ body.no-webgl::before{
   .q{font-size:26px}
   .footer-inner{flex-direction:column; align-items:flex-start}
 }
+#scientists{
+  position: relative;
+  padding: 10vh 0 6vh;
+  background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+}
+
+.sci-hint{
+  position: absolute;
+  left: 3.5vw;
+  bottom: 56px;
+  max-width: 520px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255,255,255,.68);
+  letter-spacing: .02em;
+}
+
+.marquee{
+  position: fixed;            /* 让它像 SpaceX 一样贴底 */
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  padding: 14px 0;
+  overflow: hidden;
+  z-index: 30;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee__track{
+  display: flex;
+  gap: 28px;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee 140s linear infinite;
+  opacity: .85;
+}
+
+.marquee__track span{
+  font-size: 12px;
+  color: rgba(255,255,255,.72);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  position: relative;
+  padding-right: 28px;
+}
+
+.marquee__track span::after{
+  content: "•";
+  position: absolute;
+  right: 10px;
+  top: 0;
+  color: rgba(255,255,255,.18);
+}
+
+@keyframes marquee{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
