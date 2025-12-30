@@ -1,391 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <title>宇宙与人类 | Universe and Humanity</title>
-  <meta name="description" content="宇宙与人类：存在的结构视角。" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universe and Humanity</title>
+  <meta name="description" content="Why does the Universe exist? Why does Humanity exist?" />
   <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Three.js (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body>
-  <!-- Background canvas (Three.js) -->
-  <canvas id="galaxy"></canvas>
+  <!-- Background Canvas -->
+  <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
 
-  <!-- Top nav (minimal) -->
-  <header class="topbar">
+  <!-- Top Nav -->
+  <header class="nav">
     <div class="brand">
-      <span class="dot"></span>
-      <span class="brand-text">Universe and Humanity</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span>Universe and Humanity</span>
     </div>
 
-    <nav class="nav">
+    <nav class="navlinks" aria-label="Primary">
       <a href="./interface.html">Interface</a>
       <a href="./universe.html">Universe</a>
       <a href="./civilization.html">Civilization</a>
       <a href="./humanity.html">Humanity</a>
     </nav>
 
-    <div class="nav-actions">
-      <a class="pill" href="./README.md">README</a>
-      <a class="pill gold" href="./interface.html">Enter</a>
+    <div class="navcta">
+      <a class="pill" href="./README.html">README</a>
+      <a class="pill primary" href="./enter.html">Enter</a>
     </div>
   </header>
 
-  <!-- HERO (Path 0) -->
-  <main>
-    <section class="hero" id="top">
-      <div class="hero-inner">
-        <div class="kicker">PATH 0 · 入口页（中文版终稿）</div>
+  <!-- HERO -->
+  <main class="hero" id="top">
+    <div class="hero-inner">
+      <div class="kicker">PATH 0 · 入口页（中文版终稿）</div>
 
-        <h1 class="title">宇宙与人类</h1>
-        <div class="subtitle">存在的结构视角</div>
+      <h1 class="title">宇宙与人类</h1>
+      <div class="subtitle">存在的结构视角</div>
 
-        <div class="questions">
-          <div class="q">为什么存在宇宙？</div>
-          <div class="q">为什么宇宙产生人类？</div>
-        </div>
-
-        <a class="scroll-hint" href="#scientists" aria-label="向下滚动">
-          <span class="mouse"></span>
-          <span class="hint-text">向下滚动</span>
-        </a>
+      <div class="questions">
+        <div>为什么存在宇宙？</div>
+        <div>为什么出现人类？</div>
       </div>
 
-      <!-- subtle vignette overlay -->
-      <div class="vignette" aria-hidden="true"></div>
-    </section>
-
-    <!-- Scientists "platform" -->
-   <section id="scientists">
-  <div class="sci-hint">
-    他们一直在追问。不是名言，不是答案。只是证据：这个问题从未停止。
-  </div>
-
-  <div class="marquee">
-    <div class="marquee__track">
-      <span>Isaac Newton</span>
-      <span>Albert Einstein</span>
-      <span>James Clerk Maxwell</span>
-      <span>Michael Faraday</span>
-      <span>Niels Bohr</span>
-      <span>Werner Heisenberg</span>
-      <span>Erwin Schrödinger</span>
-      <span>Paul Dirac</span>
-      <span>Richard Feynman</span>
-      <span>Max Planck</span>
-      <span>Emmy Noether</span>
-      <span>Stephen Hawking</span>
-      <span>Roger Penrose</span>
-      <span>Edwin Hubble</span>
-      <span>Georges Lemaître</span>
-      <span>Subrahmanyan Chandrasekhar</span>
-      <span>Vera Rubin</span>
-      <span>Jocelyn Bell Burnell</span>
-      <span>Henri Poincaré</span>
-      <span>Alan Guth</span>
-      <span>Carlo Rovelli</span>
-      <span>John Wheeler</span>
-      <span>Sheldon Glashow</span>
-      <span>Murray Gell-Mann</span>
-      <span>Steven Weinberg</span>
-      <span>Abdus Salam</span>
-      <span>Peter Higgs</span>
-      <span>Enrico Fermi</span>
-      <span>Wolfgang Pauli</span>
-      <span>Hendrik Lorentz</span>
-
-      <!-- 复制一遍：无缝循环必须重复同一套 -->
-      <span>Isaac Newton</span>
-      <span>Albert Einstein</span>
-      <span>James Clerk Maxwell</span>
-      <span>Michael Faraday</span>
-      <span>Niels Bohr</span>
-      <span>Werner Heisenberg</span>
-      <span>Erwin Schrödinger</span>
-      <span>Paul Dirac</span>
-      <span>Richard Feynman</span>
-      <span>Max Planck</span>
-      <span>Emmy Noether</span>
-      <span>Stephen Hawking</span>
-      <span>Roger Penrose</span>
-      <span>Edwin Hubble</span>
-      <span>Georges Lemaître</span>
-      <span>Subrahmanyan Chandrasekhar</span>
-      <span>Vera Rubin</span>
-      <span>Jocelyn Bell Burnell</span>
-      <span>Henri Poincaré</span>
-      <span>Alan Guth</span>
-      <span>Carlo Rovelli</span>
-      <span>John Wheeler</span>
-      <span>Sheldon Glashow</span>
-      <span>Murray Gell-Mann</span>
-      <span>Steven Weinberg</span>
-      <span>Abdus Salam</span>
-      <span>Peter Higgs</span>
-      <span>Enrico Fermi</span>
-      <span>Wolfgang Pauli</span>
-      <span>Hendrik Lorentz</span>
+      <a class="scrollhint" href="#below">
+        <span class="mouse" aria-hidden="true"></span>
+        向下滚动
+      </a>
     </div>
-  </div>
-</section>
-
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div>© Universe and Humanity · universeandhumanity.com</div>
-      <div class="footer-links">
-        <a href="./interface.html">Interface</a>
-        <span class="sep">·</span>
-        <a href="./universe.html">Universe</a>
-        <span class="sep">·</span>
-        <a href="./civilization.html">Civilization</a>
-        <span class="sep">·</span>
-        <a href="./humanity.html">Humanity</a>
+  <!-- BELOW (minimal text, no clutter) -->
+  <section class="below" id="below" aria-label="Below the fold">
+    <div class="below-inner">
+      <p class="inner-voice">
+        宇宙在存在。它无可阻挡。<br/>
+        终极问题，一直在那里。
+      </p>
+    </div>
+  </section>
+
+  <!-- MARQUEE (Scientists platform) -->
+  <section class="marquee-wrap" aria-label="Scientists platform">
+    <div class="marquee">
+      <div class="marquee__track" id="marqueeTrack">
+        <!-- JS will inject 30 names and duplicate once for seamless loop -->
       </div>
     </div>
-  </footer>
+  </section>
 
-  <!-- THREE.js (ESM) -->
-  <script type="module">
-    // CDN imports (no build needed)
-    import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
-
-    const canvas = document.getElementById("galaxy");
-
-    // ---- Marquee data (add more names freely) ----
-    const SCIENTISTS = [
-      // Physics / Cosmology
-      ["Isaac Newton", "Physics"],
-      ["Albert Einstein", "Physics"],
-      ["James Clerk Maxwell", "Physics"],
-      ["Michael Faraday", "Physics"],
-      ["Niels Bohr", "Physics"],
-      ["Werner Heisenberg", "Physics"],
-      ["Erwin Schrödinger", "Physics"],
-      ["Paul Dirac", "Physics"],
-      ["Richard Feynman", "Physics"],
-      ["Enrico Fermi", "Physics"],
-      ["Wolfgang Pauli", "Physics"],
-      ["Max Planck", "Physics"],
-      ["Hendrik Lorentz", "Physics"],
-      ["Henri Poincaré", "Physics"],
-      ["Emmy Noether", "Mathematics"],
-      ["John Wheeler", "Physics"],
-      ["Stephen Hawking", "Cosmology"],
-      ["Roger Penrose", "Mathematics"],
-      ["Alan Guth", "Cosmology"],
-      ["George Gamow", "Cosmology"],
-      ["Edwin Hubble", "Astronomy"],
-      ["Georges Lemaître", "Cosmology"],
-      ["Carlo Rovelli", "Physics"],
-      ["Lee Smolin", "Physics"],
-      ["Kip Thorne", "Physics"],
-      ["Subrahmanyan Chandrasekhar", "Astrophysics"],
-      ["Vera Rubin", "Astronomy"],
-      ["Jocelyn Bell Burnell", "Astronomy"],
-      ["Maria Goeppert-Mayer", "Physics"],
-      ["Chien-Shiung Wu", "Physics"],
-      ["Satyendra Nath Bose", "Physics"],
-      ["C. V. Raman", "Physics"],
-      ["Hideki Yukawa", "Physics"],
-      ["Abdus Salam", "Physics"],
-      ["Steven Weinberg", "Physics"],
-      ["Murray Gell-Mann", "Physics"],
-      ["Sheldon Glashow", "Physics"],
-      ["Peter Higgs", "Physics"],
-      ["François Englert", "Physics"],
-      ["Edward Witten", "Physics"],
-      ["Juan Maldacena", "Physics"],
-
-      // Mathematics / Logic / Computation
-      ["Euclid", "Mathematics"],
-      ["Archimedes", "Mathematics"],
-      ["Leonhard Euler", "Mathematics"],
-      ["Carl Gauss", "Mathematics"],
-      ["Bernhard Riemann", "Mathematics"],
-      ["David Hilbert", "Mathematics"],
-      ["Kurt Gödel", "Logic"],
-      ["Alan Turing", "Computation"],
-      ["John von Neumann", "Mathematics"],
-      ["Claude Shannon", "Information"],
-      ["Norbert Wiener", "Cybernetics"],
-      ["Andrey Kolmogorov", "Mathematics"],
-      ["Srinivasa Ramanujan", "Mathematics"],
-      ["Benoit Mandelbrot", "Mathematics"],
-
-      // Biology / Evolution / Mind
-      ["Charles Darwin", "Biology"],
-      ["Gregor Mendel", "Biology"],
-      ["James Watson", "Biology"],
-      ["Francis Crick", "Biology"],
-      ["Rosalind Franklin", "Biology"],
-      ["Barbara McClintock", "Biology"],
-      ["Lynn Margulis", "Biology"],
-      ["Ilya Prigogine", "Complexity"],
-      ["John Maynard Smith", "Biology"],
-      ["Stuart Kauffman", "Complexity"],
-      ["Terrence Deacon", "Mind"],
-      ["Antonio Damasio", "Mind"],
-
-      // AI / Computation (as “modern continuation”)
-      ["Geoffrey Hinton", "AI"],
-      ["Yann LeCun", "AI"],
-      ["Yoshua Bengio", "AI"],
-      ["Judea Pearl", "AI"],
-      ["Demis Hassabis", "AI"],
-    ];
-
-    function buildMarquee(trackEl, items, copies = 2) {
-      // build once, then duplicate to ensure seamless looping
-      const frag = document.createDocumentFragment();
-      for (let c = 0; c < copies; c++) {
-        for (const [name, field] of items) {
-          const span = document.createElement("span");
-          span.className = "chip";
-          span.innerHTML = `<strong>${name}</strong><em>${field}</em>`;
-          frag.appendChild(span);
-        }
-      }
-      trackEl.replaceChildren(frag);
-    }
-
-    // Split into three rows with different mixes
-    const A = SCIENTISTS.slice(0, 40);
-    const B = SCIENTISTS.slice(20, 70);
-    const C = SCIENTISTS.slice(45);
-
-    buildMarquee(document.getElementById("trackA"), A, 3);
-    buildMarquee(document.getElementById("trackB"), B, 3);
-    buildMarquee(document.getElementById("trackC"), C, 3);
-
-    // ---- Three.js Galaxy ----
-    let renderer, scene, camera, points;
-    let w = window.innerWidth, h = window.innerHeight;
-
-    function canWebGL() {
-      try {
-        const test = document.createElement("canvas");
-        return !!(window.WebGLRenderingContext &&
-          (test.getContext("webgl") || test.getContext("experimental-webgl")));
-      } catch { return false; }
-    }
-
-    if (!canWebGL()) {
-      document.body.classList.add("no-webgl");
-    } else {
-      renderer = new THREE.WebGLRenderer({
-        canvas,
-        antialias: true,
-        alpha: true,
-        powerPreference: "high-performance",
-      });
-      renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
-      renderer.setSize(w, h, false);
-
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(55, w / h, 0.1, 2000);
-      camera.position.set(0, 0, 260);
-
-      const group = new THREE.Group();
-      scene.add(group);
-
-      // Create spiral-ish galaxy points
-      const count = 52000;
-      const radius = 220;
-      const branches = 4;
-      const spin = 1.35;
-      const randomness = 0.35;
-
-      const positions = new Float32Array(count * 3);
-      const colors = new Float32Array(count * 3);
-
-      const inner = new THREE.Color("#d9b87a"); // warm core
-      const outer = new THREE.Color("#4e6cff"); // cool arms
-
-      for (let i = 0; i < count; i++) {
-        const i3 = i * 3;
-
-        const r = Math.random() ** 0.7 * radius;
-        const branchAngle = ((i % branches) / branches) * Math.PI * 2;
-        const spinAngle = r * spin * 0.02;
-
-        const randX = (Math.random() - 0.5) * randomness * r;
-        const randY = (Math.random() - 0.5) * randomness * r * 0.35;
-        const randZ = (Math.random() - 0.5) * randomness * r;
-
-        const angle = branchAngle + spinAngle;
-
-        positions[i3 + 0] = Math.cos(angle) * r + randX;
-        positions[i3 + 1] = randY;
-        positions[i3 + 2] = Math.sin(angle) * r + randZ;
-
-        const mixed = inner.clone().lerp(outer, r / radius);
-        colors[i3 + 0] = mixed.r;
-        colors[i3 + 1] = mixed.g;
-        colors[i3 + 2] = mixed.b;
-      }
-
-      const geometry = new THREE.BufferGeometry();
-      geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-
-      const material = new THREE.PointsMaterial({
-        size: 0.9,
-        sizeAttenuation: true,
-        depthWrite: false,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.95,
-        blending: THREE.AdditiveBlending,
-      });
-
-      points = new THREE.Points(geometry, material);
-      group.add(points);
-
-      // faint dust
-      const dustCount = 9000;
-      const dustPos = new Float32Array(dustCount * 3);
-      for (let i = 0; i < dustCount; i++) {
-        const i3 = i * 3;
-        const rr = Math.random() ** 0.8 * (radius * 1.3);
-        const a = Math.random() * Math.PI * 2;
-        dustPos[i3 + 0] = Math.cos(a) * rr + (Math.random() - 0.5) * 40;
-        dustPos[i3 + 1] = (Math.random() - 0.5) * 60;
-        dustPos[i3 + 2] = Math.sin(a) * rr + (Math.random() - 0.5) * 40;
-      }
-      const dustGeo = new THREE.BufferGeometry();
-      dustGeo.setAttribute("position", new THREE.BufferAttribute(dustPos, 3));
-      const dustMat = new THREE.PointsMaterial({
-        size: 0.55,
-        transparent: true,
-        opacity: 0.35,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending,
-      });
-      group.add(new THREE.Points(dustGeo, dustMat));
-
-      // animate
-      let t = 0;
-      function animate() {
-        t += 0.0012;
-        group.rotation.y = t * 0.65;
-        group.rotation.x = Math.sin(t * 0.7) * 0.06;
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
-      }
-      animate();
-
-      // resize
-      window.addEventListener("resize", () => {
-        w = window.innerWidth; h = window.innerHeight;
-        renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-      }, { passive: true });
-    }
-  </script>
+  <!-- Script -->
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
