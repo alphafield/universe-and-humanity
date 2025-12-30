@@ -1,131 +1,149 @@
-import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
+// ------------------------------
+// 1) Scientists Marquee (30 names)
+// ------------------------------
+const names = [
+  "Isaac Newton",
+  "Albert Einstein",
+  "James Clerk Maxwell",
+  "Michael Faraday",
+  "Niels Bohr",
+  "Werner Heisenberg",
+  "Erwin Schrödinger",
+  "Paul Dirac",
+  "Richard Feynman",
+  "Max Planck",
+  "Emmy Noether",
+  "Stephen Hawking",
+  "Roger Penrose",
+  "Edwin Hubble",
+  "Georges Lemaître",
+  "Subrahmanyan Chandrasekhar",
+  "Vera Rubin",
+  "Jocelyn Bell Burnell",
+  "Henri Poincaré",
+  "Alan Guth",
+  "Carlo Rovelli",
+  "John Wheeler",
+  "Murray Gell-Mann",
+  "Steven Weinberg",
+  "Abdus Salam",
+  "Peter Higgs",
+  "Enrico Fermi",
+  "Wolfgang Pauli",
+  "Hendrik Lorentz",
+  "David Hilbert"
+];
 
-const canvas = document.getElementById("bg");
+const track = document.getElementById("marqueeTrack");
+if (track) {
+  const build = (arr) => arr.map(n => `<span>${n}</span>`).join("");
+  // duplicate once for seamless loop (-50%)
+  track.innerHTML = build(names) + build(names);
+}
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({
-  canvas,
-  antialias: true,
-  alpha: true,
-  powerPreference: "high-performance",
-});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// ------------------------------
+// 2) Three.js Galaxy Background (stable, lightweight)
+// ------------------------------
+const canvas = document.getElementById("galaxy-canvas");
+if (canvas && window.THREE) {
+  const scene = new THREE.Scene();
 
-// Scene + Camera
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 200);
-camera.position.set(0, 0.1, 8);
+  const camera = new THREE.PerspectiveCamera(
+    60,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+  camera.position.z = 7.2;
 
-// Galaxy (points)
-const params = {
-  count: 52000,
-  radius: 6.0,
-  branches: 4,
-  spin: 1.25,
-  randomness: 0.45,
-  randomnessPower: 2.2,
-};
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance"
+  });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
-let points, geometry, material;
+  // Particles
+  const particleCount = 22000;
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
 
-function buildGalaxy() {
-  if (points) {
-    geometry.dispose();
-    material.dispose();
-    scene.remove(points);
-  }
+  // galaxy params
+  const arms = 3;
+  const radiusMax = 5.2;
 
-  geometry = new THREE.BufferGeometry();
-  const positions = new Float32Array(params.count * 3);
-  const colors = new Float32Array(params.count * 3);
-
-  const colorInside = new THREE.Color(0xffcc33);
-  const colorOutside = new THREE.Color(0x3a6ff5);
-
-  for (let i = 0; i < params.count; i++) {
+  for (let i = 0; i < particleCount; i++) {
     const i3 = i * 3;
-    const r = Math.random() * params.radius;
-    const branchAngle = ((i % params.branches) / params.branches) * Math.PI * 2;
-    const spinAngle = r * params.spin;
 
-    const randomX =
-      Math.pow(Math.random(), params.randomnessPower) *
-      (Math.random() < 0.5 ? 1 : -1) *
-      params.randomness *
-      r;
-    const randomY =
-      Math.pow(Math.random(), params.randomnessPower) *
-      (Math.random() < 0.5 ? 1 : -1) *
-      params.randomness *
-      r *
-      0.35;
-    const randomZ =
-      Math.pow(Math.random(), params.randomnessPower) *
-      (Math.random() < 0.5 ? 1 : -1) *
-      params.randomness *
-      r;
+    // radius biased to center
+    const r = Math.pow(Math.random(), 0.55) * radiusMax;
+    const arm = i % arms;
+    const baseAngle = (arm / arms) * Math.PI * 2;
 
-    positions[i3 + 0] = Math.cos(branchAngle + spinAngle) * r + randomX;
-    positions[i3 + 1] = randomY;
-    positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * r + randomZ;
+    // twist
+    const twist = r * 0.85;
+    const angle = baseAngle + twist + (Math.random() - 0.5) * 0.35;
 
-    const mixed = colorInside.clone();
-    mixed.lerp(colorOutside, r / params.radius);
+    // thickness
+    const y = (Math.random() - 0.5) * 0.9 * (1 - r / radiusMax);
 
-    colors[i3 + 0] = mixed.r;
-    colors[i3 + 1] = mixed.g;
-    colors[i3 + 2] = mixed.b;
+    positions[i3] = Math.cos(angle) * r + (Math.random() - 0.5) * 0.06;
+    positions[i3 + 1] = y;
+    positions[i3 + 2] = Math.sin(angle) * r + (Math.random() - 0.5) * 0.06;
+
+    // color: cool white
+    const t = r / radiusMax;
+    colors[i3] = 0.55 + (1 - t) * 0.20;      // R
+    colors[i3 + 1] = 0.70 + (1 - t) * 0.18;  // G
+    colors[i3 + 2] = 1.00;                   // B
   }
 
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-  material = new THREE.PointsMaterial({
-    size: 0.02,
-    sizeAttenuation: true,
-    depthWrite: false,
-    blending: THREE.AdditiveBlending,
+  const material = new THREE.PointsMaterial({
+    size: 0.018,
     vertexColors: true,
     transparent: true,
-    opacity: 0.95,
+    opacity: 0.88,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending
   });
 
-  points = new THREE.Points(geometry, material);
-  points.rotation.x = -0.12;
+  const points = new THREE.Points(geometry, material);
   scene.add(points);
 
-  // subtle center glow
-  const glowGeo = new THREE.SphereGeometry(0.75, 32, 32);
-  const glowMat = new THREE.MeshBasicMaterial({
-    color: 0xffcc33,
-    transparent: true,
-    opacity: 0.06,
+  // Subtle drift (do not overreact to mouse)
+  let targetRX = 0, targetRY = 0;
+  let rx = 0, ry = 0;
+
+  window.addEventListener("mousemove", (e) => {
+    const mx = (e.clientX / window.innerWidth) * 2 - 1;
+    const my = -(e.clientY / window.innerHeight) * 2 + 1;
+    targetRY = mx * 0.10;
+    targetRX = my * 0.08;
   });
-  const glow = new THREE.Mesh(glowGeo, glowMat);
-  scene.add(glow);
-}
 
-buildGalaxy();
+  function animate() {
+    requestAnimationFrame(animate);
 
-// Resize
-function resize() {
-  const w = window.innerWidth;
-  const h = window.innerHeight;
-  renderer.setSize(w, h, false);
-  camera.aspect = w / h;
-  camera.updateProjectionMatrix();
-}
-window.addEventListener("resize", resize, { passive: true });
-resize();
+    ry += (targetRY - ry) * 0.03;
+    rx += (targetRX - rx) * 0.03;
 
-// Animation loop
-let t = 0;
-function tick() {
-  t += 0.0015;
-  if (points) {
-    points.rotation.y = t * 0.55;
+    points.rotation.y = ry + performance.now() * 0.00004;
+    points.rotation.x = rx + performance.now() * 0.00002;
+
+    renderer.render(scene, camera);
   }
-  renderer.render(scene, camera);
-  requestAnimationFrame(tick);
+  animate();
+
+  window.addEventListener("resize", () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  });
 }
-tick();
