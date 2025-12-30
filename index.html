@@ -1,949 +1,156 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universe and Humanity | α-Theory</title>
-    <meta name="description" content="Why does the Universe exist? Why does Humanity exist? The scientific dialogue about the ultimate questions.">
-    
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --color-bg: #000000;
-            --color-text: #FFFFFF;
-            --color-alpha: #00D9FF;
-            --color-accent: #FFD700;
-            --color-gray: #888888;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: var(--color-bg);
-            color: var(--color-text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Canvas背景 */
-        #galaxy-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* 导航栏 */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 2rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 0.3em;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--color-text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--color-alpha);
-        }
-
-        /* Section通用样式 */
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 4rem 2rem;
-            position: relative;
-        }
-
-        /* Section 1: Hero */
-        #hero {
-            text-align: center;
-        }
-
-        .hero-question {
-            font-size: 3rem;
-            font-weight: 300;
-            line-height: 1.4;
-            margin-bottom: 4rem;
-            opacity: 0;
-            animation: fadeInUp 1.5s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 4rem;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
-            opacity: 0.6;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, 10px); }
-        }
-
-        /* Section 2: Ultimate Questions */
-        #ultimate-questions {
-            background: radial-gradient(ellipse at center, rgba(0,217,255,0.05) 0%, transparent 70%);
-        }
-
-        .questions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin-top: 4rem;
-        }
-
-        .question-card {
-            padding: 3rem;
-            background: rgba(0,0,0,0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .question-card:hover {
-            background: rgba(0,217,255,0.05);
-            border-color: var(--color-alpha);
-            transform: translateY(-5px);
-        }
-
-        .question-card h3 {
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--color-alpha);
-            margin-bottom: 1rem;
-        }
-
-        /* Section 3: Scientists Gallery */
-        #scientists {
-            overflow: hidden;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8), transparent);
-        }
-
-        .scientists-intro {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .scientists-intro h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        .scientists-scroll {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .scientists-track {
-            display: flex;
-            gap: 4rem;
-            animation: scroll 120s linear infinite;
-            width: max-content;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .scientist-card {
-            min-width: 300px;
-            text-align: center;
-            padding: 2rem;
-            background: rgba(0,0,0,0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .scientist-card:hover {
-            background: rgba(255,255,255,0.05);
-            transform: scale(1.05);
-        }
-
-        .scientist-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,217,255,0.2), transparent);
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border: 2px solid rgba(0,217,255,0.3);
-        }
-
-        .scientist-name {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .scientist-year {
-            color: var(--color-gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .scientist-contribution {
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-            color: var(--color-alpha);
-            font-size: 0.95rem;
-        }
-
-        .fracture-indicator {
-            margin-top: 4rem;
-            font-size: 1.5rem;
-            color: var(--color-accent);
-            text-align: center;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        /* Section 4: Alpha Discovery */
-        #alpha-discovery {
-            background: radial-gradient(ellipse at center, rgba(255,215,0,0.1) 0%, transparent 70%);
-        }
-
-        .discovery-content {
-            text-align: center;
-            max-width: 800px;
-        }
-
-        .discovery-title {
-            font-size: 1.5rem;
-            color: var(--color-gray);
-            margin-bottom: 3rem;
-        }
-
-        .alpha-equation {
-            font-size: 4rem;
-            font-weight: 300;
-            margin: 3rem 0;
-            color: var(--color-alpha);
-            font-family: 'Times New Roman', serif;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(0,217,255,0.5); }
-            50% { text-shadow: 0 0 40px rgba(0,217,255,0.8); }
-        }
-
-        .alpha-description {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: var(--color-gray);
-            margin-bottom: 4rem;
-        }
-
-        .explore-btn {
-            display: inline-block;
-            padding: 1.5rem 4rem;
-            background: transparent;
-            border: 2px solid var(--color-alpha);
-            color: var(--color-alpha);
-            text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 0.3em;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .explore-btn:hover {
-            background: var(--color-alpha);
-            color: var(--color-bg);
-            box-shadow: 0 0 30px rgba(0,217,255,0.6);
-        }
-
-        /* Section 5: Three Species Dialogue */
-        #dialogues {
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.9));
-        }
-
-        .dialogue-intro {
-            text-align: center;
-            max-width: 900px;
-            margin-bottom: 4rem;
-        }
-
-        .dialogue-intro h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        .species-icons {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin: 4rem 0;
-        }
-
-        .species-icon {
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .species-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .species-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: rgba(0,217,255,0.1);
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            border: 2px solid rgba(0,217,255,0.3);
-        }
-
-        .species-name {
-            font-size: 1.2rem;
-            color: var(--color-gray);
-        }
-
-        .dialogue-layers {
-            margin-top: 3rem;
-            padding: 3rem;
-            background: rgba(255,255,255,0.02);
-            border-left: 3px solid var(--color-alpha);
-        }
-
-        .dialogue-layers p {
-            font-size: 1.1rem;
-            line-height: 2;
-            margin-bottom: 1rem;
-        }
-
-        /* Section 6: Works Grid */
-        #works {
-            padding: 8rem 2rem;
-        }
-
-        .works-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 4rem auto;
-        }
-
-        .work-card {
-            padding: 3rem;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            transition: all 0.4s;
-            cursor: pointer;
-        }
-
-        .work-card:hover {
-            background: rgba(0,217,255,0.05);
-            border-color: var(--color-alpha);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,217,255,0.2);
-        }
-
-        .work-card h3 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            color: var(--color-alpha);
-        }
-
-        .work-card .subtitle {
-            font-size: 1rem;
-            color: var(--color-gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .work-card .description {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: var(--color-gray);
-            margin-bottom: 2rem;
-        }
-
-        .work-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .work-btn {
-            padding: 0.8rem 1.5rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: transparent;
-            color: var(--color-text);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-
-        .work-btn:hover {
-            border-color: var(--color-alpha);
-            color: var(--color-alpha);
-        }
-
-        /* Section 7: Interface Preview */
-        #interface-preview {
-            background: radial-gradient(ellipse at center, rgba(0,217,255,0.1) 0%, transparent 70%);
-        }
-
-        .interface-content {
-            text-align: center;
-            max-width: 800px;
-        }
-
-        .interface-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        .interface-path {
-            font-size: 1.5rem;
-            letter-spacing: 0.5em;
-            color: var(--color-alpha);
-            margin: 3rem 0;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: var(--color-gray);
-        }
-
-        footer a {
-            color: var(--color-alpha);
-            text-decoration: none;
-        }
-
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .hero-question {
-                font-size: 2rem;
-            }
-
-            .questions-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .species-icons {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .works-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav {
-                padding: 1rem 2rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>宇宙与人类 · Universe and Humanity</title>
+  <meta name="description" content="存在的结构视角：为什么会有宇宙？又为什么，会有人类？" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
-    <!-- Three.js Canvas -->
-    <canvas id="galaxy-canvas"></canvas>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">UNIVERSE & HUMANITY</div>
-        <ul class="nav-links">
-            <li><a href="#works">WORKS</a></li>
-            <li><a href="#interface-preview">INTERFACE</a></li>
-            <li><a href="#academic">ACADEMIC</a></li>
-            <li><a href="#dialogues">DIALOGUES</a></li>
-        </ul>
+<body>
+  <!-- Background -->
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="bg-vignette" aria-hidden="true"></div>
+
+  <!-- Top Nav (极简) -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Universe and Humanity</span>
+    </div>
+
+    <nav class="nav">
+      <a href="./interface.html">Interface</a>
+      <a href="./universe.html">Universe</a>
+      <a href="./civilization.html">Civilization</a>
+      <a href="./humanity.html">Humanity</a>
     </nav>
 
-    <!-- Section 1: Hero -->
-    <section id="hero">
-        <div class="hero-question">
-            你或许在内心问过：<br><br>
-            为什么会有宇宙？<br>
-            又为什么，会有人类？
+    <div class="nav-right">
+      <a class="pill" href="./README.md" target="_blank" rel="noopener">README</a>
+      <a class="pill gold" href="#enter">Enter</a>
+    </div>
+  </header>
+
+  <!-- Hero (空是最大的有) -->
+  <main id="enter" class="hero">
+    <div class="hero-inner">
+      <div class="kicker">PATH 0｜入口页（中文版终稿）</div>
+
+      <h1 class="h1">宇宙与人类</h1>
+      <p class="sub">存在的结构视角</p>
+
+      <div class="question">
+        <p>你或许在内心问过：</p>
+        <p>为什么会有宇宙？</p>
+        <p>又为什么，会有人类？</p>
+      </div>
+
+      <a class="scrollhint" href="#q1" aria-label="向下滚动">
+        <span class="mouse"></span>
+        <small>向下滚动</small>
+      </a>
+    </div>
+  </main>
+
+  <!-- Minimal narrative blocks (不拥挤：每屏一句话) -->
+  <section id="q1" class="panel">
+    <div class="panel-inner">
+      <p class="panel-line">宇宙在存在。</p>
+      <p class="panel-line">它无可阻挡。</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-inner">
+      <p class="panel-line">终极问题，一直在那里。</p>
+    </div>
+  </section>
+
+  <!-- Scientist “站台” (可无限加) -->
+  <section class="stage">
+    <div class="stage-inner">
+      <h2 class="stage-title">他们一直在追问</h2>
+      <p class="stage-sub">科学家、哲学家、思想家——跨越时空的探索；解释在增长，答案仍未封闭。</p>
+
+      <div class="marquee" role="region" aria-label="科学家站台滚动">
+        <div class="marquee-track">
+          <!-- 一组 -->
+          <div class="card">
+            <div class="mono">Einstein</div><div class="muted">1905</div><div class="eq">E = mc²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Schrödinger</div><div class="muted">1926</div><div class="eq">iℏ∂ψ/∂t = Ĥψ</div>
+          </div>
+          <div class="card">
+            <div class="mono">Dirac</div><div class="muted">1928</div><div class="eq">(iγ^μ∂_μ - m)ψ = 0</div>
+          </div>
+          <div class="card">
+            <div class="mono">Feynman</div><div class="muted">1948</div><div class="eq">Path Integral</div>
+          </div>
+          <div class="card">
+            <div class="mono">Hawking</div><div class="muted">1974</div><div class="eq">S = kA/4ℓ_p²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Wheeler</div><div class="muted">1989</div><div class="eq">It from Bit</div>
+          </div>
+          <div class="card">
+            <div class="mono">Laozi</div><div class="muted">前 6世纪</div><div class="eq">道可道，非常道</div>
+          </div>
+          <div class="card">
+            <div class="mono">Buddha</div><div class="muted">前 5世纪</div><div class="eq">缘起性空</div>
+          </div>
+
+          <!-- 复制一遍，形成无缝滚动 -->
+          <div class="card">
+            <div class="mono">Einstein</div><div class="muted">1905</div><div class="eq">E = mc²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Schrödinger</div><div class="muted">1926</div><div class="eq">iℏ∂ψ/∂t = Ĥψ</div>
+          </div>
+          <div class="card">
+            <div class="mono">Dirac</div><div class="muted">1928</div><div class="eq">(iγ^μ∂_μ - m)ψ = 0</div>
+          </div>
+          <div class="card">
+            <div class="mono">Feynman</div><div class="muted">1948</div><div class="eq">Path Integral</div>
+          </div>
+          <div class="card">
+            <div class="mono">Hawking</div><div class="muted">1974</div><div class="eq">S = kA/4ℓ_p²</div>
+          </div>
+          <div class="card">
+            <div class="mono">Wheeler</div><div class="muted">1989</div><div class="eq">It from Bit</div>
+          </div>
+          <div class="card">
+            <div class="mono">Laozi</div><div class="muted">前 6世纪</div><div class="eq">道可道，非常道</div>
+          </div>
+          <div class="card">
+            <div class="mono">Buddha</div><div class="muted">前 5世纪</div><div class="eq">缘起性空</div>
+          </div>
         </div>
-        <div class="scroll-indicator">向下滚动</div>
-    </section>
+      </div>
 
-    <!-- Section 2: Ultimate Questions -->
-    <section id="ultimate-questions">
-        <h2 style="font-size: 2.5rem; font-weight: 300; margin-bottom: 2rem;">人类的终极问题</h2>
-        <div class="questions-grid">
-            <div class="question-card">
-                <h3>我从哪里来？</h3>
-                <p>宇宙的起源是什么？生命从何而始？意识如何涌现？</p>
-            </div>
-            <div class="question-card">
-                <h3>"哪里"是什么？</h3>
-                <p>宇宙的本质是什么？时空的结构是什么？物质与意识的关系是什么？</p>
-            </div>
-            <div class="question-card">
-                <h3>来这里干什么？</h3>
-                <p>生命的意义是什么？人类存在的目的是什么？文明的方向在哪里？</p>
-            </div>
-            <div class="question-card">
-                <h3>最终去哪里？</h3>
-                <p>宇宙的归宿是什么？意识的未来是什么？文明的终极形态是什么？</p>
-            </div>
-        </div>
-    </section>
+      <div class="cta-row">
+        <a class="btn" href="./interface.html">进入 Interface</a>
+        <a class="btn ghost" href="./universe.html">从 Universe 开始</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Section 3: Scientists Gallery -->
-    <section id="scientists">
-        <div class="scientists-intro">
-            <h2>人类智慧的追寻</h2>
-            <p style="font-size: 1.1rem; color: var(--color-gray);">科学家、哲学家、宗教领袖，跨越时空的探索</p>
-        </div>
-        
-        <div class="scientists-scroll">
-            <div class="scientists-track">
-                <!-- 科学家卡片 - 会自动复制以实现无限滚动 -->
-                <div class="scientist-card">
-                    <div class="scientist-avatar">E</div>
-                    <div class="scientist-name">Einstein</div>
-                    <div class="scientist-year">1905</div>
-                    <div class="scientist-contribution">E = mc²</div>
-                </div>
+  <footer class="footer">
+    <div>© 2025 Universe and Humanity · universeandhumanity.com</div>
+    <div class="footer-links">
+      <a href="./interface.html">Interface</a>
+      <span>·</span>
+      <a href="./universe.html">Universe</a>
+      <span>·</span>
+      <a href="./civilization.html">Civilization</a>
+      <span>·</span>
+      <a href="./humanity.html">Humanity</a>
+    </div>
+  </footer>
 
-                <div class="scientist-card">
-                    <div class="scientist-avatar">S</div>
-                    <div class="scientist-name">Schrödinger</div>
-                    <div class="scientist-year">1926</div>
-                    <div class="scientist-contribution">iℏ∂ψ/∂t = Ĥψ</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">D</div>
-                    <div class="scientist-name">Dirac</div>
-                    <div class="scientist-year">1928</div>
-                    <div class="scientist-contribution">(iγ^μ∂_μ - m)ψ = 0</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">老</div>
-                    <div class="scientist-name">老子 Laozi</div>
-                    <div class="scientist-year">公元前 6世纪</div>
-                    <div class="scientist-contribution">道可道，非常道</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">佛</div>
-                    <div class="scientist-name">佛陀 Buddha</div>
-                    <div class="scientist-year">公元前 5世纪</div>
-                    <div class="scientist-contribution">缘起性空</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">F</div>
-                    <div class="scientist-name">Feynman</div>
-                    <div class="scientist-year">1948</div>
-                    <div class="scientist-contribution">Path Integral</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">H</div>
-                    <div class="scientist-name">Hawking</div>
-                    <div class="scientist-year">1974</div>
-                    <div class="scientist-contribution">S = kA/4ℓ_p²</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">W</div>
-                    <div class="scientist-name">Wheeler</div>
-                    <div class="scientist-year">1989</div>
-                    <div class="scientist-contribution">It from Bit</div>
-                </div>
-
-                <!-- 复制一遍以实现无缝滚动 -->
-                <div class="scientist-card">
-                    <div class="scientist-avatar">E</div>
-                    <div class="scientist-name">Einstein</div>
-                    <div class="scientist-year">1905</div>
-                    <div class="scientist-contribution">E = mc²</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">S</div>
-                    <div class="scientist-name">Schrödinger</div>
-                    <div class="scientist-year">1926</div>
-                    <div class="scientist-contribution">iℏ∂ψ/∂t = Ĥψ</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">D</div>
-                    <div class="scientist-name">Dirac</div>
-                    <div class="scientist-year">1928</div>
-                    <div class="scientist-contribution">(iγ^μ∂_μ - m)ψ = 0</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">老</div>
-                    <div class="scientist-name">老子 Laozi</div>
-                    <div class="scientist-year">公元前 6世纪</div>
-                    <div class="scientist-contribution">道可道，非常道</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">佛</div>
-                    <div class="scientist-name">佛陀 Buddha</div>
-                    <div class="scientist-year">公元前 5世纪</div>
-                    <div class="scientist-contribution">缘起性空</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">F</div>
-                    <div class="scientist-name">Feynman</div>
-                    <div class="scientist-year">1948</div>
-                    <div class="scientist-contribution">Path Integral</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">H</div>
-                    <div class="scientist-name">Hawking</div>
-                    <div class="scientist-year">1974</div>
-                    <div class="scientist-contribution">S = kA/4ℓ_p²</div>
-                </div>
-
-                <div class="scientist-card">
-                    <div class="scientist-avatar">W</div>
-                    <div class="scientist-name">Wheeler</div>
-                    <div class="scientist-year">1989</div>
-                    <div class="scientist-contribution">It from Bit</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="fracture-indicator">
-            但它们之间，存在裂缝...
-        </div>
-    </section>
-
-    <!-- Section 4: Alpha Discovery -->
-    <section id="alpha-discovery">
-        <div class="discovery-content">
-            <div class="discovery-title">我们发现了连接它们的：</div>
-            <div class="alpha-equation">α = Coherence / Decoherence</div>
-            <div class="alpha-description">
-                它贯穿：<br>
-                量子相干 → 拓扑破缺 → 生命涌现 → 意识觉醒 → 文明演化
-            </div>
-            <a href="#works" class="explore-btn">EXPLORE</a>
-        </div>
-    </section>
-
-    <!-- Section 5: Three Species Dialogue -->
-    <section id="dialogues">
-        <div class="dialogue-intro">
-            <h2>九个终极问题场</h2>
-            <p style="font-size: 1.2rem; color: var(--color-gray); line-height: 2;">
-                以三个物种的对话展开：<br>
-                人类、AI与猫<br>
-                关于宇宙与人类的科学对话
-            </p>
-
-            <div class="species-icons">
-                <div class="species-icon">
-                    <div class="species-avatar">👤</div>
-                    <div class="species-name">人类</div>
-                </div>
-                <div class="species-icon">
-                    <div class="species-avatar">🤖</div>
-                    <div class="species-name">AI</div>
-                </div>
-                <div class="species-icon">
-                    <div class="species-avatar">🐱</div>
-                    <div class="species-name">猫</div>
-                </div>
-            </div>
-
-            <div class="dialogue-layers">
-                <p><strong>表面：</strong>量子相干、拓扑结构、对称性破缺</p>
-                <p><strong>内核：</strong>终极问题的物理学回答</p>
-                <p><strong>方法：</strong>最前沿的科学理解宇宙和人类</p>
-                <p><strong>隐喻：</strong>薛定谔的猫——我们内心的量子态</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 6: Works Grid -->
-    <section id="works">
-        <h2 style="font-size: 3rem; font-weight: 300; text-align: center; margin-bottom: 2rem;">作品</h2>
-        <p style="text-align: center; font-size: 1.2rem; color: var(--color-gray); margin-bottom: 4rem;">
-            九卷主干 + 四个副卷 = 完整的宇宙叙事
-        </p>
-
-        <div class="works-grid">
-            <!-- 九卷主干 -->
-            <div class="work-card" style="grid-column: 1 / -1; background: rgba(0,217,255,0.05);">
-                <h3>《α-论九卷》</h3>
-                <div class="subtitle">Nine Volumes · The Main Framework</div>
-                <div class="description">
-                    九个终极问题场，以三个物种的对话展开。<br>
-                    从量子相干到文明演化的完整理论体系。<br>
-                    <br>
-                    <strong>九卷目录：</strong><br>
-                    卷一：宇宙源起 · 卷二：光与十二螺旋 · 卷三：α场物理学<br>
-                    卷四：生命方程 · 卷五：意识结构 · 卷六：人类困境<br>
-                    卷七：文明2.0 · 卷八：AI与宇宙智能 · 卷九：归一
-                </div>
-                <div class="work-buttons">
-                    <a href="#" class="work-btn">Preview</a>
-                    <a href="#" class="work-btn">Purchase on Amazon</a>
-                    <a href="#" class="work-btn">Academic Publishers</a>
-                </div>
-            </div>
-
-            <!-- 副卷1 -->
-            <div class="work-card">
-                <h3>《α-史诗》</h3>
-                <div class="subtitle">Universe's Epic</div>
-                <div class="description">
-                    宇宙的自我陈述<br>
-                    从大爆炸到文明的史诗叙事<br>
-                    第一人称的宇宙历史
-                </div>
-                <div class="work-buttons">
-                    <a href="#" class="work-btn">Pre-order</a>
-                </div>
-            </div>
-
-            <!-- 副卷2 -->
-            <div class="work-card">
-                <h3>《α-道》</h3>
-                <div class="subtitle">The Cosmic Sutra</div>
-                <div class="description">
-                    宇宙给人类的心经<br>
-                    东方智慧与现代科学的融合<br>
-                    生命的本质与方向
-                </div>
-                <div class="work-buttons">
-                    <a href="#" class="work-btn">Coming Soon</a>
-                </div>
-            </div>
-
-            <!-- 副卷3 -->
-            <div class="work-card">
-                <h3>《α-诗篇》</h3>
-                <div class="subtitle">Poems for Humanity</div>
-                <div class="description">
-                    人类的宇宙诗篇<br>
-                    用诗歌探索存在的意义<br>
-                    科学与艺术的交响
-                </div>
-                <div class="work-buttons">
-                    <a href="#" class="work-btn">Available</a>
-                    <a href="#" class="work-btn">Amazon</a>
-                </div>
-            </div>
-
-            <!-- 副卷4 -->
-            <div class="work-card">
-                <h3>《α-寓言》</h3>
-                <div class="subtitle">Stories for Children</div>
-                <div class="description">
-                    给孩子的宇宙故事<br>
-                    用童话讲述深刻的科学<br>
-                    下一代的宇宙观
-                </div>
-                <div class="work-buttons">
-                    <a href="#" class="work-btn">Available</a>
-                    <a href="#" class="work-btn">Amazon</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 7: Interface Preview -->
-    <section id="interface-preview">
-        <div class="interface-content">
-            <h2 class="interface-title">探索 Interface</h2>
-            <div class="interface-path">器 — 数 — 象 — 理 — 道</div>
-            <p style="font-size: 1.2rem; color: var(--color-gray); margin-bottom: 3rem;">
-                文明如何回应宇宙<br>
-                从工具到本体的完整路径
-            </p>
-            <a href="interface.html" class="explore-btn">进入 INTERFACE</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Universe and Humanity | Alpha Coherence Institute</p>
-        <p style="margin-top: 1rem;">
-            <a href="#academic">Academic</a> · 
-            <a href="mailto:contact@universeandhumanity.com">Contact</a> · 
-            <a href="#privacy">Privacy</a>
-        </p>
-    </footer>
-
-    <!-- Three.js Galaxy Background -->
-    <script>
-        // Three.js场景设置
-        const canvas = document.getElementById('galaxy-canvas');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        camera.position.z = 6.5;
-
-        // 创建星系粒子
-        const particleCount = 30000;
-        const particles = new THREE.BufferGeometry();
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
-
-        for (let i = 0; i < particleCount * 3; i += 3) {
-            // 螺旋星系分布
-            const radius = Math.random() * 5;
-            const angle = Math.random() * Math.PI * 2;
-            const spiral = angle + radius * 0.5;
-            
-            positions[i] = Math.cos(spiral) * radius;
-            positions[i + 1] = (Math.random() - 0.5) * 2;
-            positions[i + 2] = Math.sin(spiral) * radius;
-
-            // 颜色：蓝色到白色渐变
-            const colorMix = Math.random();
-            colors[i] = 0.5 + colorMix * 0.5;     // R
-            colors[i + 1] = 0.7 + colorMix * 0.3; // G
-            colors[i + 2] = 1.0;                   // B
-        }
-
-        particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-        const particleMaterial = new THREE.PointsMaterial({
-            size: 0.02,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particleSystem = new THREE.Points(particles, particleMaterial);
-        scene.add(particleSystem);
-
-        // 动画循环
-        function animate() {
-            requestAnimationFrame(animate);
-            
-            // 自动缓慢旋转
-            particleSystem.rotation.y += 0.001;
-            particleSystem.rotation.x += 0.0005;
-            
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // 响应式
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // 鼠标交互
-        document.addEventListener('mousemove', (event) => {
-            const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-            
-            particleSystem.rotation.y = mouseX * 0.1;
-            particleSystem.rotation.x = mouseY * 0.1;
-        });
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
