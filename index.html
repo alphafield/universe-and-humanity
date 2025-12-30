@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark" />
-  <title>Universe and Humanity</title>
-  <meta name="description" content="不是理论，不是信仰：给出宇宙—文明—人类的结构接口语言。" />
+  <title>宇宙与人类 | Universe and Humanity</title>
+  <meta name="description" content="存在的结构视角：不是故事，而是结构。" />
 
   <style>
     :root{
@@ -20,15 +20,16 @@
       --radius:18px;
       --shadow: 0 20px 60px rgba(0,0,0,.55);
       --glow: 0 0 0 1px rgba(255,255,255,.08), 0 0 40px rgba(105,183,255,.10);
-      --max: 1160px;
+      --max: 1100px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      background: radial-gradient(1000px 700px at 50% 50%, rgba(105,183,255,.08), transparent 60%),
-                  radial-gradient(900px 600px at 50% 70%, rgba(255,204,51,.07), transparent 65%),
-                  var(--bg);
+      background:
+        radial-gradient(1000px 700px at 50% 20%, rgba(105,183,255,.10), transparent 60%),
+        radial-gradient(900px 700px at 50% 75%, rgba(255,204,51,.07), transparent 65%),
+        var(--bg);
       color:var(--text);
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "PingFang SC", "Hiragino Sans GB";
       overflow-x:hidden;
@@ -36,13 +37,13 @@
 
     /* subtle star dust */
     .dust{
-      position:fixed; inset:-20%;
+      position:fixed; inset:-25%;
       pointer-events:none; opacity:.55;
       background-image:
-        radial-gradient(2px 2px at 20% 30%, rgba(105,183,255,.35), transparent 60%),
-        radial-gradient(1.5px 1.5px at 65% 40%, rgba(255,204,51,.25), transparent 60%),
-        radial-gradient(1.2px 1.2px at 40% 70%, rgba(255,255,255,.18), transparent 60%),
-        radial-gradient(1.8px 1.8px at 75% 75%, rgba(105,183,255,.22), transparent 60%);
+        radial-gradient(2px 2px at 18% 28%, rgba(105,183,255,.30), transparent 60%),
+        radial-gradient(1.5px 1.5px at 62% 42%, rgba(255,204,51,.22), transparent 60%),
+        radial-gradient(1.2px 1.2px at 40% 72%, rgba(255,255,255,.16), transparent 60%),
+        radial-gradient(1.8px 1.8px at 78% 76%, rgba(105,183,255,.20), transparent 60%);
       filter: blur(.2px);
       transform: translateZ(0);
       animation: drift 18s ease-in-out infinite alternate;
@@ -52,7 +53,7 @@
     header{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(5,7,14,.78), rgba(5,7,14,.38));
+      background: linear-gradient(to bottom, rgba(5,7,14,.78), rgba(5,7,14,.35));
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .bar{
@@ -67,12 +68,14 @@
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight:650; letter-spacing:.2px;
+      white-space:nowrap;
     }
     .dot{
       width:8px; height:8px; border-radius:999px;
       background: var(--gold);
       box-shadow: 0 0 18px rgba(255,204,51,.35);
     }
+    nav{display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end}
     nav a{
       color:var(--muted);
       text-decoration:none;
@@ -81,9 +84,6 @@
       border-radius:12px;
     }
     nav a:hover{color:var(--text); background:rgba(255,255,255,.06)}
-    .cta{
-      display:flex; gap:10px; align-items:center;
-    }
     .btn{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
@@ -104,90 +104,117 @@
     main{
       max-width:var(--max);
       margin:0 auto;
-      padding:56px 18px 84px;
+      padding:54px 18px 90px;
     }
+
     .hero{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:22px;
-      align-items:start;
+      padding:40px 0 22px;
     }
-    @media (max-width: 980px){
-      .hero{grid-template-columns:1fr}
+    .kicker{
+      color:rgba(255,255,255,.72);
+      font-size:13px;
+      letter-spacing:.26px;
+      text-transform:uppercase;
     }
-
-    .h-title{
-      font-size: clamp(34px, 4.2vw, 56px);
+    h1{
+      font-size: clamp(40px, 5vw, 64px);
       line-height:1.04;
-      margin:0 0 12px 0;
-      letter-spacing:-.6px;
+      margin:10px 0 10px 0;
+      letter-spacing:-.8px;
     }
-    .h-sub{
-      margin:0 0 22px 0;
-      color:var(--muted);
-      font-size:15px;
-      max-width:62ch;
+    .subtitle{
+      margin:0 0 26px 0;
+      color:rgba(255,255,255,.72);
+      font-size:16px;
+      max-width:60ch;
+      line-height:1.55;
     }
 
-    .panel{
+    .questions{
+      margin:18px 0 22px;
+      padding:16px 16px;
       border:1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
       background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
       box-shadow: var(--shadow);
-      overflow:hidden;
+      max-width: 680px;
     }
-    .panel .topline{
-      display:flex; justify-content:space-between; align-items:center;
-      padding:12px 14px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      font-size:12px; color:rgba(255,255,255,.65);
-      letter-spacing:.22px;
+    .questions p{
+      margin:0;
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(255,255,255,.86);
     }
-    .panel .body{padding:16px 14px 14px}
-    .rules{
-      display:grid; gap:10px;
-      font-size:14px;
-      color:rgba(255,255,255,.84);
-    }
-    .rules b{color:var(--text)}
-    .rules .mut{color:rgba(255,255,255,.62)}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      color:rgba(255,255,255,.78);
+    .scroll{
+      display:inline-flex; align-items:center; gap:10px;
+      margin-top:10px;
+      color:rgba(255,255,255,.62);
       font-size:12px;
+      letter-spacing:.2px;
+      text-decoration:none;
     }
-    .chip .k{
-      width:7px;height:7px;border-radius:999px;background:var(--blue);
-      box-shadow: 0 0 18px rgba(105,183,255,.32);
+    .scroll .chev{
+      width:22px;height:22px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.04);
     }
 
-    .grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns:1fr}
-    }
-    .card{
+    .section{
+      margin-top:22px;
+      padding:20px 18px;
       border:1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+      box-shadow: var(--glow);
+    }
+    .section h2{
+      margin:0 0 10px 0;
+      font-size:16px;
+      letter-spacing:.2px;
+      color:rgba(255,255,255,.92);
+    }
+    .section p{
+      margin:0;
+      color:rgba(255,255,255,.72);
+      font-size:15px;
+      line-height:1.75;
+      max-width: 78ch;
+      white-space:pre-line;
+    }
+
+    .next{
+      margin-top:18px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .card{
+      flex: 1 1 240px;
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.045);
       box-shadow: var(--glow);
-      padding:16px;
-      min-height:150px;
+      min-height:132px;
     }
-    .kicker{font-size:12px; color:rgba(255,255,255,.62); letter-spacing:.25px}
-    .card h3{margin:10px 0 8px 0; font-size:18px}
-    .card p{margin:0 0 12px 0; color:rgba(255,255,255,.68); font-size:14px; line-height:1.5}
+    .card .tag{
+      font-size:12px; color:rgba(255,255,255,.62); letter-spacing:.22px;
+    }
+    .card h3{
+      margin:10px 0 8px 0;
+      font-size:18px;
+    }
+    .card p{
+      margin:0 0 12px 0;
+      color:rgba(255,255,255,.68);
+      font-size:13px;
+      line-height:1.55;
+    }
     .go{
       display:inline-flex; align-items:center; gap:8px;
-      color:rgba(255,255,255,.86);
+      color:rgba(255,255,255,.88);
       text-decoration:none;
       font-size:13px;
       padding:10px 12px;
@@ -196,24 +223,7 @@
       background: rgba(255,255,255,.04);
     }
     .go:hover{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18)}
-    .arrow{opacity:.75}
 
-    .right{
-      display:grid; gap:14px;
-    }
-    .mini{
-      padding:16px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow);
-    }
-    .mini h4{margin:0 0 10px 0; font-size:13px; color:rgba(255,255,255,.82); letter-spacing:.2px}
-    .mini p{margin:0; font-size:13px; color:rgba(255,255,255,.64); line-height:1.55}
-    .line{
-      height:1px; background: rgba(255,255,255,.10);
-      margin:14px 0;
-    }
     footer{
       max-width:var(--max);
       margin:0 auto;
@@ -235,7 +245,7 @@
     <div class="bar">
       <div class="brand">
         <span class="dot"></span>
-        <span>Universe and Humanity</span>
+        <span>宇宙与人类</span>
       </div>
 
       <nav>
@@ -245,82 +255,94 @@
         <a href="humanity.html">Humanity</a>
       </nav>
 
-      <div class="cta">
+      <div style="display:flex; gap:10px; align-items:center;">
         <a class="btn" href="README.md">README</a>
-        <!-- three.js 保留：后面你决定是否放子域名 /three/ 或 three.universeandhumanity.com -->
-        <a class="btn gold" href="interface.html">Enter</a>
+        <a class="btn gold" href="interface.html">进入结构接口</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div>
-        <h1 class="h-title">一个“结构接口”，连接宇宙与人类。</h1>
-        <p class="h-sub">
-          我们不建立信仰系统。我们不提供解释崇拜。我们只做一件事：把复杂系统必须满足的约束，用同一套接口语言写清楚。
-        </p>
+    <!-- PATH 0｜Hero -->
+    <section class="hero" id="top">
+      <div class="kicker">PATH 0 · 入口页（中文版终稿）</div>
+      <h1>宇宙与人类</h1>
+      <p class="subtitle">存在的结构视角</p>
 
-        <div class="panel">
-          <div class="topline">
-            <span>CIVILIZATION INTERFACE · v1.1</span>
-            <span class="chip"><span class="k"></span> constraint-first</span>
-          </div>
-          <div class="body">
-            <div class="rules">
-              <div><b>我们不崇拜解释</b>。<span class="mut">我们声明约束。</span></div>
-              <div><b>我们不争论身份</b>。<span class="mut">我们检查接口：输入 / 耦合 / 反馈 / 失效。</span></div>
-              <div><b>我们不承诺意义</b>。<span class="mut">我们建立可持续：在压力下仍能保持的结构。</span></div>
-            </div>
-          </div>
-        </div>
+      <div class="questions">
+        <p>你或许在内心问过：<br>
+        为什么会有宇宙？<br>
+        又为什么，会有人类？</p>
 
-        <div class="grid">
-          <article class="card">
-            <div class="kicker">Layer 1</div>
-            <h3>Universe</h3>
-            <p>不变量、允许的跃迁、稳定区间。先把“能发生什么”与“不能发生什么”写成约束。</p>
-            <a class="go" href="universe.html">Open Universe <span class="arrow">→</span></a>
-          </article>
+        <a class="scroll" href="#s1" aria-label="向下滚动">
+          <span class="chev">↓</span>
+          <small>向下滚动</small>
+        </a>
+      </div>
+    </section>
 
-          <article class="card">
-            <div class="kicker">Layer 2</div>
-            <h3>Civilization</h3>
-            <p>语言、制度、技术与规模协调。文明的失败往往不是道德问题，而是接口漂移。</p>
-            <a class="go" href="civilization.html">Open Civilization <span class="arrow">→</span></a>
-          </article>
+    <!-- Section 1 -->
+    <section class="section" id="s1">
+      <h2>Section 1｜科学的共同困惑</h2>
+      <p>物理学家与数学家长期追求一种解释：
+既足够精美，能够描述宇宙；
+又足够开放，允许复杂性、生命与智能的出现。
 
-          <article class="card">
-            <div class="kicker">Layer 3</div>
-            <h3>Humanity</h3>
-            <p>感知 → 压缩 → 行动 → 代价。把“责任”视为接口输出：你如何改变系统。</p>
-            <a class="go" href="humanity.html">Open Humanity <span class="arrow">→</span></a>
-          </article>
-        </div>
+从基本粒子到星系，
+从物质到心智，
+科学寻找的不是故事，而是结构。</p>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="section" id="s2">
+      <h2>Section 2｜精美与破缺</h2>
+      <p>科学一次次遇到同样的模式：
+
+精美的定律不会永远稳定。
+对称被打破，
+新的结构由此出现。
+
+从量子场到宇宙丝网，
+从化学到生命，
+从生命到文明——
+
+推动演化的从来不是完美，
+而是被约束的破缺。</p>
+    </section>
+
+    <!-- Section 3 -->
+    <section class="section" id="s3">
+      <h2>Section 3｜人类的位置</h2>
+      <p>人类并非站在宇宙之外。
+
+人类文明是一种罕见的系统：
+它不仅被宇宙塑造，
+还能够反过来追问——
+是否存在某些边界，决定了什么可以存在、演化并持续。</p>
+    </section>
+
+    <!-- Next links -->
+    <section class="next" aria-label="Next paths">
+      <div class="card">
+        <div class="tag">Next · Interface</div>
+        <h3>进入“结构接口”</h3>
+        <p>从接口语言出发：器—数—象—理—道（或你定义的五层），统一到可检验的约束表达。</p>
+        <a class="go" href="interface.html">Open Interface →</a>
       </div>
 
-      <aside class="right">
-        <div class="mini">
-          <h4>你现在遇到的现象（内容变、风格不变）</h4>
-          <p>
-            说明你改到了文本，但没有把“结构 + 样式”这套设计模式一起替换。<br>
-            用上面的整包 index.html 覆盖，视觉语言会立刻切换。
-          </p>
-          <div class="line"></div>
-          <p>
-            下一步我们再把 three.js 背景作为“可插拔层”：想保留就做开关；想上子域名就把重资产隔离。
-          </p>
-        </div>
+      <div class="card">
+        <div class="tag">Next · Universe</div>
+        <h3>宇宙层：不变量与允许的跃迁</h3>
+        <p>把“能发生什么 / 不能发生什么”写成稳定区、门槛与相空间流。</p>
+        <a class="go" href="universe.html">Open Universe →</a>
+      </div>
 
-        <div class="mini">
-          <h4>三张“镇场图”建议（首页只放 1–3 张）</h4>
-          <p>
-            ① Phase Space（硬核、最像“结构语言”）<br>
-            ② Historical Civilizations（文明路径收敛）<br>
-            ③ First Coherent Loop（封面级，但要克制用法）
-          </p>
-        </div>
-      </aside>
+      <div class="card">
+        <div class="tag">Next · Civilization</div>
+        <h3>文明层：规模协调与漂移</h3>
+        <p>文明不是故事，是系统；失败通常是接口漂移。</p>
+        <a class="go" href="civilization.html">Open Civilization →</a>
+      </div>
     </section>
   </main>
 
@@ -328,6 +350,7 @@
     <div class="footrow">
       <div>© Universe and Humanity · universeandhumanity.com</div>
       <div>
+        <a href="#top">Top</a> ·
         <a href="interface.html">Interface</a> ·
         <a href="universe.html">Universe</a> ·
         <a href="civilization.html">Civilization</a> ·
