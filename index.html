@@ -1,3 +1,6 @@
+<!-- ✅ 你现在看到“整屏 CSS 文本”的原因：styles.css 被当成 HTML 输出了。
+解决：用下面这个 index.html 覆盖仓库根目录的 index.html（整文件替换）。 -->
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -5,20 +8,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Universe and Humanity</title>
   <meta name="description" content="Universe and Humanity" />
+  <!-- ✅ 确保是这个：不要写成 styles.css 纯文本 -->
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <!-- Background Canvas -->
   <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
 
-  <!-- Left Sidebar Nav (SpaceX-like) -->
   <aside class="side-nav" aria-label="Primary">
     <div class="side-brand">
       <span class="dot" aria-hidden="true"></span>
       <span>Universe & Humanity</span>
     </div>
-
     <nav class="side-links">
       <a href="./interface.html">Interface</a>
       <a href="./universe.html">Universe</a>
@@ -27,20 +28,17 @@
     </nav>
   </aside>
 
-  <!-- Right Top Actions -->
   <div class="top-actions">
     <a class="pill" href="./volumes-9.html">九卷</a>
     <a class="pill primary" href="./volumes-4.html">四副卷</a>
   </div>
 
-  <!-- HERO (only title) -->
   <main class="hero" id="top">
     <div class="hero-inner">
       <h1 class="title">宇宙与人类</h1>
     </div>
   </main>
 
-  <!-- Scientists Platform (bottom) -->
   <section class="marquee-wrap" aria-label="Scientists platform">
     <div class="marquee">
       <div class="marquee__track" id="marqueeTrack"></div>
