@@ -49,33 +49,22 @@ if (track) {
 // ==============================
 // Galaxy — 快速展开 → 慢速呼吸；亮度更真实
 // ==============================
+// ✅ 直接把你现在的 ./app.js 整文件替换成下面这一份（app.js）
+
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
 
 const canvas = document.getElementById('galaxy-canvas');
 
-// Scene
 const scene = new THREE.Scene();
 
-// Camera
-const camera = new THREE.PerspectiveCamera(
-  60,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  100
-);
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
 camera.position.z = 8;
 scene.add(camera);
 
-// Renderer
-const renderer = new THREE.WebGLRenderer({
-  canvas,
-  alpha: true,
-  antialias: true
-});
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Galaxy parameters
 const params = {
   count: 20000,
   radius: 6,
@@ -84,60 +73,46 @@ const params = {
   randomness: 0.35,
   randomnessPower: 3,
   insideColor: new THREE.Color(0xffffff),
-  outsideColor: new THREE.Color(0x3b6cff)
+  outsideColor: new THREE.Color(0x3b6cff),
 };
 
-let geometry = null;
-let material = null;
-let points = null;
+let geometry, material, points;
 
 function generateGalaxy() {
-  if (points !== null) {
+  if (points) {
     geometry.dispose();
     material.dispose();
     scene.remove(points);
   }
 
   geometry = new THREE.BufferGeometry();
-
   const positions = new Float32Array(params.count * 3);
   const colors = new Float32Array(params.count * 3);
 
   for (let i = 0; i < params.count; i++) {
     const i3 = i * 3;
 
-    const radius = Math.random() * params.radius;
-    const branchAngle =
-      ((i % params.branches) / params.branches) * Math.PI * 2;
-    const spinAngle = radius * params.spin;
+    const r = Math.random() * params.radius;
+    const branchAngle = ((i % params.branches) / params.branches) * Math.PI * 2;
+    const spinAngle = r * params.spin;
 
-    const randomX =
+    const rand = (scale) =>
       Math.pow(Math.random(), params.randomnessPower) *
       (Math.random() < 0.5 ? 1 : -1) *
       params.randomness *
-      radius;
-    const randomY =
-      Math.pow(Math.random(), params.randomnessPower) *
-      (Math.random() < 0.5 ? 1 : -1) *
-      params.randomness *
-      radius *
-      0.3;
-    const randomZ =
-      Math.pow(Math.random(), params.randomnessPower) *
-      (Math.random() < 0.5 ? 1 : -1) *
-      params.randomness *
-      radius;
+      r *
+      scale;
 
-    positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-    positions[i3 + 1] = randomY;
-    positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+    positions[i3]     = Math.cos(branchAngle + spinAngle) * r + rand(1);
+    positions[i3 + 1] = rand(0.25);
+    positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * r + rand(1);
 
-    const mixedColor = params.insideColor.clone();
-    mixedColor.lerp(params.outsideColor, radius / params.radius);
+    const mixed = params.insideColor.clone();
+    mixed.lerp(params.outsideColor, r / params.radius);
 
-    colors[i3] = mixedColor.r;
-    colors[i3 + 1] = mixedColor.g;
-    colors[i3 + 2] = mixedColor.b;
+    colors[i3]     = mixed.r;
+    colors[i3 + 1] = mixed.g;
+    colors[i3 + 2] = mixed.b;
   }
 
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -148,7 +123,7 @@ function generateGalaxy() {
     sizeAttenuation: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
-    vertexColors: true
+    vertexColors: true,
   });
 
   points = new THREE.Points(geometry, material);
@@ -157,29 +132,25 @@ function generateGalaxy() {
 
 generateGalaxy();
 
-// Animation
-let time = 0;
-let burstPhase = true;
-
+let burst = true;
+let t = 0;
 const clock = new THREE.Clock();
 
-function animate() {
-  const delta = clock.getDelta();
-  time += delta;
+function tick() {
+  const dt = clock.getDelta();
+  t += dt;
+  if (burst && t > 2.0) burst = false;
 
-  if (burstPhase && time > 2.0) burstPhase = false;
-
-  const speed = burstPhase ? 0.4 : 0.03;
-  points.rotation.y += speed * delta;
-  points.rotation.x += speed * 0.15 * delta;
+  const speed = burst ? 0.4 : 0.03;
+  points.rotation.y += speed * dt;
+  points.rotation.x += speed * 0.15 * dt;
 
   renderer.render(scene, camera);
-  requestAnimationFrame(animate);
+  requestAnimationFrame(tick);
 }
 
-animate();
+tick();
 
-// Resize
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
