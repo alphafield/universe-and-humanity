@@ -3,53 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Universe and Humanity</title>
-  <meta name="description" content="Universe and Humanity" />
+  <title>宇宙与人类 · Universe and Humanity</title>
+  <meta name="description" content="宇宙与人类：存在的结构视角" />
+
+  <!-- ✅ Canonical：锁定主域，避免 netlify.app 被索引 -->
+  <link rel="canonical" href="https://universeandhumanity.com/" />
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
+  <!-- Galaxy Canvas -->
   <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
-<!-- Top-right Library Dropdown -->
-<div class="library-menu">
-  <button class="library-trigger" aria-expanded="false">
-    宇宙与人类文明卷著
-    <span class="chevron">▾</span>
-  </button>
 
-  <div class="library-panel" hidden>
-    <a href="./library/nine-volumes.html">
-      <strong>宇宙九卷</strong>
-      <span>— 跨物种对话宇宙</span>
-    </a>
-    <a href="./library/cosmic-epic.html">
-      <strong>宇宙史诗</strong>
-      <span>— 140亿年的结构演化</span>
-    </a>
-    <a href="./library/dao-of-universe.html">
-      <strong>宇宙之道</strong>
-      <span>— 结构的东方智慧</span>
-    </a>
-    <a href="./library/cosmic-heart-sutra.html">
-      <strong>宇宙心经</strong>
-      <span>— α 的本质</span>
-    </a>
-    <a href="./library/cosmic-parables.html">
-      <strong>宇宙寓言</strong>
-      <span>— 光子到文明的24个故事</span>
-    </a>
-  </div>
-</div>
-
-  
-  <!-- Left Sidebar Nav -->
-  <aside class="side-nav" aria-label="Primary">
+  <!-- Left Sidebar (SpaceX-like) -->
+  <aside class="side-nav" aria-label="Primary navigation">
     <div class="side-brand">
       <span class="dot" aria-hidden="true"></span>
-      <span>Universe & Humanity</span>
+      <span>Universe &amp; Humanity</span>
     </div>
 
-    <!-- ✅ 你要的导航排列：更像“章节/路径” -->
     <nav class="side-links">
       <a href="./interface.html">Interface</a>
       <a href="./universe.html">Universe</a>
@@ -58,82 +31,49 @@
     </nav>
   </aside>
 
-  <!-- ✅ Right Top: dropdown like SpaceX "UPCOMING LAUNCHES" -->
-  <div class="top-actions">
-    <div class="dropdown" data-dd>
-      <button class="dd-btn" type="button" aria-haspopup="true" aria-expanded="false">
-        书库 · Library
-        <span class="dd-caret" aria-hidden="true">▾</span>
-      </button>
+  <!-- Top-right Library Dropdown -->
+  <div class="library-menu">
+    <button class="library-trigger" aria-expanded="false" type="button">
+      宇宙与人类文明卷著
+      <span class="chevron" aria-hidden="true">▾</span>
+    </button>
 
-      <div class="dd-panel" role="menu" aria-label="Library menu">
-        <div class="dd-section">
-          <div class="dd-title">九卷（科学版）</div>
-          <a class="dd-item" href="./vol-1.html">卷一 · 总论</a>
-          <a class="dd-item" href="./vol-2.html">卷二 · 光与螺旋</a>
-          <a class="dd-item" href="./vol-3.html">卷三 · α环</a>
-          <a class="dd-item" href="./vol-4.html">卷四 · 生命</a>
-          <a class="dd-item" href="./vol-5.html">卷五 · 意识</a>
-          <a class="dd-item" href="./vol-6.html">卷六 · 文明</a>
-          <a class="dd-item" href="./vol-7.html">卷七 · 未来</a>
-          <a class="dd-item" href="./vol-8.html">卷八 · 方法</a>
-          <a class="dd-item" href="./vol-9.html">卷九 · 终极问题</a>
-        </div>
-
-        <div class="dd-divider"></div>
-
-        <div class="dd-section">
-          <div class="dd-title">四副卷（对话/通俗/附录）</div>
-          <a class="dd-item" href="./sup-1.html">副卷一 · 文明对话</a>
-          <a class="dd-item" href="./sup-2.html">副卷二 · 寓言篇</a>
-          <a class="dd-item" href="./sup-3.html">副卷三 · 图谱与索引</a>
-          <a class="dd-item" href="./sup-4.html">副卷四 · 术语与证明</a>
-        </div>
-      </div>
+    <div class="library-panel" hidden>
+      <a href="./library/nine-volumes.html">
+        <strong>宇宙九卷</strong>
+        <span>— 跨物种对话宇宙</span>
+      </a>
+      <a href="./library/cosmic-epic.html">
+        <strong>宇宙史诗</strong>
+        <span>— 140亿年的结构演化</span>
+      </a>
+      <a href="./library/dao-of-universe.html">
+        <strong>宇宙之道</strong>
+        <span>— 结构的东方智慧</span>
+      </a>
+      <a href="./library/cosmic-heart-sutra.html">
+        <strong>宇宙心经</strong>
+        <span>— α 的本质</span>
+      </a>
+      <a href="./library/cosmic-parables.html">
+        <strong>宇宙寓言</strong>
+        <span>— 光子到文明的24个故事</span>
+      </a>
     </div>
   </div>
 
-  <!-- HERO -->
+  <!-- Hero -->
   <main class="hero" id="top">
-    <div class="hero-inner">
-      <h1 class="title">宇宙与人类</h1>
-    </div>
+    <h1 class="hero-title">宇宙与人类</h1>
   </main>
 
-  <!-- Scientists Platform -->
+  <!-- Bottom Scientists Platform -->
   <section class="marquee-wrap" aria-label="Scientists platform">
     <div class="marquee">
       <div class="marquee__track" id="marqueeTrack"></div>
     </div>
   </section>
 
-  <script type="module" src="./app.js"></script>
-
-  <!-- ✅ dropdown interaction: no frameworks -->
-  <script>
-    (function () {
-      const dd = document.querySelector("[data-dd]");
-      if (!dd) return;
-      const btn = dd.querySelector(".dd-btn");
-      const panel = dd.querySelector(".dd-panel");
-
-      const close = () => {
-        dd.classList.remove("open");
-        btn.setAttribute("aria-expanded", "false");
-      };
-      const open = () => {
-        dd.classList.add("open");
-        btn.setAttribute("aria-expanded", "true");
-      };
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        dd.classList.contains("open") ? close() : open();
-      });
-      document.addEventListener("click", close);
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") close();
-      });
-    })();
-  </script>
+  <script src="./app.js"></script>
 </body>
 </html>
