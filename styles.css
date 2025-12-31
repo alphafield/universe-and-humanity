@@ -2,7 +2,6 @@
   --bg:#000;
   --text:rgba(255,255,255,.92);
   --muted:rgba(255,255,255,.62);
-  --muted2:rgba(255,255,255,.42);
   --line:rgba(255,255,255,.10);
   --pill:rgba(255,255,255,.06);
   --pill2:rgba(255,255,255,.10);
@@ -11,11 +10,13 @@
 
 *{ box-sizing:border-box; margin:0; padding:0; }
 html,body{ height:100%; }
+
 body{
   background:var(--bg);
   color:var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
-  overflow-x:hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  overflow:hidden; /* 首页就是一张封面 */
 }
 
 /* background canvas */
@@ -28,73 +29,83 @@ body{
   display:block;
 }
 
-/* subtle vignette to keep text readable without blocking galaxy */
+/* light fog/vignette (不吃掉银河) */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   z-index:-1;
   pointer-events:none;
-  /* 旧版太黑，会把银河吃掉；改成“轻雾” */
   background:
     radial-gradient(ellipse at center,
-      rgba(0,0,0,.05) 0%,
-      rgba(0,0,0,.28) 55%,
-      rgba(0,0,0,.55) 100%);
-  body{
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,.08) 0 1px, transparent 2px) 0 0/180px 180px,
-    radial-gradient(circle at 70% 60%, rgba(255,255,255,.06) 0 1px, transparent 2px) 0 0/220px 220px,
-    radial-gradient(circle at 40% 80%, rgba(255,255,255,.05) 0 1px, transparent 2px) 0 0/260px 260px,
-    #000;
+      rgba(0,0,0,.06) 0%,
+      rgba(0,0,0,.22) 55%,
+      rgba(0,0,0,.45) 100%);
 }
 
-}
-
-
-/* NAV */
-.nav{
+/* =========================
+   Left Sidebar (SpaceX-like)
+   ========================= */
+.side-nav{
   position:fixed;
-  top:0; left:0; right:0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 28px;
+  left:0; top:0; bottom:0;
+  width:220px;
+  padding:18px 18px;
   z-index:50;
-  background: linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0));
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  background: linear-gradient(to right, rgba(0,0,0,.55), rgba(0,0,0,0));
 }
 
-.brand{
+.side-brand{
   display:flex;
   align-items:center;
   gap:10px;
-  font-size:14px;
+  font-size:13px;
   letter-spacing:.02em;
   color:rgba(255,255,255,.82);
 }
 
-.brand .dot{
+.side-brand .dot{
   width:6px; height:6px;
   border-radius:999px;
   background:rgba(255,255,255,.65);
   box-shadow:0 0 12px rgba(255,255,255,.25);
 }
 
-.navlinks{
+.side-links{
   display:flex;
-  gap:18px;
+  flex-direction:column;
+  gap:10px;
+  margin-top:10px;
 }
 
-.navlinks a{
-  color:rgba(255,255,255,.55);
+.side-links a{
+  color:rgba(255,255,255,.60);
   text-decoration:none;
   font-size:13px;
   letter-spacing:.02em;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid transparent;
+  background:transparent;
 }
 
-.navlinks a:hover{ color:rgba(255,255,255,.82); }
+.side-links a:hover{
+  color:rgba(255,255,255,.90);
+  border-color:rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+}
 
-.navcta{
+/* =========================
+   Top Right Actions
+   ========================= */
+.top-actions{
+  position:fixed;
+  right:18px;
+  top:16px;
+  z-index:60;
   display:flex;
   gap:10px;
 }
@@ -108,7 +119,7 @@ body::before{
   border-radius:999px;
   border:1px solid var(--line);
   background:var(--pill);
-  color:rgba(255,255,255,.80);
+  color:rgba(255,255,255,.84);
   text-decoration:none;
   font-size:12px;
 }
@@ -117,138 +128,67 @@ body::before{
 
 .pill.primary{
   border-color:rgba(255,255,255,.18);
-  background:rgba(255,255,255,.08);
-  color:rgba(255,255,255,.90);
+  background:rgba(255,255,255,.10);
+  color:rgba(255,255,255,.92);
 }
 
-/* HERO */
+/* =========================
+   HERO
+   ========================= */
 .hero{
-  min-height:100vh;
+  height:100vh;
   display:flex;
   align-items:center;
+  justify-content:center;
+  padding-left:220px; /* 给左侧导航让位 */
 }
 
 .hero-inner{
-  width:min(920px, 92vw);
-  margin:0 auto;
+  width:min(980px, 92vw);
   padding:0 2vw;
-  transform: translateY(-2vh);
-}
-
-.kicker{
-  font-size:11px;
-  letter-spacing:.14em;
-  color:rgba(255,255,255,.35);
-  margin-bottom:16px;
 }
 
 .title{
-  font-size: clamp(34px, 5.2vw, 64px);
-  font-weight:750;
+  font-size: clamp(44px, 5.4vw, 78px);
+  font-weight:800;
   letter-spacing:.02em;
   line-height:1.06;
   text-shadow: 0 18px 60px var(--shadow);
 }
 
-.subtitle{
-  margin-top:14px;
-  font-size:14px;
-  letter-spacing:.08em;
-  color:rgba(255,255,255,.55);
-}
-
-.questions{
-  margin-top:18px;
-  font-size: clamp(16px, 1.7vw, 20px);
-  line-height:1.55;
-  color:rgba(255,255,255,.88);
-  text-shadow: 0 14px 50px var(--shadow);
-}
-
-.scrollhint{
-  margin-top:26px;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  color:rgba(255,255,255,.55);
-  text-decoration:none;
-  font-size:12px;
-  letter-spacing:.12em;
-}
-
-.scrollhint:hover{ color:rgba(255,255,255,.78); }
-
-.mouse{
-  width:18px; height:26px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.22);
-  position:relative;
-}
-
-.mouse::after{
-  content:"";
-  position:absolute;
-  left:50%; top:7px;
-  width:3px; height:3px;
-  border-radius:999px;
-  transform:translateX(-50%);
-  background:rgba(255,255,255,.55);
-  animation: wheel 1.6s infinite;
-}
-
-@keyframes wheel{
-  0%{ opacity:.0; transform:translate(-50%, -2px); }
-  30%{ opacity:1; }
-  70%{ opacity:1; transform:translate(-50%, 8px); }
-  100%{ opacity:0; transform:translate(-50%, 10px); }
-}
-
-/* BELOW */
-.below{
-  min-height:38vh;
-  display:flex;
-  align-items:flex-start;
-  padding:6vh 0 10vh;
-}
-
-.below-inner{
-  width:min(920px, 92vw);
-  margin:0 auto;
-  padding:0 2vw;
-}
-
-.inner-voice{
-  font-size:14px;
-  line-height:1.8;
-  color:rgba(255,255,255,.68);
-  text-shadow: 0 14px 50px var(--shadow);
-}
-
-/* MARQUEE - fixed bottom, SpaceX-like */
 /* =========================
-   Scientists Marquee — “站台级”卡片
+   Scientists Platform (Bottom)
+   - 大卡片
+   - 字清晰
+   - 速度慢
+   - 透明一点
    ========================= */
 .marquee-wrap{
-  position: fixed;
-  left: 0; right: 0;
-  bottom: 0;
-  padding: 14px 0 16px;
-  z-index: 50;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.22), transparent);
+  position:fixed;
+  left:0; right:0;
+  bottom:0;
+  padding:14px 0 16px;
+  z-index:55;
+  pointer-events:auto;
+  background: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.20), transparent);
   border-top: 1px solid rgba(255,255,255,.06);
 }
 
 .marquee{
-  width: 100%;
-  overflow: hidden;
+  width:100%;
+  overflow:hidden;
 }
 
 #marqueeTrack{
-  display: flex;
-  gap: 18px;
-  width: max-content;
-  animation: marquee 120s linear infinite; /* 你觉得慢一点更“神圣”可以调 150s */
+  display:flex;
+  gap:16px;
+  width:max-content;
+  will-change: transform;
+  animation: marquee 140s linear infinite; /* 慢：可读 */
+}
+
+.marquee:hover #marqueeTrack{
+  animation-play-state: paused; /* 鼠标悬停暂停 */
 }
 
 @keyframes marquee{
@@ -257,100 +197,51 @@ body::before{
 }
 
 .marquee-card{
-  min-width: 300px;
-  max-width: 360px;
-  padding: 10px 14px 10px;
+  min-width: 340px;
+  max-width: 420px;
+  padding: 12px 14px 12px;
   border: 1px solid rgba(255,255,255,.10);
-  border-radius: 12px;
-  background: rgba(0,0,0,.32);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset;
+  border-radius: 14px;
+  background: rgba(0,0,0,.22);            /* 更透明 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .m-name{
-  font-size: 13px;
-  letter-spacing: .06em;
-  color: rgba(255,255,255,.92);
+  font-size: 15px;                          /* 更大更清晰 */
+  letter-spacing: .04em;
+  color: rgba(255,255,255,.94);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .m-meta{
-  margin-top: 2px;
-  font-size: 11px;
-  color: rgba(255,255,255,.55);
-  letter-spacing: .04em;
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(255,255,255,.62);
+  letter-spacing: .03em;
 }
 
 .m-mark{
-  margin-top: 6px;
-  font-size: 12px;
-  color: rgba(255,255,255,.78);
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,.86);
   font-family: ui-serif, "Times New Roman", serif;
   font-style: italic;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* ✅ 把这段加到 styles.css 末尾（只加，不改你原来的） */
-.hero-actions {
-  margin-top: 18px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
+
+/* Responsive */
+@media (max-width: 860px){
+  .side-nav{ width:180px; }
+  .hero{ padding-left:180px; }
+  .marquee-card{ min-width: 300px; }
 }
-/* ===== Scientists Marquee: bigger, readable, slower ===== */
-
-.marquee-wrap{
-  position: relative;
-  margin: 28px auto 0;
-  padding: 0 18px;
+@media (max-width: 640px){
+  .side-nav{ display:none; }
+  .hero{ padding-left:0; }
+  .top-actions{ right:12px; }
 }
-
-.marquee{
-  height: 84px;                 /* 框更大 */
-  border-radius: 18px;
-  overflow: hidden;
-  background: rgba(0,0,0,0.28); /* 黑色更透明 */
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-}
-
-.marquee__track{
-  display: inline-flex;
-  gap: 28px;
-  align-items: center;
-  white-space: nowrap;
-  padding-left: 24px;
-  will-change: transform;
-  animation: marqueeScroll 80s linear infinite; /* 速度变慢：数字越大越慢 */
-}
-
-/* 单个名字样式：更大更清晰 */
-.marquee__item{
-  font-size: 20px;              /* 字更大 */
-  line-height: 1;
-  letter-spacing: 0.2px;
-  color: rgba(255,255,255,0.92);
-  text-shadow: 0 0 10px rgba(255,255,255,0.12);
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-/* 悬停暂停，方便读 */
-.marquee:hover .marquee__track{
-  animation-play-state: paused;
-}
-
-@keyframes marqueeScroll{
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* 依赖 JS 做一次 duplicate */
-}
-
-
