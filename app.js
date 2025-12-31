@@ -49,129 +49,140 @@ if (track) {
 // ==============================
 // Galaxy — 快速展开 → 慢速呼吸；亮度更真实
 // ==============================
-function hasWebGL() {
-  try {
-    const c = document.createElement("canvas");
-    return !!(window.WebGLRenderingContext &&
-      (c.getContext("webgl") || c.getContext("experimental-webgl")));
-  } catch { return false; }
-}
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
 
-const canvas = document.getElementById("galaxy-canvas");
-if (!canvas || !window.THREE || !hasWebGL()) {
-  console.warn("[Galaxy] WebGL/THREE unavailable. Using CSS fallback.");
-} else {
-  const scene = new THREE.Scene();
+const canvas = document.getElementById('galaxy-canvas');
 
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+// Scene
+const scene = new THREE.Scene();
 
-  // 关键：初始“远”，用于快速推进展开
-  const Z_START = 18.0;
-  const Z_END   = 6.4;
-  camera.position.z = Z_START;
+// Camera
+const camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  100
+);
+camera.position.z = 8;
+scene.add(camera);
 
-  const renderer = new THREE.WebGLRenderer({
-    canvas,
-    alpha: true,
-    antialias: true,
-    powerPreference: "high-performance"
-  });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setClearColor(0x000000, 0);
+// Renderer
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
+  antialias: true
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  // 更“宇宙”而非“艺术品”：粒子更小、更淡、颜色更克制
-  const particleCount = 52000;
-  const geometry = new THREE.BufferGeometry();
-  const positions = new Float32Array(particleCount * 3);
-  const colors = new Float32Array(particleCount * 3);
+// Galaxy parameters
+const params = {
+  count: 20000,
+  radius: 6,
+  branches: 4,
+  spin: 1.2,
+  randomness: 0.35,
+  randomnessPower: 3,
+  insideColor: new THREE.Color(0xffffff),
+  outsideColor: new THREE.Color(0x3b6cff)
+};
 
-  const arms = 3;
-  const radiusMax = 5.4;
+let geometry = null;
+let material = null;
+let points = null;
 
-  for (let i = 0; i < particleCount; i++) {
+function generateGalaxy() {
+  if (points !== null) {
+    geometry.dispose();
+    material.dispose();
+    scene.remove(points);
+  }
+
+  geometry = new THREE.BufferGeometry();
+
+  const positions = new Float32Array(params.count * 3);
+  const colors = new Float32Array(params.count * 3);
+
+  for (let i = 0; i < params.count; i++) {
     const i3 = i * 3;
-    const r = Math.pow(Math.random(), 0.55) * radiusMax;
-    const arm = i % arms;
-    const baseAngle = (arm / arms) * Math.PI * 2;
-    const twist = r * 0.92;
-    const angle = baseAngle + twist + (Math.random() - 0.5) * 0.42;
 
-    const thickness = (1 - r / radiusMax);
-    const y = (Math.random() - 0.5) * 1.1 * thickness;
+    const radius = Math.random() * params.radius;
+    const branchAngle =
+      ((i % params.branches) / params.branches) * Math.PI * 2;
+    const spinAngle = radius * params.spin;
 
-    positions[i3]     = Math.cos(angle) * r + (Math.random() - 0.5) * 0.07;
-    positions[i3 + 1] = y;
-    positions[i3 + 2] = Math.sin(angle) * r + (Math.random() - 0.5) * 0.07;
+    const randomX =
+      Math.pow(Math.random(), params.randomnessPower) *
+      (Math.random() < 0.5 ? 1 : -1) *
+      params.randomness *
+      radius;
+    const randomY =
+      Math.pow(Math.random(), params.randomnessPower) *
+      (Math.random() < 0.5 ? 1 : -1) *
+      params.randomness *
+      radius *
+      0.3;
+    const randomZ =
+      Math.pow(Math.random(), params.randomnessPower) *
+      (Math.random() < 0.5 ? 1 : -1) *
+      params.randomness *
+      radius;
 
-    // 颜色：白偏冷，但不“发蓝灯”
-    const t = r / radiusMax;
-    const core = (1 - t);
-    colors[i3]     = 0.72 + core * 0.10;
-    colors[i3 + 1] = 0.76 + core * 0.10;
-    colors[i3 + 2] = 0.92 + core * 0.08;
+    positions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
+    positions[i3 + 1] = randomY;
+    positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+
+    const mixedColor = params.insideColor.clone();
+    mixedColor.lerp(params.outsideColor, radius / params.radius);
+
+    colors[i3] = mixedColor.r;
+    colors[i3 + 1] = mixedColor.g;
+    colors[i3 + 2] = mixedColor.b;
   }
 
-  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-  const material = new THREE.PointsMaterial({
-    size: 0.018,                 // ✅ 更真实：小
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.58,               // ✅ 降亮度
+  material = new THREE.PointsMaterial({
+    size: 0.025,
+    sizeAttenuation: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending
+    blending: THREE.AdditiveBlending,
+    vertexColors: true
   });
 
-  const points = new THREE.Points(geometry, material);
+  points = new THREE.Points(geometry, material);
   scene.add(points);
-
-  // 鼠标“很轻”的牵引
-  let targetRX = 0, targetRY = 0, rx = 0, ry = 0;
-  window.addEventListener("mousemove", (e) => {
-    const mx = (e.clientX / window.innerWidth) * 2 - 1;
-    const my = -(e.clientY / window.innerHeight) * 2 + 1;
-    targetRY = mx * 0.06;
-    targetRX = my * 0.05;
-  });
-
-  // 快速展开：1.1s 内从远到近 + scale 从 0.88 到 1.0
-  const t0 = performance.now();
-  const introMs = 1100;
-
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-
-  function animate() {
-    requestAnimationFrame(animate);
-
-    const now = performance.now();
-    const introT = Math.min(1, (now - t0) / introMs);
-    const e = easeOutCubic(introT);
-
-    // “快速铺开”效果：镜头推进 + 轻微放大
-    camera.position.z = Z_START + (Z_END - Z_START) * e;
-    const s = 0.88 + 0.12 * e;
-    points.scale.set(s, s, s);
-
-    // intro 后进入“慢速呼吸”
-    const baseSpin = 0.00022; // ✅ 慢
-    const breath = 0.00010 * Math.sin(now * 0.00035);
-
-    ry += (targetRY - ry) * 0.025;
-    rx += (targetRX - rx) * 0.025;
-
-    points.rotation.y = ry + (now * (baseSpin + breath));
-    points.rotation.x = rx + (now * (baseSpin * 0.55));
-
-    renderer.render(scene, camera);
-  }
-  animate();
-
-  window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  });
 }
+
+generateGalaxy();
+
+// Animation
+let time = 0;
+let burstPhase = true;
+
+const clock = new THREE.Clock();
+
+function animate() {
+  const delta = clock.getDelta();
+  time += delta;
+
+  if (burstPhase && time > 2.0) burstPhase = false;
+
+  const speed = burstPhase ? 0.4 : 0.03;
+  points.rotation.y += speed * delta;
+  points.rotation.x += speed * 0.15 * delta;
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// Resize
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+});
