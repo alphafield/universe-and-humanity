@@ -156,3 +156,50 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
+// ===== Scientists Cards (bottom platform) =====
+const track = document.getElementById('marqueeTrack');
+
+if (track) {
+  const data = [
+    { name: "Michael Faraday", meta: "Physics · 1831", mark: "∂B/∂t" },
+    { name: "Albert Einstein", meta: "Physics · 1905–1915", mark: "E = mc²" },
+    { name: "Max Planck", meta: "Physics · 1900", mark: "E = hν" },
+    { name: "Niels Bohr", meta: "Physics · 1913", mark: "Eₙ ∝ -1/n²" },
+    { name: "Werner Heisenberg", meta: "Physics · 1927", mark: "ΔxΔp ≥ ħ/2" },
+    { name: "Erwin Schrödinger", meta: "Physics · 1926", mark: "iħ∂ψ/∂t = Ĥψ" },
+    { name: "Paul Dirac", meta: "Physics · 1928", mark: "(iγ·∂ − m)ψ = 0" },
+    { name: "Emmy Noether", meta: "Math/Physics · 1918", mark: "Symmetry ↔ Conservation" },
+  ];
+
+  const makeCard = (x) => {
+    const card = document.createElement('div');
+    card.className = 'marquee-card';
+
+    const n = document.createElement('div');
+    n.className = 'm-name';
+    n.textContent = x.name;
+
+    const m = document.createElement('div');
+    m.className = 'm-meta';
+    m.textContent = x.meta;
+
+    const k = document.createElement('div');
+    k.className = 'm-mark';
+    k.textContent = x.mark;
+
+    card.appendChild(n);
+    card.appendChild(m);
+    card.appendChild(k);
+    return card;
+  };
+
+  track.innerHTML = '';
+  const frag = document.createDocumentFragment();
+  data.forEach(x => frag.appendChild(makeCard(x)));
+  track.appendChild(frag);
+
+  // duplicate once for seamless scroll
+  const copy = track.cloneNode(true);
+  while (copy.firstChild) track.appendChild(copy.firstChild);
+}
+
