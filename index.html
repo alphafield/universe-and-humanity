@@ -1,127 +1,126 @@
-<!-- index.html -->
-<!DOCTYPE html>
+<!-- /index.html  (中文首页 · 封板版) -->
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>宇宙与人类 | Universe and Humanity</title>
-  <meta name="description" content="宇宙并非任意生成，而是在一个无量纲结构约束 α 下，于相干与拓扑对称性破缺中持续演化。" />
-
-  <!-- ✅ Canonical lock: 避免 netlify.app 被误索引 -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>宇宙与人类 · Universe and Humanity</title>
+  <meta name="description" content="宇宙与人类：提出问题，深度探讨，并对未来保持极端开放。" />
   <link rel="canonical" href="https://universeandhumanity.com/" />
-  <meta name="robots" content="index,follow" />
-
-  <!-- Social preview (optional but useful) -->
-  <meta property="og:title" content="宇宙与人类 | Universe and Humanity" />
-  <meta property="og:description" content="在无量纲结构约束 α 下，于相干与拓扑对称性破缺中持续演化。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://universeandhumanity.com/" />
-
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 
 <body>
-  <!-- Top Nav -->
+  <!-- Background -->
+  <div class="bg">
+    <div class="bg-vignette" aria-hidden="true"></div>
+  </div>
+
+  <!-- TOP BAR -->
   <header class="topbar">
-    <a class="brand" href="./" aria-label="Universe and Humanity Home">
-      <span class="dot" aria-hidden="true"></span>
-      <span class="brandText">UNIVERSE &amp; HUMANITY</span>
+    <a class="brand" href="/" aria-label="Universe and Humanity">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">UNIVERSE &amp; HUMANITY</span>
     </a>
 
     <nav class="nav" aria-label="Primary">
-      <a href="./universe.html">UNIVERSE</a>
-      <a href="./humanity.html">HUMANITY</a>
-      <a href="./civilization.html">CIVILIZATION</a>
-      <a href="./interface.html">INTERFACE</a>
+      <a href="/interface.html">INTERFACE</a>
+      <a href="/universe.html">UNIVERSE</a>
+      <a href="/civilization.html">CIVILIZATION</a>
+      <a href="/humanity.html">HUMANITY</a>
     </nav>
 
-    <div class="right">
-      <button class="seriesBtn" id="seriesBtn" aria-haspopup="true" aria-expanded="false">
-        SERIES <span class="chev">▾</span>
-      </button>
+    <div class="top-actions">
+      <!-- Volumes dropdown -->
+      <div class="volumes" data-volumes>
+        <button class="volumes-btn" type="button" aria-haspopup="menu" aria-expanded="false" data-volumes-btn>
+          《宇宙与人类》卷著 <span class="chev" aria-hidden="true">▾</span>
+        </button>
 
-      <div class="panel" id="panel" role="menu" aria-label="Universe and Humanity Series">
-        <div class="panelTitle">UNIVERSE AND HUMANITY SERIES</div>
+        <div class="volumes-menu" role="menu" aria-label="《宇宙与人类》卷著" data-volumes-menu>
+          <div class="menu-group">
+            <div class="menu-title">宇宙九卷（科学版）</div>
+            <a role="menuitem" href="/volumes/vol1.html">第一卷｜宇宙</a>
+            <a role="menuitem" href="/volumes/vol2.html">第二卷｜结构</a>
+            <a role="menuitem" href="/volumes/vol3.html">第三卷｜时间</a>
+            <a role="menuitem" href="/volumes/vol4.html">第四卷｜生命</a>
+            <a role="menuitem" href="/volumes/vol5.html">第五卷｜意识</a>
+            <a role="menuitem" href="/volumes/vol6.html">第六卷｜智能</a>
+            <a role="menuitem" href="/volumes/vol7.html">第七卷｜文明</a>
+            <a role="menuitem" href="/volumes/vol8.html">第八卷｜约束</a>
+            <a role="menuitem" href="/volumes/vol9.html">第九卷｜未知</a>
+          </div>
 
-        <a role="menuitem" href="./library/nine-volumes.html">
-          <div class="s_cn">1. 宇宙九卷</div>
-          <div class="s_en">Nine Volumes of Universe</div>
-          <div class="s_tag">— 跨物种对话宇宙</div>
-        </a>
+          <div class="menu-sep" aria-hidden="true"></div>
 
-        <a role="menuitem" href="./library/cosmic-epic.html">
-          <div class="s_cn">2. 宇宙史诗</div>
-          <div class="s_en">Cosmic Epic</div>
-          <div class="s_tag">— 140亿年的结构演化</div>
-        </a>
+          <div class="menu-group">
+            <div class="menu-title">副卷</div>
+            <a role="menuitem" href="/volumes/epic.html">宇宙史诗</a>
+            <a role="menuitem" href="/volumes/dao.html">宇宙之道</a>
+            <a role="menuitem" href="/volumes/heart.html">宇宙心经</a>
+            <a role="menuitem" href="/volumes/parables.html">宇宙寓言</a>
+          </div>
+        </div>
+      </div>
 
-        <a role="menuitem" href="./library/dao-of-universe.html">
-          <div class="s_cn">3. 宇宙之道</div>
-          <div class="s_en">The Dao of Universe</div>
-          <div class="s_tag">— 结构的东方智慧</div>
-        </a>
-
-        <a role="menuitem" href="./library/cosmic-heart-sutra.html">
-          <div class="s_cn">4. 宇宙心经</div>
-          <div class="s_en">Cosmic Heart Sutra</div>
-          <div class="s_tag">— α 的本质</div>
-        </a>
-
-        <a role="menuitem" href="./library/cosmic-parables.html">
-          <div class="s_cn">5. 宇宙寓言</div>
-          <div class="s_en">Cosmic Parables</div>
-          <div class="s_tag">— 光子到文明的24个故事</div>
-        </a>
+      <!-- Language switch -->
+      <div class="lang">
+        <span class="lang-active">中文</span>
+        <span class="lang-sep">/</span>
+        <a class="lang-link" href="/en/">EN</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <main class="hero" id="top">
-    <section class="heroLeft" aria-label="Hero Narrative">
+    <section class="hero-left">
       <div class="kicker">LAUNCH PAD</div>
 
       <h1 class="title">宇宙与人类</h1>
 
-      <div class="subtitle">
+      <p class="q">
         为什么存在宇宙？为什么宇宙创造人类？
+      </p>
+
+      <p class="lead">
+        人类一直在探索这些问题——从远古到现代。<br />
+        在此，我们以一个新的结构视角 <b>α</b> 继续深入探讨，并保持对未来的极端开放。
+      </p>
+
+      <p class="alpha">
+        <b>α：一个无量纲的结构约束量。</b><br />
+        它不描述宇宙是什么，而是以方程刻画：<b>宇宙与人类的演化在何种条件下被允许。</b>
+      </p>
+
+      <div class="cta-row">
+        <a class="cta" href="/volumes/" aria-label="Explore">
+          EXPLORE <span aria-hidden="true">→</span>
+        </a>
       </div>
 
-      <div class="alphaLine">
-        宇宙并非任意生成，而是在一个无量纲结构约束 α 下，<br/>
-        于相干与拓扑对称性破缺中持续演化。
-      </div>
-
-      <div class="ctaRow">
-        <a class="explore" href="#explore">EXPLORE <span class="arrow">→</span></a>
+      <div class="cta-note">
+        深度探索，请读《宇宙与人类》卷著。
       </div>
     </section>
 
-    <!-- Right Visual (α Primary Visual Archetype) -->
-    <section class="heroRight" aria-label="Alpha Visual" aria-hidden="true">
-      <div class="visualFade" aria-hidden="true"></div>
-
-      <!-- ✅ 用 video 才能“降速” -->
-      <video class="alphaVisual" id="alphaVisual"
-             autoplay muted loop playsinline preload="auto"
-             poster="./assets/alpha-poster.jpg">
-        <source src="./assets/alpha-galaxy.webm" type="video/webm" />
-        <source src="./assets/alpha-galaxy.mp4" type="video/mp4" />
-        <!-- fallback：gif（无法真正降速，只做兜底） -->
-      </video>
-
-      <img class="alphaFallback" src="./assets/alpha-galaxy.gif" alt="" />
-    </section>
+    <aside class="hero-right" aria-label="Alpha main visual">
+      <!-- 右侧主视觉：把你的 GIF 放到 /assets/alpha.gif -->
+      <div class="visual-frame">
+        <img class="visual" src="/assets/alpha.gif" alt="Alpha visual" loading="eager" />
+      </div>
+    </aside>
   </main>
 
-  <!-- Scientists platform (slow, readable, hover to pause) -->
-  <section id="explore" class="platform" aria-label="Scientists platform">
-    <div class="shell">
-      <div class="track" id="track"></div>
+  <!-- SCIENTISTS MARQUEE -->
+  <section class="scientists" aria-label="Scientists platform">
+    <div class="scientists-shell">
+      <div class="scientists-track" data-track>
+        <!-- JS injects cards + duplicates once -->
+      </div>
     </div>
   </section>
 
-  <script src="./app.js" defer></script>
+  <script src="/app.js" defer></script>
 </body>
 </html>
