@@ -293,3 +293,11 @@ body::before{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* ✅ 把这段加到 styles.css 末尾（只加，不改你原来的） */
+.hero-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
