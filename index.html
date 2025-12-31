@@ -1,79 +1,127 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>宇宙与人类 · Universe and Humanity</title>
-  <meta name="description" content="宇宙与人类：存在的结构视角" />
 
-  <!-- ✅ Canonical：锁定主域，避免 netlify.app 被索引 -->
+  <title>宇宙与人类 | Universe and Humanity</title>
+  <meta name="description" content="宇宙并非任意生成，而是在一个无量纲结构约束 α 下，于相干与拓扑对称性破缺中持续演化。" />
+
+  <!-- ✅ Canonical lock: 避免 netlify.app 被误索引 -->
   <link rel="canonical" href="https://universeandhumanity.com/" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Social preview (optional but useful) -->
+  <meta property="og:title" content="宇宙与人类 | Universe and Humanity" />
+  <meta property="og:description" content="在无量纲结构约束 α 下，于相干与拓扑对称性破缺中持续演化。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://universeandhumanity.com/" />
 
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <!-- Galaxy Canvas -->
-  <canvas id="galaxy-canvas" aria-hidden="true"></canvas>
-
-  <!-- Left Sidebar (SpaceX-like) -->
-  <aside class="side-nav" aria-label="Primary navigation">
-    <div class="side-brand">
+  <!-- Top Nav -->
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Universe and Humanity Home">
       <span class="dot" aria-hidden="true"></span>
-      <span>Universe &amp; Humanity</span>
-    </div>
+      <span class="brandText">UNIVERSE &amp; HUMANITY</span>
+    </a>
 
-    <nav class="side-links">
-      <a href="./interface.html">Interface</a>
-      <a href="./universe.html">Universe</a>
-      <a href="./civilization.html">Civilization</a>
-      <a href="./humanity.html">Humanity</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="./universe.html">UNIVERSE</a>
+      <a href="./humanity.html">HUMANITY</a>
+      <a href="./civilization.html">CIVILIZATION</a>
+      <a href="./interface.html">INTERFACE</a>
     </nav>
-  </aside>
 
-  <!-- Top-right Library Dropdown -->
-  <div class="library-menu">
-    <button class="library-trigger" aria-expanded="false" type="button">
-      宇宙与人类文明卷著
-      <span class="chevron" aria-hidden="true">▾</span>
-    </button>
+    <div class="right">
+      <button class="seriesBtn" id="seriesBtn" aria-haspopup="true" aria-expanded="false">
+        SERIES <span class="chev">▾</span>
+      </button>
 
-    <div class="library-panel" hidden>
-      <a href="./library/nine-volumes.html">
-        <strong>宇宙九卷</strong>
-        <span>— 跨物种对话宇宙</span>
-      </a>
-      <a href="./library/cosmic-epic.html">
-        <strong>宇宙史诗</strong>
-        <span>— 140亿年的结构演化</span>
-      </a>
-      <a href="./library/dao-of-universe.html">
-        <strong>宇宙之道</strong>
-        <span>— 结构的东方智慧</span>
-      </a>
-      <a href="./library/cosmic-heart-sutra.html">
-        <strong>宇宙心经</strong>
-        <span>— α 的本质</span>
-      </a>
-      <a href="./library/cosmic-parables.html">
-        <strong>宇宙寓言</strong>
-        <span>— 光子到文明的24个故事</span>
-      </a>
+      <div class="panel" id="panel" role="menu" aria-label="Universe and Humanity Series">
+        <div class="panelTitle">UNIVERSE AND HUMANITY SERIES</div>
+
+        <a role="menuitem" href="./library/nine-volumes.html">
+          <div class="s_cn">1. 宇宙九卷</div>
+          <div class="s_en">Nine Volumes of Universe</div>
+          <div class="s_tag">— 跨物种对话宇宙</div>
+        </a>
+
+        <a role="menuitem" href="./library/cosmic-epic.html">
+          <div class="s_cn">2. 宇宙史诗</div>
+          <div class="s_en">Cosmic Epic</div>
+          <div class="s_tag">— 140亿年的结构演化</div>
+        </a>
+
+        <a role="menuitem" href="./library/dao-of-universe.html">
+          <div class="s_cn">3. 宇宙之道</div>
+          <div class="s_en">The Dao of Universe</div>
+          <div class="s_tag">— 结构的东方智慧</div>
+        </a>
+
+        <a role="menuitem" href="./library/cosmic-heart-sutra.html">
+          <div class="s_cn">4. 宇宙心经</div>
+          <div class="s_en">Cosmic Heart Sutra</div>
+          <div class="s_tag">— α 的本质</div>
+        </a>
+
+        <a role="menuitem" href="./library/cosmic-parables.html">
+          <div class="s_cn">5. 宇宙寓言</div>
+          <div class="s_en">Cosmic Parables</div>
+          <div class="s_tag">— 光子到文明的24个故事</div>
+        </a>
+      </div>
     </div>
-  </div>
+  </header>
 
   <!-- Hero -->
   <main class="hero" id="top">
-    <h1 class="hero-title">宇宙与人类</h1>
+    <section class="heroLeft" aria-label="Hero Narrative">
+      <div class="kicker">LAUNCH PAD</div>
+
+      <h1 class="title">宇宙与人类</h1>
+
+      <div class="subtitle">
+        为什么存在宇宙？为什么宇宙创造人类？
+      </div>
+
+      <div class="alphaLine">
+        宇宙并非任意生成，而是在一个无量纲结构约束 α 下，<br/>
+        于相干与拓扑对称性破缺中持续演化。
+      </div>
+
+      <div class="ctaRow">
+        <a class="explore" href="#explore">EXPLORE <span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <!-- Right Visual (α Primary Visual Archetype) -->
+    <section class="heroRight" aria-label="Alpha Visual" aria-hidden="true">
+      <div class="visualFade" aria-hidden="true"></div>
+
+      <!-- ✅ 用 video 才能“降速” -->
+      <video class="alphaVisual" id="alphaVisual"
+             autoplay muted loop playsinline preload="auto"
+             poster="./assets/alpha-poster.jpg">
+        <source src="./assets/alpha-galaxy.webm" type="video/webm" />
+        <source src="./assets/alpha-galaxy.mp4" type="video/mp4" />
+        <!-- fallback：gif（无法真正降速，只做兜底） -->
+      </video>
+
+      <img class="alphaFallback" src="./assets/alpha-galaxy.gif" alt="" />
+    </section>
   </main>
 
-  <!-- Bottom Scientists Platform -->
-  <section class="marquee-wrap" aria-label="Scientists platform">
-    <div class="marquee">
-      <div class="marquee__track" id="marqueeTrack"></div>
+  <!-- Scientists platform (slow, readable, hover to pause) -->
+  <section id="explore" class="platform" aria-label="Scientists platform">
+    <div class="shell">
+      <div class="track" id="track"></div>
     </div>
   </section>
 
-  <script src="./app.js"></script>
+  <script src="./app.js" defer></script>
 </body>
 </html>
