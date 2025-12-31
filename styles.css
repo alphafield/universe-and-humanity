@@ -245,3 +245,91 @@ body::before{
   .hero{ padding-left:0; }
   .top-actions{ right:12px; }
 }
+
+/* Right top dropdown (SpaceX-like) */
+.top-actions{
+  position:fixed;
+  right:18px;
+  top:16px;
+  z-index:60;
+  display:flex;
+  gap:10px;
+}
+
+.dropdown{ position:relative; }
+
+.dd-btn{
+  height:34px;
+  padding:0 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.22);
+  color: rgba(255,255,255,.88);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform: uppercase;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dd-btn:hover{
+  border-color: rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06);
+}
+
+.dd-caret{ opacity:.8; transform: translateY(-1px); }
+
+.dd-panel{
+  position:absolute;
+  right:0;
+  top:44px;
+  width: 320px;
+  max-height: 70vh;
+  overflow:auto;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
+  display:none;
+}
+
+.dropdown.open .dd-panel{ display:block; }
+
+.dd-section{ padding: 6px 4px; }
+
+.dd-title{
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: rgba(255,255,255,.58);
+  margin: 6px 6px 10px;
+  text-transform: uppercase;
+}
+
+.dd-item{
+  display:block;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: rgba(255,255,255,.90);
+  text-decoration:none;
+  font-size: 13px;
+  border: 1px solid transparent;
+}
+
+.dd-item:hover{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.10);
+}
+
+.dd-divider{
+  height:1px;
+  background: rgba(255,255,255,.10);
+  margin: 10px 2px;
+}
+
