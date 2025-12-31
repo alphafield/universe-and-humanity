@@ -2,24 +2,20 @@
   --bg:#000;
   --text:rgba(255,255,255,.92);
   --muted:rgba(255,255,255,.62);
-  --line:rgba(255,255,255,.10);
-  --pill:rgba(255,255,255,.06);
-  --pill2:rgba(255,255,255,.10);
+  --line:rgba(255,255,255,.12);
   --shadow:rgba(0,0,0,.70);
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
 html,body{ height:100%; }
-
 body{
   background:var(--bg);
   color:var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
-  overflow:hidden; /* 首页就是一张封面 */
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  overflow-x:hidden;
 }
 
-/* background canvas */
+/* Background canvas */
 #galaxy-canvas{
   position:fixed;
   inset:0;
@@ -29,7 +25,7 @@ body{
   display:block;
 }
 
-/* light fog/vignette (不吃掉银河) */
+/* Light fog (keep galaxy visible) */
 body::before{
   content:"";
   position:fixed;
@@ -38,9 +34,9 @@ body::before{
   pointer-events:none;
   background:
     radial-gradient(ellipse at center,
-      rgba(0,0,0,.06) 0%,
-      rgba(0,0,0,.22) 55%,
-      rgba(0,0,0,.45) 100%);
+      rgba(0,0,0,.08) 0%,
+      rgba(0,0,0,.28) 58%,
+      rgba(0,0,0,.58) 100%);
 }
 
 /* =========================
@@ -77,15 +73,14 @@ body::before{
 .side-links{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:14px;
   margin-top:10px;
 }
 
 .side-links a{
-  color:rgba(255,255,255,.60);
+  color:rgba(255,255,255,.56);
   text-decoration:none;
   font-size:13px;
-  letter-spacing:.02em;
   padding:8px 10px;
   border-radius:10px;
   border:1px solid transparent;
@@ -99,78 +94,103 @@ body::before{
 }
 
 /* =========================
-   Top Right Actions
+   Top-right Library Dropdown
    ========================= */
-.top-actions{
+.library-menu{
   position:fixed;
-  right:18px;
-  top:16px;
-  z-index:60;
-  display:flex;
-  gap:10px;
-}
-
-.pill{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  height:30px;
-  padding:0 12px;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:var(--pill);
-  color:rgba(255,255,255,.84);
-  text-decoration:none;
+  top:18px;
+  right:22px;
+  z-index:80;
   font-size:12px;
 }
 
-.pill:hover{ background:var(--pill2); }
-
-.pill.primary{
-  border-color:rgba(255,255,255,.18);
-  background:rgba(255,255,255,.10);
-  color:rgba(255,255,255,.92);
+.library-trigger{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.42);
+  color:rgba(255,255,255,.88);
+  cursor:pointer;
+  letter-spacing:.06em;
 }
 
+.library-trigger:hover{ background:rgba(255,255,255,.08); }
+
+.library-trigger .chevron{
+  font-size:11px;
+  opacity:.75;
+  transform: translateY(1px);
+}
+
+.library-panel{
+  margin-top:10px;
+  width:340px;
+  padding:10px;
+  border-radius:14px;
+  background:rgba(0,0,0,.68);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:0 24px 80px rgba(0,0,0,.60);
+}
+
+.library-panel a{
+  display:block;
+  padding:10px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  color:rgba(255,255,255,.92);
+  line-height:1.4;
+}
+
+.library-panel a strong{
+  display:block;
+  font-size:13px;
+  letter-spacing:.04em;
+}
+
+.library-panel a span{
+  display:block;
+  font-size:11px;
+  color:rgba(255,255,255,.60);
+  margin-top:2px;
+}
+
+.library-panel a:hover{ background:rgba(255,255,255,.08); }
+
 /* =========================
-   HERO
+   Hero
    ========================= */
 .hero{
   height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding-left:220px; /* 给左侧导航让位 */
+  padding-left:220px; /* leave space for sidebar */
 }
 
-.hero-inner{
-  width:min(980px, 92vw);
-  padding:0 2vw;
-}
-
-.title{
-  font-size: clamp(44px, 5.4vw, 78px);
-  font-weight:800;
-  letter-spacing:.02em;
-  line-height:1.06;
+.hero-title{
+  font-size: clamp(44px, 6vw, 82px);
+  font-weight: 800;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.92);
   text-shadow: 0 18px 60px var(--shadow);
 }
 
 /* =========================
    Scientists Platform (Bottom)
-   - 大卡片
-   - 字清晰
-   - 速度慢
-   - 透明一点
    ========================= */
 .marquee-wrap{
   position:fixed;
   left:0; right:0;
   bottom:0;
   padding:14px 0 16px;
-  z-index:55;
-  pointer-events:auto;
-  background: linear-gradient(to top, rgba(0,0,0,.62), rgba(0,0,0,.20), transparent);
+  z-index:60;
+  pointer-events:none;
+  background: linear-gradient(to top, rgba(0,0,0,.76), rgba(0,0,0,.20), transparent);
   border-top: 1px solid rgba(255,255,255,.06);
 }
 
@@ -179,227 +199,71 @@ body::before{
   overflow:hidden;
 }
 
-#marqueeTrack{
+.marquee__track{
   display:flex;
-  gap:16px;
+  gap:18px;
   width:max-content;
-  will-change: transform;
-  animation: marquee 140s linear infinite; /* 慢：可读 */
+  will-change:transform;
+  animation: marqueeScroll 120s linear infinite; /* ✅ 慢 */
 }
 
-.marquee:hover #marqueeTrack{
-  animation-play-state: paused; /* 鼠标悬停暂停 */
+.marquee:hover .marquee__track{
+  animation-play-state:paused; /* ✅ 悬停暂停方便读 */
 }
 
-@keyframes marquee{
-  0%{ transform: translateX(0); }
-  100%{ transform: translateX(-50%); }
+@keyframes marqueeScroll{
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-50%); }
 }
 
+/* Card */
 .marquee-card{
-  min-width: 340px;
-  max-width: 420px;
-  padding: 12px 14px 12px;
-  border: 1px solid rgba(255,255,255,.10);
-  border-radius: 14px;
-  background: rgba(0,0,0,.22);            /* 更透明 */
+  min-width:320px;
+  max-width:380px;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(0,0,0,.30); /* ✅ 不要太黑 */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.22) inset;
 }
 
 .m-name{
-  font-size: 15px;                          /* 更大更清晰 */
-  letter-spacing: .04em;
-  color: rgba(255,255,255,.94);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size:14px;                /* ✅ 更清晰 */
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.92);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .m-meta{
-  margin-top: 4px;
-  font-size: 12px;
-  color: rgba(255,255,255,.62);
-  letter-spacing: .03em;
+  margin-top:4px;
+  font-size:12px;                /* ✅ 可读 */
+  color:rgba(255,255,255,.56);
+  letter-spacing:.02em;
 }
 
 .m-mark{
-  margin-top: 8px;
-  font-size: 13px;
-  color: rgba(255,255,255,.86);
+  margin-top:8px;
+  font-size:13px;                /* ✅ 更大 */
+  color:rgba(255,255,255,.78);
   font-family: ui-serif, "Times New Roman", serif;
   font-style: italic;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 /* Responsive */
 @media (max-width: 860px){
   .side-nav{ width:180px; }
   .hero{ padding-left:180px; }
-  .marquee-card{ min-width: 300px; }
+  .library-menu{ right:12px; }
+  .library-panel{ width:300px; }
 }
 @media (max-width: 640px){
   .side-nav{ display:none; }
   .hero{ padding-left:0; }
-  .top-actions{ right:12px; }
-}
-
-/* Right top dropdown (SpaceX-like) */
-.top-actions{
-  position:fixed;
-  right:18px;
-  top:16px;
-  z-index:60;
-  display:flex;
-  gap:10px;
-}
-
-.dropdown{ position:relative; }
-
-.dd-btn{
-  height:34px;
-  padding:0 14px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.22);
-  color: rgba(255,255,255,.88);
-  font-size:12px;
-  letter-spacing:.12em;
-  text-transform: uppercase;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  cursor:pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.dd-btn:hover{
-  border-color: rgba(255,255,255,.22);
-  background: rgba(255,255,255,.06);
-}
-
-.dd-caret{ opacity:.8; transform: translateY(-1px); }
-
-.dd-panel{
-  position:absolute;
-  right:0;
-  top:44px;
-  width: 320px;
-  max-height: 70vh;
-  overflow:auto;
-  padding: 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 20px 60px rgba(0,0,0,.55);
-  display:none;
-}
-
-.dropdown.open .dd-panel{ display:block; }
-
-.dd-section{ padding: 6px 4px; }
-
-.dd-title{
-  font-size: 11px;
-  letter-spacing: .14em;
-  color: rgba(255,255,255,.58);
-  margin: 6px 6px 10px;
-  text-transform: uppercase;
-}
-
-.dd-item{
-  display:block;
-  padding: 10px 10px;
-  border-radius: 10px;
-  color: rgba(255,255,255,.90);
-  text-decoration:none;
-  font-size: 13px;
-  border: 1px solid transparent;
-}
-
-.dd-item:hover{
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.10);
-}
-
-.dd-divider{
-  height:1px;
-  background: rgba(255,255,255,.10);
-  margin: 10px 2px;
-}
-/* =========================
-   Top-right Library (SpaceX-like)
-   ========================= */
-.library-menu{
-  position: fixed;
-  top: 18px;
-  right: 22px;
-  z-index: 80;
-  font-size: 12px;
-}
-
-.library-trigger{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.45);
-  color: rgba(255,255,255,.88);
-  cursor: pointer;
-  letter-spacing: .06em;
-}
-
-.library-trigger:hover{
-  background: rgba(255,255,255,.08);
-}
-
-.library-trigger .chevron{
-  font-size: 11px;
-  opacity: .7;
-  transform: translateY(1px);
-}
-
-.library-panel{
-  margin-top: 10px;
-  width: 320px;
-  padding: 10px;
-  border-radius: 14px;
-  background: rgba(0,0,0,.68);
-  border: 1px solid rgba(255,255,255,.14);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 24px 80px rgba(0,0,0,.6);
-}
-
-.library-panel a{
-  display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: rgba(255,255,255,.9);
-  line-height: 1.4;
-}
-
-.library-panel a strong{
-  display: block;
-  font-size: 13px;
-  letter-spacing: .04em;
-}
-
-.library-panel a span{
-  display: block;
-  font-size: 11px;
-  color: rgba(255,255,255,.6);
-  margin-top: 2px;
-}
-
-.library-panel a:hover{
-  background: rgba(255,255,255,.08);
 }
