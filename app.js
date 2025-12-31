@@ -1,73 +1,61 @@
-// app.js
-// ===== Series panel toggle =====
-const btn = document.getElementById('seriesBtn');
-const panel = document.getElementById('panel');
+// /app.js  (下拉 + 科学家站台注入)
+(() => {
+  // Volumes dropdown
+  const root = document.querySelector('[data-volumes]');
+  const btn = document.querySelector('[data-volumes-btn]');
+  const menu = document.querySelector('[data-volumes-menu]');
 
-function closePanel(){
-  panel.classList.remove('open');
-  btn.setAttribute('aria-expanded','false');
-}
-btn?.addEventListener('click', (e)=>{
-  e.stopPropagation();
-  const open = panel.classList.toggle('open');
-  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
-document.addEventListener('click', closePanel);
-document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closePanel(); });
+  function closeMenu() {
+    if (!menu) return;
+    menu.classList.remove('open');
+    btn?.setAttribute('aria-expanded', 'false');
+  }
 
-// ===== Scientists platform cards (duplicate for seamless loop) =====
-const people = [
-  { name:"Michael Faraday", meta:"Physics · 1831", mark:"∮E·dl = − dΦB/dt" },
-  { name:"James Clerk Maxwell", meta:"Physics · 1865", mark:"∇·E = ρ/ε₀" },
-  { name:"Max Planck", meta:"Physics · 1900", mark:"E = hν" },
-  { name:"Albert Einstein", meta:"Physics · 1905–1915", mark:"E = mc²" },
-  { name:"Niels Bohr", meta:"Physics · 1913", mark:"Eₙ ∝ −1/n²" },
-  { name:"Emmy Noether", meta:"Math/Physics · 1918", mark:"Symmetry ⇔ Conservation" },
-  { name:"Werner Heisenberg", meta:"Physics · 1927", mark:"ΔxΔp ≥ ħ/2" },
-  { name:"Erwin Schrödinger", meta:"Physics · 1926", mark:"iħ∂ψ/∂t = Ĥψ" },
-  { name:"Paul Dirac", meta:"Physics · 1928", mark:"(iγ·∂ − m)ψ = 0" },
-  { name:"Alan Turing", meta:"Computation · 1936", mark:"Universal Machine" },
-  { name:"Claude Shannon", meta:"Information · 1948", mark:"H = −Σ p log p" }
-];
+  function toggleMenu() {
+    if (!menu || !btn) return;
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 
-const track = document.getElementById('track');
-function card(p){
-  const el = document.createElement('div');
-  el.className = 'card';
-  el.innerHTML = `
-    <div class="cname">${p.name}</div>
-    <div class="cmeta">${p.meta}</div>
-    <div class="cmark">${p.mark}</div>
-  `;
-  return el;
-}
-if(track){
-  people.forEach(p=>track.appendChild(card(p)));
-  people.forEach(p=>track.appendChild(card(p))); // duplicate for loop
-}
-
-// ===== α visual: prefer video, slow it down; fallback to gif if needed =====
-const vid = document.getElementById('alphaVisual');
-const gif = document.querySelector('.alphaFallback');
-
-function showGifFallback(){
-  if(vid) vid.style.display = 'none';
-  if(gif) gif.style.display = 'block';
-}
-
-if(vid){
-  // 如果能播放：把“速度快”压慢（内在动更敬畏）
-  vid.addEventListener('loadeddata', ()=>{
-    try{
-      vid.playbackRate = 0.22; // ✅ 你可以改 0.18–0.30
-      gif && (gif.style.display = 'none');
-    }catch(_){}
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
   });
 
-  vid.addEventListener('error', showGifFallback);
+  document.addEventListener('click', () => closeMenu());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
 
-  // iOS/某些浏览器可能 autoplay 被拦：尝试播放，不行就 fallback
-  vid.play().catch(()=> showGifFallback());
-}else{
-  showGifFallback();
-}
+  // Scientists marquee (中文站示例；英文站用另一套 data)
+  const scientists = [
+    { name:"Albert Einstein / 爱因斯坦", era:"1879–1955", field:"Physics", line4:"相对论奠基 · 时空结构" },
+    { name:"Niels Bohr / 玻尔", era:"1885–1962", field:"Physics", line4:"量子诠释奠基 · 互补原理" },
+    { name:"Erwin Schrödinger / 薛定谔", era:"1887–1961", field:"Physics", line4:"波动力学 · 薛定谔方程" },
+    { name:"Paul Dirac / 狄拉克", era:"1902–1984", field:"Physics", line4:"相对论量子化 · 反物质" },
+    { name:"Werner Heisenberg / 海森堡", era:"1901–1976", field:"Physics", line4:"不确定性原理 · 测量问题" },
+    { name:"Richard Feynman / 费曼", era:"1918–1988", field:"Physics", line4:"路径积分 · 量子电动力学" },
+    { name:"Emmy Noether / 诺特", era:"1882–1935", field:"Mathematics", line4:"对称性 ⇒ 守恒 · Noether 定理" },
+    { name:"Alan Turing / 图灵", era:"1912–1954", field:"Computation", line4:"计算奠基 · 可计算性" },
+  ];
+
+  const track = document.querySelector('[data-track]');
+  if (track) {
+    const makeCard = (s) => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="c1">${s.name}</div>
+        <div class="c2">${s.era}</div>
+        <div class="c3">${s.field}</div>
+        <div class="c4">${s.line4}</div>
+      `;
+      return el;
+    };
+
+    // inject once
+    scientists.forEach(s => track.appendChild(makeCard(s)));
+    // duplicate for seamless scroll
+    scientists.forEach(s => track.appendChild(makeCard(s)));
+  }
+})();
