@@ -1,13 +1,16 @@
+/* styles.css */
 :root{
   --bg:#000;
   --text:rgba(255,255,255,.92);
   --muted:rgba(255,255,255,.62);
   --line:rgba(255,255,255,.12);
-  --shadow:rgba(0,0,0,.70);
+  --glass:rgba(0,0,0,.34);
+  --glass2:rgba(255,255,255,.06);
+  --shadow:rgba(0,0,0,.78);
 }
 
-*{ box-sizing:border-box; margin:0; padding:0; }
-html,body{ height:100%; }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
 body{
   background:var(--bg);
   color:var(--text);
@@ -15,255 +18,292 @@ body{
   overflow-x:hidden;
 }
 
-/* Background canvas */
-#galaxy-canvas{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:-2;
-  display:block;
-}
-
-/* Light fog (keep galaxy visible) */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at center,
-      rgba(0,0,0,.08) 0%,
-      rgba(0,0,0,.28) 58%,
-      rgba(0,0,0,.58) 100%);
-}
-
-/* =========================
-   Left Sidebar (SpaceX-like)
-   ========================= */
-.side-nav{
-  position:fixed;
-  left:0; top:0; bottom:0;
-  width:220px;
-  padding:18px 18px;
+/* Top bar (SpaceX-like) */
+.topbar{
+  position:fixed; top:0; left:0; right:0;
+  height:74px;
+  padding:0 28px;
+  display:flex; align-items:center; gap:18px;
   z-index:50;
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  background: linear-gradient(to right, rgba(0,0,0,.55), rgba(0,0,0,0));
+  background:linear-gradient(to bottom, rgba(0,0,0,.72), rgba(0,0,0,0));
 }
 
-.side-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:13px;
-  letter-spacing:.02em;
-  color:rgba(255,255,255,.82);
-}
-
-.side-brand .dot{
-  width:6px; height:6px;
-  border-radius:999px;
-  background:rgba(255,255,255,.65);
-  box-shadow:0 0 12px rgba(255,255,255,.25);
-}
-
-.side-links{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  margin-top:10px;
-}
-
-.side-links a{
-  color:rgba(255,255,255,.56);
+.brand{
+  display:flex; align-items:center; gap:10px;
   text-decoration:none;
-  font-size:13px;
-  padding:8px 10px;
-  border-radius:10px;
-  border:1px solid transparent;
-  background:transparent;
+  color:rgba(255,255,255,.88);
+  white-space:nowrap;
 }
 
-.side-links a:hover{
-  color:rgba(255,255,255,.90);
-  border-color:rgba(255,255,255,.10);
-  background:rgba(255,255,255,.04);
+.dot{
+  width:8px;height:8px;border-radius:999px;
+  background:rgba(255,255,255,.70);
+  box-shadow:0 0 14px rgba(255,255,255,.22);
 }
 
-/* =========================
-   Top-right Library Dropdown
-   ========================= */
-.library-menu{
-  position:fixed;
-  top:18px;
-  right:22px;
-  z-index:80;
+.brandText{
   font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
 }
 
-.library-trigger{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 14px;
+.nav{
+  display:flex; align-items:center;
+  gap:26px;
+  margin-left:10px;
+  flex:1;
+  min-width:0;
+}
+
+.nav a{
+  text-decoration:none;
+  color:rgba(255,255,255,.72);
+  font-size:12px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.nav a:hover{color:rgba(255,255,255,.95)}
+
+.right{position:relative; display:flex; align-items:center; justify-content:flex-end}
+
+.seriesBtn{
+  height:34px;
+  padding:0 14px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.18);
-  background:rgba(0,0,0,.42);
-  color:rgba(255,255,255,.88);
+  background:rgba(0,0,0,.30);
+  color:rgba(255,255,255,.90);
+  font-size:12px;
+  letter-spacing:.10em;
+  text-transform:uppercase;
   cursor:pointer;
-  letter-spacing:.06em;
+  backdrop-filter: blur(10px);
 }
+.seriesBtn:hover{background:rgba(255,255,255,.06)}
+.chev{opacity:.85;margin-left:8px}
 
-.library-trigger:hover{ background:rgba(255,255,255,.08); }
-
-.library-trigger .chevron{
-  font-size:11px;
-  opacity:.75;
-  transform: translateY(1px);
-}
-
-.library-panel{
-  margin-top:10px;
-  width:340px;
-  padding:10px;
-  border-radius:14px;
-  background:rgba(0,0,0,.68);
+.panel{
+  position:absolute;
+  top:46px; right:0;
+  width:min(520px, 92vw);
+  border-radius:16px;
   border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.46);
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow:0 24px 80px rgba(0,0,0,.60);
+  box-shadow:0 24px 90px rgba(0,0,0,.55);
+  padding:14px;
+  display:none;
 }
-
-.library-panel a{
-  display:block;
-  padding:10px 12px;
-  border-radius:10px;
-  text-decoration:none;
-  color:rgba(255,255,255,.92);
-  line-height:1.4;
-}
-
-.library-panel a strong{
-  display:block;
-  font-size:13px;
-  letter-spacing:.04em;
-}
-
-.library-panel a span{
-  display:block;
+.panel.open{display:block}
+.panelTitle{
   font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
   color:rgba(255,255,255,.60);
-  margin-top:2px;
+  margin-bottom:10px;
 }
+.panel a{
+  display:block;
+  text-decoration:none;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+  margin-bottom:10px;
+}
+.panel a:hover{
+  background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.16);
+}
+.s_cn{font-size:14px;color:rgba(255,255,255,.94);letter-spacing:.02em}
+.s_en{margin-top:2px;font-size:12px;color:rgba(255,255,255,.62);letter-spacing:.06em}
+.s_tag{margin-top:6px;font-size:12px;color:rgba(255,255,255,.80)}
 
-.library-panel a:hover{ background:rgba(255,255,255,.08); }
-
-/* =========================
-   Hero
-   ========================= */
+/* HERO */
 .hero{
-  height:100vh;
-  display:flex;
+  min-height:100vh;
+  padding:110px 28px 140px; /* bottom reserved for platform */
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:20px;
   align-items:center;
-  justify-content:center;
-  padding-left:220px; /* leave space for sidebar */
+  position:relative;
+  overflow:hidden;
 }
 
-.hero-title{
-  font-size: clamp(44px, 6vw, 82px);
-  font-weight: 800;
-  letter-spacing:.06em;
+.heroLeft{max-width:760px}
+.kicker{
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.46);
+  margin-bottom:14px;
+}
+.title{
+  font-size: clamp(46px, 5.6vw, 86px);
+  font-weight:850;
+  letter-spacing:.04em;
+  line-height:1.02;
+  text-shadow:0 18px 80px var(--shadow);
+}
+.subtitle{
+  margin-top:16px;
+  font-size: clamp(16px, 1.9vw, 22px);
+  line-height:1.55;
+  color:rgba(255,255,255,.90);
+  text-shadow:0 16px 70px var(--shadow);
+}
+.alphaLine{
+  margin-top:14px;
+  font-size:14px;
+  line-height:1.7;
+  color:rgba(255,255,255,.80);
+  max-width: 60ch;
+  text-shadow:0 14px 60px var(--shadow);
+}
+.ctaRow{margin-top:26px; display:flex; align-items:center; gap:14px}
+.explore{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 12px 16px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);
   color:rgba(255,255,255,.92);
-  text-shadow: 0 18px 60px var(--shadow);
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.explore:hover{ background:rgba(255,255,255,.10); }
+.arrow{opacity:.9; transform: translateY(-1px);}
+
+/* Right visual: keep “internal motion”, no rigid rotation */
+.heroRight{
+  position:relative;
+  min-height:66vh;
+  height:72vh;
 }
 
-/* =========================
-   Scientists Platform (Bottom)
-   ========================= */
-.marquee-wrap{
+.alphaVisual,
+.alphaFallback{
+  position:absolute;
+  right:-8vw;             /* SpaceX-like overscan */
+  top:50%;
+  transform:translateY(-50%);
+  width:min(62vw, 980px);
+  aspect-ratio: 1 / 1;
+  height:auto;
+  border-radius: 999px;   /* subtle circular crop; remove if you want full square */
+  object-fit: cover;
+  opacity:.92;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+/* Fallback default hidden; JS will show it only if video fails */
+.alphaFallback{ display:none; }
+
+/* Fade to protect text readability */
+.visualFade{
+  position:absolute;
+  inset:-40px -40px -40px -40px;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at 70% 50%,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,.10) 42%,
+      rgba(0,0,0,.52) 100%),
+    linear-gradient(to left,
+      rgba(0,0,0,.00) 0%,
+      rgba(0,0,0,.10) 30%,
+      rgba(0,0,0,.62) 72%,
+      rgba(0,0,0,.86) 100%);
+}
+
+/* Scientists platform */
+.platform{
   position:fixed;
   left:0; right:0;
   bottom:0;
-  padding:14px 0 16px;
-  z-index:60;
-  pointer-events:none;
-  background: linear-gradient(to top, rgba(0,0,0,.76), rgba(0,0,0,.20), transparent);
+  padding:14px 18px 18px;
+  z-index:45;
+  background: linear-gradient(to top, rgba(0,0,0,.78), rgba(0,0,0,.18), transparent);
   border-top: 1px solid rgba(255,255,255,.06);
 }
-
-.marquee{
+.shell{
   width:100%;
   overflow:hidden;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.22);
+  backdrop-filter: blur(10px);
 }
-
-.marquee__track{
+.track{
   display:flex;
   gap:18px;
   width:max-content;
-  will-change:transform;
-  animation: marqueeScroll 120s linear infinite; /* ✅ 慢 */
-}
-
-.marquee:hover .marquee__track{
-  animation-play-state:paused; /* ✅ 悬停暂停方便读 */
-}
-
-@keyframes marqueeScroll{
-  0%{ transform:translateX(0); }
-  100%{ transform:translateX(-50%); }
-}
-
-/* Card */
-.marquee-card{
-  min-width:320px;
-  max-width:380px;
   padding:12px 14px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(0,0,0,.30); /* ✅ 不要太黑 */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  will-change:transform;
+  animation: scroll 115s linear infinite; /* 慢：可读 */
+}
+.shell:hover .track{ animation-play-state: paused; }
+@keyframes scroll{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
+.card{
+  min-width: 330px;
+  max-width: 420px;
+  padding: 10px 14px 10px;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.28);
   box-shadow: 0 0 0 1px rgba(0,0,0,.22) inset;
 }
-
-.m-name{
-  font-size:14px;                /* ✅ 更清晰 */
-  letter-spacing:.06em;
-  color:rgba(255,255,255,.92);
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.cname{
+  font-size: 14px;
+  letter-spacing:.08em;
+  color: rgba(255,255,255,.94);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
-
-.m-meta{
+.cmeta{
   margin-top:4px;
-  font-size:12px;                /* ✅ 可读 */
-  color:rgba(255,255,255,.56);
-  letter-spacing:.02em;
+  font-size:12px;
+  color: rgba(255,255,255,.62);
+  letter-spacing:.04em;
 }
-
-.m-mark{
+.cmark{
   margin-top:8px;
-  font-size:13px;                /* ✅ 更大 */
-  color:rgba(255,255,255,.78);
+  font-size:13px;
+  color: rgba(255,255,255,.82);
   font-family: ui-serif, "Times New Roman", serif;
   font-style: italic;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 
 /* Responsive */
-@media (max-width: 860px){
-  .side-nav{ width:180px; }
-  .hero{ padding-left:180px; }
-  .library-menu{ right:12px; }
-  .library-panel{ width:300px; }
-}
-@media (max-width: 640px){
-  .side-nav{ display:none; }
-  .hero{ padding-left:0; }
+@media (max-width: 980px){
+  .nav{display:none;}
+  .hero{grid-template-columns:1fr}
+  .heroRight{
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    height:auto;
+  }
+  .alphaVisual,.alphaFallback{
+    right:-20vw;
+    width:120vw;
+    opacity:.55;
+    border-radius: 0;
+  }
+  .visualFade{
+    background:
+      radial-gradient(ellipse at 50% 50%,
+        rgba(0,0,0,.12) 0%,
+        rgba(0,0,0,.60) 65%,
+        rgba(0,0,0,.88) 100%);
+  }
 }
