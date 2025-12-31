@@ -49,7 +49,6 @@ if (track) {
 // ==============================
 // Galaxy — 快速展开 → 慢速呼吸；亮度更真实
 // ==============================
-// ✅ 直接把你现在的 ./app.js 整文件替换成下面这一份（app.js）
 
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
 
