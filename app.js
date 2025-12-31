@@ -202,4 +202,23 @@ if (track) {
   const copy = track.cloneNode(true);
   while (copy.firstChild) track.appendChild(copy.firstChild);
 }
+// Top-right Library toggle
+const trigger = document.querySelector('.library-trigger');
+const panel = document.querySelector('.library-panel');
+
+if (trigger && panel) {
+  trigger.addEventListener('click', () => {
+    const open = trigger.getAttribute('aria-expanded') === 'true';
+    trigger.setAttribute('aria-expanded', String(!open));
+    panel.hidden = open;
+  });
+
+  // 点击外部自动收起
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.library-menu')) {
+      trigger.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+    }
+  });
+}
 
