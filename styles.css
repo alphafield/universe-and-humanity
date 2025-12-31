@@ -300,4 +300,57 @@ body::before{
   gap: 10px;
   justify-content: center;
 }
+/* ===== Scientists Marquee: bigger, readable, slower ===== */
+
+.marquee-wrap{
+  position: relative;
+  margin: 28px auto 0;
+  padding: 0 18px;
+}
+
+.marquee{
+  height: 84px;                 /* 框更大 */
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.28); /* 黑色更透明 */
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+}
+
+.marquee__track{
+  display: inline-flex;
+  gap: 28px;
+  align-items: center;
+  white-space: nowrap;
+  padding-left: 24px;
+  will-change: transform;
+  animation: marqueeScroll 80s linear infinite; /* 速度变慢：数字越大越慢 */
+}
+
+/* 单个名字样式：更大更清晰 */
+.marquee__item{
+  font-size: 20px;              /* 字更大 */
+  line-height: 1;
+  letter-spacing: 0.2px;
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 0 10px rgba(255,255,255,0.12);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* 悬停暂停，方便读 */
+.marquee:hover .marquee__track{
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* 依赖 JS 做一次 duplicate */
+}
+
 
