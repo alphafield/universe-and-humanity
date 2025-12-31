@@ -332,4 +332,75 @@ body::before{
   background: rgba(255,255,255,.10);
   margin: 10px 2px;
 }
+/* =========================
+   Top-right Library (SpaceX-like)
+   ========================= */
+.library-menu{
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 80;
+  font-size: 12px;
+}
+
+.library-trigger{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.45);
+  color: rgba(255,255,255,.88);
+  cursor: pointer;
+  letter-spacing: .06em;
+}
+
+.library-trigger:hover{
+  background: rgba(255,255,255,.08);
+}
+
+.library-trigger .chevron{
+  font-size: 11px;
+  opacity: .7;
+  transform: translateY(1px);
+}
+
+.library-panel{
+  margin-top: 10px;
+  width: 320px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.68);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 80px rgba(0,0,0,.6);
+}
+
+.library-panel a{
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgba(255,255,255,.9);
+  line-height: 1.4;
+}
+
+.library-panel a strong{
+  display: block;
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+
+.library-panel a span{
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,.6);
+  margin-top: 2px;
+}
+
+.library-panel a:hover{
+  background: rgba(255,255,255,.08);
+}
 
