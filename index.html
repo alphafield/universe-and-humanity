@@ -2,139 +2,115 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Universe & Humanity</title>
-  <meta name="description" content="Universe & Humanity — Making Civilization Multiversal" />
-
-  <style>
-    /* ===== Base ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; background: #000; color: #fff; }
-    body { font-family: Arial, Helvetica, sans-serif; }
-
-    /* ===== NAV ===== */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 72px;
-      z-index: 10;
-    }
-    .nav-inner {
-      max-width: 1440px;
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-    }
-    .logo {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .12em;
-    }
-    nav {
-      display: flex;
-      gap: 28px;
-      margin-left: 48px;
-    }
-    nav a {
-      font-size: 12px;
-      letter-spacing: .14em;
-      font-weight: 600;
-      opacity: .85;
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .hero-media {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 52vw;
-      height: 72vh;
-      background: radial-gradient(circle at 30% 50%, #666, #111 60%, #000 100%);
-    }
-    .hero-shadow {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to left,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,.7) 45%,
-        rgba(0,0,0,.95) 75%
-      );
-    }
-    .hero-copy {
-      position: absolute;
-      left: 96px;
-      top: 50%;
-      transform: translateY(-50%);
-      max-width: 460px;
-    }
-    h1 {
-      font-size: 48px;
-      line-height: 1.05;
-      margin-bottom: 16px;
-    }
-    .sub {
-      font-size: 18px;
-      line-height: 1.5;
-      margin-bottom: 18px;
-      opacity: .9;
-    }
-    .desc {
-      font-size: 14px;
-      line-height: 1.7;
-      opacity: .7;
-      margin-bottom: 28px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      border: 1px solid #fff;
-      font-size: 12px;
-      letter-spacing: .12em;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>宇宙与人类 | α-论</title>
+  <meta name="description" content="为什么存在宇宙？为什么宇宙创造人类？以α为结构约束量，进入新的科学叙事。" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
+  <!-- Background -->
+  <div class="bg">
+    <div class="bg-vignette"></div>
+    <div class="alpha-visual" aria-hidden="true"></div>
+  </div>
 
-  <header>
-    <div class="nav-inner">
-      <div class="logo">UNIVERSE &amp; HUMANITY</div>
-      <nav>
-        <a>UNIVERSE</a>
-        <a>CIVILIZATION</a>
-        <a>HUMANITY</a>
-        <a>ALPHA</a>
-      </nav>
+  <!-- Top Nav -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-name">UNIVERSE &amp; HUMANITY</span>
+    </div>
+
+    <nav class="nav">
+      <a href="./interface/" class="navlink">INTERFACE</a>
+      <a href="./universe/" class="navlink">UNIVERSE</a>
+      <a href="./civilization/" class="navlink">CIVILIZATION</a>
+      <a href="./humanity/" class="navlink">HUMANITY</a>
+    </nav>
+
+    <!-- “卷著”=轨道参数入口（不是目录） -->
+    <div class="library">
+      <button class="library-btn" id="libraryBtn" aria-haspopup="true" aria-expanded="false">
+        卷著（轨道参数） <span class="caret" aria-hidden="true">▾</span>
+      </button>
+
+      <div class="library-panel" id="libraryPanel" role="menu" aria-hidden="true">
+        <div class="library-title">卷著结构</div>
+
+        <div class="orbital">
+          <div class="orbital-row"><span class="k">α</span><span class="v">结构约束量</span></div>
+          <div class="orbital-row"><span class="k">Scope</span><span class="v">宇宙 · 生命 · 意识 · 文明</span></div>
+          <div class="orbital-row"><span class="k">Method</span><span class="v">科学对话 + 结构推演</span></div>
+        </div>
+
+        <div class="library-split"></div>
+
+        <a class="lib-item" href="./series/nine-volumes/">九卷（科学版）</a>
+        <a class="lib-item" href="./series/dialogues/">科学对话</a>
+        <a class="lib-item" href="./series/epic/">史诗</a>
+        <a class="lib-item" href="./series/dao/">道</a>
+        <a class="lib-item" href="./series/heart-sutra/">心经</a>
+        <a class="lib-item" href="./series/parables/">寓言</a>
+
+        <div class="library-split"></div>
+        <a class="lib-item subtle" href="./about/">出版与合作</a>
+        <a class="lib-item subtle" href="./contact/">联系</a>
+
+        <div class="lang">
+          <a href="./" class="lang-on">中文</a>
+          <span class="lang-sep">/</span>
+          <a href="./en/">EN</a>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-media">
-      <div class="hero-shadow"></div>
+  <!-- HERO (SpaceX-like discipline: single type system, no杂乱) -->
+  <main class="hero">
+    <div class="hero-inner">
+      <div class="kicker">LAUNCH PAD</div>
+
+      <h1 class="h1">宇宙与人类</h1>
+
+      <div class="questions">
+        为什么存在宇宙？为什么宇宙创造人类？
+      </div>
+
+      <p class="lead">
+        人类一直在探索这些问题——从远古到现代。<br/>
+        我们以 α 作为结构约束视角，继续深度探讨，并保持对未来的极端开放。
+      </p>
+
+      <p class="alpha">
+        α：一个无量纲的结构约束量。它不描述宇宙是什么，<br/>
+        而是刻画：<span class="alpha-strong">宇宙与人类的演化在何种条件下被允许。</span>
+      </p>
+
+      <div class="cta">
+        <a class="btn" href="./series/" aria-label="Explore">
+          EXPLORE <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="hint">向下：科学家站台 → 进入卷著结构</div>
+    </div>
+  </main>
+
+  <!-- Act II: Scientists (Claude format + 120s speed locked) -->
+  <section class="scientists" id="scientists" aria-label="Scientists">
+    <div class="scientists-intro">
+      <h2>人类智慧的节点</h2>
+      <p>他们曾经把世界抬高。我们把他们放回同一条轨道。</p>
     </div>
 
-    <div class="hero-copy">
-      <h1>宇宙与人类</h1>
-      <div class="sub">
-        为什么存在宇宙？<br>
-        为什么宇宙创造人类？
-      </div>
-      <div class="desc">
-        人类一直在探索这些问题。<br>
-        在此，我们以结构约束 α 继续向宇宙深处推进。
-      </div>
-      <div class="btn">EXPLORE</div>
+    <div class="scientists-scroll">
+      <div class="scientists-track" id="scientistsTrack"></div>
     </div>
+
+    <div class="fracture-indicator">但它们之间，存在裂缝…</div>
   </section>
 
+  <script src="./app.js" defer></script>
 </body>
 </html>
