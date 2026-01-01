@@ -1,445 +1,648 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Universe & Humanitiy</title>
-  <meta name="description" content="为什么存在宇宙？为什么宇宙创造人类？" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe and Humanity | 宇宙与人类</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root{
-      --bg:#000;
-      --text:#fff;
-      --muted:rgba(255,255,255,.66);
-      --line:rgba(255,255,255,.12);
-      --alpha:#00D9FF;
-      --gold:#FFD700;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-      --pad:48px;
-      --topbar-h:74px;
-    }
+        /* 螺旋星系背景 */
+        .galaxy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('galaxy.gif');
+            background-repeat: no-repeat;
+            background-position: 80% center;
+            background-size: 50%;
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html,body{ height:100%; }
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-      line-height:1.65;
-    }
-    a{ color:inherit; text-decoration:none; }
+        /* Hero样式不再需要::before背景 */
 
-    /* ===== background (right image) ===== */
-    .bg{
-      position:fixed; inset:0;
-      z-index:-2;
-      pointer-events:none;
-      background:#000;
-    }
-    .bg::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(1100px 700px at 70% 40%, rgba(0,217,255,.10), transparent 60%),
-        radial-gradient(900px 600px at 25% 10%, rgba(255,215,0,.06), transparent 62%),
-        linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,.85));
-      z-index:2;
-    }
-    .alpha-visual{
-      position:absolute; top:0; right:0;
-      width:min(58vw, 980px);
-      height:100%;
-      background: url("./assets/century.gif") no-repeat right center / cover;
-      opacity:.78;
-      filter:saturate(1.05) contrast(1.05);
-      z-index:1;
-      -webkit-mask-image: radial-gradient(1200px 900px at 60% 50%, rgba(0,0,0,1), rgba(0,0,0,.18) 55%, rgba(0,0,0,0) 75%);
-              mask-image: radial-gradient(1200px 900px at 60% 50%, rgba(0,0,0,1), rgba(0,0,0,.18) 55%, rgba(0,0,0,0) 75%);
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 50px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
 
-    /* ===== topbar: single line, left aligned ===== */
-    header.topbar{
-      position:fixed; top:0; left:0; right:0;
-      height:var(--topbar-h);
-      padding:0 var(--pad);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      z-index:50;
-      background: linear-gradient(to bottom, rgba(0,0,0,.86), rgba(0,0,0,.30), transparent);
-      backdrop-filter: blur(6px);
-    }
-    .left-rail{
-      display:flex;
-      align-items:center;
-      gap:34px;
-      min-width:0;
-    }
-    .brand-name{
-      font-size:12px;
-      letter-spacing:.26em;
-      font-weight:500;
-      opacity:.92;
-      white-space:nowrap;
-    }
-    nav.nav{
-      display:flex;
-      align-items:center;
-      gap:26px;
-      white-space:nowrap;
-    }
-    .navlink{
-      font-size:12px;
-      letter-spacing:.14em;
-      opacity:.86;
-      padding:10px 0;
-      border-bottom:1px solid transparent;
-    }
-    .navlink:hover{
-      opacity:1;
-      border-color:rgba(255,255,255,.28);
-    }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    /* ===== library dropdown: YOUR FINAL TEXT (unchanged) ===== */
-    .library{ position:relative; }
-    .library-btn{
-      appearance:none;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.25);
-      color: rgba(255,255,255,.92);
-      padding:10px 14px;
-      border-radius:10px;
-      font-size:12px;
-      letter-spacing:.08em;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .library-btn:hover{
-      border-color: rgba(0,217,255,.35);
-      background: rgba(0,217,255,.06);
-    }
-    .library-panel{
-      position:absolute;
-      right:0;
-      top: calc(100% + 10px);
-      width: 280px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.75);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.45);
-      display:none;
-    }
-    .library-panel[data-open="1"]{ display:block; }
-    .library-title{
-      font-size:12px;
-      letter-spacing:.18em;
-      opacity:.72;
-      margin:2px 0 10px;
-    }
-    .lib-item{
-      display:block;
-      padding:10px 10px;
-      border-radius:10px;
-      font-size:13px;
-      opacity:.92;
-      border:1px solid transparent;
-    }
-    .lib-item:hover{
-      background: rgba(0,217,255,.07);
-      border-color: rgba(0,217,255,.22);
-    }
-    .subtle{ opacity:.72; }
-    .library-split{
-      height:1px;
-      background: rgba(255,255,255,.10);
-      margin:10px 0;
-    }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><radialGradient id="g" cx="50%25" cy="50%25"><stop offset="0%25" style="stop-color:%23ffffff;stop-opacity:0.9"/><stop offset="100%25" style="stop-color:%23ffffff;stop-opacity:0.3"/></radialGradient></defs><g fill="%23ffffff" opacity="0.8"><circle cx="60" cy="20" r="2.5"/><circle cx="50" cy="25" r="2.5"/><circle cx="70" cy="25" r="2.5"/><circle cx="40" cy="32" r="2.5"/><circle cx="60" cy="32" r="2.5"/><circle cx="80" cy="32" r="2.5"/><circle cx="30" cy="40" r="2.5"/><circle cx="50" cy="40" r="2.5"/><circle cx="70" cy="40" r="2.5"/><circle cx="90" cy="40" r="2.5"/><circle cx="20" cy="50" r="2.5"/><circle cx="40" cy="50" r="2.5"/><circle cx="60" cy="50" r="3" fill="url(%23g)"/><circle cx="80" cy="50" r="2.5"/><circle cx="100" cy="50" r="2.5"/><circle cx="20" cy="60" r="2.5"/><circle cx="40" cy="60" r="2.5"/><circle cx="60" cy="60" r="3" fill="url(%23g)"/><circle cx="80" cy="60" r="2.5"/><circle cx="100" cy="60" r="2.5"/><circle cx="30" cy="70" r="2.5"/><circle cx="50" cy="70" r="2.5"/><circle cx="70" cy="70" r="2.5"/><circle cx="90" cy="70" r="2.5"/><circle cx="40" cy="78" r="2.5"/><circle cx="60" cy="78" r="2.5"/><circle cx="80" cy="78" r="2.5"/><circle cx="50" cy="85" r="2.5"/><circle cx="70" cy="85" r="2.5"/><circle cx="60" cy="92" r="2.5"/></g></svg>') center/contain no-repeat;
+        }
 
-    /* ===== hero ===== */
-    main.hero{
-      min-height:100vh;
-      padding-top: calc(var(--topbar-h) + 64px);
-      padding-bottom: 80px;
-      display:flex;
-      align-items:center;
-    }
-    .hero-inner{
-      width:min(1100px, 100%);
-      padding:0 var(--pad);
-    }
-    .kicker{
-      font-size:12px;
-      letter-spacing:.22em;
-      opacity:.70;
-      margin-bottom:18px;
-    }
-    h1.h1{
-      font-weight:600;
-      letter-spacing:.02em;
-      font-size: clamp(34px, 5vw, 64px);
-      margin-bottom:18px;
-    }
-    .questions{ font-size:16px; opacity:.92; margin-bottom:18px; }
-    .lead{ color:var(--muted); max-width:760px; margin-bottom:18px; }
-    .alpha{ color:rgba(255,255,255,.82); max-width:820px; margin-bottom:26px; }
-    .alpha-strong{
-      color:rgba(255,255,255,.96);
-      border-bottom:1px solid rgba(0,217,255,.35);
-      padding-bottom:2px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:14px 22px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.20);
-      background: rgba(0,0,0,.25);
-      font-size:12px;
-      letter-spacing:.22em;
-    }
-    .btn:hover{
-      border-color: rgba(0,217,255,.40);
-      background: rgba(0,217,255,.06);
-      box-shadow: 0 12px 36px rgba(0,217,255,.14);
-      transform: translateY(-2px);
-    }
-    .hint{ margin-top:18px; font-size:12px; opacity:.62; letter-spacing:.06em; }
+        .logo {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-family: "D-DIN-Bold", "Arial Black", sans-serif;
+            color: rgba(255, 255, 255, 0.9);
+        }
 
-    /* ===== scientists (Claude style) ===== */
-    section.scientists{
-      padding: 82px 0 92px;
-      overflow:hidden;
-      background: linear-gradient(to bottom, transparent, rgba(0,0,0,.55), transparent);
-      border-top: 1px solid rgba(255,255,255,.06);
-    }
-    .scientists-scroll{ width:100%; overflow:hidden; }
-    .scientists-track{
-      display:flex;
-      gap:4rem;
-      width:max-content;
-      will-change: transform;
-      animation: scientistsScroll 120s linear infinite;
-      padding: 6px 0;
-    }
-    @keyframes scientistsScroll{
-      0%{ transform: translateX(0); }
-      100%{ transform: translateX(-50%); }
-    }
-    .scientist-card{
-      min-width:320px;
-      text-align:center;
-      padding:2.2rem;
-      border-radius:18px;
-      background: rgba(0,0,0,0.10);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-    }
-    .scientist-card:hover{
-      transform: translateY(-6px) scale(1.03);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(0,217,255,0.35);
-      transition:.25s ease;
-    }
-    .scientist-avatar{
-      width:120px; height:120px;
-      border-radius:999px;
-      margin:0 auto 1.2rem;
-      display:grid; place-items:center;
-      font-size:46px;
-      border:2px solid rgba(0,217,255,0.30);
-      background: radial-gradient(circle, rgba(0,217,255,0.18), transparent 70%);
-    }
-    .scientist-name{ font-size:18px; font-weight:600; margin-bottom:6px; }
-    .scientist-year{ opacity:.62; font-size:13px; margin-bottom:12px; }
-    .scientist-blurb{ opacity:.72; font-size:13px; margin-bottom:10px; }
-    .scientist-contribution{
-      font-family:"Times New Roman", serif;
-      font-style: italic;
-      color: rgba(0,217,255,0.95);
-      font-size:14px;
-      line-height:1.6;
-    }
-    .fracture-indicator{
-      margin-top:34px;
-      text-align:center;
-      color: rgba(255,215,0,0.90);
-      font-size:18px;
-      letter-spacing:.04em;
-    }
-    .scientists-scroll:hover .scientists-track{ animation-play-state: paused; }
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: "D-DIN-Bold", Arial, sans-serif;
+        }
 
-    /* ===== volumes ===== */
-    section.volumes{
-      padding: 92px 0;
-      border-top: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.35);
-    }
-    .volumes-inner{
-      width:min(1100px, 100%);
-      margin:0 auto;
-      padding:0 var(--pad);
-    }
-    .volumes-kicker{ font-size:12px; letter-spacing:.24em; opacity:.65; margin-bottom:14px; }
-    .volumes-title{ font-size: clamp(28px, 3.6vw, 46px); font-weight:500; margin-bottom:14px; }
-    .volumes-lead{ color:var(--muted); max-width:820px; margin-bottom:22px; }
+        .nav-menu a, .nav-menu .nav-dropdown {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
 
-    footer.footer{
-      padding: 40px var(--pad);
-      border-top: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.60);
-      display:flex;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    .footer-links{ display:flex; gap:10px; align-items:center; opacity:.85; }
+        .nav-menu a:hover, .nav-menu .nav-dropdown:hover {
+            color: rgba(255, 255, 255, 1);
+        }
 
-    /* ===== responsive ===== */
-    @media (max-width: 980px){
-      :root{ --pad:22px; }
-      nav.nav{ display:none; }
-      .alpha-visual{ width:100%; opacity:.45; background-position:center; }
-    }
-  </style>
+        /* 下拉菜单 */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 220px;
+            padding: 15px 0;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-content {
+            display: block;
+        }
+
+        .nav-dropdown-title {
+            padding: 8px 20px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .nav-dropdown-content a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 11px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-dropdown-content a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-dropdown-split {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+        }
+
+        .nav-right {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-weight: 600;
+            margin-left: auto;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0;
+            font-size: 11px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .lang-switch span {
+            padding: 6px 14px;
+            transition: all 0.2s;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-switch span:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-switch span.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 40px 0 120px;
+            overflow: hidden;
+        }
+
+        .hero-gradient {
+            display: none;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 700px;
+            z-index: 10;
+            text-align: left;
+            margin-top: 40px;
+            margin-left: 180px;
+        }
+
+        .hero-label {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 0.95;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .hero p {
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 400;
+            margin-bottom: 10px;
+            max-width: 100%;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.65);
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .hero-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-button::after {
+            content: ' →';
+        }
+
+        /* Scientists Section */
+        .scientists-section {
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            background: transparent;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .scientists-scroll {
+            display: flex;
+            width: max-content;
+            animation: scroll 120s linear infinite;
+        }
+
+        .scientists-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .scientist-card {
+            flex-shrink: 0;
+            width: 280px;
+            text-align: center;
+            padding: 20px;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+
+        .scientist-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .scientist-avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            border: none;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.04) 70%, transparent 100%);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 300;
+        }
+
+        .scientist-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .scientist-year {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-bottom: 8px;
+        }
+
+        .scientist-blurb {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .scientist-contribution {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-menu { display: none; }
+            .hero { padding: 0 20px; }
+            .hero h1 { font-size: 50px; }
+            .hero p { font-size: 16px; }
+            .scientist-card { width: 250px; }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="bg" aria-hidden="true">
-    <div class="alpha-visual" aria-hidden="true"></div>
-  </div>
+    <!-- 螺旋星系背景 -->
+    <div class="galaxy-background" style="position:fixed;top:0;left:0;width:100%;height:100vh;background:url('galaxy.gif') no-repeat center center;background-size:800px;opacity:0.6;z-index:0;"></div>
 
-  <header class="topbar">
-    <div class="left-rail">
-      <div class="brand"><span class="brand-name">UNIVERSE &amp; HUMANITY</span></div>
-      <nav class="nav" aria-label="Primary">
-        <a href="./interface/" class="navlink">INTERFACE</a>
-        <a href="./universe/" class="navlink">UNIVERSE</a>
-        <a href="./civilization/" class="navlink">CIVILIZATION</a>
-        <a href="./humanity/" class="navlink">HUMANITY</a>
-        <a href="./alpha/" class="navlink">ALPHA</a>
-      </nav>
-    </div>
-
-    <!-- 右上角：卷著拉窗（重要入口） -->
-    <div class="library">
-      <button class="library-btn" id="libraryBtn" aria-haspopup="true" aria-expanded="false">
-        《宇宙与人类》卷著 <span class="caret" aria-hidden="true">▾</span>
-      </button>
-      <div class="library-panel" id="libraryPanel" role="menu" aria-hidden="true">
-        <div class="library-title">宇宙与人类系列</div>
-        <a class="lib-item" href="./series/nine-volumes/">九卷（科学版）</a>
-        <a class="lib-item" href="./series/epic/">宇宙史诗</a>
-        <a class="lib-item" href="./series/dao/">宇宙之道</a>
-        <a class="lib-item" href="./series/heart-sutra/">宇宙心经</a>
-        <a class="lib-item" href="./series/parables/">宇宙寓言</a>
-        <div class="library-split"></div>
-        <a class="lib-item subtle" href="./about/">出版与合作 / About</a>
-        <a class="lib-item subtle" href="./contact/">联系 / Contact</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="hero" id="top">
-    <div class="hero-inner">
-      <div class="kicker">LAUNCH PAD</div>
-      <h1 class="h1">宇宙与人类</h1>
-
-      <div class="questions">为什么存在宇宙？为什么宇宙创造人类？</div>
-
-      <p class="lead">
-        人类一直在探索这些问题——从远古到现代。<br/>
-        在此，我们以新的结构视角 α 继续深度探讨，并保持对未来的极端开放。
-      </p>
-
-      <p class="alpha">
-        α：一个无量纲的结构约束量。它不描述宇宙是什么，<br/>
-        而是刻画：<span class="alpha-strong">宇宙与人类的演化在何种条件下被允许。</span>
-      </p>
-
-      <div class="cta">
-        <a class="btn" href="#scientists">EXPLORE <span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-
-      <div class="hint">向下：科学家站台 → 卷著结构</div>
-    </div>
-  </main>
-
-  <section class="scientists" id="scientists" aria-label="Scientists">
-    <div class="scientists-scroll">
-      <div class="scientists-track" id="scientistsTrack"></div>
-    </div>
-    <div class="fracture-indicator">但它们之间，存在裂缝…</div>
-  </section>
-
-  <section class="volumes" id="volumes">
-    <div class="volumes-inner">
-      <div class="volumes-kicker">ORBIT PARAMETERS</div>
-      <h2 class="volumes-title">卷著结构</h2>
-      <p class="volumes-lead">
-        不是目录，而是“轨道参数”：同一套 α 视角下的不同叙事层级。<br/>
-        科学 → 对话 → 史诗 → 道 → 心经 → 寓言
-      </p>
-      <a class="btn" href="./series/">进入卷著结构 <span class="arrow" aria-hidden="true">→</span></a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div>© 2025 Universe and Humanity | Alpha Coherence Institute</div>
-    <div class="footer-links">
-      <a href="./academic/">Academic</a><span>·</span>
-      <a href="./contact/">Contact</a><span>·</span>
-      <a href="./privacy/">Privacy</a>
-    </div>
-  </footer>
-
-  <script>
-    // dropdown
-    (function(){
-      const btn=document.getElementById("libraryBtn");
-      const panel=document.getElementById("libraryPanel");
-      if(!btn||!panel) return;
-
-      const close=()=>{ panel.dataset.open="0"; btn.setAttribute("aria-expanded","false"); panel.setAttribute("aria-hidden","true"); };
-      const open =()=>{ panel.dataset.open="1"; btn.setAttribute("aria-expanded","true"); panel.setAttribute("aria-hidden","false"); };
-      const toggle=()=> (panel.dataset.open==="1"?close():open());
-      close();
-      btn.addEventListener("click",(e)=>{ e.stopPropagation(); toggle(); });
-      document.addEventListener("click",close);
-      document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") close(); });
-    })();
-
-    // scientists cards (you can replace content anytime)
-    (function(){
-      const track=document.getElementById("scientistsTrack");
-      if(!track) return;
-
-      const people=[
-        { avatar:"E", name:"Einstein", year:"1905", blurb:"相对论 · 时空结构", note:"E = mc²" },
-        { avatar:"S", name:"Schrödinger", year:"1926 / 1944", blurb:"量子基础 · 生命之问", note:"生命的意义？生命是什么？" },
-        { avatar:"D", name:"Dirac", year:"1928", blurb:"相对论量子化 · 对称", note:"(iγ^μ∂_μ − m)ψ = 0" },
-        { avatar:"F", name:"Feynman", year:"1948", blurb:"路径积分 · 计算直觉", note:"Path Integral" },
-        { avatar:"H", name:"Hawking", year:"1974", blurb:"黑洞热力学", note:"S = kA / 4ℓₚ²" },
-        { avatar:"W", name:"Wheeler", year:"1989", blurb:"信息宇宙", note:"It from Bit" }
-      ];
-
-      const card=(p)=>`
-        <div class="scientist-card">
-          <div class="scientist-avatar">${p.avatar}</div>
-          <div class="scientist-name">${p.name}</div>
-          <div class="scientist-year">${p.year}</div>
-          <div class="scientist-blurb">${p.blurb}</div>
-          <div class="scientist-contribution">${p.note}</div>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-container">
+            <div class="logo-icon"></div>
+            <div class="logo">UNIVERSE & HUMANITY</div>
         </div>
-      `;
+        <div class="nav-menu">
+            <a href="#alpha">阿尔法无量纲</a>
+            <a href="#universe">宇宙</a>
+            <div class="nav-dropdown">
+                <span>人类 ▾</span>
+                <div class="nav-dropdown-content">
+                    <div class="nav-dropdown-title">人类探索</div>
+                    <a href="#humanity">人类概述</a>
+                    <a href="thinkers.html">思想家</a>
+                </div>
+            </div>
+            <a href="#new-civilization">新文明</a>
+            <div class="nav-dropdown">
+                <span>《宇宙与人类》系列卷著 ▾</span>
+                <div class="nav-dropdown-content">
+                    <div class="nav-dropdown-title">完整系列</div>
+                    <a href="#nine-volumes">九卷（科学理论版）</a>
+                    <a href="#epic">宇宙史诗（叙事版）</a>
+                    <a href="#dao">宇宙之道（东方智慧版）</a>
+                    <a href="#heart-sutra">宇宙心经（精简版）</a>
+                    <a href="#parables">宇宙寓言（诗歌艺术版）</a>
+                    <div class="nav-dropdown-split"></div>
+                    <a href="#about">出版与合作</a>
+                    <a href="#contact">联系我们</a>
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="lang-switch">
+                <span onclick="switchLang('en')">EN</span>
+                <span class="active" onclick="switchLang('zh')">中文</span>
+            </div>
+        </div>
+    </nav>
 
-      track.innerHTML = people.map(card).join("") + people.map(card).join("");
-    })();
-  </script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-gradient"></div>
+        <div class="hero-content">
+            <h1 id="hero-title">宇宙与人类</h1>
+            <div id="hero-text-en" style="display: none;">
+                <p>Why does the universe exist? Why is there life?</p>
+                <p>α is a dimensionless structural constraint that does not describe what the universe is, but characterizes what structures permit evolution.</p>
+            </div>
+            <div id="hero-text-zh">
+                <p>为什么存在宇宙？为什么会有生命？</p>
+                <p>α 是一个无量纲结构约束量，它不描述宇宙是什么，而刻画什么样的结构允许演化。</p>
+            </div>
+            <a href="#explore" class="hero-button">Explore</a>
+        </div>
+        
+        <!-- Scientists Section -->
+        <section class="scientists-section">
+            <div class="scientists-scroll">
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">E</div>
+                <div class="scientist-name" data-en="Einstein" data-zh="爱因斯坦">爱因斯坦</div>
+                <div class="scientist-year" data-en="1905" data-zh="1905">1905</div>
+                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>
+                <div class="scientist-contribution" data-en="E = mc²" data-zh="E = mc²">E = mc²</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">S</div>
+                <div class="scientist-name" data-en="Schrödinger" data-zh="薛定谔">薛定谔</div>
+                <div class="scientist-year" data-en="1926 / 1944" data-zh="1926 / 1944">1926 / 1944</div>
+                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>
+                <div class="scientist-contribution" data-en="What is Life?" data-zh="生命的意义？生命是什么？">生命的意义？生命是什么？</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">D</div>
+                <div class="scientist-name" data-en="Dirac" data-zh="狄拉克">狄拉克</div>
+                <div class="scientist-year" data-en="1928" data-zh="1928">1928</div>
+                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>
+                <div class="scientist-contribution" data-en="(iγ^μ∂_μ − m)ψ = 0" data-zh="(iγ^μ∂_μ − m)ψ = 0">(iγ^μ∂_μ − m)ψ = 0</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">老</div>
+                <div class="scientist-name" data-en="Laozi" data-zh="老子">老子</div>
+                <div class="scientist-year" data-en="6th century BC" data-zh="前 6 世纪">前 6 世纪</div>
+                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>
+                <div class="scientist-contribution" data-en="Dao that can be told is not the eternal Dao" data-zh="道可道，非常道">道可道，非常道</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">佛</div>
+                <div class="scientist-name" data-en="Buddha" data-zh="佛陀">佛陀</div>
+                <div class="scientist-year" data-en="5th century BC" data-zh="前 5 世纪">前 5 世纪</div>
+                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>
+                <div class="scientist-contribution" data-en="Form is emptiness, emptiness is form" data-zh="缘起性空">缘起性空</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">F</div>
+                <div class="scientist-name" data-en="Feynman" data-zh="费曼">费曼</div>
+                <div class="scientist-year" data-en="1948" data-zh="1948">1948</div>
+                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>
+                <div class="scientist-contribution" data-en="Path Integral" data-zh="路径积分">路径积分</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">H</div>
+                <div class="scientist-name" data-en="Hawking" data-zh="霍金">霍金</div>
+                <div class="scientist-year" data-en="1974" data-zh="1974">1974</div>
+                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>
+                <div class="scientist-contribution" data-en="S = kA / 4ℓₚ²" data-zh="S = kA / 4ℓₚ²">S = kA / 4ℓₚ²</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">W</div>
+                <div class="scientist-name" data-en="Wheeler" data-zh="惠勒">惠勒</div>
+                <div class="scientist-year" data-en="1989" data-zh="1989">1989</div>
+                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>
+                <div class="scientist-contribution" data-en="It from Bit" data-zh="万物源于比特">万物源于比特</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">E</div>
+                <div class="scientist-name" data-en="Einstein" data-zh="爱因斯坦">爱因斯坦</div>
+                <div class="scientist-year" data-en="1905" data-zh="1905">1905</div>
+                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>
+                <div class="scientist-contribution" data-en="E = mc²" data-zh="E = mc²">E = mc²</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">S</div>
+                <div class="scientist-name" data-en="Schrödinger" data-zh="薛定谔">薛定谔</div>
+                <div class="scientist-year" data-en="1926 / 1944" data-zh="1926 / 1944">1926 / 1944</div>
+                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>
+                <div class="scientist-contribution" data-en="What is Life?" data-zh="生命的意义？生命是什么？">生命的意义？生命是什么？</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">D</div>
+                <div class="scientist-name" data-en="Dirac" data-zh="狄拉克">狄拉克</div>
+                <div class="scientist-year" data-en="1928" data-zh="1928">1928</div>
+                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>
+                <div class="scientist-contribution" data-en="(iγ^μ∂_μ − m)ψ = 0" data-zh="(iγ^μ∂_μ − m)ψ = 0">(iγ^μ∂_μ − m)ψ = 0</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">老</div>
+                <div class="scientist-name" data-en="Laozi" data-zh="老子">老子</div>
+                <div class="scientist-year" data-en="6th century BC" data-zh="前 6 世纪">前 6 世纪</div>
+                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>
+                <div class="scientist-contribution" data-en="Dao that can be told is not the eternal Dao" data-zh="道可道，非常道">道可道，非常道</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">佛</div>
+                <div class="scientist-name" data-en="Buddha" data-zh="佛陀">佛陀</div>
+                <div class="scientist-year" data-en="5th century BC" data-zh="前 5 世纪">前 5 世纪</div>
+                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>
+                <div class="scientist-contribution" data-en="Form is emptiness, emptiness is form" data-zh="缘起性空">缘起性空</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">F</div>
+                <div class="scientist-name" data-en="Feynman" data-zh="费曼">费曼</div>
+                <div class="scientist-year" data-en="1948" data-zh="1948">1948</div>
+                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>
+                <div class="scientist-contribution" data-en="Path Integral" data-zh="路径积分">路径积分</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">H</div>
+                <div class="scientist-name" data-en="Hawking" data-zh="霍金">霍金</div>
+                <div class="scientist-year" data-en="1974" data-zh="1974">1974</div>
+                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>
+                <div class="scientist-contribution" data-en="S = kA / 4ℓₚ²" data-zh="S = kA / 4ℓₚ²">S = kA / 4ℓₚ²</div>
+            </div>
+
+            <div class="scientist-card">
+                <div class="scientist-avatar">W</div>
+                <div class="scientist-name" data-en="Wheeler" data-zh="惠勒">惠勒</div>
+                <div class="scientist-year" data-en="1989" data-zh="1989">1989</div>
+                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>
+                <div class="scientist-contribution" data-en="It from Bit" data-zh="万物源于比特">万物源于比特</div>
+            </div>
+
+        </div>
+    </section>
+</section>
+
+    <!-- 语言切换脚本 -->
+    <script>
+        // 语言切换功能
+        function switchLang(lang) {
+            const titleEl = document.getElementById('hero-title');
+            const enText = document.getElementById('hero-text-en');
+            const zhText = document.getElementById('hero-text-zh');
+            const langBtns = document.querySelectorAll('.lang-switch span');
+            const navLinks = document.querySelectorAll('.nav-menu > a');
+            const navDropdowns = document.querySelectorAll('.nav-menu .nav-dropdown > span');
+            const dropdownTitles = document.querySelectorAll('.nav-dropdown-title');
+            const seriesDropdownLinks = document.querySelectorAll('.nav-menu .nav-dropdown:last-child .nav-dropdown-content a');
+            const humanityDropdownLinks = document.querySelectorAll('.nav-menu .nav-dropdown:first-of-type .nav-dropdown-content a');
+            
+            // 科学家信息切换
+            const scientistNames = document.querySelectorAll('.scientist-name');
+            const scientistYears = document.querySelectorAll('.scientist-year');
+            const scientistBlurbs = document.querySelectorAll('.scientist-blurb');
+            const scientistContributions = document.querySelectorAll('.scientist-contribution');
+            
+            if (lang === 'en') {
+                // Hero内容
+                titleEl.textContent = 'UNIVERSE & HUMANITY';
+                enText.style.display = 'block';
+                zhText.style.display = 'none';
+                
+                // 导航栏
+                navLinks[0].textContent = 'ALPHA';
+                navLinks[1].textContent = 'UNIVERSE';
+                navLinks[2].textContent = 'NEW CIVILIZATION';
+                
+                // 下拉菜单标题
+                navDropdowns[0].innerHTML = 'HUMANITY ▾';
+                navDropdowns[1].innerHTML = 'UNIVERSE & HUMANITY SERIES ▾';
+                
+                // 人类下拉菜单
+                dropdownTitles[0].textContent = 'Human Exploration';
+                humanityDropdownLinks[0].textContent = 'Humanity Overview';
+                humanityDropdownLinks[1].textContent = 'Thinkers';
+                
+                // 系列下拉菜单
+                dropdownTitles[1].textContent = 'Complete Series';
+                seriesDropdownLinks[0].textContent = 'Nine Volumes (Scientific Edition)';
+                seriesDropdownLinks[1].textContent = 'Universe Epic (Narrative Edition)';
+                seriesDropdownLinks[2].textContent = 'Cosmic Dao (Eastern Wisdom Edition)';
+                seriesDropdownLinks[3].textContent = 'Cosmic Sutra (Condensed Edition)';
+                seriesDropdownLinks[4].textContent = 'Cosmic Parables (Poetic Edition)';
+                seriesDropdownLinks[5].textContent = 'Publishing & Collaboration';
+                seriesDropdownLinks[6].textContent = 'Contact Us';
+                
+                // 科学家信息
+                scientistNames.forEach(el => el.textContent = el.dataset.en);
+                scientistYears.forEach(el => el.textContent = el.dataset.en);
+                scientistBlurbs.forEach(el => el.textContent = el.dataset.en);
+                scientistContributions.forEach(el => el.textContent = el.dataset.en);
+                
+                // 语言按钮
+                langBtns[0].classList.add('active');
+                langBtns[1].classList.remove('active');
+            } else {
+                // Hero内容
+                titleEl.textContent = '宇宙与人类';
+                enText.style.display = 'none';
+                zhText.style.display = 'block';
+                
+                // 导航栏
+                navLinks[0].textContent = '阿尔法无量纲';
+                navLinks[1].textContent = '宇宙';
+                navLinks[2].textContent = '新文明';
+                
+                // 下拉菜单标题
+                navDropdowns[0].innerHTML = '人类 ▾';
+                navDropdowns[1].innerHTML = '《宇宙与人类》系列卷著 ▾';
+                
+                // 人类下拉菜单
+                dropdownTitles[0].textContent = '人类探索';
+                humanityDropdownLinks[0].textContent = '人类概述';
+                humanityDropdownLinks[1].textContent = '思想家';
+                
+                // 系列下拉菜单
+                dropdownTitles[1].textContent = '完整系列';
+                seriesDropdownLinks[0].textContent = '九卷（科学理论版）';
+                seriesDropdownLinks[1].textContent = '宇宙史诗（叙事版）';
+                seriesDropdownLinks[2].textContent = '宇宙之道（东方智慧版）';
+                seriesDropdownLinks[3].textContent = '宇宙心经（精简版）';
+                seriesDropdownLinks[4].textContent = '宇宙寓言（诗歌艺术版）';
+                seriesDropdownLinks[5].textContent = '出版与合作';
+                seriesDropdownLinks[6].textContent = '联系我们';
+                
+                // 科学家信息
+                scientistNames.forEach(el => el.textContent = el.dataset.zh);
+                scientistYears.forEach(el => el.textContent = el.dataset.zh);
+                scientistBlurbs.forEach(el => el.textContent = el.dataset.zh);
+                scientistContributions.forEach(el => el.textContent = el.dataset.zh);
+                
+                // 语言按钮
+                langBtns[0].classList.remove('active');
+                langBtns[1].classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
