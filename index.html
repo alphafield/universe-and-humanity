@@ -1,127 +1,51 @@
-<!-- /index.html  (中文首页 · 封板版) -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>宇宙与人类 · Universe and Humanity</title>
-  <meta name="description" content="宇宙与人类：提出问题，深度探讨，并对未来保持极端开放。" />
-  <link rel="canonical" href="https://universeandhumanity.com/" />
- <link rel="stylesheet" href="./styles.css" />
+  <meta charset="UTF-8" />
+  <title>Universe and Humanity · 宇宙与人类</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- Background -->
-  <div class="bg">
-    <div class="bg-vignette" aria-hidden="true"></div>
-  </div>
+  <!-- Hero -->
+  <section id="hero">
+    <canvas id="starfield"></canvas>
 
-  <!-- TOP BAR -->
-  <header class="top-nav">
-  <div class="nav-inner">
-    
-    <!-- LEFT: BRAND -->
-    <div class="nav-brand">
-      UNIVERSE &amp; HUMANITY
-    </div>
-
-    <!-- CENTER: MAIN NAV -->
-    <nav class="nav-main">
-      <a href="/interface">INTERFACE</a>
-      <a href="/universe">UNIVERSE</a>
-      <a href="/civilization">CIVILIZATION</a>
-      <a href="/humanity">HUMANITY</a>
-    </nav>
-
-    <!-- RIGHT: BOOK ENTRY -->
-    <div class="nav-book">
-      《宇宙与人类》卷著 ▾
-    </div>
-
-        <div class="volumes-menu" role="menu" aria-label="《宇宙与人类》卷著" data-volumes-menu>
-          <div class="menu-group">
-            <div class="menu-title">宇宙九卷（科学版）</div>
-            <a role="menuitem" href="/volumes/vol1.html">第一卷｜宇宙</a>
-            <a role="menuitem" href="/volumes/vol2.html">第二卷｜结构</a>
-            <a role="menuitem" href="/volumes/vol3.html">第三卷｜时间</a>
-            <a role="menuitem" href="/volumes/vol4.html">第四卷｜生命</a>
-            <a role="menuitem" href="/volumes/vol5.html">第五卷｜意识</a>
-            <a role="menuitem" href="/volumes/vol6.html">第六卷｜智能</a>
-            <a role="menuitem" href="/volumes/vol7.html">第七卷｜文明</a>
-            <a role="menuitem" href="/volumes/vol8.html">第八卷｜约束</a>
-            <a role="menuitem" href="/volumes/vol9.html">第九卷｜未知</a>
-          </div>
-
-          <div class="menu-sep" aria-hidden="true"></div>
-
-          <div class="menu-group">
-            <div class="menu-title">副卷</div>
-            <a role="menuitem" href="/volumes/epic.html">宇宙史诗</a>
-            <a role="menuitem" href="/volumes/dao.html">宇宙之道</a>
-            <a role="menuitem" href="/volumes/heart.html">宇宙心经</a>
-            <a role="menuitem" href="/volumes/parables.html">宇宙寓言</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Language switch -->
-      <div class="lang">
-        <span class="lang-active">中文</span>
-        <span class="lang-sep">/</span>
-        <a class="lang-link" href="/en/">EN</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <main class="hero" id="top">
-    <section class="hero-left">
-      <div class="kicker">LAUNCH PAD</div>
-
-      <h1 class="title">宇宙与人类</h1>
-
-      <p class="q">
-        为什么存在宇宙？为什么宇宙创造人类？
+    <div class="hero-content">
+      <h1>宇宙与人类</h1>
+      <p class="subtitle">
+        为什么存在宇宙？<br />
+        为什么宇宙创造人类？
       </p>
-
-      <p class="lead">
-        人类一直在探索这些问题——从远古到现代。<br />
-        在此，我们以一个新的结构视角 <b>α</b> 继续深入探讨，并保持对未来的极端开放。
-      </p>
-
-      <p class="alpha">
-        <b>α：一个无量纲的结构约束量。</b><br />
-        它不描述宇宙是什么，而是以方程刻画：<b>宇宙与人类的演化在何种条件下被允许。</b>
-      </p>
-
-      <div class="cta-row">
-        <a class="cta" href="/volumes/" aria-label="Explore">
-          EXPLORE <span aria-hidden="true">→</span>
-        </a>
-      </div>
-
-      <div class="cta-note">
-        深度探索，请读《宇宙与人类》卷著。
-      </div>
-    </section>
-
-    <aside class="hero-right" aria-label="Alpha main visual">
-      <!-- 右侧主视觉：把你的 GIF 放到 /assets/alpha.gif -->
-      <div class="visual-frame">
-        <img class="visual" src="./assets/alpha.gif" alt="Alpha visual" />
-      </div>
-    </aside>
-  </main>
-
-  <!-- SCIENTISTS MARQUEE -->
-  <section class="scientists" aria-label="Scientists platform">
-    <div class="scientists-shell">
-      <div class="scientists-track" data-track>
-        <!-- JS injects cards + duplicates once -->
-      </div>
     </div>
   </section>
 
- <script src="./app.js" defer></script>
+  <!-- Main -->
+  <main>
+    <section class="block">
+      <h2>α · 结构约束</h2>
+      <p>
+        α 是一个无量纲的结构约束量。
+        它不描述宇宙“是什么”，
+        而描述系统如何得以持续存在与演化。
+      </p>
+    </section>
+
+    <section class="block">
+      <h2>文明接口</h2>
+      <p>
+        文明不是信仰体系，
+        而是人类理解宇宙的接口形式。
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Alpha Field</span>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
