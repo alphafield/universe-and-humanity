@@ -273,26 +273,22 @@
 }
 /* ===== Header / SpaceX-like rail ===== */
 /* ===== Topbar: force single-line SpaceX-like ===== */
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  gap:32px;
-  flex-wrap:nowrap;
-}
-
-.brand{ 
-  flex:0 0 auto; 
-}
-
-.nav{
+.left-rail{
   display:flex;
   align-items:center;
   gap:44px;
   flex:1 1 auto;
-  justify-content:flex-start;
-  white-space:nowrap;   /* 禁止断行 */
-  flex-wrap:nowrap;     /* 禁止换行 */
+  min-width:0;
+}
+
+.brand{ display:flex; align-items:center; }
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  white-space:nowrap;
+  flex-wrap:nowrap;
 }
 
 .navlink{
