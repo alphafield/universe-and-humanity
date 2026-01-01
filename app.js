@@ -89,3 +89,52 @@
     doubled.forEach(x => track.appendChild(make(x)));
   }
 })();
+/* =========================
+   Scientists strip data + infinite loop
+   (CN version)
+========================= */
+
+(function () {
+  const track = document.getElementById("scientistsTrack");
+  if (!track) return;
+
+  // ✅ 你说：科学家“组成和内容按我们之前的设计”，这里只是示例模板
+  // 你把这一组改成你最终名单即可（中英各一份）
+  const scientistsCN = [
+    { avatar: "E", name: "Einstein", year: "1905", brief: "相对论 · 时空结构", eq: "E = mc²" },
+    { avatar: "S", name: "Schrödinger", year: "1926 / 1944", brief: "量子基础 · 生命之问", eq: "生命的意义？ 生命是什么？" },
+    { avatar: "D", name: "Dirac", year: "1928", brief: "相对论量子化 · 对称", eq: "(iγ^μ∂_μ − m)ψ = 0" },
+    { avatar: "F", name: "Feynman", year: "1948", brief: "路径积分 · 计算直觉", eq: "Path Integral" },
+    { avatar: "H", name: "Hawking", year: "1974", brief: "黑洞热力学", eq: "S = kA/4ℓₚ²" },
+    { avatar: "W", name: "Wheeler", year: "1989", brief: "信息本体", eq: "It from Bit" },
+    { avatar: "老", name: "老子 Laozi", year: "公元前 6世纪", brief: "道的结构语言", eq: "道可道，非常道" },
+    { avatar: "佛", name: "佛陀 Buddha", year: "公元前 5世纪", brief: "缘起论", eq: "缘起性空" }
+  ];
+
+  function cardHTML(x) {
+    return `
+      <article class="scientist-card">
+        <div class="scientist-avatar">${x.avatar}</div>
+        <div class="scientist-name">${x.name}</div>
+        <div class="scientist-year">${x.year}</div>
+        <div class="scientist-brief">${x.brief}</div>
+        <p class="scientist-eq">${x.eq}</p>
+      </article>
+    `;
+  }
+
+  // 1) 注入一次
+  track.innerHTML = scientistsCN.map(cardHTML).join("");
+
+  // 2) 复制一遍实现无缝（配合 CSS 的 -50%）
+  track.innerHTML += track.innerHTML;
+
+  // 3) 用户交互：悬停时暂停（可选，很多人喜欢；不影响速度）
+  track.addEventListener("mouseenter", () => {
+    track.style.animationPlayState = "paused";
+  });
+  track.addEventListener("mouseleave", () => {
+    track.style.animationPlayState = "running";
+  });
+})();
+
