@@ -2,19 +2,113 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Universe & Humanity</title>
   <meta name="description" content="Universe & Humanity — Making Civilization Multiversal" />
-  <link rel="stylesheet" href="./styles.css" />
+
+  <style>
+    /* ===== Base ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; background: #000; color: #fff; }
+    body { font-family: Arial, Helvetica, sans-serif; }
+
+    /* ===== NAV ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 72px;
+      z-index: 10;
+    }
+    .nav-inner {
+      max-width: 1440px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+    nav {
+      display: flex;
+      gap: 28px;
+      margin-left: 48px;
+    }
+    nav a {
+      font-size: 12px;
+      letter-spacing: .14em;
+      font-weight: 600;
+      opacity: .85;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero-media {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52vw;
+      height: 72vh;
+      background: radial-gradient(circle at 30% 50%, #666, #111 60%, #000 100%);
+    }
+    .hero-shadow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to left,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,.7) 45%,
+        rgba(0,0,0,.95) 75%
+      );
+    }
+    .hero-copy {
+      position: absolute;
+      left: 96px;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 460px;
+    }
+    h1 {
+      font-size: 48px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .sub {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      opacity: .9;
+    }
+    .desc {
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: .7;
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: 1px solid #fff;
+      font-size: 12px;
+      letter-spacing: .12em;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- TOP NAV (SpaceX height & alignment) -->
-  <header class="spx-nav">
+  <header>
     <div class="nav-inner">
       <div class="logo">UNIVERSE &amp; HUMANITY</div>
-      <nav class="nav-links">
+      <nav>
         <a>UNIVERSE</a>
         <a>CIVILIZATION</a>
         <a>HUMANITY</a>
@@ -23,26 +117,22 @@
     </div>
   </header>
 
-  <!-- HERO (1:1 SpaceX layout) -->
-  <section class="spx-hero">
+  <section class="hero">
     <div class="hero-media">
-      <img src="./assets/hero.gif" alt="" />
       <div class="hero-shadow"></div>
     </div>
 
     <div class="hero-copy">
       <h1>宇宙与人类</h1>
-      <p class="hero-sub">
-        为什么存在宇宙？<br />
+      <div class="sub">
+        为什么存在宇宙？<br>
         为什么宇宙创造人类？
-      </p>
-
-      <p class="hero-desc">
-        人类一直在探索这些问题。<br />
-        在此，我们以结构约束 α，继续向宇宙深处推进。
-      </p>
-
-      <a class="hero-btn">EXPLORE</a>
+      </div>
+      <div class="desc">
+        人类一直在探索这些问题。<br>
+        在此，我们以结构约束 α 继续向宇宙深处推进。
+      </div>
+      <div class="btn">EXPLORE</div>
     </div>
   </section>
 
