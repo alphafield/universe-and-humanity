@@ -1,3 +1,4 @@
+/* ===== Reset ===== */
 * {
   margin: 0;
   padding: 0;
@@ -7,26 +8,28 @@
 html, body {
   background: #000;
   color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               "PingFang SC", "Hiragino Sans GB",
+               "Microsoft YaHei", sans-serif;
 }
 
-/* Hero */
-#hero {
+/* ===== Hero ===== */
+.hero {
   position: relative;
   height: 100vh;
   overflow: hidden;
 }
 
-#starfield {
+#stars {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-.hero-content {
+.hero-text {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -35,41 +38,41 @@ html, body {
   text-align: center;
 }
 
-.hero-content h1 {
+.hero-text h1 {
   font-size: 3rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 1rem;
+  letter-spacing: 0.25em;
+  margin-bottom: 1.2rem;
 }
 
-.subtitle {
+.hero-text p {
   font-size: 1.2rem;
-  opacity: 0.85;
   line-height: 1.6;
+  opacity: 0.85;
 }
 
-/* Main */
+/* ===== Main ===== */
 main {
   max-width: 900px;
   margin: 0 auto;
   padding: 6rem 1.5rem;
 }
 
-.block {
-  margin-bottom: 5rem;
+main section {
+  margin-bottom: 4.5rem;
 }
 
-.block h2 {
+main h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   letter-spacing: 0.1em;
 }
 
-.block p {
+main p {
   line-height: 1.8;
   opacity: 0.85;
 }
 
-/* Footer */
+/* ===== Footer ===== */
 footer {
   text-align: center;
   padding: 3rem 0;
