@@ -28,4 +28,16 @@
   max-width: 560px;
 }
 
- 
+ .galaxy-wrap {
+  position: fixed;
+  top: 50%;
+  right: -8vw;              /* 关键：让它“吃”出屏幕 */
+  transform: translateY(-50%);
+  width: 55vw;
+  height: 55vw;
+  max-width: 820px;
+  max-height: 820px;
+  pointer-events: none;
+  z-index: 1;
+}
+
