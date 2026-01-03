@@ -71,20 +71,6 @@
 
   opacity: 0.92;
 }
-.galaxy-gif {
-  animation: galaxy-breath 18s ease-in-out infinite;
-}
-
-@keyframes galaxy-breath {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.015); }
-  100% { transform: scale(1); }
-}
-.hero-text,
-.hero-content {
-  position: relative;
-  z-index: 5;
-}
 .galaxy-sphere img,
 .galaxy-sphere video {
     width: 100%;
@@ -98,5 +84,18 @@
         inset 0 0 100px rgba(0, 0, 0, 0.2);
     display: block;
 }
+
+
+@keyframes galaxy-breath {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.015); }
+  100% { transform: scale(1); }
+}
+.hero-text,
+.hero-content {
+  position: relative;
+  z-index: 5;
+}
+
 
 
