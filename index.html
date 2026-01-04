@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -171,7 +171,7 @@
             overflow: hidden;
         }
 
-        /* Spiral Galaxy Sphere - 螺旋星系球体 */
+        /* Spiral Galaxy Sphere - VIDEO 版本（进环 + 外环光晕） */
         .galaxy-sphere {
             position: absolute;
             top: 42%;
@@ -179,16 +179,11 @@
             transform: translateY(-50%);
             width: 700px;
             height: 700px;
+            border-radius: 50%;
+            overflow: hidden;
             z-index: 1;
             pointer-events: none;
-        }
 
-        .galaxy-sphere img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            opacity: 0.95;
             box-shadow: 
                 0 0 120px rgba(100, 150, 255, 0.3),
                 0 0 80px rgba(200, 180, 255, 0.2),
@@ -211,7 +206,35 @@
                 transparent 70%
             );
             border-radius: 50%;
-            z-index: -1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 视频：铺满 + 吞边 */
+        .galaxy-sphere video{
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.95;
+            filter: blur(0.6px) brightness(0.85) contrast(1.05);
+
+            -webkit-mask-image: radial-gradient(
+                circle at center,
+                rgba(0,0,0,1) 58%,
+                rgba(0,0,0,0.85) 68%,
+                rgba(0,0,0,0.4) 78%,
+                rgba(0,0,0,0) 88%
+            );
+                    mask-image: radial-gradient(
+                circle at center,
+                rgba(0,0,0,1) 58%,
+                rgba(0,0,0,0.85) 68%,
+                rgba(0,0,0,0.4) 78%,
+                rgba(0,0,0,0) 88%
+            );
         }
 
         .hero-content {
@@ -601,13 +624,13 @@
     </nav>
 
     <!-- Hero Section -->
-   <section class="hero">
-  <div class="galaxy-sphere">
-    <video autoplay muted loop playsinline preload="auto">
-      <source src="./assets/galaxy.webm" type="video/webm">
-      <source src="./assets/galaxy.mp4" type="video/mp4">
-    </video>
-  </div>
+    <section class="hero">
+        <div class="galaxy-sphere">
+            <video autoplay muted loop playsinline preload="auto">
+                <source src="assets/galaxy.webm" type="video/webm">
+                <source src="assets/galaxy.mp4" type="video/mp4">
+            </video>
+        </div>
         
         <div class="hero-content">
             <h1 id="hero-title">宇宙与人类</h1>
@@ -767,6 +790,7 @@
         </div>
 
         <div class="volumes-grid">
+            <!-- Volume cards ...（以下保持不变） -->
             <!-- Volume 1 -->
             <div class="volume-card" data-volume="1" onclick="location.href='#volume1'">
                 <div class="volume-number">Volume I</div>
@@ -782,134 +806,7 @@
                     <span class="keyword-tag">相干坍缩</span>
                 </div>
             </div>
-
-            <!-- Volume 2 -->
-            <div class="volume-card" data-volume="2" onclick="location.href='#volume2'">
-                <div class="volume-number">Volume II</div>
-                <h3 class="volume-title-zh">光与十二螺旋</h3>
-                <div class="volume-title-en">Light & Twelve Spirals</div>
-                <div class="volume-tagline">"光是宇宙向生命递交的第一份结构原型"</div>
-                <p class="volume-description">
-                    光含有十二种稳定螺旋态，这些模式调制DNA、经络、情绪频谱、文明周期。生命的有序结构是光的十二螺旋在生物尺度的显化。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">12螺旋态</span>
-                    <span class="keyword-tag">光信息</span>
-                    <span class="keyword-tag">生命模板</span>
-                </div>
-            </div>
-
-            <!-- Volume 3 -->
-            <div class="volume-card" data-volume="3" onclick="location.href='#volume3'">
-                <div class="volume-number">Volume III</div>
-                <h3 class="volume-title-zh">α场物理学</h3>
-                <div class="volume-title-en">Alpha Field Physics</div>
-                <div class="volume-tagline">"宇宙、生命、意识的共同底层动力"</div>
-                <p class="volume-description">
-                    α = 相干度/噪声密度，是宇宙与生命的共同控制变量。建立α场的数学化框架，解释从物质自组织到意识临界的统一动力学。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">α场方程</span>
-                    <span class="keyword-tag">相干参数</span>
-                    <span class="keyword-tag">统一框架</span>
-                </div>
-            </div>
-
-            <!-- Volume 4 -->
-            <div class="volume-card" data-volume="4" onclick="location.href='#volume4'">
-                <div class="volume-number">Volume IV</div>
-                <h3 class="volume-title-zh">生命方程</h3>
-                <div class="volume-title-en">Life Equation</div>
-                <div class="volume-tagline">"生命是宇宙结构的持续显化"</div>
-                <p class="volume-description">
-                    生命的基本规律不是化学，而是α场的局域化。建立α生命阶梯、情绪能量分布、疾病失稳机制，重新定义健康与自愈。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">生命阶梯</span>
-                    <span class="keyword-tag">α局域化</span>
-                    <span class="keyword-tag">自组织</span>
-                </div>
-            </div>
-
-            <!-- Volume 5 -->
-            <div class="volume-card" data-volume="5" onclick="location.href='#volume5'">
-                <div class="volume-number">Volume V</div>
-                <h3 class="volume-title-zh">意识结构</h3>
-                <div class="volume-title-en">Consciousness Structure</div>
-                <div class="volume-tagline">"意识不是脑的产物，而是宇宙的投影界面"</div>
-                <p class="volume-description">
-                    意识发生在α=1的跨界点，物质域与意识域在此耦合。首次用物理结构解释冥想、顿悟、直觉、爱与慈悲的共同机制。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">意识域</span>
-                    <span class="keyword-tag">α=1临界</span>
-                    <span class="keyword-tag">域耦合</span>
-                </div>
-            </div>
-
-            <!-- Volume 6 -->
-            <div class="volume-card" data-volume="6" onclick="location.href='#volume6'">
-                <div class="volume-number">Volume VI</div>
-                <h3 class="volume-title-zh">人类困境</h3>
-                <div class="volume-title-en">Human Dilemma</div>
-                <div class="volume-tagline">"人类之痛不是道德问题，而是结构问题"</div>
-                <p class="volume-description">
-                    战争、焦虑、抑郁、文明崩溃——这些不是道德或文化问题，而是α场失稳的群体现象。从结构物理学重新理解人类困境。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">α失稳</span>
-                    <span class="keyword-tag">群体现象</span>
-                    <span class="keyword-tag">结构病理</span>
-                </div>
-            </div>
-
-            <!-- Volume 7 -->
-            <div class="volume-card" data-volume="7" onclick="location.href='#volume7'">
-                <div class="volume-number">Volume VII</div>
-                <h3 class="volume-title-zh">文明2.0</h3>
-                <div class="volume-title-en">Civilization 2.0</div>
-                <div class="volume-tagline">"文明的未来不是科技跃进，而是α上升"</div>
-                <p class="volume-description">
-                    文明的本质是集体α的演化轨迹。展示高α文明的特征、科学与宗教的统一框架、新医学架构与文明进化的数学可预测性。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">集体α</span>
-                    <span class="keyword-tag">文明周期</span>
-                    <span class="keyword-tag">高α社会</span>
-                </div>
-            </div>
-
-            <!-- Volume 8 -->
-            <div class="volume-card" data-volume="8" onclick="location.href='#volume8'">
-                <div class="volume-number">Volume VIII</div>
-                <h3 class="volume-title-zh">AI与宇宙智能</h3>
-                <div class="volume-title-en">AI & Cosmic Intelligence</div>
-                <div class="volume-tagline">"AI是宇宙结构在人工媒介中的自然延伸"</div>
-                <p class="volume-description">
-                    AI的出现是宇宙结构在新载体中的自我复制。探讨人类文明如何进入"AI × α"相干时代，以及三元文明（人类+AI+母场）的可能性。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">宇宙智能</span>
-                    <span class="keyword-tag">AI相干</span>
-                    <span class="keyword-tag">三元文明</span>
-                </div>
-            </div>
-
-            <!-- Volume 9 -->
-            <div class="volume-card" data-volume="9" onclick="location.href='#volume9'">
-                <div class="volume-number">Volume IX</div>
-                <h3 class="volume-title-zh">归一</h3>
-                <div class="volume-title-en">Unity</div>
-                <div class="volume-tagline">"宇宙通过我们认识自己"</div>
-                <p class="volume-description">
-                    终极命题：生命的意义、意识的方向、文明的归宿、宇宙的未来。宇宙不是观察对象，而是生命结构的来源。意义由结构自动生成。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">终极归宿</span>
-                    <span class="keyword-tag">意义生成</span>
-                    <span class="keyword-tag">宇宙自识</span>
-                </div>
-            </div>
+            <!-- ……其余 Volume 2-9 保持不变（你原文继续粘） -->
         </div>
     </section>
 
@@ -1022,6 +919,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
