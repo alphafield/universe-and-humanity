@@ -71,12 +71,56 @@
 
   opacity: 0.92;
 }
-.galaxy-sphere video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+/* 右侧星系球体容器：负责“进环”裁切 + 定位 */
+.galaxy-sphere{
+  position: absolute;
+  top: 42%;
+  right: 8%;
+  transform: translateY(-50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  overflow: hidden;          /* ✅ 关键：让视频真正“进到环里” */
+  z-index: 1;
+  pointer-events: none;
+
+  /* 球体整体的发光与内阴影（外环感觉） */
+  box-shadow:
+    0 0 120px rgba(100,150,255,.30),
+    0 0 80px rgba(200,180,255,.20),
+    inset 0 0 100px rgba(0,0,0,.25);
+}
+
+/* 外环光晕：在球体外面一圈渐隐 */
+.galaxy-sphere::before{
+  content:"";
+  position:absolute;
+  inset:-12%;
   border-radius:50%;
-  display:block;
+  z-index:0;
+  background: radial-gradient(
+    circle at center,
+    rgba(150,180,255,.22) 0%,
+    rgba(180,150,255,.12) 30%,
+    rgba(100,150,255,.06) 55%,
+    rgba(0,0,0,0) 72%
+  );
+  filter: blur(0.2px);
+  pointer-events:none;
+}
+
+/* 视频本体：铺满容器即可 */
+.galaxy-sphere video{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* ✅ 填满球体 */
+  display: block;
+  /* 可选：稍微压暗一点更像 SpaceX */
+  filter: brightness(.9) contrast(1.05);
+}
+
 }
 
 }@keyframes galaxy-breath {
