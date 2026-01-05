@@ -53,7 +53,7 @@
             letter-spacing: 0.5px;
             text-transform: uppercase;
             font-family: "D-DIN-Bold", "Arial Black", sans-serif;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.7);
             white-space: nowrap;
         }
 
@@ -68,7 +68,7 @@
         }
 
         .nav-menu a, .nav-menu .nav-dropdown {
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.65);
             text-decoration: none;
             transition: color 0.2s;
             cursor: pointer;
@@ -76,7 +76,7 @@
         }
 
         .nav-menu a:hover, .nav-menu .nav-dropdown:hover {
-            color: rgba(255, 255, 255, 1);
+            color: rgba(255, 255, 255, 0.85);
         }
 
         .nav-dropdown {
@@ -164,11 +164,12 @@
         /* Hero Section */
         .hero {
             position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            padding: 0 40px;
-            overflow: hidden;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 40px 40px;
+            overflow: visible;
         }
 
         /* Spiral Galaxy Sphere - 螺旋星系球体 */
@@ -181,6 +182,12 @@
             height: 700px;
             z-index: 1;
             pointer-events: none;
+            /* 外环效果 - 内部完全透明 */
+            border-radius: 50%;
+            border: 2px solid rgba(150, 180, 255, 0.3);
+            box-shadow: 
+                0 0 100px rgba(100, 150, 255, 0.2),
+                0 0 60px rgba(150, 180, 255, 0.15);
         }
 
         .galaxy-sphere img {
@@ -216,12 +223,64 @@
 
         .hero-content {
             position: relative;
-            max-width: 700px;
+            max-width: 900px;
             z-index: 10;
             padding-left: 240px;
         }
 
         .hero h1 {
+            font-size: 52px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+            color: rgba(255, 255, 255, 0.95);
+            white-space: nowrap;
+        }
+
+        .hero-questions {
+            margin-bottom: 20px;
+        }
+
+        .question-item {
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+        }
+
+        .alpha-answer {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-top: 25px;
+            margin-bottom: 0;
+            color: rgba(255, 204, 51, 0.9);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-scroll-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .hero-scroll-indicator:hover {
+            color: rgba(255, 255, 255, 0.9);
+            transform: translateY(5px);
+        }
+
+        .hero-scroll-indicator svg {
+            width: 32px;
+            height: 32px;
+        }
             font-size: 52px;
             font-weight: 600;
             line-height: 1.1;
@@ -240,33 +299,12 @@
             max-width: 620px;
         }
 
-        .hero-button {
-            display: inline-block;
-            padding: 14px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.6);
-            transition: all 0.3s;
-            margin-top: 30px;
-        }
-
-        .hero-button:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.4);
-            color: rgba(255, 255, 255, 0.9);
-        }
-
         /* Scientists Section */
         .scientists-section {
-            position: absolute;
-            bottom: 5px;
-            left: 0;
+            position: relative;
             width: 100%;
-            padding: 15px 0;
+            margin-top: 60px;
+            padding: 20px 0 30px;
             background: transparent;
             overflow: hidden;
             z-index: 10;
@@ -318,6 +356,7 @@
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 4px;
+            opacity: 0.75;
         }
 
         .scientist-year {
@@ -328,17 +367,9 @@
 
         .scientist-blurb {
             font-size: 13px;
-            opacity: 0.7;
+            opacity: 0.6;
             margin-bottom: 8px;
         }
-
-        .scientist-contribution {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.9);
-            font-style: italic;
-            line-height: 1.4;
-        }
-
         /* ============================================
            九卷概览 Section - Nine Volumes Overview
            ============================================ */
@@ -543,6 +574,22 @@
             .hero h1 { 
                 font-size: 42px; 
             }
+            .question-item {
+                font-size: 15px;
+                line-height: 1.7;
+                margin-bottom: 10px;
+            }
+            .alpha-answer {
+                font-size: 16px;
+                margin-top: 20px;
+            }
+            .hero-scroll-indicator {
+                margin-top: 30px;
+            }
+            .hero-scroll-indicator svg {
+                width: 28px;
+                height: 28px;
+            }
             .scientist-card { 
                 width: 250px; 
             }
@@ -555,6 +602,100 @@
             .volumes-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+            }
+        }
+
+        
+        /* ============================================
+           Core Spirit - SpaceX Minimal Style
+           ============================================ */
+        .core-spirit {
+            background: #050B20;
+        }
+
+        .spirit-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+        }
+
+        .spirit-content {
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        /* Screen 1 - 核心问句 */
+        .screen-1 .spirit-text {
+            font-size: 36px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Screen 2 - 三个声明 */
+        .screen-2 .spirit-statement {
+            font-size: 32px;
+            line-height: 2;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+        }
+
+        /* Screen 3 - 详细说明 */
+        .screen-3 .spirit-detail {
+            font-size: 28px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+        }
+
+        /* Screen 4 - 例子 */
+        .screen-4 .spirit-examples p {
+            font-size: 30px;
+            line-height: 2.2;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
+        }
+
+        /* Screen 5 - 过渡到科学家 */
+        .screen-5 .spirit-transition {
+            font-size: 32px;
+            line-height: 2;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .spirit-screen {
+                padding: 60px 25px;
+            }
+
+            .screen-1 .spirit-text {
+                font-size: 22px;
+            }
+
+            .screen-2 .spirit-statement {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+
+            .screen-3 .spirit-detail {
+                font-size: 18px;
+            }
+
+            .screen-4 .spirit-examples p {
+                font-size: 20px;
+            }
+
+            .screen-5 .spirit-transition {
+                font-size: 20px;
+                margin-bottom: 25px;
             }
         }
     </style>
@@ -608,153 +749,201 @@
         
         <div class="hero-content">
             <h1 id="hero-title">宇宙与人类</h1>
-            <div id="hero-text-zh">
-                <p>为什么有宇宙？为什么有生命？</p>
-                <p>人类一直在探究，意外发现一个无量纲结构约束量-α，它不描述宇宙是什么，而刻画什么样的结构允许演化。</p>
+            <h1 id="hero-title-en" style="display: none;">UNIVERSE & HUMANITY</h1>
+            <div id="hero-text-zh" class="hero-questions">
+                <p class="question-item">古希腊曾问：宇宙是什么？</p>
+                <p class="question-item">爱因斯坦追问：时空是什么？</p>
+                <p class="question-item">薛定谔追问：生命是什么？</p>
+                <p class="question-item">惠勒追问：信息是什么？</p>
+                <p class="question-item">彭罗斯追问：意识是什么？</p>
+                <p class="question-item">我们追问：宇宙与人类演化的约束是什么？</p>
+                <p class="alpha-answer">→ 是一个无量纲结构约束量：α →</p>
             </div>
-            <div id="hero-text-en" style="display: none;">
-                <p>Why does the universe exist? Why is there life?</p>
-                <p>Humanity has been exploring, and unexpectedly discovered a dimensionless structural constraint α, which describes not what the universe is, but what kind of structure permits evolution.</p>
+            <div id="hero-text-en" class="hero-questions" style="display: none;">
+                <p class="question-item">Ancient Greeks asked: What is the universe?</p>
+                <p class="question-item">Einstein asked: What is spacetime?</p>
+                <p class="question-item">Schrödinger asked: What is life?</p>
+                <p class="question-item">Wheeler asked: What is information?</p>
+                <p class="question-item">Penrose asked: What is consciousness?</p>
+                <p class="question-item">We ask: What constrains cosmic and human evolution?</p>
+                <p class="alpha-answer">→ A dimensionless structural constraint: α →</p>
             </div>
-            <a href="#volumes" class="hero-button">EXPLORE →</a>
+            <a href="#volumes" class="hero-scroll-indicator">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 14L12 19L17 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </div>
 
         <!-- Scientists Timeline -->
-        <section class="scientists-section">
+        <div class="scientists-section">
             <div class="scientists-scroll">
             <!-- First set -->
             <div class="scientist-card">
                 <div class="scientist-avatar">老</div>
                 <div class="scientist-name" data-en="Laozi" data-zh="老子">老子</div>
                 <div class="scientist-year" data-en="6th century BC" data-zh="6th century BC">6th century BC</div>
-                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>
-                <div class="scientist-contribution" data-en="Dao that can be told is not the eternal Dao" data-zh="道可道，非常道">道可道，非常道</div>
-            </div>
+                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">佛</div>
                 <div class="scientist-name" data-en="Buddha" data-zh="佛陀">佛陀</div>
                 <div class="scientist-year" data-en="5th century BC" data-zh="5th century BC">5th century BC</div>
-                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>
-                <div class="scientist-contribution" data-en="Form is emptiness, emptiness is form" data-zh="缘起性空">缘起性空</div>
-            </div>
+                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">E</div>
                 <div class="scientist-name" data-en="Einstein" data-zh="爱因斯坦">爱因斯坦</div>
                 <div class="scientist-year" data-en="1905" data-zh="1905">1905</div>
-                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>
-                <div class="scientist-contribution" data-en="E = mc²" data-zh="E = mc²">E = mc²</div>
-            </div>
+                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">S</div>
                 <div class="scientist-name" data-en="Schrödinger" data-zh="薛定谔">薛定谔</div>
                 <div class="scientist-year" data-en="1926 / 1944" data-zh="1926 / 1944">1926 / 1944</div>
-                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>
-                <div class="scientist-contribution" data-en="What is Life?" data-zh="生命的意义？生命是什么？">生命的意义？生命是什么？</div>
-            </div>
+                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">D</div>
                 <div class="scientist-name" data-en="Dirac" data-zh="狄拉克">狄拉克</div>
                 <div class="scientist-year" data-en="1928" data-zh="1928">1928</div>
-                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>
-                <div class="scientist-contribution" data-en="(iγ^μ∂_μ − m)ψ = 0" data-zh="(iγ^μ∂_μ − m)ψ = 0">(iγ^μ∂_μ − m)ψ = 0</div>
-            </div>
+                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">F</div>
                 <div class="scientist-name" data-en="Feynman" data-zh="费曼">费曼</div>
                 <div class="scientist-year" data-en="1948" data-zh="1948">1948</div>
-                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>
-                <div class="scientist-contribution" data-en="Path Integral" data-zh="路径积分">路径积分</div>
-            </div>
+                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">H</div>
                 <div class="scientist-name" data-en="Hawking" data-zh="霍金">霍金</div>
                 <div class="scientist-year" data-en="1974" data-zh="1974">1974</div>
-                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>
-                <div class="scientist-contribution" data-en="S = kA / 4ℓₚ²" data-zh="S = kA / 4ℓₚ²">S = kA / 4ℓₚ²</div>
-            </div>
+                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">W</div>
                 <div class="scientist-name" data-en="Wheeler" data-zh="惠勒">惠勒</div>
                 <div class="scientist-year" data-en="1989" data-zh="1989">1989</div>
-                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>
-                <div class="scientist-contribution" data-en="It from Bit" data-zh="万物源于比特">万物源于比特</div>
-            </div>
+                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>            </div>
 
             <!-- Duplicate set for infinite scroll -->
             <div class="scientist-card">
                 <div class="scientist-avatar">老</div>
                 <div class="scientist-name" data-en="Laozi" data-zh="老子">老子</div>
                 <div class="scientist-year" data-en="6th century BC" data-zh="6th century BC">6th century BC</div>
-                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>
-                <div class="scientist-contribution" data-en="Dao that can be told is not the eternal Dao" data-zh="道可道，非常道">道可道，非常道</div>
-            </div>
+                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">佛</div>
                 <div class="scientist-name" data-en="Buddha" data-zh="佛陀">佛陀</div>
                 <div class="scientist-year" data-en="5th century BC" data-zh="5th century BC">5th century BC</div>
-                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>
-                <div class="scientist-contribution" data-en="Form is emptiness, emptiness is form" data-zh="缘起性空">缘起性空</div>
-            </div>
+                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">E</div>
                 <div class="scientist-name" data-en="Einstein" data-zh="爱因斯坦">爱因斯坦</div>
                 <div class="scientist-year" data-en="1905" data-zh="1905">1905</div>
-                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>
-                <div class="scientist-contribution" data-en="E = mc²" data-zh="E = mc²">E = mc²</div>
-            </div>
+                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">S</div>
                 <div class="scientist-name" data-en="Schrödinger" data-zh="薛定谔">薛定谔</div>
                 <div class="scientist-year" data-en="1926 / 1944" data-zh="1926 / 1944">1926 / 1944</div>
-                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>
-                <div class="scientist-contribution" data-en="What is Life?" data-zh="生命的意义？生命是什么？">生命的意义？生命是什么？</div>
-            </div>
+                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">D</div>
                 <div class="scientist-name" data-en="Dirac" data-zh="狄拉克">狄拉克</div>
                 <div class="scientist-year" data-en="1928" data-zh="1928">1928</div>
-                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>
-                <div class="scientist-contribution" data-en="(iγ^μ∂_μ − m)ψ = 0" data-zh="(iγ^μ∂_μ − m)ψ = 0">(iγ^μ∂_μ − m)ψ = 0</div>
-            </div>
+                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">F</div>
                 <div class="scientist-name" data-en="Feynman" data-zh="费曼">费曼</div>
                 <div class="scientist-year" data-en="1948" data-zh="1948">1948</div>
-                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>
-                <div class="scientist-contribution" data-en="Path Integral" data-zh="路径积分">路径积分</div>
-            </div>
+                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">H</div>
                 <div class="scientist-name" data-en="Hawking" data-zh="霍金">霍金</div>
                 <div class="scientist-year" data-en="1974" data-zh="1974">1974</div>
-                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>
-                <div class="scientist-contribution" data-en="S = kA / 4ℓₚ²" data-zh="S = kA / 4ℓₚ²">S = kA / 4ℓₚ²</div>
-            </div>
+                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>            </div>
 
             <div class="scientist-card">
                 <div class="scientist-avatar">W</div>
                 <div class="scientist-name" data-en="Wheeler" data-zh="惠勒">惠勒</div>
                 <div class="scientist-year" data-en="1989" data-zh="1989">1989</div>
-                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>
-                <div class="scientist-contribution" data-en="It from Bit" data-zh="万物源于比特">万物源于比特</div>
-            </div>
+                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>            </div>
 
             </div>
-        </section>
+        </div>
+
     </section>
+
+    <!-- Core Spirit - SpaceX Style -->
+    <section class="core-spirit">
+        <div class="spirit-screen screen-1">
+            <div class="spirit-content">
+                <p id="spirit-1-zh" class="spirit-text">没有前人的生命和历史轨迹，<br>我们如何能够存在这里、这时，<br>和眼前的新认知？</p>
+                <p id="spirit-1-en" class="spirit-text" style="display: none;">Without the life trajectories of those before us,<br>how could we exist here, now,<br>with this new understanding?</p>
+            </div>
+        </div>
+        
+        <div class="spirit-screen screen-2">
+            <div class="spirit-content">
+                <div id="spirit-2-zh">
+                    <p class="spirit-statement">这里没有"推翻"，只有"延续"。</p>
+                    <p class="spirit-statement">这里没有"对错"，只有"演化"。</p>
+                    <p class="spirit-statement">这里没有"谁错了"，只有"我们来了"。</p>
+                </div>
+                <div id="spirit-2-en" style="display: none;">
+                    <p class="spirit-statement">Not "overthrow," but "continuation."</p>
+                    <p class="spirit-statement">Not "right or wrong," but "evolution."</p>
+                    <p class="spirit-statement">Not "who was wrong," but "we have arrived."</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="spirit-screen screen-3">
+            <div class="spirit-content">
+                <p id="spirit-3-zh" class="spirit-detail">每个理论，每次争论，每个"错误"，<br>都是这个认知得以存在的必要条件。</p>
+                <p id="spirit-3-en" class="spirit-detail" style="display: none;">Every theory, every debate, every "error,"<br>is a necessary condition for this understanding to exist.</p>
+            </div>
+        </div>
+        
+        <div class="spirit-screen screen-4">
+            <div class="spirit-content">
+                <div id="spirit-4-zh" class="spirit-examples">
+                    <p>牛顿没有错。</p>
+                    <p>爱因斯坦没有错。</p>
+                    <p>所有"弯路"都是这条路本身。</p>
+                </div>
+                <div id="spirit-4-en" class="spirit-examples" style="display: none;">
+                    <p>Newton was not wrong.</p>
+                    <p>Einstein was not wrong.</p>
+                    <p>All "detours" are the path itself.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="spirit-screen screen-5">
+            <div class="spirit-content">
+                <div id="spirit-5-zh">
+                    <p class="spirit-transition">这些思想家，</p>
+                    <p class="spirit-transition">不是"对"或"错"，</p>
+                    <p class="spirit-transition">而是"我们得以存在的原因"。</p>
+                </div>
+                <div id="spirit-5-en" style="display: none;">
+                    <p class="spirit-transition">These thinkers,</p>
+                    <p class="spirit-transition">not "right" or "wrong,"</p>
+                    <p class="spirit-transition">but "the reason we exist."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Nine Volumes Section -->
     <section class="volumes-section" id="volumes">
@@ -913,6 +1102,7 @@
     <script>
         function switchLang(lang) {
             const titleEl = document.getElementById('hero-title');
+            const titleEnEl = document.getElementById('hero-title-en');
             const enText = document.getElementById('hero-text-en');
             const zhText = document.getElementById('hero-text-zh');
             const langBtns = document.querySelectorAll('.lang-switch span');
@@ -925,17 +1115,82 @@
             const scientistNames = document.querySelectorAll('.scientist-name');
             const scientistYears = document.querySelectorAll('.scientist-year');
             const scientistBlurbs = document.querySelectorAll('.scientist-blurb');
-            const scientistContributions = document.querySelectorAll('.scientist-contribution');
             
             const volumesHeader = document.querySelector('.volumes-header h2');
             const volumesSubtitle = document.querySelector('.volumes-header .subtitle');
-            const exploreBtn = document.querySelector('.hero-button');
+            
+            // Spirit screens
+            const spirit1Zh = document.getElementById('spirit-1-zh');
+            const spirit1En = document.getElementById('spirit-1-en');
+            const spirit2Zh = document.getElementById('spirit-2-zh');
+            const spirit2En = document.getElementById('spirit-2-en');
+            const spirit3Zh = document.getElementById('spirit-3-zh');
+            const spirit3En = document.getElementById('spirit-3-en');
+            const spirit4Zh = document.getElementById('spirit-4-zh');
+            const spirit4En = document.getElementById('spirit-4-en');
+            const spirit5Zh = document.getElementById('spirit-5-zh');
+            const spirit5En = document.getElementById('spirit-5-en');
+            
+            const futureTitle = document.getElementById('future-title');
+            const futureTitleEn = document.getElementById('future-title-en');
+            const futureTextZh = document.getElementById('future-text-zh');
+            const futureTextEn = document.getElementById('future-text-en');
+            const coreZh = document.getElementById('core-zh');
+            const coreEn = document.getElementById('core-en');
+            const continuationZh = document.getElementById('continuation-zh');
+            const continuationEn = document.getElementById('continuation-en');
+            const scientistsIntroZh = document.getElementById('scientists-intro-zh');
+            const scientistsIntroEn = document.getElementById('scientists-intro-en');
             
             if (lang === 'en') {
-                titleEl.textContent = 'UNIVERSE & HUMANITY';
+                if (titleEl) titleEl.style.display = 'none';
+                if (titleEnEl) titleEnEl.style.display = 'block';
                 enText.style.display = 'block';
                 zhText.style.display = 'none';
-                exploreBtn.textContent = 'EXPLORE →';
+                
+                // Spirit screens
+                if (spirit1Zh) {
+                    spirit1Zh.style.display = 'none';
+                    spirit1En.style.display = 'block';
+                }
+                if (spirit2Zh) {
+                    spirit2Zh.style.display = 'none';
+                    spirit2En.style.display = 'block';
+                }
+                if (spirit3Zh) {
+                    spirit3Zh.style.display = 'none';
+                    spirit3En.style.display = 'block';
+                }
+                if (spirit4Zh) {
+                    spirit4Zh.style.display = 'none';
+                    spirit4En.style.display = 'block';
+                }
+                if (spirit5Zh) {
+                    spirit5Zh.style.display = 'none';
+                    spirit5En.style.display = 'block';
+                }
+                
+                if (futureTitle) {
+                    futureTitle.style.display = 'none';
+                    futureTitleEn.style.display = 'block';
+                    futureTextZh.style.display = 'none';
+                    futureTextEn.style.display = 'block';
+                }
+                
+                if (coreZh) {
+                    coreZh.style.display = 'none';
+                    coreEn.style.display = 'block';
+                }
+                
+                if (continuationZh) {
+                    continuationZh.style.display = 'none';
+                    continuationEn.style.display = 'block';
+                }
+                
+                if (scientistsIntroZh) {
+                    scientistsIntroZh.style.display = 'none';
+                    scientistsIntroEn.style.display = 'block';
+                }
                 
                 navLinks[0].textContent = 'ALPHA';
                 navLinks[1].textContent = 'UNIVERSE';
@@ -960,7 +1215,6 @@
                 scientistNames.forEach(el => el.textContent = el.dataset.en);
                 scientistYears.forEach(el => el.textContent = el.dataset.en);
                 scientistBlurbs.forEach(el => el.textContent = el.dataset.en);
-                scientistContributions.forEach(el => el.textContent = el.dataset.en);
                 
                 volumesHeader.textContent = volumesHeader.dataset.en;
                 volumesSubtitle.textContent = volumesSubtitle.dataset.en;
@@ -968,10 +1222,54 @@
                 langBtns[0].classList.add('active');
                 langBtns[1].classList.remove('active');
             } else {
-                titleEl.textContent = '宇宙与人类';
+                if (titleEl) titleEl.style.display = 'block';
+                if (titleEnEl) titleEnEl.style.display = 'none';
                 enText.style.display = 'none';
                 zhText.style.display = 'block';
-                exploreBtn.textContent = 'EXPLORE →';
+                
+                // Spirit screens
+                if (spirit1Zh) {
+                    spirit1Zh.style.display = 'block';
+                    spirit1En.style.display = 'none';
+                }
+                if (spirit2Zh) {
+                    spirit2Zh.style.display = 'block';
+                    spirit2En.style.display = 'none';
+                }
+                if (spirit3Zh) {
+                    spirit3Zh.style.display = 'block';
+                    spirit3En.style.display = 'none';
+                }
+                if (spirit4Zh) {
+                    spirit4Zh.style.display = 'block';
+                    spirit4En.style.display = 'none';
+                }
+                if (spirit5Zh) {
+                    spirit5Zh.style.display = 'block';
+                    spirit5En.style.display = 'none';
+                }
+                
+                if (futureTitle) {
+                    futureTitle.style.display = 'block';
+                    futureTitleEn.style.display = 'none';
+                    futureTextZh.style.display = 'block';
+                    futureTextEn.style.display = 'none';
+                }
+                
+                if (coreZh) {
+                    coreZh.style.display = 'block';
+                    coreEn.style.display = 'none';
+                }
+                
+                if (continuationZh) {
+                    continuationZh.style.display = 'block';
+                    continuationEn.style.display = 'none';
+                }
+                
+                if (scientistsIntroZh) {
+                    scientistsIntroZh.style.display = 'block';
+                    scientistsIntroEn.style.display = 'none';
+                }
                 
                 navLinks[0].textContent = '阿尔法无量纲';
                 navLinks[1].textContent = '宇宙';
@@ -996,7 +1294,6 @@
                 scientistNames.forEach(el => el.textContent = el.dataset.zh);
                 scientistYears.forEach(el => el.textContent = el.dataset.zh);
                 scientistBlurbs.forEach(el => el.textContent = el.dataset.zh);
-                scientistContributions.forEach(el => el.textContent = el.dataset.zh);
                 
                 volumesHeader.textContent = volumesHeader.dataset.zh;
                 volumesSubtitle.textContent = volumesSubtitle.dataset.zh;
