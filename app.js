@@ -1,21 +1,21 @@
 // app.js
 console.log("app.js loaded");
 
-// 1) Scroll indicator click -> scroll down one viewport
-(function bindScrollIndicator() {
+window.addEventListener("DOMContentLoaded", () => {
+  // 1️⃣ Scroll indicator: scroll down one viewport
   const indicator = document.querySelector(".scroll-indicator");
-  if (!indicator) return;
+  console.log("scroll-indicator found:", indicator);
 
-  indicator.addEventListener("click", () => {
-    window.scrollTo({
-      top: window.scrollY + window.innerHeight,
-      behavior: "smooth",
+  if (indicator) {
+    indicator.addEventListener("click", () => {
+      window.scrollTo({
+        top: window.scrollY + window.innerHeight,
+        behavior: "smooth",
+      });
     });
-  });
-})();
+  }
 
-// 2) Smooth scroll for internal anchors: <a href="#section">
-(function bindAnchorSmoothScroll() {
+  // 2️⃣ Smooth scroll for internal anchors
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", (e) => {
       const href = a.getAttribute("href");
@@ -25,7 +25,10 @@ console.log("app.js loaded");
       if (!target) return;
 
       e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     });
   });
-})();
+});
