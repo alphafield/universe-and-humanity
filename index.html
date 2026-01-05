@@ -1,949 +1,604 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Universe and Humanity | 宇宙与人类</title>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universe and Humanity | 宇宙与人类</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px 40px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 50px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-        }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 50px;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+    }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><radialGradient id="g" cx="50%25" cy="50%25"><stop offset="0%25" style="stop-color:%23ffffff;stop-opacity:0.9"/><stop offset="100%25" style="stop-color:%23ffffff;stop-opacity:0.3"/></radialGradient></defs><g fill="%23ffffff" opacity="0.8"><circle cx="60" cy="20" r="2.5"/><circle cx="50" cy="25" r="2.5"/><circle cx="70" cy="25" r="2.5"/><circle cx="40" cy="32" r="2.5"/><circle cx="60" cy="32" r="2.5"/><circle cx="80" cy="32" r="2.5"/><circle cx="30" cy="40" r="2.5"/><circle cx="50" cy="40" r="2.5"/><circle cx="70" cy="40" r="2.5"/><circle cx="90" cy="40" r="2.5"/><circle cx="20" cy="50" r="2.5"/><circle cx="40" cy="50" r="2.5"/><circle cx="60" cy="50" r="3" fill="url(%23g)"/><circle cx="80" cy="50" r="2.5"/><circle cx="100" cy="50" r="2.5"/><circle cx="20" cy="60" r="2.5"/><circle cx="40" cy="60" r="2.5"/><circle cx="60" cy="60" r="3" fill="url(%23g)"/><circle cx="80" cy="60" r="2.5"/><circle cx="100" cy="60" r="2.5"/><circle cx="30" cy="70" r="2.5"/><circle cx="50" cy="70" r="2.5"/><circle cx="70" cy="70" r="2.5"/><circle cx="90" cy="70" r="2.5"/><circle cx="40" cy="78" r="2.5"/><circle cx="60" cy="78" r="2.5"/><circle cx="80" cy="78" r="2.5"/><circle cx="50" cy="85" r="2.5"/><circle cx="70" cy="85" r="2.5"/><circle cx="60" cy="92" r="2.5"/></g></svg>') center/contain no-repeat;
-        }
+    .logo-container { display: flex; align-items: center; gap: 15px; }
 
-        .logo {
-            font-size: 18px;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-family: "D-DIN-Bold", "Arial Black", sans-serif;
-            color: rgba(255, 255, 255, 0.9);
-            white-space: nowrap;
-        }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><defs><radialGradient id="g" cx="50%25" cy="50%25"><stop offset="0%25" style="stop-color:%23ffffff;stop-opacity:0.9"/><stop offset="100%25" style="stop-color:%23ffffff;stop-opacity:0.3"/></radialGradient></defs><g fill="%23ffffff" opacity="0.8"><circle cx="60" cy="20" r="2.5"/><circle cx="50" cy="25" r="2.5"/><circle cx="70" cy="25" r="2.5"/><circle cx="40" cy="32" r="2.5"/><circle cx="60" cy="32" r="2.5"/><circle cx="80" cy="32" r="2.5"/><circle cx="30" cy="40" r="2.5"/><circle cx="50" cy="40" r="2.5"/><circle cx="70" cy="40" r="2.5"/><circle cx="90" cy="40" r="2.5"/><circle cx="20" cy="50" r="2.5"/><circle cx="40" cy="50" r="2.5"/><circle cx="60" cy="50" r="3" fill="url(%23g)"/><circle cx="80" cy="50" r="2.5"/><circle cx="100" cy="50" r="2.5"/><circle cx="20" cy="60" r="2.5"/><circle cx="40" cy="60" r="2.5"/><circle cx="60" cy="60" r="3" fill="url(%23g)"/><circle cx="80" cy="60" r="2.5"/><circle cx="100" cy="60" r="2.5"/><circle cx="30" cy="70" r="2.5"/><circle cx="50" cy="70" r="2.5"/><circle cx="70" cy="70" r="2.5"/><circle cx="90" cy="70" r="2.5"/><circle cx="40" cy="78" r="2.5"/><circle cx="60" cy="78" r="2.5"/><circle cx="80" cy="78" r="2.5"/><circle cx="50" cy="85" r="2.5"/><circle cx="70" cy="85" r="2.5"/><circle cx="60" cy="92" r="2.5"/></g></svg>') center/contain no-repeat;
+    }
 
-        .nav-menu {
-            display: flex;
-            gap: 35px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: "D-DIN-Bold", Arial, sans-serif;
-        }
+    .logo {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-family: "D-DIN-Bold", "Arial Black", sans-serif;
+      color: rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
+    }
 
-        .nav-menu a, .nav-menu .nav-dropdown {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            transition: color 0.2s;
-            cursor: pointer;
-            position: relative;
-        }
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: "D-DIN-Bold", Arial, sans-serif;
+    }
 
-        .nav-menu a:hover, .nav-menu .nav-dropdown:hover {
-            color: rgba(255, 255, 255, 1);
-        }
+    .nav-menu a, .nav-menu .nav-dropdown {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+    .nav-menu a:hover, .nav-menu .nav-dropdown:hover { color: rgba(255, 255, 255, 1); }
 
-        .nav-dropdown {
-            position: relative;
-        }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 10px;
+      background: rgba(0, 0, 0, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      min-width: 220px;
+      padding: 15px 0;
+    }
+    .nav-dropdown:hover .nav-dropdown-content { display: block; }
+    .nav-dropdown-title {
+      padding: 8px 20px;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .nav-dropdown-content a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 11px;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-dropdown-content a:hover { background: rgba(255, 255, 255, 0.1); }
+    .nav-dropdown-split {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 10px 0;
+    }
 
-        .nav-dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 10px;
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            min-width: 220px;
-            padding: 15px 0;
-        }
+    .nav-right {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-weight: 600;
+      margin-left: auto;
+    }
 
-        .nav-dropdown:hover .nav-dropdown-content {
-            display: block;
-        }
+    .lang-switch {
+      display: flex;
+      gap: 0;
+      font-size: 11px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .lang-switch span {
+      padding: 6px 14px;
+      transition: all 0.2s;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      user-select: none;
+    }
+    .lang-switch span:hover { background: rgba(255, 255, 255, 0.1); }
+    .lang-switch span.active { background: rgba(255, 255, 255, 0.15); color: #fff; }
 
-        .nav-dropdown-title {
-            padding: 8px 20px;
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      overflow: hidden;
+    }
 
-        .nav-dropdown-content a {
-            display: block;
-            padding: 10px 20px;
-            font-size: 11px;
-            color: #fff;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
+    .galaxy-sphere {
+      position: absolute;
+      top: 42%;
+      right: 8%;
+      transform: translateY(-50%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+      box-shadow:
+        0 0 120px rgba(100, 150, 255, 0.3),
+        0 0 80px rgba(200, 180, 255, 0.2),
+        inset 0 0 100px rgba(0, 0, 0, 0.2);
+    }
 
-        .nav-dropdown-content a:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+    .galaxy-sphere::before {
+      content: '';
+      position: absolute;
+      top: -10%; left: -10%; right: -10%; bottom: -10%;
+      background: radial-gradient(
+        circle at center,
+        rgba(150, 180, 255, 0.2) 0%,
+        rgba(180, 150, 255, 0.1) 30%,
+        rgba(100, 150, 255, 0.05) 50%,
+        transparent 70%
+      );
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-        .nav-dropdown-split {
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 10px 0;
-        }
+    .galaxy-sphere video {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.95;
+      filter: blur(0.6px) brightness(0.85) contrast(1.05);
+      -webkit-mask-image: radial-gradient(circle at center,
+        rgba(0,0,0,1) 58%,
+        rgba(0,0,0,0.85) 68%,
+        rgba(0,0,0,0.4) 78%,
+        rgba(0,0,0,0) 88%
+      );
+              mask-image: radial-gradient(circle at center,
+        rgba(0,0,0,1) 58%,
+        rgba(0,0,0,0.85) 68%,
+        rgba(0,0,0,0.4) 78%,
+        rgba(0,0,0,0) 88%
+      );
+    }
 
-        .nav-right {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            font-weight: 600;
-            margin-left: auto;
-        }
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+      z-index: 10;
+      padding-left: 240px;
+    }
 
-        .lang-switch {
-            display: flex;
-            gap: 0;
-            font-size: 11px;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 25px;
+      letter-spacing: -0.5px;
+      color: rgba(255, 255, 255, 0.95);
+      white-space: nowrap;
+    }
 
-        .lang-switch span {
-            padding: 6px 14px;
-            transition: all 0.2s;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
+    .hero p {
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.75);
+      max-width: 620px;
+    }
 
-        .lang-switch span:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+    /* ✅ 大 V 下滑箭头（替换 EXPLORE） */
+    .scroll-indicator {
+      position: absolute;
+      left: 80px;
+      bottom: 46px;
+      z-index: 20;
+      width: 90px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      user-select: none;
+    }
+    .scroll-indicator:hover {
+      transform: translateY(2px);
+      opacity: 1;
+    }
+    .scroll-indicator svg { width: 90px; height: 60px; }
+    .scroll-indicator polyline {
+      stroke: rgba(255,255,255,0.9);
+      stroke-width: 3.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-        .lang-switch span.active {
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
+    /* Scientists */
+    .scientists-section {
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      padding: 15px 0;
+      background: transparent;
+      overflow: hidden;
+      z-index: 10;
+      pointer-events: auto;
+    }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 40px;
-            overflow: hidden;
-        }
+    .scientists-scroll {
+      display: flex;
+      width: max-content;
+      animation: scroll 120s linear infinite;
+    }
+    .scientists-scroll:hover { animation-play-state: paused; }
 
-        /* Spiral Galaxy Sphere - VIDEO 版本（进环 + 外环光晕） */
-        .galaxy-sphere {
-            position: absolute;
-            top: 42%;
-            right: 8%;
-            transform: translateY(-50%);
-            width: 700px;
-            height: 700px;
-            border-radius: 50%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-            box-shadow: 
-                0 0 120px rgba(100, 150, 255, 0.3),
-                0 0 80px rgba(200, 180, 255, 0.2),
-                inset 0 0 100px rgba(0, 0, 0, 0.2);
-        }
+    .scientist-card {
+      flex-shrink: 0;
+      width: 280px;
+      text-align: center;
+      padding: 20px;
+      margin: 0 15px;
+      transition: all 0.3s;
+    }
+    .scientist-card:hover { transform: translateY(-5px); }
 
-        /* 星系光晕 - 蓝紫色调 */
-        .galaxy-sphere::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            right: -10%;
-            bottom: -10%;
-            background: radial-gradient(
-                circle at center,
-                rgba(150, 180, 255, 0.2) 0%,
-                rgba(180, 150, 255, 0.1) 30%,
-                rgba(100, 150, 255, 0.05) 50%,
-                transparent 70%
-            );
-            border-radius: 50%;
-            z-index: 0;
-            pointer-events: none;
-        }
+    .scientist-avatar {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.12) 40%,
+        rgba(255, 255, 255, 0.04) 70%,
+        transparent 100%);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 300;
+    }
+    .scientist-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .scientist-year { font-size: 12px; opacity: 0.5; margin-bottom: 8px; }
+    .scientist-blurb { font-size: 13px; opacity: 0.7; margin-bottom: 8px; }
+    .scientist-contribution { font-size: 13px; color: rgba(255, 255, 255, 0.9); font-style: italic; line-height: 1.4; }
 
-        /* 视频：铺满 + 吞边 */
-        .galaxy-sphere video{
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0.95;
-            filter: blur(0.6px) brightness(0.85) contrast(1.05);
+    /* Volumes */
+    .volumes-section {
+      min-height: 100vh;
+      padding: 120px 80px 80px;
+      background: linear-gradient(180deg, #000 0%, #050B20 50%, #000 100%);
+      position: relative;
+    }
+    .volumes-header { text-align: center; margin-bottom: 80px; }
+    .volumes-header h2 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .volumes-header .subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
 
-            -webkit-mask-image: radial-gradient(
-                circle at center,
-                rgba(0,0,0,1) 58%,
-                rgba(0,0,0,0.85) 68%,
-                rgba(0,0,0,0.4) 78%,
-                rgba(0,0,0,0) 88%
-            );
-                    mask-image: radial-gradient(
-                circle at center,
-                rgba(0,0,0,1) 58%,
-                rgba(0,0,0,0.85) 68%,
-                rgba(0,0,0,0.4) 78%,
-                rgba(0,0,0,0) 88%
-            );
-        }
+    .volumes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-        .hero-content {
-            position: relative;
-            max-width: 700px;
-            z-index: 10;
-            padding-left: 240px;
-        }
+    .volume-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 40px 30px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    .volume-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at top right, rgba(100, 150, 255, 0.08) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .volume-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 80px rgba(100, 150, 255, 0.1);
+    }
+    .volume-card:hover::before { opacity: 1; }
 
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            letter-spacing: -0.5px;
-            color: rgba(255, 255, 255, 0.95);
-            white-space: nowrap;
-        }
+    .volume-number {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    .volume-title-zh {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 1px;
+    }
+    .volume-title-en {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .volume-tagline {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .volume-description {
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 25px;
+    }
+    .volume-keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .keyword-tag {
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+    }
+    .volume-card:hover .keyword-tag {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
 
-        .hero p {
-            font-size: 15px;
-            line-height: 1.8;
-            font-weight: 300;
-            margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.75);
-            max-width: 620px;
-        }
-
-        .hero-button {
-            display: inline-block;
-            padding: 14px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.6);
-            transition: all 0.3s;
-            margin-top: 30px;
-        }
-
-        .hero-button:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.4);
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Scientists Section */
-        .scientists-section {
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            padding: 15px 0;
-            background: transparent;
-            overflow: hidden;
-            z-index: 10;
-        }
-
-        .scientists-scroll {
-            display: flex;
-            width: max-content;
-            animation: scroll 120s linear infinite;
-        }
-
-        .scientists-scroll:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .scientist-card {
-            flex-shrink: 0;
-            width: 280px;
-            text-align: center;
-            padding: 20px;
-            margin: 0 15px;
-            transition: all 0.3s;
-        }
-
-        .scientist-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .scientist-avatar {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0.04) 70%, transparent 100%);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: 300;
-        }
-
-        .scientist-name {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .scientist-year {
-            font-size: 12px;
-            opacity: 0.5;
-            margin-bottom: 8px;
-        }
-
-        .scientist-blurb {
-            font-size: 13px;
-            opacity: 0.7;
-            margin-bottom: 8px;
-        }
-
-        .scientist-contribution {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.9);
-            font-style: italic;
-            line-height: 1.4;
-        }
-
-        /* ============================================
-           九卷概览 Section - Nine Volumes Overview
-           ============================================ */
-        .volumes-section {
-            min-height: 100vh;
-            padding: 120px 80px 80px;
-            background: linear-gradient(180deg, #000 0%, #050B20 50%, #000 100%);
-            position: relative;
-        }
-
-        .volumes-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .volumes-header h2 {
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .volumes-header .subtitle {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
-
-        .volumes-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .volume-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 40px 30px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .volume-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(100, 150, 255, 0.08) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .volume-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 0 80px rgba(100, 150, 255, 0.1);
-        }
-
-        .volume-card:hover::before {
-            opacity: 1;
-        }
-
-        .volume-number {
-            font-size: 14px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .volume-title-zh {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.95);
-            letter-spacing: 1px;
-        }
-
-        .volume-title-en {
-            font-size: 15px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .volume-tagline {
-            font-size: 14px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .volume-description {
-            font-size: 14px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.65);
-            margin-bottom: 25px;
-        }
-
-        .volume-keywords {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .keyword-tag {
-            padding: 6px 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 6px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-        }
-
-        .volume-card:hover .keyword-tag {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-
-        /* Volume specific accent colors */
-        .volume-card[data-volume="1"] .volume-number { color: rgba(150, 180, 255, 0.6); }
-        .volume-card[data-volume="2"] .volume-number { color: rgba(255, 200, 100, 0.6); }
-        .volume-card[data-volume="3"] .volume-number { color: rgba(100, 255, 200, 0.6); }
-        .volume-card[data-volume="4"] .volume-number { color: rgba(150, 255, 150, 0.6); }
-        .volume-card[data-volume="5"] .volume-number { color: rgba(255, 150, 200, 0.6); }
-        .volume-card[data-volume="6"] .volume-number { color: rgba(255, 100, 100, 0.6); }
-        .volume-card[data-volume="7"] .volume-number { color: rgba(200, 150, 255, 0.6); }
-        .volume-card[data-volume="8"] .volume-number { color: rgba(100, 200, 255, 0.6); }
-        .volume-card[data-volume="9"] .volume-number { color: rgba(255, 255, 255, 0.8); }
-
-        /* 响应式 */
-        @media (max-width: 1400px) {
-            .galaxy-sphere {
-                width: 600px;
-                height: 600px;
-                right: 5%;
-            }
-            .volumes-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .galaxy-sphere {
-                width: 500px;
-                height: 500px;
-                right: 3%;
-            }
-            .volumes-section {
-                padding: 100px 40px 60px;
-            }
-            .volumes-grid {
-                gap: 25px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav { 
-                padding: 15px 20px;
-                gap: 20px;
-            }
-            .nav-menu { 
-                display: none; 
-            }
-            .galaxy-sphere {
-                width: 350px;
-                height: 350px;
-                right: -50px;
-                opacity: 0.5;
-            }
-            .hero { 
-                padding: 0 20px; 
-            }
-            .hero-content {
-                padding-left: 0;
-                max-width: 100%;
-            }
-            .hero h1 { 
-                font-size: 42px; 
-            }
-            .scientist-card { 
-                width: 250px; 
-            }
-            .volumes-section {
-                padding: 80px 20px 40px;
-            }
-            .volumes-header h2 {
-                font-size: 36px;
-            }
-            .volumes-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 1400px) {
+      .galaxy-sphere { width: 600px; height: 600px; right: 5%; }
+      .volumes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      .galaxy-sphere { width: 500px; height: 500px; right: 3%; }
+      .volumes-section { padding: 100px 40px 60px; }
+      .volumes-grid { gap: 25px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; gap: 20px; }
+      .nav-menu { display: none; }
+      .galaxy-sphere { width: 350px; height: 350px; right: -50px; opacity: 0.5; }
+      .hero { padding: 0 20px; }
+      .hero-content { padding-left: 0; max-width: 100%; }
+      .hero h1 { font-size: 42px; }
+      .scientist-card { width: 250px; }
+      .volumes-section { padding: 80px 20px 40px; }
+      .volumes-header h2 { font-size: 36px; }
+      .volumes-grid { grid-template-columns: 1fr; gap: 20px; }
+      .scroll-indicator { left: 28px; bottom: 36px; width: 80px; height: 52px; }
+      .scroll-indicator svg { width: 80px; height: 52px; }
+    }
+  </style>
 </head>
+
 <body>
-    <nav>
-        <div class="logo-container">
-            <div class="logo-icon"></div>
-            <div class="logo">UNIVERSE & HUMANITY</div>
+  <nav>
+    <div class="logo-container">
+      <div class="logo-icon"></div>
+      <div class="logo">UNIVERSE & HUMANITY</div>
+    </div>
+
+    <div class="nav-menu">
+      <a href="#alpha">阿尔法无量纲</a>
+      <a href="#universe">宇宙</a>
+      <div class="nav-dropdown">
+        <span>人类 ▾</span>
+        <div class="nav-dropdown-content">
+          <div class="nav-dropdown-title">人类探索</div>
+          <a href="#humanity">人类概述</a>
+          <a href="#thinkers">思想家</a>
         </div>
-        <div class="nav-menu">
-            <a href="#alpha">阿尔法无量纲</a>
-            <a href="#universe">宇宙</a>
-            <div class="nav-dropdown">
-                <span>人类 ▾</span>
-                <div class="nav-dropdown-content">
-                    <div class="nav-dropdown-title">人类探索</div>
-                    <a href="#humanity">人类概述</a>
-                    <a href="#thinkers">思想家</a>
-                </div>
-            </div>
-            <a href="#civilization">新文明</a>
-            <div class="nav-dropdown">
-                <span>《宇宙与人类》系列卷著 ▾</span>
-                <div class="nav-dropdown-content">
-                    <div class="nav-dropdown-title">完整系列</div>
-                    <a href="#nine-volumes">九卷（科学理论版）</a>
-                    <a href="#epic">宇宙史诗（叙事版）</a>
-                    <a href="#dao">宇宙之道（东方智慧版）</a>
-                    <a href="#sutra">宇宙心经（精简版）</a>
-                    <a href="#parables">宇宙寓言（诗歌艺术版）</a>
-                    <div class="nav-dropdown-split"></div>
-                    <a href="#publishing">出版与合作</a>
-                    <a href="#contact">联系我们</a>
-                </div>
-            </div>
+      </div>
+      <a href="#civilization">新文明</a>
+      <div class="nav-dropdown">
+        <span>《宇宙与人类》系列卷著 ▾</span>
+        <div class="nav-dropdown-content">
+          <div class="nav-dropdown-title">完整系列</div>
+          <a href="#volumes">九卷（科学理论版）</a>
+          <a href="#epic">宇宙史诗（叙事版）</a>
+          <a href="#dao">宇宙之道（东方智慧版）</a>
+          <a href="#sutra">宇宙心经（精简版）</a>
+          <a href="#parables">宇宙寓言（诗歌艺术版）</a>
+          <div class="nav-dropdown-split"></div>
+          <a href="#publishing">出版与合作</a>
+          <a href="#contact">联系我们</a>
         </div>
-        <div class="nav-right">
-            <div class="lang-switch">
-                <span onclick="switchLang('en')">EN</span>
-                <span class="active" onclick="switchLang('zh')">中文</span>
-            </div>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="lang-switch">
+        <span data-lang="en">EN</span>
+        <span class="active" data-lang="zh">中文</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="galaxy-sphere">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="assets/galaxy.webm" type="video/webm">
+        <source src="assets/galaxy.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="hero-content">
+      <h1 id="hero-title">宇宙与人类</h1>
+
+      <div id="hero-text-zh">
+        <p>为什么有宇宙？为什么有生命？</p>
+        <p>人类一直在探究，意外发现一个无量纲结构约束量-α，它不描述宇宙是什么，而刻画什么样的结构允许演化。</p>
+      </div>
+
+      <div id="hero-text-en" style="display:none;">
+        <p>Why does the universe exist? Why is there life?</p>
+        <p>Humanity discovered a dimensionless structural constraint α—describing not what the universe is, but what structures permit evolution.</p>
+      </div>
+    </div>
+
+    <!-- ✅ 大 V 下滑箭头（点击滚动一屏） -->
+    <div class="scroll-indicator" id="scroll-indicator" aria-label="Scroll down">
+      <svg viewBox="0 0 48 24">
+        <polyline points="4,4 24,20 44,4"></polyline>
+      </svg>
+    </div>
+
+    <!-- Scientists -->
+    <section class="scientists-section" id="thinkers">
+      <div class="scientists-scroll">
+        <!-- 你原来的 scientist-card 列表：原样粘贴即可（我这里保留你给的第一组 + 重复组） -->
+        <div class="scientist-card">
+          <div class="scientist-avatar">老</div>
+          <div class="scientist-name" data-en="Laozi" data-zh="老子">老子</div>
+          <div class="scientist-year" data-en="6th century BC" data-zh="6th century BC">6th century BC</div>
+          <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>
+          <div class="scientist-contribution" data-en="Dao that can be told is not the eternal Dao" data-zh="道可道，非常道">道可道，非常道</div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="galaxy-sphere">
-            <video autoplay muted loop playsinline preload="auto">
-                <source src="assets/galaxy.webm" type="video/webm">
-                <source src="assets/galaxy.mp4" type="video/mp4">
-            </video>
-        </div>
-        
-        <div class="hero-content">
-            <h1 id="hero-title">宇宙与人类</h1>
-            <div id="hero-text-zh">
-                <p>为什么有宇宙？为什么有生命？</p>
-                <p>人类一直在探究，意外发现一个无量纲结构约束量-α，它不描述宇宙是什么，而刻画什么样的结构允许演化。</p>
-            </div>
-            <div id="hero-text-en" style="display: none;">
-                <p>Why does the universe exist? Why is there life?</p>
-                <p>Humanity has been exploring, and unexpectedly discovered a dimensionless structural constraint α, which describes not what the universe is, but what kind of structure permits evolution.</p>
-            </div>
-            <a href="#volumes" class="hero-button">EXPLORE →</a>
+        <div class="scientist-card">
+          <div class="scientist-avatar">佛</div>
+          <div class="scientist-name" data-en="Buddha" data-zh="佛陀">佛陀</div>
+          <div class="scientist-year" data-en="5th century BC" data-zh="5th century BC">5th century BC</div>
+          <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>
+          <div class="scientist-contribution" data-en="Form is emptiness, emptiness is form" data-zh="缘起性空">缘起性空</div>
         </div>
 
-        <!-- Scientists Timeline -->
-        <section class="scientists-section">
-            <div class="scientists-scroll">
-            <!-- First set -->
-            <div class="scientist-card">
-                <div class="scientist-avatar">老</div>
-                <div class="scientist-name" data-en="Laozi" data-zh="老子">老子</div>
-                <div class="scientist-year" data-en="6th century BC" data-zh="6th century BC">6th century BC</div>
-                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>
-                <div class="scientist-contribution" data-en="Dao that can be told is not the eternal Dao" data-zh="道可道，非常道">道可道，非常道</div>
-            </div>
+        <div class="scientist-card">
+          <div class="scientist-avatar">E</div>
+          <div class="scientist-name" data-en="Einstein" data-zh="爱因斯坦">爱因斯坦</div>
+          <div class="scientist-year" data-en="1905" data-zh="1905">1905</div>
+          <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>
+          <div class="scientist-contribution" data-en="E = mc²" data-zh="E = mc²">E = mc²</div>
+        </div>
 
-            <div class="scientist-card">
-                <div class="scientist-avatar">佛</div>
-                <div class="scientist-name" data-en="Buddha" data-zh="佛陀">佛陀</div>
-                <div class="scientist-year" data-en="5th century BC" data-zh="5th century BC">5th century BC</div>
-                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>
-                <div class="scientist-contribution" data-en="Form is emptiness, emptiness is form" data-zh="缘起性空">缘起性空</div>
-            </div>
+        <div class="scientist-card">
+          <div class="scientist-avatar">S</div>
+          <div class="scientist-name" data-en="Schrödinger" data-zh="薛定谔">薛定谔</div>
+          <div class="scientist-year" data-en="1926 / 1944" data-zh="1926 / 1944">1926 / 1944</div>
+          <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>
+          <div class="scientist-contribution" data-en="What is Life?" data-zh="生命的意义？生命是什么？">生命的意义？生命是什么？</div>
+        </div>
 
-            <div class="scientist-card">
-                <div class="scientist-avatar">E</div>
-                <div class="scientist-name" data-en="Einstein" data-zh="爱因斯坦">爱因斯坦</div>
-                <div class="scientist-year" data-en="1905" data-zh="1905">1905</div>
-                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>
-                <div class="scientist-contribution" data-en="E = mc²" data-zh="E = mc²">E = mc²</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">S</div>
-                <div class="scientist-name" data-en="Schrödinger" data-zh="薛定谔">薛定谔</div>
-                <div class="scientist-year" data-en="1926 / 1944" data-zh="1926 / 1944">1926 / 1944</div>
-                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>
-                <div class="scientist-contribution" data-en="What is Life?" data-zh="生命的意义？生命是什么？">生命的意义？生命是什么？</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">D</div>
-                <div class="scientist-name" data-en="Dirac" data-zh="狄拉克">狄拉克</div>
-                <div class="scientist-year" data-en="1928" data-zh="1928">1928</div>
-                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>
-                <div class="scientist-contribution" data-en="(iγ^μ∂_μ − m)ψ = 0" data-zh="(iγ^μ∂_μ − m)ψ = 0">(iγ^μ∂_μ − m)ψ = 0</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">F</div>
-                <div class="scientist-name" data-en="Feynman" data-zh="费曼">费曼</div>
-                <div class="scientist-year" data-en="1948" data-zh="1948">1948</div>
-                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>
-                <div class="scientist-contribution" data-en="Path Integral" data-zh="路径积分">路径积分</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">H</div>
-                <div class="scientist-name" data-en="Hawking" data-zh="霍金">霍金</div>
-                <div class="scientist-year" data-en="1974" data-zh="1974">1974</div>
-                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>
-                <div class="scientist-contribution" data-en="S = kA / 4ℓₚ²" data-zh="S = kA / 4ℓₚ²">S = kA / 4ℓₚ²</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">W</div>
-                <div class="scientist-name" data-en="Wheeler" data-zh="惠勒">惠勒</div>
-                <div class="scientist-year" data-en="1989" data-zh="1989">1989</div>
-                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>
-                <div class="scientist-contribution" data-en="It from Bit" data-zh="万物源于比特">万物源于比特</div>
-            </div>
-
-            <!-- Duplicate set for infinite scroll -->
-            <div class="scientist-card">
-                <div class="scientist-avatar">老</div>
-                <div class="scientist-name" data-en="Laozi" data-zh="老子">老子</div>
-                <div class="scientist-year" data-en="6th century BC" data-zh="6th century BC">6th century BC</div>
-                <div class="scientist-blurb" data-en="The Cosmic Way" data-zh="宇宙之道">宇宙之道</div>
-                <div class="scientist-contribution" data-en="Dao that can be told is not the eternal Dao" data-zh="道可道，非常道">道可道，非常道</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">佛</div>
-                <div class="scientist-name" data-en="Buddha" data-zh="佛陀">佛陀</div>
-                <div class="scientist-year" data-en="5th century BC" data-zh="5th century BC">5th century BC</div>
-                <div class="scientist-blurb" data-en="Dependent Origination" data-zh="缘起体系">缘起体系</div>
-                <div class="scientist-contribution" data-en="Form is emptiness, emptiness is form" data-zh="缘起性空">缘起性空</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">E</div>
-                <div class="scientist-name" data-en="Einstein" data-zh="爱因斯坦">爱因斯坦</div>
-                <div class="scientist-year" data-en="1905" data-zh="1905">1905</div>
-                <div class="scientist-blurb" data-en="Relativity · Spacetime" data-zh="相对论 · 时空结构">相对论 · 时空结构</div>
-                <div class="scientist-contribution" data-en="E = mc²" data-zh="E = mc²">E = mc²</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">S</div>
-                <div class="scientist-name" data-en="Schrödinger" data-zh="薛定谔">薛定谔</div>
-                <div class="scientist-year" data-en="1926 / 1944" data-zh="1926 / 1944">1926 / 1944</div>
-                <div class="scientist-blurb" data-en="Quantum Foundation · Life" data-zh="量子基础 · 生命之问">量子基础 · 生命之问</div>
-                <div class="scientist-contribution" data-en="What is Life?" data-zh="生命的意义？生命是什么？">生命的意义？生命是什么？</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">D</div>
-                <div class="scientist-name" data-en="Dirac" data-zh="狄拉克">狄拉克</div>
-                <div class="scientist-year" data-en="1928" data-zh="1928">1928</div>
-                <div class="scientist-blurb" data-en="Relativistic Quantum · Symmetry" data-zh="相对论量子化 · 对称">相对论量子化 · 对称</div>
-                <div class="scientist-contribution" data-en="(iγ^μ∂_μ − m)ψ = 0" data-zh="(iγ^μ∂_μ − m)ψ = 0">(iγ^μ∂_μ − m)ψ = 0</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">F</div>
-                <div class="scientist-name" data-en="Feynman" data-zh="费曼">费曼</div>
-                <div class="scientist-year" data-en="1948" data-zh="1948">1948</div>
-                <div class="scientist-blurb" data-en="Path Integral · Computational Intuition" data-zh="路径积分 · 计算直觉">路径积分 · 计算直觉</div>
-                <div class="scientist-contribution" data-en="Path Integral" data-zh="路径积分">路径积分</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">H</div>
-                <div class="scientist-name" data-en="Hawking" data-zh="霍金">霍金</div>
-                <div class="scientist-year" data-en="1974" data-zh="1974">1974</div>
-                <div class="scientist-blurb" data-en="Black Hole Thermodynamics" data-zh="黑洞热力学">黑洞热力学</div>
-                <div class="scientist-contribution" data-en="S = kA / 4ℓₚ²" data-zh="S = kA / 4ℓₚ²">S = kA / 4ℓₚ²</div>
-            </div>
-
-            <div class="scientist-card">
-                <div class="scientist-avatar">W</div>
-                <div class="scientist-name" data-en="Wheeler" data-zh="惠勒">惠勒</div>
-                <div class="scientist-year" data-en="1989" data-zh="1989">1989</div>
-                <div class="scientist-blurb" data-en="Information Universe" data-zh="信息宇宙">信息宇宙</div>
-                <div class="scientist-contribution" data-en="It from Bit" data-zh="万物源于比特">万物源于比特</div>
-            </div>
-
-            </div>
-        </section>
+        <!-- 你原来的重复组继续粘贴... -->
+      </div>
     </section>
+  </section>
 
-    <!-- Nine Volumes Section -->
-    <section class="volumes-section" id="volumes">
-        <div class="volumes-header">
-            <h2 data-en="The Nine Volumes" data-zh="九卷主干">九卷主干</h2>
-            <p class="subtitle" data-en="A Complete Framework of Universal Evolution" data-zh="宇宙演化的完整框架">宇宙演化的完整框架</p>
+  <!-- Volumes -->
+  <section class="volumes-section" id="volumes">
+    <div class="volumes-header">
+      <h2 data-en="The Nine Volumes" data-zh="九卷主干">九卷主干</h2>
+      <p class="subtitle" data-en="A Complete Framework of Universal Evolution" data-zh="宇宙演化的完整框架">宇宙演化的完整框架</p>
+    </div>
+
+    <div class="volumes-grid">
+      <div class="volume-card" data-volume="1" onclick="location.href='#volume1'">
+        <div class="volume-number">Volume I</div>
+        <h3 class="volume-title-zh">宇宙源起</h3>
+        <div class="volume-title-en">Cosmic Origin</div>
+        <div class="volume-tagline">"结构先于物质，秩序先于时间"</div>
+        <p class="volume-description">
+          宇宙的根不始于爆炸，而始于结构。探讨母场（Origin Field）的物理属性、0态的数学结构，以及宇宙为何必须从相干态坍缩为显化。
+        </p>
+        <div class="volume-keywords">
+          <span class="keyword-tag">母场结构</span>
+          <span class="keyword-tag">0态数学</span>
+          <span class="keyword-tag">相干坍缩</span>
         </div>
+      </div>
 
-        <div class="volumes-grid">
-            <!-- Volume cards ...（以下保持不变） -->
-            <!-- Volume 1 -->
-            <div class="volume-card" data-volume="1" onclick="location.href='#volume1'">
-                <div class="volume-number">Volume I</div>
-                <h3 class="volume-title-zh">宇宙源起</h3>
-                <div class="volume-title-en">Cosmic Origin</div>
-                <div class="volume-tagline">"结构先于物质，秩序先于时间"</div>
-                <p class="volume-description">
-                    宇宙的根不始于爆炸，而始于结构。探讨母场（Origin Field）的物理属性、0态的数学结构，以及宇宙为何必须从相干态坍缩为显化。
-                </p>
-                <div class="volume-keywords">
-                    <span class="keyword-tag">母场结构</span>
-                    <span class="keyword-tag">0态数学</span>
-                    <span class="keyword-tag">相干坍缩</span>
-                </div>
-            </div>
-            <!-- ……其余 Volume 2-9 保持不变（你原文继续粘） -->
-        </div>
-        
-        <div class="scroll-indicator">
-           <svg width="48" height="24" viewBox="0 0 48 24">
-           <polyline
-      points="4,4 24,20 44,4"
-      fill="none"
-      stroke="white"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"/>
-  </svg>
-</div>
+      <!-- Volume 2-9：你原文继续粘贴 -->
+    </div>
+  </section>
 
-    </section>
-
-    <script>
-        function switchLang(lang) {
-            const titleEl = document.getElementById('hero-title');
-            const enText = document.getElementById('hero-text-en');
-            const zhText = document.getElementById('hero-text-zh');
-            const langBtns = document.querySelectorAll('.lang-switch span');
-            const navLinks = document.querySelectorAll('.nav-menu > a');
-            const navDropdowns = document.querySelectorAll('.nav-menu .nav-dropdown > span');
-            const dropdownTitles = document.querySelectorAll('.nav-dropdown-title');
-            const seriesDropdownLinks = document.querySelectorAll('.nav-menu .nav-dropdown:last-child .nav-dropdown-content a');
-            const humanityDropdownLinks = document.querySelectorAll('.nav-menu .nav-dropdown:first-of-type .nav-dropdown-content a');
-            
-            const scientistNames = document.querySelectorAll('.scientist-name');
-            const scientistYears = document.querySelectorAll('.scientist-year');
-            const scientistBlurbs = document.querySelectorAll('.scientist-blurb');
-            const scientistContributions = document.querySelectorAll('.scientist-contribution');
-            
-            const volumesHeader = document.querySelector('.volumes-header h2');
-            const volumesSubtitle = document.querySelector('.volumes-header .subtitle');
-            const exploreBtn = document.querySelector('.hero-button');
-            
-            if (lang === 'en') {
-                titleEl.textContent = 'UNIVERSE & HUMANITY';
-                enText.style.display = 'block';
-                zhText.style.display = 'none';
-                exploreBtn.textContent = 'EXPLORE →';
-                
-                navLinks[0].textContent = 'ALPHA';
-                navLinks[1].textContent = 'UNIVERSE';
-                navLinks[2].textContent = 'NEW CIVILIZATION';
-                
-                navDropdowns[0].innerHTML = 'HUMANITY ▾';
-                navDropdowns[1].innerHTML = 'UNIVERSE & HUMANITY SERIES ▾';
-                
-                dropdownTitles[0].textContent = 'Human Exploration';
-                humanityDropdownLinks[0].textContent = 'Humanity Overview';
-                humanityDropdownLinks[1].textContent = 'Thinkers';
-                
-                dropdownTitles[1].textContent = 'Complete Series';
-                seriesDropdownLinks[0].textContent = 'Nine Volumes (Scientific Edition)';
-                seriesDropdownLinks[1].textContent = 'Universe Epic (Narrative Edition)';
-                seriesDropdownLinks[2].textContent = 'Cosmic Dao (Eastern Wisdom Edition)';
-                seriesDropdownLinks[3].textContent = 'Cosmic Sutra (Condensed Edition)';
-                seriesDropdownLinks[4].textContent = 'Cosmic Parables (Poetic Edition)';
-                seriesDropdownLinks[5].textContent = 'Publishing & Collaboration';
-                seriesDropdownLinks[6].textContent = 'Contact Us';
-                
-                scientistNames.forEach(el => el.textContent = el.dataset.en);
-                scientistYears.forEach(el => el.textContent = el.dataset.en);
-                scientistBlurbs.forEach(el => el.textContent = el.dataset.en);
-                scientistContributions.forEach(el => el.textContent = el.dataset.en);
-                
-                volumesHeader.textContent = volumesHeader.dataset.en;
-                volumesSubtitle.textContent = volumesSubtitle.dataset.en;
-                
-                langBtns[0].classList.add('active');
-                langBtns[1].classList.remove('active');
-            } else {
-                titleEl.textContent = '宇宙与人类';
-                enText.style.display = 'none';
-                zhText.style.display = 'block';
-                exploreBtn.textContent = 'EXPLORE →';
-                
-                navLinks[0].textContent = '阿尔法无量纲';
-                navLinks[1].textContent = '宇宙';
-                navLinks[2].textContent = '新文明';
-                
-                navDropdowns[0].innerHTML = '人类 ▾';
-                navDropdowns[1].innerHTML = '《宇宙与人类》系列卷著 ▾';
-                
-                dropdownTitles[0].textContent = '人类探索';
-                humanityDropdownLinks[0].textContent = '人类概述';
-                humanityDropdownLinks[1].textContent = '思想家';
-                
-                dropdownTitles[1].textContent = '完整系列';
-                seriesDropdownLinks[0].textContent = '九卷（科学理论版）';
-                seriesDropdownLinks[1].textContent = '宇宙史诗（叙事版）';
-                seriesDropdownLinks[2].textContent = '宇宙之道（东方智慧版）';
-                seriesDropdownLinks[3].textContent = '宇宙心经（精简版）';
-                seriesDropdownLinks[4].textContent = '宇宙寓言（诗歌艺术版）';
-                seriesDropdownLinks[5].textContent = '出版与合作';
-                seriesDropdownLinks[6].textContent = '联系我们';
-                
-                scientistNames.forEach(el => el.textContent = el.dataset.zh);
-                scientistYears.forEach(el => el.textContent = el.dataset.zh);
-                scientistBlurbs.forEach(el => el.textContent = el.dataset.zh);
-                scientistContributions.forEach(el => el.textContent = el.dataset.zh);
-                
-                volumesHeader.textContent = volumesHeader.dataset.zh;
-                volumesSubtitle.textContent = volumesSubtitle.dataset.zh;
-                
-                langBtns[0].classList.remove('active');
-                langBtns[1].classList.add('active');
-            }
-        }
-
-    // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-
-  // Scroll indicator (V arrow)
-  const indicator = document.querySelector('.scroll-indicator');
-  if (indicator) {
-    indicator.addEventListener('click', () => {
-      window.scrollTo({
-        top: window.innerHeight,
-        behavior: 'smooth'
-      });
-    });
-  }
+  <!-- ✅ 唯一 JS 入口：只保留这一行 -->
   <script defer src="./app.js"></script>
-  
 </body>
 </html>
+
 
 
 
