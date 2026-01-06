@@ -22,14 +22,12 @@
 }
 
 .hero-content{
-    max-width: 560px;
-    position: relative;
-    z-index: 5;
-    margin: 0;
-    padding: 0;
-    transform: translateX(32px); /* 轻微向右 */
-}
+  max-width: 560px;
+  position: relative;
+  z-index: 5;
 
+  margin-left: 120px;   /* ← 关键：向右整体平移 */
+}
 
 
 /* ===== Galaxy sphere ===== */
