@@ -21,11 +21,11 @@
     rgba(0,0,0,0) 78%);
 }
 
-/* Hero content */
 .hero-content{
-  max-width: 560px;
-  position: relative;
-  z-index: 5;
+    max-width: 560px;
+    position: relative;
+    z-index: 5;
+    margin-left: 120px;   /* 向右、靠近中心 */
 }
 
 /* ===== Galaxy sphere ===== */
