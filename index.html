@@ -583,32 +583,57 @@
     </style>
 </head>
 <body>
-    <nav>
-        <div class="logo-container">
-            <div class="logo-icon"></div>
-            <div class="logo">UNIVERSE & HUMANITY</div>
-        </div>
-        <div class="nav-menu">
-            <a href="#alpha">阿尔法无量纲</a>
-            <a href="#universe">宇宙</a>
-            <div class="nav-dropdown">
-                <span>人类 ▾</span>
-                <div class="nav-dropdown-content">
-                    <div class="nav-dropdown-title">人类探索</div>
-                    <a href="#humanity">人类概述</a>
-                    <a href="#thinkers">思想家</a>
-                </div>
-            </div>
-            <a href="#civilization">新文明</a>
-           
-        </div>
-        <div class="nav-right">
-            <div class="lang-switch">
-                <span onclick="switchLang('en')">EN</span>
-                <span class="active" onclick="switchLang('zh')">中文</span>
-            </div>
-        </div>
-    </nav>
+   <nav>
+  <a href="index.html" class="logo">
+    <span class="logo-mark">⋯</span>
+    <span class="logo-text">UNIVERSE &amp; HUMANITY</span>
+  </a>
+
+  <div class="nav-menu">
+    <!-- Top-level -->
+    <a href="#alpha">阿尔法无量纲</a>
+    <a href="#universe">宇宙</a>
+
+    <!-- Dropdown 1: Humanity -->
+    <div class="nav-dropdown">
+      <span>人类 ▾</span>
+      <div class="nav-dropdown-content">
+        <div class="nav-dropdown-title">人类探索</div>
+        <a href="#humanity">人类概述</a>
+        <a href="#thinkers">思想家</a>
+      </div>
+    </div>
+
+    <a href="#civilization">新文明</a>
+
+    <!-- Dropdown 2: Series (THIS IS YOUR "卷著") -->
+    <div class="nav-dropdown">
+      <span>《宇宙与人类》系列卷著 ▾</span>
+      <div class="nav-dropdown-content">
+        <div class="nav-dropdown-title">完整系列</div>
+
+        <!-- 这些 href 保持 #xxx，后面由我给你的“路由版 smooth scroll”转到 pages/volumes.html -->
+        <a href="#nine-volumes">九卷（科学理论版）</a>
+        <a href="#epic">宇宙史诗（叙事版）</a>
+        <a href="#dao">宇宙之道（东方智慧版）</a>
+        <a href="#sutra">宇宙心经（精简版）</a>
+        <a href="#parables">宇宙寓言（诗歌艺术版）</a>
+
+        <div class="nav-divider"></div>
+
+        <a href="#publishing">出版与合作</a>
+        <a href="#contact">联系我们</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Language Switch -->
+  <div class="lang-switch">
+    <span class="active" onclick="switchLang('en')">EN</span>
+    <span onclick="switchLang('zh')">中文</span>
+  </div>
+</nav>
+
 
     <!-- Hero Section -->
     <section class="hero">
@@ -963,6 +988,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     </script>
 </body>
 </html>
+
 
 
 
