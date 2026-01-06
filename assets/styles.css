@@ -222,5 +222,62 @@
   .pub-inner{
     grid-template-columns: 1fr;
   }
+
+/* ===== Home Overview section (Explore target) ===== */
+.home-overview{
+  position: relative;
+  z-index: 2;
+  padding: 110px 0 140px;
+  background: #000;
 }
 
+.home-overview .overview-inner{
+  width: min(980px, calc(100% - 80px));
+  margin: 0 auto;
+}
+
+.home-overview .overview-title{
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  color: rgba(255,255,255,.95);
+}
+
+.home-overview .overview-lead{
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(255,255,255,.70);
+  margin-bottom: 28px;
+  max-width: 760px;
+}
+
+.home-overview .overview-actions{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.home-overview .overview-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255,255,255,.22);
+  color: rgba(255,255,255,.85);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  transition: .2s ease;
+}
+
+.home-overview .overview-link:hover{
+  border-color: rgba(255,204,51,.55);
+  color: rgba(255,204,51,.95);
+}
+
+.home-overview .overview-link.ghost{
+  background: rgba(255,255,255,.03);
+}
