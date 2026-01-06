@@ -27,7 +27,9 @@
     z-index: 5;
     margin: 0;
     padding: 0;
+    transform: translateX(32px); /* 轻微向右 */
 }
+
 
 
 /* ===== Galaxy sphere ===== */
