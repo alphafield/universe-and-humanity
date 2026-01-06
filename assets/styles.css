@@ -21,12 +21,12 @@
     rgba(0,0,0,0) 78%);
 }
 
-.hero-content{
-  max-width: 560px;
-  position: relative;
-  z-index: 5;
-
-  margin-left: 120px;   /* ← 关键：向右整体平移 */
+.hero-content {
+    max-width: 560px;
+    position: relative;
+    z-index: 5;
+    margin-left: 240px;   /* ← 改为240px，向右移动120px ✅ */
+    margin-top: 80px;
 }
 
 
