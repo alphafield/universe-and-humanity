@@ -279,3 +279,63 @@
 .home-overview .overview-link.ghost{
   background: rgba(255,255,255,.03);
 }
+.nav-dropdown{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-dropdown > span{
+  cursor: pointer;
+  color: rgba(255,255,255,.75);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+.nav-dropdown-content{
+  position: absolute;
+  top: 130%;
+  left: 0;
+  min-width: 240px;
+  padding: 14px 14px 12px;
+  background: rgba(0,0,0,.75);
+  border: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  display: none;
+  z-index: 2000;
+}
+
+.nav-dropdown:hover .nav-dropdown-content{
+  display: block;
+}
+
+.nav-dropdown-title{
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin: 6px 6px 10px;
+}
+
+.nav-dropdown-content a{
+  display: block;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: rgba(255,255,255,.78);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.nav-dropdown-content a:hover{
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,1);
+}
+
+.nav-divider{
+  height: 1px;
+  background: rgba(255,255,255,.10);
+  margin: 10px 6px;
+}
