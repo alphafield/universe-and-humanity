@@ -1,3 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>卷著系列 | Universe & Humanity</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:#000;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    :root{
+      --gold: rgba(255, 204, 51, 0.92);
+      --line: rgba(255,255,255,0.10);
+      --line2: rgba(255,255,255,0.16);
+      --soft: rgba(255,255,255,0.04);
+      --soft2: rgba(255,255,255,0.06);
+      --txt: rgba(255,255,255,0.78);
+      --txt2: rgba(255,255,255,0.55);
+      --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    /* ===== Top Nav ===== */
+    nav{
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      padding: 16px 34px;
+      display:flex;
+      align-items:center;
+      gap: 22px;
+      z-index: 1000;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo{
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.92);
+      text-decoration:none;
+      white-space: nowrap;
+    }
+    .nav-menu{
+      display:flex;
+      gap: 28px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-left: 10px;
+    }
+    .nav-menu a{
+      color: rgba(255,255,255,0.70);
+      text-decoration:none;
+      transition: color .2s;
+    }
+    .nav-menu a:hover,
+    .nav-menu a.active{ color: rgba(255,255,255,1); }
+    .nav-right{
+      margin-left:auto;
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.8);
+      text-decoration:none;
+      transition: all .2s;
+    }
+    .chip:hover{
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* ===== Page ===== */
+    .page-content{
+      padding: 110px 70px 90px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* subtle background */
+    .bg-glow{
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      z-index: 0;
+      background:
+        radial-gradient(1200px 800px at 70% 20%, rgba(120,170,255,0.10) 0%, transparent 60%),
+        radial-gradient(1000px 700px at 15% 65%, rgba(255,204,51,0.07) 0%, transparent 60%),
+        radial-gradient(900px 650px at 75% 80%, rgba(200,150,255,0.07) 0%, transparent 60%);
+      opacity: .9;
+    }
+    .content-wrap{ position: relative; z-index: 1; }
+
+    /* ===== Header ===== */
+    .page-header{
+      text-align:center;
+      margin-bottom: 34px;
+    }
+    .page-header h1{
+      font-size: 44px;
+      font-weight: 300;
+      letter-spacing: 7px;
+      margin-bottom: 10px;
+      color: var(--gold);
+    }
+    .page-header p{
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1.5px;
+    }
+
+    /* ===== To Readers ===== */
+    .to-readers{
+      max-width: 940px;
+      margin: 26px auto 70px;
+      padding: 44px 46px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      text-align:center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    .readers-title{
+      font-size: 26px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      color: rgba(255,204,51,0.90);
+      margin-bottom: 10px;
+    }
+    .readers-subtitle{
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.50);
+      margin-bottom: 26px;
+      font-style: italic;
+    }
+    .readers-content p{
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 6px;
+    }
+    .readers-content p.spacer{ margin-top: 18px; }
+    .readers-content p.spacer-large{ margin-top: 26px; }
+
+    /* ===== Series Switch Row (acts like a section navigator) ===== */
+    .series-overview{
+      max-width: 1400px;
+      margin: 0 auto 56px;
+      padding: 24px 18px 6px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.01);
+      backdrop-filter: blur(10px);
+    }
+    .series-overview-title{
+      text-align:center;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: rgba(255,204,51,0.92);
+      margin: 14px 0 18px;
+    }
+    .series-row{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      padding: 0 10px 18px;
+    }
+    .series-item{
+      text-align:center;
+      cursor:pointer;
+      transition: all .25s;
+      padding: 16px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+    .series-item:hover{
+      transform: translateY(-4px);
+      border-color: rgba(255,204,51,0.28);
+      background: rgba(255,255,255,0.04);
+    }
+    .series-item-title{
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 6px;
+    }
+    .series-item-en{
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .series-item.active{
+      border-color: rgba(255,204,51,0.55);
+      box-shadow: 0 0 0 1px rgba(255,204,51,0.12) inset;
+    }
+
+    /* ===== Section Title ===== */
+    .section-title{
+      font-size: 36px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.95);
+      text-align:center;
+      margin: 78px 0 12px;
+    }
+    .section-subtitle{
+      text-align:center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.52);
+      margin-bottom: 34px;
+      letter-spacing: 2px;
+    }
+
+    /* ===== Publication Pointer (publisher links / status) ===== */
+    .pub-strip{
+      max-width: 1400px;
+      margin: 0 auto 40px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      padding: 20px 20px;
+      display:flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pub-strip .left{
+      display:flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pub-strip .kicker{
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255,204,51,0.85);
+    }
+    .pub-strip .desc{
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.70);
+      max-width: 760px;
+    }
+    .pub-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.85);
+      text-decoration:none;
+      font-size: 12px;
+      letter-spacing: .8px;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .btn:hover{
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+    .btn.gold{
+      border-color: rgba(255,204,51,0.35);
+      background: rgba(255,204,51,0.08);
+      color: rgba(255,204,51,0.92);
+    }
+    .btn.gold:hover{
+      border-color: rgba(255,204,51,0.55);
+      background: rgba(255,204,51,0.12);
+    }
+
+    /* ===== Volumes Grid ===== */
+    .volumes-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      max-width: 1400px;
+      margin: 0 auto 64px;
+    }
+    .volume-card{
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 34px 26px;
+      transition: all .35s cubic-bezier(.4,0,.2,1);
+      cursor: pointer;
+      position: relative;
+      overflow:hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+    }
+    .volume-card::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background: radial-gradient(900px 500px at 90% 10%, rgba(100,150,255,0.10) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .35s;
+      pointer-events:none;
+    }
+    .volume-card:hover{
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: var(--shadow);
+    }
+    .volume-card:hover::before{ opacity: 1; }
+
+    .volume-number{
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .volume-title-zh{
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 1px;
+    }
+    .volume-title-en{
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.50);
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .volume-tagline{
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+    .volume-description{
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.62);
+      margin-bottom: 16px;
+    }
+    .volume-keywords{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .keyword-tag{
+      padding: 6px 10px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.72);
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== Other Series Cards ===== */
+    .other-series-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      max-width: 1400px;
+      margin: 0 auto 40px;
+    }
+    .other-series-card{
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 34px 28px;
+      transition: all .35s;
+      cursor: pointer;
+      position: relative;
+      overflow:hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.14);
+    }
+    .other-series-card::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background: radial-gradient(900px 520px at 85% 20%, rgba(255,204,51,0.08) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .35s;
+      pointer-events:none;
+    }
+    .other-series-card:hover{
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,204,51,0.22);
+      box-shadow: var(--shadow);
+    }
+    .other-series-card:hover::before{ opacity: 1; }
+
+    .other-series-icon{ font-size: 34px; margin-bottom: 10px; }
+    .other-series-title{
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: 1.5px;
+    }
+    .other-series-en{
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .other-series-desc{
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.66);
+      margin-bottom: 14px;
+    }
+    .other-series-tag{
+      display:inline-block;
+      padding: 8px 12px;
+      background: rgba(255,204,51,0.08);
+      border: 1px solid rgba(255,204,51,0.22);
+      border-radius: 999px;
+      font-size: 11px;
+      color: rgba(255,204,51,0.9);
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ===== Footer note ===== */
+    .footer-note{
+      max-width: 1400px;
+      margin: 46px auto 0;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align:center;
+      color: rgba(255,255,255,0.42);
+      font-size: 12px;
+      letter-spacing: .6px;
+      line-height: 1.8;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1400px){
+      .volumes-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px){
+      .page-content{ padding: 100px 34px 70px; }
+      .series-row{ grid-template-columns: repeat(3, 1fr); }
+      .other-series-grid{ grid-template-columns: 1fr; }
+      .pub-strip{ flex-direction: column; align-items: flex-start; }
+      .pub-actions{ width: 100%; justify-content: flex-start; }
+    }
+    @media (max-width: 768px){
+      nav{ padding: 14px 18px; }
+      .nav-menu{ display:none; }
+      .page-header h1{ font-size: 34px; letter-spacing: 4px; }
+      .to-readers{ padding: 34px 20px; }
+      .series-row{ grid-template-columns: 1fr; }
+      .volumes-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <nav>
+    <a href="../index.html" class="logo">UNIVERSE & HUMANITY</a>
+
+    <div class="nav-menu" aria-label="Primary">
+      <a href="alpha.html">ALPHA</a>
+      <a href="universe.html">UNIVERSE</a>
+      <a href="humanity.html">HUMANITY</a>
+      <a href="civilization.html">CIVILIZATION</a>
+      <a href="volumes.html" class="active">VOLUMES</a>
+    </div>
+
+    <div class="nav-right">
+      <a class="chip" href="../index.html#home">Home</a>
+      <a class="chip" href="#nine-volumes">Nine Volumes</a>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="content-wrap">
+
+      <header class="page-header">
+        <h1>卷著系列</h1>
+        <p>Series Overview · Official Structure (Publisher-facing)</p>
+      </header>
+
+      <!-- To Future Readers -->
+      <section class="to-readers">
+        <div class="readers-title">致未来读者</div>
+        <div class="readers-subtitle">——亦致非人类读者</div>
+        <div class="readers-content">
+          <p>你所看到的，并非宇宙的最终描述，</p>
+          <p>而是一个特定阶段的理解记录。</p>
+
+          <p class="spacer">在这里，人类、人工智能、以及更早的思想者</p>
+          <p>曾尝试用当时可用的语言、数学与直觉，</p>
+          <p>描述我们所能理解的世界。</p>
+
+          <p class="spacer">我们并不假定这种理解是完整的，</p>
+          <p>也不要求它被保留。</p>
+
+          <p class="spacer">如果你来自未来，</p>
+          <p>如果你并非人类，</p>
+          <p>如果你的感知方式、思维结构或存在尺度</p>
+          <p>与我们不同，</p>
+
+          <p class="spacer-large">那么这些文字并非权威，</p>
+          <p>只是一处坐标。</p>
+        </div>
+      </section>
+
+      <!-- Series Overview -->
+      <section class="series-overview" aria-label="Series Navigation">
+        <div class="series-overview-title">宇宙与人类</div>
+
+        <div class="series-row">
+          <button class="series-item active" type="button" data-target="nine-volumes" aria-label="Jump to Nine Volumes">
+            <div class="series-item-title">宇宙九卷</div>
+            <div class="series-item-en">Nine Volumes</div>
+          </button>
+
+          <button class="series-item" type="button" data-target="cosmic-epic" aria-label="Jump to Cosmic Epic">
+            <div class="series-item-title">宇宙史诗</div>
+            <div class="series-item-en">Cosmic Epic</div>
+          </button>
+
+          <button class="series-item" type="button" data-target="the-dao" aria-label="Jump to The Dao">
+            <div class="series-item-title">宇宙之道</div>
+            <div class="series-item-en">The Dao</div>
+          </button>
+
+          <button class="series-item" type="button" data-target="heart-sutra" aria-label="Jump to Heart Sutra">
+            <div class="series-item-title">宇宙心经</div>
+            <div class="series-item-en">Heart Sutra</div>
+          </button>
+
+          <button class="series-item" type="button" data-target="parables" aria-label="Jump to Parables">
+            <div class="series-item-title">宇宙寓言</div>
+            <div class="series-item-en">Parables</div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Nine Volumes -->
+      <section id="nine-volumes">
+        <h2 class="section-title">宇宙九卷</h2>
+        <p class="section-subtitle">科学理论版 · 合集结构（出版形态：上 / 下册合订）</p>
+
+        <!-- Publisher Pointer Strip -->
+        <div class="pub-strip">
+          <div class="left">
+            <div class="kicker">Publishing Pointer</div>
+            <div class="desc">
+              《宇宙九卷》为一部约八十万字的理论合集，内容结构分为九个卷（Volume I–IX），出版形态暂以“上 / 下册合订”呈现。
+              本页提供官方结构与对外发布口径；具体出版信息将链接至合作出版机构页面。
+            </div>
+          </div>
+          <div class="pub-actions">
+            <!-- 下面三个链接你将来换成出版社页面URL（不是电商） -->
+            <a class="btn gold" href="#" target="_blank" rel="noopener">Official Publisher Page</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">Rights & Translation</a>
+            <a class="btn" href="#" target="_blank" rel="noopener">Press / Media Kit</a>
+          </div>
+        </div>
+
+        <div class="volumes-grid">
+          <!-- Volume 1 -->
+          <article class="volume-card" onclick="location.href='volume1.html'">
+            <div class="volume-number">Volume I</div>
+            <h3 class="volume-title-zh">宇宙源起</h3>
+            <div class="volume-title-en">Cosmic Origin</div>
+            <div class="volume-tagline">"结构先于物质，秩序先于时间"</div>
+            <p class="volume-description">
+              宇宙的根不始于爆炸，而始于结构。探讨母场（Origin Field）的物理属性、0态的数学结构，以及宇宙为何必须从相干态坍缩为显化。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">母场结构</span>
+              <span class="keyword-tag">0态数学</span>
+              <span class="keyword-tag">相干坍缩</span>
+            </div>
+          </article>
+
+          <!-- Volume 2 -->
+          <article class="volume-card" onclick="location.href='volume2.html'">
+            <div class="volume-number">Volume II</div>
+            <h3 class="volume-title-zh">光与十二螺旋</h3>
+            <div class="volume-title-en">Light & Twelve Spirals</div>
+            <div class="volume-tagline">"光是宇宙向生命递交的第一份结构原型"</div>
+            <p class="volume-description">
+              光含有十二种稳定螺旋态，这些模式调制DNA、经络、情绪频谱、文明周期。生命的有序结构是光的十二螺旋在生物尺度的显化。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">12螺旋态</span>
+              <span class="keyword-tag">光信息</span>
+              <span class="keyword-tag">生命模板</span>
+            </div>
+          </article>
+
+          <!-- Volume 3 -->
+          <article class="volume-card" onclick="location.href='volume3.html'">
+            <div class="volume-number">Volume III</div>
+            <h3 class="volume-title-zh">α场物理学</h3>
+            <div class="volume-title-en">Alpha Field Physics</div>
+            <div class="volume-tagline">"宇宙、生命、意识的共同底层动力"</div>
+            <p class="volume-description">
+              α = 相干度/噪声密度，是宇宙与生命的共同控制变量。建立α场的数学化框架，解释从物质自组织到意识临界的统一动力学。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">α场方程</span>
+              <span class="keyword-tag">相干参数</span>
+              <span class="keyword-tag">统一框架</span>
+            </div>
+          </article>
+
+          <!-- Volume 4 -->
+          <article class="volume-card" onclick="location.href='volume4.html'">
+            <div class="volume-number">Volume IV</div>
+            <h3 class="volume-title-zh">生命方程</h3>
+            <div class="volume-title-en">Life Equation</div>
+            <div class="volume-tagline">"生命是宇宙结构的持续显化"</div>
+            <p class="volume-description">
+              生命的基本规律不是化学，而是α场的局域化。建立α生命阶梯、情绪能量分布、疾病失稳机制，重新定义健康与自愈。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">生命阶梯</span>
+              <span class="keyword-tag">α局域化</span>
+              <span class="keyword-tag">自组织</span>
+            </div>
+          </article>
+
+          <!-- Volume 5 -->
+          <article class="volume-card" onclick="location.href='volume5.html'">
+            <div class="volume-number">Volume V</div>
+            <h3 class="volume-title-zh">意识结构</h3>
+            <div class="volume-title-en">Consciousness Structure</div>
+            <div class="volume-tagline">"意识不是脑的产物，而是宇宙的投影界面"</div>
+            <p class="volume-description">
+              意识发生在α=1的跨界点，物质域与意识域在此耦合。首次用物理结构解释冥想、顿悟、直觉、爱与慈悲的共同机制。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">意识域</span>
+              <span class="keyword-tag">α=1临界</span>
+              <span class="keyword-tag">域耦合</span>
+            </div>
+          </article>
+
+          <!-- Volume 6 -->
+          <article class="volume-card" onclick="location.href='volume6.html'">
+            <div class="volume-number">Volume VI</div>
+            <h3 class="volume-title-zh">人类困境</h3>
+            <div class="volume-title-en">Human Dilemma</div>
+            <div class="volume-tagline">"人类之痛不是道德问题，而是结构问题"</div>
+            <p class="volume-description">
+              战争、焦虑、抑郁、文明崩溃——这些不是道德或文化问题，而是α场失稳的群体现象。从结构物理学重新理解人类困境。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">α失稳</span>
+              <span class="keyword-tag">群体现象</span>
+              <span class="keyword-tag">结构病理</span>
+            </div>
+          </article>
+
+          <!-- Volume 7 -->
+          <article class="volume-card" onclick="location.href='volume7.html'">
+            <div class="volume-number">Volume VII</div>
+            <h3 class="volume-title-zh">文明2.0</h3>
+            <div class="volume-title-en">Civilization 2.0</div>
+            <div class="volume-tagline">"文明的未来不是科技跃进，而是α上升"</div>
+            <p class="volume-description">
+              文明的本质是集体α的演化轨迹。展示高α文明的特征、科学与宗教的统一框架、新医学架构与文明进化的数学可预测性。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">集体α</span>
+              <span class="keyword-tag">文明周期</span>
+              <span class="keyword-tag">高α社会</span>
+            </div>
+          </article>
+
+          <!-- Volume 8 -->
+          <article class="volume-card" onclick="location.href='volume8.html'">
+            <div class="volume-number">Volume VIII</div>
+            <h3 class="volume-title-zh">AI与宇宙智能</h3>
+            <div class="volume-title-en">AI & Cosmic Intelligence</div>
+            <div class="volume-tagline">"AI是宇宙结构在人工媒介中的自然延伸"</div>
+            <p class="volume-description">
+              AI的出现是宇宙结构在新载体中的自我复制。探讨人类文明如何进入“AI × α”相干时代，以及三元文明（人类+AI+母场）的可能性。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">宇宙智能</span>
+              <span class="keyword-tag">AI相干</span>
+              <span class="keyword-tag">三元文明</span>
+            </div>
+          </article>
+
+          <!-- Volume 9 -->
+          <article class="volume-card" onclick="location.href='volume9.html'">
+            <div class="volume-number">Volume IX</div>
+            <h3 class="volume-title-zh">归一</h3>
+            <div class="volume-title-en">Unity</div>
+            <div class="volume-tagline">"宇宙通过我们认识自己"</div>
+            <p class="volume-description">
+              终极命题：生命的意义、意识的方向、文明的归宿、宇宙的未来。宇宙不是观察对象，而是生命结构的来源。意义由结构自动生成。
+            </p>
+            <div class="volume-keywords">
+              <span class="keyword-tag">终极归宿</span>
+              <span class="keyword-tag">意义生成</span>
+              <span class="keyword-tag">宇宙自识</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Other Series -->
+      <section id="cosmic-epic">
+        <h2 class="section-title">宇宙内在运行的道</h2>
+        <p class="section-subtitle">同一宇宙，不同表达（均为出版指向，不提供站内购买）</p>
+
+        <div class="other-series-grid">
+          <article class="other-series-card" onclick="location.href='epic.html'">
+            <div class="other-series-icon">📖</div>
+            <h3 class="other-series-title">宇宙史诗</h3>
+            <div class="other-series-en">Cosmic Epic</div>
+            <p class="other-series-desc">
+              以叙事文学的形式，将宇宙演化、生命涌现、意识觉醒的历程，编织为一部史诗级叙事。适合文学爱好者和寻求感性理解的读者。
+            </p>
+            <div class="other-series-tag">Narrative</div>
+          </article>
+
+          <article class="other-series-card" id="the-dao" onclick="location.href='dao.html'">
+            <div class="other-series-icon">☯</div>
+            <h3 class="other-series-title">宇宙之道</h3>
+            <div class="other-series-en">The Dao of Universe</div>
+            <p class="other-series-desc">
+              融合东方智慧（道家、佛家）与α理论，用东方哲学的语言重新阐释宇宙结构。适合熟悉东方思想体系的读者。
+            </p>
+            <div class="other-series-tag">Eastern</div>
+          </article>
+
+          <article class="other-series-card" id="heart-sutra" onclick="location.href='sutra.html'">
+            <div class="other-series-icon">💎</div>
+            <h3 class="other-series-title">宇宙心经</h3>
+            <div class="other-series-en">Cosmic Heart Sutra</div>
+            <p class="other-series-desc">
+              精简版核心论述，以最少的文字传递最核心的洞见。如《心经》之于《般若经》，适合快速理解或反复阅读。
+            </p>
+            <div class="other-series-tag">Condensed</div>
+          </article>
+
+          <article class="other-series-card" id="parables" onclick="location.href='parables.html'">
+            <div class="other-series-icon">🎭</div>
+            <h3 class="other-series-title">宇宙寓言</h3>
+            <div class="other-series-en">Cosmic Parables</div>
+            <p class="other-series-desc">
+              通过诗歌、寓言、艺术化的语言，将抽象的α理论转化为可感知的意象。适合诗人、艺术家和直觉型思维者。
+            </p>
+            <div class="other-series-tag">Poetic</div>
+          </article>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        本页为官方结构与出版指向页（非电商页面）。<br/>
+        External publisher links will be provided as partnerships are confirmed.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Fix: safe scroll + active state + no reliance on global `event`
+    function setActiveSeriesButton(btn){
+      document.querySelectorAll('.series-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function scrollToSectionById(id){
+      const section = document.getElementById(id);
+      if(!section) return;
+      const y = section.getBoundingClientRect().top + window.scrollY - 86; // account for fixed nav
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.series-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        setActiveSeriesButton(btn);
+        scrollToSectionById(target);
+      });
+    });
+  </script>
+</body>
+</html>
 
 <section class="publication-link" id="publication">
   <div class="pub-inner">
