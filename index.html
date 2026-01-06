@@ -600,20 +600,7 @@
                 </div>
             </div>
             <a href="#civilization">新文明</a>
-            <div class="nav-dropdown">
-                <span>《宇宙与人类》系列卷著 ▾</span>
-                <div class="nav-dropdown-content">
-                    <div class="nav-dropdown-title">完整系列</div>
-                    <a href="#nine-volumes">九卷（科学理论版）</a>
-                    <a href="#epic">宇宙史诗（叙事版）</a>
-                    <a href="#dao">宇宙之道（东方智慧版）</a>
-                    <a href="#sutra">宇宙心经（精简版）</a>
-                    <a href="#parables">宇宙寓言（诗歌艺术版）</a>
-                    <div class="nav-dropdown-split"></div>
-                    <a href="#publishing">出版与合作</a>
-                    <a href="#contact">联系我们</a>
-                </div>
-            </div>
+           
         </div>
         <div class="nav-right">
             <div class="lang-switch">
@@ -913,7 +900,7 @@
                 seriesDropdownLinks[1].textContent = '宇宙史诗（叙事版）';
                 seriesDropdownLinks[2].textContent = '宇宙之道（东方智慧版）';
                 seriesDropdownLinks[3].textContent = '宇宙心经（精简版）';
-                seriesDropdownLinks[4].textContent = '宇宙寓言（诗歌艺术版）';
+                seriesDropdownLinks[4].textContent = '宇宙寓言（）';
                 seriesDropdownLinks[5].textContent = '出版与合作';
                 seriesDropdownLinks[6].textContent = '联系我们';
                 
@@ -930,19 +917,53 @@
             }
         }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+ // ===== Home anchors vs Volumes page routing =====
+const HOME_ANCHORS = new Set([
+  'overview','alpha','universe','humanity','thinkers','civilization','contact'
+]);
+
+const SERIES_ROUTE = {
+  'nine-volumes': 'pages/volumes.html#nine-volumes',
+  'epic': 'pages/volumes.html#cosmic-epic',
+  'dao': 'pages/volumes.html#the-dao',
+  'sutra': 'pages/volumes.html#heart-sutra',
+  'parables': 'pages/volumes.html#parables',
+  'publishing': 'pages/volumes.html#publishing',
+  'volume1': 'pages/volumes.html#volume1'
+};
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (!href) return;
+
+    const id = href.slice(1);
+
+    // Route series-related anchors to volumes page
+    if (SERIES_ROUTE[id]) {
+      e.preventDefault();
+      window.location.href = SERIES_ROUTE[id];
+      return;
+    }
+
+    // Only smooth-scroll for HOME anchors
+    if (HOME_ANCHORS.has(id)) {
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return;
+    }
+
+    // Default: allow normal behavior (no preventDefault)
+  }, { passive: false });
+});
+
     </script>
 </body>
 </html>
+
 
 
 
