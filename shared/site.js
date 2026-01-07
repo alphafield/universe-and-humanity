@@ -147,5 +147,41 @@ function bindDropdownClick() {
     dropdowns.forEach(x => x.classList.remove("open"));
   });
 }
+// ===== Language Switch (global) =====
+(function () {
+  function setLang(lang) {
+    try { localStorage.setItem("site_lang", lang); } catch (e) {}
+
+    // Only toggle elements that explicitly opt-in via .lang
+    document.querySelectorAll(".lang").forEach(el => el.classList.remove("active"));
+    document.querySelectorAll(".lang-" + lang).forEach(el => el.classList.add("active"));
+
+    // Sync buttons (if exist)
+    document.querySelectorAll(".langbtn").forEach(b => {
+      b.classList.toggle("active", b.dataset.lang === lang);
+    });
+
+    // Optional: set html lang attribute (nice for SEO)
+    document.documentElement.setAttribute("lang", lang === "zh" ? "zh-CN" : "en");
+  }
+
+  // expose globally (optional)
+  window.setLang = setLang;
+
+  // init
+  const saved = (function(){
+    try { return localStorage.getItem("site_lang"); } catch (e) { return null; }
+  })();
+  setLang(saved || "zh");
+
+  // event delegation: works even if nav injected later
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".langbtn");
+    if (!btn) return;
+    const lang = btn.dataset.lang;
+    if (!lang) return;
+    setLang(lang);
+  });
+})();
 
 
