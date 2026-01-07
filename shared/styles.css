@@ -252,4 +252,13 @@ nav a{
 }
 nav a:visited{ color: rgba(255,255,255,.90); }
 nav a:hover{ color: #fff; }
+.hero-kicker{
+  color: rgba(255,255,255,.55) !important;
+  text-decoration: none !important;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.hero-kicker:visited,
+.hero-kicker:hover{ text-decoration:none !important; color: rgba(255,255,255,.70) !important; }
 
