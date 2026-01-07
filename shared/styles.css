@@ -832,3 +832,65 @@ html, body{
   background: #000;
   color: #fff;
 }
+/* ===== FORCE FIX: volumes hero layout ===== */
+
+.sx-hero{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 120px 8vw 80px;
+  gap: 6vw;
+}
+
+.sx-hero-left{
+  max-width: 640px;
+}
+
+.sx-title{
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.15;
+}
+
+.sx-cta{
+  margin-top: 28px;
+}
+
+.sx-hero-right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sx-figure{
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  background: radial-gradient(ellipse at center,
+    rgba(255,200,80,.35),
+    rgba(255,200,80,.05) 55%,
+    transparent 70%);
+}
+
+.sx-figure-ph{
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0,0,0,.35);
+  font-weight: 600;
+}
+
+/* mobile */
+@media (max-width: 900px){
+  .sx-hero{
+    grid-template-columns: 1fr;
+    padding: 96px 6vw 64px;
+  }
+  .sx-hero-right{
+    order: -1;
+  }
+}
