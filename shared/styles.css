@@ -554,3 +554,5 @@ nav a:hover{ color: #fff; }
   .sx-grid{ grid-template-columns: 1fr; }
   .sx-section-desc{ text-align:left; }
 }
+.sx-figure-img{ width:100%; height:auto; display:block; }
+.sx-figure-ph-sub{ margin-top:8px; font-size:11px; opacity:0.55; letter-spacing:.10em; }
