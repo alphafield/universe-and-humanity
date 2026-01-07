@@ -811,3 +811,8 @@ nav a:hover{ color: #fff; }
     order: -1;
   }
 }
+html, body{
+  margin: 0;
+  background: #000 !important;
+  color: #fff !important;
+}
