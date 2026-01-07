@@ -894,3 +894,19 @@ html, body{
     order: -1;
   }
 }
+/* HARD RESET: volumes page */
+.sx-hero,
+.sx-section,
+.sx-grid,
+.sx-card {
+  box-sizing: border-box;
+}
+
+.sx-hero {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  min-height: 80vh;
+  padding: 120px 80px;
+  background: #000;
+  color: #fff;
+}
