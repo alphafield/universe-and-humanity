@@ -127,7 +127,8 @@ body{
   text-decoration:none;
   font-size:12px;
 }
-.nav-dropdown-content a:hover{
+.nav-dropdown-content{ display:none; }
+.nav-dropdown.open .nav-dropdown-content{ display:block; }
   background: rgba(255,255,255,.06);
   color:#fff;
 }
