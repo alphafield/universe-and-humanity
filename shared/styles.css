@@ -91,71 +91,74 @@ body{
   background: rgba(255,255,255,.06);
 }
 
-/* ===== Dropdown (HOVER ONLY; stable) ===== */
-.nav-dropdown{
-  position: relative;
-  padding-bottom: 14px; /* hover 缓冲区 */
+
+/* ===== Dropdown (Hover on desktop, Click on mobile) ===== */
+.nav-dropdown{ position:relative; }
+
+.nav-dropdown > span{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  user-select:none;
 }
 
-/* hover 桥梁，防止鼠标掉下去 */
-.nav-dropdown::after{
-  content:"";
-  position:absolute;
-  left:0;
-  top:100%;
-  width:100%;
-  height:14px;
-}
-
+/* 下拉层 */
 .nav-dropdown-content{
   display:none;
   position:absolute;
   top:100%;
   left:0;
-  margin-top:0;                 /* 关键：不能有间隙 */
+  margin-top:8px;
   min-width:260px;
   padding:12px;
   background: rgba(0,0,0,.92);
-  border:1px solid rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:14px;
-  backdrop-filter: var(--blur);
-  z-index:2000;
+  backdrop-filter: blur(10px);
+  z-index:3000;
 }
 
-.nav-dropdown:hover .nav-dropdown-content{
-  display:block;
+/* 桌面端 hover 打开 */
+@media (hover:hover){
+  .nav-dropdown:hover .nav-dropdown-content{ display:block; }
+  /* hover 桥梁，防掉线 */
+  .nav-dropdown::after{
+    content:"";
+    position:absolute;
+    left:0;
+    top:100%;
+    width:100%;
+    height:12px;
+  }
 }
 
-/* 不再使用 click-open（避免冲突） */
-.nav-dropdown.open .nav-dropdown-content{ display:block; } /* 可删，但留着也不影响 hover */
+/* 移动端 click 打开：依赖 .open */
+.nav-dropdown.open .nav-dropdown-content{ display:block; }
 
 .nav-dropdown-title{
-  padding:6px 6px 10px;
   font-size:11px;
   letter-spacing:1px;
   text-transform:uppercase;
   color: rgba(255,255,255,.45);
+  margin:6px 6px 10px;
 }
 
 .nav-dropdown-content a{
   display:block;
   padding:10px 10px;
   border-radius:12px;
-  color: rgba(255,255,255,.78);
+  color: rgba(255,255,255,.80);
   text-decoration:none;
   font-size:12px;
 }
 
 .nav-dropdown-content a:hover{
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.08);
   color:#fff;
 }
 
-.nav-divider{
-  height:1px;
-  background: rgba(255,255,255,.10);
-  margin:10px 6px;
-}
+.nav-divider{ height:1px; background: rgba(255,255,255,.10); margin:10px 6px; }
+
 
 /* ===== Lang switch ===== */
 .lang-switch{
