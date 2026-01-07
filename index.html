@@ -709,8 +709,37 @@
 
   <!-- 你 shared 里已建 Site.js：语言切换 + 平滑滚动 + scroll indicator（如有） -->
  <script src="shared/site.js" defer></script>
+  <script>
+(function(){
+  function applyLang(lang){
+    document.querySelectorAll('[data-en][data-zh]').forEach(el=>{
+      el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.zh;
+    });
+
+    const btns = document.querySelectorAll('.lang-switch span[data-lang]');
+    btns.forEach(b=>b.classList.toggle('active', b.dataset.lang === lang));
+
+    // hero 中英文块（你原本就有）
+    const enBlock = document.getElementById('hero-text-en');
+    const zhBlock = document.getElementById('hero-text-zh');
+    if(enBlock && zhBlock){
+      enBlock.style.display = (lang === 'en') ? 'block' : 'none';
+      zhBlock.style.display = (lang === 'en') ? 'none' : 'block';
+    }
+  }
+
+  document.querySelectorAll('.lang-switch span[data-lang]').forEach(btn=>{
+    btn.addEventListener('click', ()=>applyLang(btn.dataset.lang));
+  });
+
+  // 默认：按你现在 UI（EN active）初始化一次
+  applyLang('zh'); // 你现在页面默认是中文显示，所以初始化为 zh 更一致
+})();
+</script>
+
 </body>
 </html>
+
 
 
 
