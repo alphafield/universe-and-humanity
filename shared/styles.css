@@ -211,4 +211,45 @@ body{
   text-decoration:none !important;
   border:0 !important;
 }
+/* ===== Brand lock: no underline, no purple, fixed logo size ===== */
+.brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
+.brand:visited,
+.brand:hover,
+.brand:active{
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.brand-mark{
+  width: 34px;         /* 你想更小就 28px */
+  height: 34px;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: none;        /* 防止被全局滤镜影响 */
+}
+
+.brand-title{
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 1;
+  color: #fff;
+  text-decoration: none !important;
+}
+
+/* ===== Global link safety (避免紫色/下划线污染导航) ===== */
+nav a{
+  color: rgba(255,255,255,.90);
+  text-decoration: none;
+}
+nav a:visited{ color: rgba(255,255,255,.90); }
+nav a:hover{ color: #fff; }
 
