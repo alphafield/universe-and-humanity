@@ -709,36 +709,69 @@
 
   <!-- 你 shared 里已建 Site.js：语言切换 + 平滑滚动 + scroll indicator（如有） -->
  
-  <script>
-(function(){
+<script>
+(() => {
+  const LS_KEY = "uah_lang";
+
   function applyLang(lang){
-    document.querySelectorAll('[data-en][data-zh]').forEach(el=>{
-      el.textContent = (lang === 'en') ? el.dataset.en : el.dataset.zh;
+    // 1) 所有 data-en/data-zh 一次性替换
+    document.querySelectorAll("[data-en][data-zh]").forEach(el => {
+      const v = (lang === "en") ? el.dataset.en : el.dataset.zh;
+      if (typeof v === "string") el.textContent = v;
     });
 
-    const btns = document.querySelectorAll('.lang-switch span[data-lang]');
-    btns.forEach(b=>b.classList.toggle('active', b.dataset.lang === lang));
-
-    // hero 中英文块（你原本就有）
-    const enBlock = document.getElementById('hero-text-en');
-    const zhBlock = document.getElementById('hero-text-zh');
-    if(enBlock && zhBlock){
-      enBlock.style.display = (lang === 'en') ? 'block' : 'none';
-      zhBlock.style.display = (lang === 'en') ? 'none' : 'block';
+    // 2) hero 中英文块（存在则切）
+    const enBlock = document.getElementById("hero-text-en");
+    const zhBlock = document.getElementById("hero-text-zh");
+    if (enBlock && zhBlock){
+      enBlock.style.display = (lang === "en") ? "block" : "none";
+      zhBlock.style.display = (lang === "en") ? "none" : "block";
     }
+
+    // 3) 语言按钮高亮
+    document.querySelectorAll(".lang-switch span[data-lang]").forEach(btn => {
+      btn.classList.toggle("active", btn.dataset.lang === lang);
+    });
+
+    // 4) 记住选择
+    try { localStorage.setItem(LS_KEY, lang); } catch(e){}
   }
 
-  document.querySelectorAll('.lang-switch span[data-lang]').forEach(btn=>{
-    btn.addEventListener('click', ()=>applyLang(btn.dataset.lang));
-  });
+  function bind(){
+    const btns = document.querySelectorAll(".lang-switch span[data-lang]");
+    if (!btns.length) return; // 没找到按钮就不报错
 
-  // 默认：按你现在 UI（EN active）初始化一次
-  applyLang('zh'); // 你现在页面默认是中文显示，所以初始化为 zh 更一致
+    btns.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        applyLang(btn.dataset.lang);
+      }, { passive: false });
+    });
+
+    // 初始语言：localStorage -> 否则看当前哪个按钮有 active -> 否则中文
+    let lang = "zh";
+    try {
+      lang = localStorage.getItem(LS_KEY) || lang;
+    } catch(e){}
+    const activeBtn = document.querySelector('.lang-switch span.active[data-lang]');
+    if (activeBtn) lang = activeBtn.dataset.lang;
+
+    applyLang(lang);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bind);
+  } else {
+    bind();
+  }
 })();
 </script>
 
+
 </body>
 </html>
+
 
 
 
