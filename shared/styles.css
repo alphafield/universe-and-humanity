@@ -1,1 +1,184 @@
+/* =========================
+   Universe & Humanity — Site CSS (LOCKED)
+   Do not add global h1/h2 rules here.
+   ========================= */
+
+:root{
+  --bg: #000;
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+  --muted2: rgba(255,255,255,.55);
+  --line: rgba(255,255,255,.12);
+  --panel: rgba(0,0,0,.70);
+  --blur: blur(10px);
+  --gold: rgba(255,204,51,.95);
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); }
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  overflow-x:hidden;
+}
+
+/* ===== Header / Nav (SYSTEM LAYER) ===== */
+.site-header{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: var(--blur);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-inner{
+  height:64px;
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.site-logo{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  border:none !important;
+}
+.site-logo img{
+  height:26px;
+  display:block;
+}
+.site-title-text{
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:#fff;
+  line-height:1;
+}
+
+/* 🔒 Prevent ANY underline/border rules from leaking into logo */
+.site-logo, .site-logo *{
+  border:none !important;
+  text-decoration:none !important;
+}
+
+/* Nav links */
+.nav-menu{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:nowrap;
+}
+.nav-menu > a,
+.nav-dropdown > span{
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  color: rgba(255,255,255,.78);
+  text-decoration:none;
+  padding:10px 8px;
+  border-radius:10px;
+  cursor:pointer;
+}
+.nav-menu > a:hover,
+.nav-dropdown > span:hover{
+  color:#fff;
+  background: rgba(255,255,255,.06);
+}
+
+/* ===== Dropdown (click open; stable) ===== */
+.nav-dropdown{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+}
+.nav-dropdown-content{
+  position:absolute;
+  top:120%;
+  left:0;
+  min-width:260px;
+  padding:12px;
+  background: var(--panel);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:14px;
+  backdrop-filter: var(--blur);
+  display:none;
+  z-index:2000;
+}
+.nav-dropdown.open .nav-dropdown-content{ display:block; }
+
+.nav-dropdown-title{
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color: rgba(255,255,255,.45);
+  margin:6px 6px 10px;
+}
+.nav-dropdown-content a{
+  display:block;
+  padding:10px 10px;
+  border-radius:12px;
+  color: rgba(255,255,255,.78);
+  text-decoration:none;
+  font-size:12px;
+}
+.nav-dropdown-content a:hover{
+  background: rgba(255,255,255,.06);
+  color:#fff;
+}
+.nav-divider{
+  height:1px;
+  background: rgba(255,255,255,.10);
+  margin:10px 6px;
+}
+
+/* ===== Lang switch ===== */
+.lang-switch{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.lang-switch span{
+  font-size:12px;
+  padding:8px 10px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;
+  color: rgba(255,255,255,.75);
+  cursor:pointer;
+  user-select:none;
+}
+.lang-switch span.active{
+  border-color: rgba(255,204,51,.55);
+  color: var(--gold);
+}
+
+/* ===== Page offset so Hero isn't hidden under fixed header ===== */
+.page{
+  padding-top:64px; /* matches header height */
+}
+
+/* ===== Minimal Hero defaults (safe) ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  background:#000;
+}
+.hero-content{
+  position:relative;
+  z-index:5;
+  max-width:560px;
+  margin-left:240px; /* you asked: move right */
+  margin-top:80px;
+}
+
+/* Mobile fallback */
+@media (max-width: 900px){
+  .nav-menu{ display:none; } /* later you can add hamburger */
+  .hero-content{ margin-left:22px; margin-right:22px; }
+}
 
