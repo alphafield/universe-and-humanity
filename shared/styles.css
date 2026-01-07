@@ -181,4 +181,33 @@ body{
   .nav-menu{ display:none; } /* later you can add hamburger */
   .hero-content{ margin-left:22px; margin-right:22px; }
 }
+/* ===== Brand lock (stop underline / stop fallback styles) ===== */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none !important;
+  border:0 !important;
+}
+
+.brand-mark{
+  width:28px;
+  height:28px;
+  display:block;
+  opacity:.92;
+}
+
+.brand-text{
+  color:#fff;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  text-decoration:none !important;
+  border-bottom:0 !important;
+}
+
+.brand *{
+  text-decoration:none !important;
+  border:0 !important;
+}
 
