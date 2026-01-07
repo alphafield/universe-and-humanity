@@ -927,3 +927,30 @@ body { overflow-x: hidden; overflow-y: auto !important; }
 nav, .nav, .site-nav, .topbar, .header, header {
   background: rgba(0,0,0,0.85) !important;
 }
+/* ===== KILL TOP WHITE BAR (nav placeholder/search) ===== */
+nav input,
+nav .search,
+nav .search-box,
+nav .nav-search,
+nav .nav-center,
+nav .center,
+nav .spacer,
+nav .nav-spacer,
+nav .mid,
+nav .nav-mid,
+nav .nav-fill,
+nav .fill {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 如果它其实是一个“空白占位 div”，直接隐藏 */
+nav .nav-center:empty,
+nav .center:empty,
+nav .spacer:empty,
+nav .nav-spacer:empty,
+nav .nav-fill:empty,
+nav .fill:empty {
+  display: none !important;
+}
