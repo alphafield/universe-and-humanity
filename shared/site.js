@@ -6,7 +6,6 @@
 */
 
 (function () {
-
   function ready(fn) {
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", fn);
@@ -21,12 +20,8 @@
     try { localStorage.setItem("site_lang", safe); } catch (e) {}
 
     // toggle content
-    document.querySelectorAll(".lang").forEach(el => {
-      el.classList.remove("active");
-    });
-    document.querySelectorAll(".lang-" + safe).forEach(el => {
-      el.classList.add("active");
-    });
+    document.querySelectorAll(".lang").forEach(el => el.classList.remove("active"));
+    document.querySelectorAll(".lang-" + safe).forEach(el => el.classList.add("active"));
 
     // toggle buttons (if exist)
     document.querySelectorAll(".langbtn").forEach(btn => {
@@ -34,13 +29,10 @@
     });
 
     // html lang (optional)
-    document.documentElement.setAttribute(
-      "lang",
-      safe === "zh" ? "zh-CN" : "en"
-    );
+    document.documentElement.setAttribute("lang", safe === "zh" ? "zh-CN" : "en");
   }
 
-  // expose (optional)
+  // expose globally (optional)
   window.setLang = setLang;
 
   ready(() => {
@@ -60,8 +52,4 @@
       if (l === "zh" || l === "en") setLang(l);
     });
   });
-
 })();
-
-
-
