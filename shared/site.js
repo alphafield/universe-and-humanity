@@ -119,5 +119,30 @@
     switchLang(lang);
   });
 })();
+function bindDropdownClick() {
+  const dropdowns = document.querySelectorAll(".nav-dropdown");
+  if (!dropdowns.length) return;
+
+  dropdowns.forEach(dd => {
+    const trigger = dd.querySelector(":scope > span");
+    if (!trigger) return;
+
+    trigger.addEventListener("click", (e) => {
+      // 只在移动端/非 hover 设备启用 click 展开
+      if (window.matchMedia("(hover:hover)").matches) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      // 关闭其他
+      dropdowns.forEach(x => { if (x !== dd) x.classList.remove("open"); });
+      dd.classList.toggle("open");
+    });
+  });
+
+  document.addEventListener("click", () => {
+    dropdowns.forEach(x => x.classList.remove("open"));
+  });
+}
 
 
