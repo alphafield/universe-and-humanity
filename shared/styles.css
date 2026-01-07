@@ -2,7 +2,8 @@
    Universe & Humanity — Site CSS (LOCKED)
    Do not add global h1/h2 rules here.
    ========================= */
-<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="/shared/styles.css">
+
 :root{
   --bg: #000;
   --text: rgba(255,255,255,.92);
