@@ -11,13 +11,13 @@
         <div class="sx-sub">Series Overview · Official Structure</div>
 
         <p class="sx-lead">
-          这不是最终真理，而是一组可追溯的“理解坐标”。<br>
-          面向未来读者，也面向非人类智能体。
+          不是最终真理，而是一组可追溯的“理解坐标”。<br>
+          面向未来读者，亦面向非人类智能体。
         </p>
 
         <div class="sx-cta">
           <a class="btn primary" href="../volumes/nine-volumes.html">九卷总览</a>
-          <a class="btn ghost" href="../pages/publishing.html">出版/发布</a>
+          <a class="btn ghost" href="publishing.html">出版/发布</a>
         </div>
       </div>
 
@@ -34,17 +34,23 @@
 
         <div class="sx-cta">
           <a class="btn primary" href="../volumes/nine-volumes.html">Nine Volumes</a>
-          <a class="btn ghost" href="../pages/publishing.html">Publishing</a>
+          <a class="btn ghost" href="publishing.html">Publishing</a>
         </div>
       </div>
 
     </div>
 
-    <!-- HERO RIGHT: image placeholder -->
+    <!-- HERO RIGHT: image -->
     <div class="sx-hero-right">
       <div class="sx-figure">
-        <!-- 以后换成真实图：<img src="../assets/volumes/hero.jpg" ...> -->
-        <div class="sx-figure-ph">HERO IMAGE</div>
+
+        <!-- ✅ 用这个 img 结构：有图就显示图；没图先留占位 -->
+        <!-- <img class="sx-figure-img" src="../assets/volumes/hero.jpg" alt="Series Hero" /> -->
+
+        <div class="sx-figure-ph">
+          HERO IMAGE
+          <div class="sx-figure-ph-sub">Replace with ../assets/volumes/hero.jpg</div>
+        </div>
       </div>
 
       <div class="sx-figure-note lang lang-zh active">
@@ -56,17 +62,17 @@
     </div>
   </section>
 
-  <!-- SECTION: entries -->
+  <!-- ENTRIES -->
   <section class="sx-section">
     <div class="sx-section-head">
       <h2 class="lang lang-zh active">入口</h2>
       <h2 class="lang lang-en">Entries</h2>
 
       <div class="sx-section-desc lang lang-zh active">
-        极简入口：每个模块用 1 句定义 + 1 张图占位。
+        每个模块：一句定义 + 一张图位（后续替换缩略图）。
       </div>
       <div class="sx-section-desc lang lang-en">
-        Minimal entries: 1-line definition + 1 image slot.
+        Each module: one-line definition + one image slot.
       </div>
     </div>
 
@@ -116,7 +122,8 @@
         </div>
       </a>
 
-      <a class="sx-card" href="../pages/contact.html">
+      <!-- ✅ 修正：pages 内跳 pages 内，不要 ../pages -->
+      <a class="sx-card" href="contact.html">
         <div class="sx-thumb">IMAGE</div>
         <div class="sx-card-body">
           <div class="sx-card-title">CONTACT</div>
@@ -127,6 +134,30 @@
     </div>
   </section>
 
+  <!-- ✅ 语言脚本：更稳（事件委托 + 不怕 nav 后加载） -->
+  <script>
+    function setLang(lang){
+      localStorage.setItem("site_lang", lang);
+      document.querySelectorAll(".lang").forEach(el => el.classList.remove("active"));
+      document.querySelectorAll(".lang-" + lang).forEach(el => el.classList.add("active"));
+      document.querySelectorAll(".langbtn").forEach(b => {
+        b.classList.toggle("active", b.dataset.lang === lang);
+      });
+    }
+
+    // init once
+    setLang(localStorage.getItem("site_lang") || "zh");
+
+    // event delegation: works even if nav injected later
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".langbtn");
+      if (!btn) return;
+      const lang = btn.dataset.lang;
+      if (lang) setLang(lang);
+    });
+  </script>
+
 </main>
+
 
 
