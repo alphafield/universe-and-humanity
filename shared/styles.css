@@ -261,4 +261,46 @@ nav a:hover{ color: #fff; }
 }
 .hero-kicker:visited,
 .hero-kicker:hover{ text-decoration:none !important; color: rgba(255,255,255,.70) !important; }
+// ===== Home anchors vs Volumes page routing (Series) =====
+(function bindSeriesRouting(){
+  const HOME_ANCHORS = new Set([
+    "overview","alpha","universe","humanity","thinkers","civilization","contact"
+  ]);
+
+  const SERIES_ROUTE = {
+    "nine-volumes": "pages/volumes.html#nine-volumes",
+    "epic": "pages/volumes.html#cosmic-epic",
+    "dao": "pages/volumes.html#the-dao",
+    "sutra": "pages/volumes.html#heart-sutra",
+    "parables": "pages/volumes.html#parables",
+    "publishing": "pages/volumes.html#publishing",
+    "volume1": "pages/volumes.html#volume1"
+  };
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener("click", function(e){
+      const href = this.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const id = href.slice(1);
+
+      // 1) series -> volumes.html
+      if (SERIES_ROUTE[id]) {
+        e.preventDefault();
+        window.location.href = SERIES_ROUTE[id];
+        return;
+      }
+
+      // 2) home anchors -> smooth scroll (只处理存在的)
+      if (HOME_ANCHORS.has(id)) {
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      // 其它情况不拦截
+    }, { passive: false });
+  });
+})();
 
