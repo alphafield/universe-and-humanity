@@ -106,9 +106,12 @@
 
   // ---- 初始化 ----
   onReady(() => {
-    bindLangSwitch();
-    bindAnchorSmoothScroll();
-    bindScrollIndicator();
+  bindLangSwitch();
+  bindDropdownClick();
+  bindAnchorSmoothScroll();
+  bindScrollIndicator();
+});
+
 
     // 启动时应用记忆语言（默认 zh）
     let lang = "zh";
