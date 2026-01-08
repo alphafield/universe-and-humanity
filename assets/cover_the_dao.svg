@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" style="background:#050B20">
+  <!-- Book Cover: The Dao of Universe -->
+  
+  <!-- Title Area -->
+  <text x="200" y="100" font-family="Inter, sans-serif" font-size="32" font-weight="300" 
+        fill="#FFCC33" text-anchor="middle" letter-spacing="6">
+    宇宙与人类
+  </text>
+  
+  <!-- Main Title -->
+  <text x="200" y="150" font-family="Inter, sans-serif" font-size="48" font-weight="600" 
+        fill="#FFFFFF" text-anchor="middle" letter-spacing="4">
+    宇宙之道
+  </text>
+  
+  <!-- English Title -->
+  <text x="200" y="180" font-family="Inter, sans-serif" font-size="16" font-weight="400" 
+        fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="2">
+    THE DAO OF UNIVERSE
+  </text>
+  
+  <!-- Central Design: Taiji-inspired Alpha Symbol -->
+  <g transform="translate(200, 320)">
+    <!-- Outer circle -->
+    <circle cx="0" cy="0" r="90" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Inner Yin-Yang inspired division (simplified, geometric) -->
+    <circle cx="0" cy="-30" r="30" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="0" cy="30" r="30" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Central vertical line (道) -->
+    <line x1="0" y1="-90" x2="0" y2="90" stroke="#FFCC33" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Horizontal balance line -->
+    <line x1="-90" y1="0" x2="90" y2="0" stroke="#FFCC33" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Alpha core points -->
+    <circle cx="0" cy="-30" r="8" fill="#FFCC33"/>
+    <circle cx="0" cy="30" r="8" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Four cardinal points -->
+    <circle cx="0" cy="-90" r="4" fill="#FFCC33" opacity="0.6"/>
+    <circle cx="90" cy="0" r="4" fill="#FFCC33" opacity="0.6"/>
+    <circle cx="0" cy="90" r="4" fill="#FFCC33" opacity="0.6"/>
+    <circle cx="-90" cy="0" r="4" fill="#FFCC33" opacity="0.6"/>
+  </g>
+  
+  <!-- Subtitle -->
+  <text x="200" y="480" font-family="Inter, sans-serif" font-size="14" font-weight="300" 
+        fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="2">
+    东方智慧版 · α与道的统一
+  </text>
+  
+  <!-- Icon -->
+  <text x="200" y="520" font-family="Inter, sans-serif" font-size="32" 
+        text-anchor="middle">
+    ☯
+  </text>
+  
+  <!-- Publisher Info -->
+  <text x="200" y="565" font-family="Inter, sans-serif" font-size="12" font-weight="400" 
+        fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">
+    ALPHA COHERENCE INSTITUTE
+  </text>
+</svg>
