@@ -947,3 +947,40 @@ nav .nav-fill:empty,
 nav .fill:empty {
   display: none !important;
 }
+/* ===== KILL ANY VIDEO UI / GREEN OVERLAY ===== */
+.galaxy-video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  /* 防止任何“染色/混合” */
+  filter:none !important;
+  mix-blend-mode: normal !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+/* Chrome/Safari: 强制隐藏所有内置媒体控件层（包括进度条/缓冲条） */
+.galaxy-video::-webkit-media-controls,
+.galaxy-video::-webkit-media-controls-panel,
+.galaxy-video::-webkit-media-controls-enclosure,
+.galaxy-video::-webkit-media-controls-overlay-play-button,
+.galaxy-video::-webkit-media-controls-play-button,
+.galaxy-video::-webkit-media-controls-timeline,
+.galaxy-video::-webkit-media-controls-current-time-display,
+.galaxy-video::-webkit-media-controls-time-remaining-display,
+.galaxy-video::-webkit-media-controls-mute-button,
+.galaxy-video::-webkit-media-controls-volume-slider,
+.galaxy-video::-webkit-media-controls-fullscreen-button{
+  display:none !important;
+  -webkit-appearance:none !important;
+  opacity:0 !important;
+}
+
+/* 父容器也要禁止混合/滤镜（很多“绿色”是父级把金色染成绿） */
+.sx-figure,
+.sx-figure *{
+  filter:none !important;
+  mix-blend-mode: normal !important;
+}
