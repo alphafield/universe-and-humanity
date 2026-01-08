@@ -2,8 +2,6 @@
    Universe & Humanity — Site CSS (LOCKED)
    Do not add global h1/h2 rules here.
    ========================= */
-<link rel="stylesheet" href="/shared/styles.css">
-
 :root{
   --bg: #000;
   --text: rgba(255,255,255,.92);
@@ -284,11 +282,6 @@ nav a:hover{ color: #fff; }
 }
 .hero-kicker:visited,
 .hero-kicker:hover{ text-decoration:none !important; color: rgba(255,255,255,.70) !important; }
-// ===== Home anchors vs Volumes page routing (Series) =====
-(function bindSeriesRouting(){
-  const HOME_ANCHORS = new Set([
-    "overview","alpha","universe","humanity","thinkers","civilization","contact"
-  ]);
 
   const SERIES_ROUTE = {
     "nine-volumes": "pages/volumes.html#nine-volumes",
