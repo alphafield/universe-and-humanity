@@ -5,207 +5,402 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Volumes · Universe & Humanity</title>
 
-<link rel="stylesheet" href="/shared/site.css">
+<link rel="stylesheet" href="/shared/site.css" />
 
 <style>
-/* ===== SpaceX-like volume layout ===== */
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+  }
 
-body{
-  background:#000;
-  color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-}
+  /* ===== NAV (same system as index) ===== */
+  nav{
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    z-index: 4000;
+    background: rgba(0,0,0,0.80);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
 
-.vx-section{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:120px 10vw;
-  gap:8vw;
-}
+  .brand{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none !important;
+    color:#fff !important;
+    white-space: nowrap;
+  }
+  .brand:visited,.brand:hover,.brand:active{
+    color:#fff !important;
+    text-decoration:none !important;
+  }
+  .brand-mark{
+    width:34px;
+    height:34px;
+    display:block;
+    object-fit:contain;
+  }
+  .brand-title{
+    color: rgba(255,255,255,0.92);
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:.5px;
+    text-transform: uppercase;
+    font-family: "D-DIN-Bold","Arial Black",sans-serif;
+  }
 
-.vx-section:nth-child(even){
-  flex-direction:row-reverse;
-}
+  .nav-menu{
+    display:flex;
+    gap:35px;
+    font-size:12px;
+    font-weight:700;
+    text-transform: uppercase;
+    letter-spacing:.5px;
+    font-family:"D-DIN-Bold", Arial, sans-serif;
+  }
+  .nav-menu a{
+    color: rgba(255,255,255,0.85);
+    text-decoration:none;
+    transition: color .2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .nav-menu a:hover{ color:#fff; }
 
-.vx-text{
-  flex:1;
-  max-width:520px;
-}
+  .nav-right{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
 
-.vx-text h1{
-  font-size:42px;
-  letter-spacing:0.08em;
-  margin-bottom:18px;
-}
+  .lang-switch{
+    display:flex;
+    border: 1px solid rgba(255,255,255,0.30);
+    user-select:none;
+    font-size:11px;
+    text-transform: uppercase;
+    letter-spacing:.5px;
+    font-weight:600;
+  }
+  .lang-switch span{
+    padding: 6px 14px;
+    cursor:pointer;
+    transition: all .2s ease;
+    color: rgba(255,255,255,0.80);
+  }
+  .lang-switch span:hover{
+    background: rgba(255,255,255,0.10);
+    color:#fff;
+  }
+  .lang-switch span.active{
+    background: rgba(255,255,255,0.15);
+    color:#fff;
+  }
 
-.vx-text h1 span{
-  display:block;
-  font-size:14px;
-  opacity:.6;
-  margin-top:6px;
-}
+  /* ===== Language blocks (works with /shared/site.js) ===== */
+  .lang{ display:none; }
+  .lang.active{ display:block; }
 
-.vx-text p{
-  font-size:16px;
-  line-height:1.8;
-  opacity:.85;
-}
-
-.vx-link{
-  display:inline-block;
-  margin-top:28px;
-  padding:12px 28px;
-  border:1px solid rgba(255,255,255,.4);
-  text-decoration:none;
-  color:#fff;
-  font-size:13px;
-  letter-spacing:.12em;
-}
-
-.vx-link:hover{
-  background:#fff;
-  color:#000;
-}
-
-.vx-figure{
-  flex:1;
-  max-width:520px;
-  aspect-ratio:3/4;
-  border-radius:16px;
-  overflow:hidden;
-  background:#0b0b0b;
-}
-
-.sx-figure-img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-/* ===== responsive ===== */
-@media(max-width:900px){
+  /* ===== SpaceX-like volume layout ===== */
   .vx-section{
-    flex-direction:column !important;
-    padding:100px 8vw;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 10vw;
+    gap:8vw;
   }
+  .vx-section:nth-of-type(even){
+    flex-direction:row-reverse;
+  }
+
+  .vx-text{
+    flex:1;
+    max-width:540px;
+  }
+
+  .vx-kicker{
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom:10px;
+  }
+
+  .vx-text h1{
+    font-size:44px;
+    letter-spacing:0.06em;
+    margin-bottom:16px;
+    font-weight:600;
+  }
+
+  .vx-sub{
+    font-size:14px;
+    opacity:.75;
+    margin-top:8px;
+    line-height:1.6;
+  }
+
+  .vx-text p{
+    font-size:16px;
+    line-height:1.85;
+    opacity:.82;
+    margin-top:14px;
+  }
+
+  .vx-link{
+    display:inline-block;
+    margin-top:26px;
+    padding:12px 28px;
+    border:1px solid rgba(255,255,255,.35);
+    text-decoration:none;
+    color:#fff;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform: uppercase;
+    transition: .2s ease;
+  }
+  .vx-link:hover{
+    background:#fff;
+    color:#000;
+  }
+
   .vx-figure{
-    width:100%;
+    flex:1;
+    max-width:520px;
+    aspect-ratio:3/4;
+    border-radius:18px;
+    overflow:hidden;
+    background:#0b0b0b;
+    border: 1px solid rgba(255,255,255,0.08);
   }
-}
+  .sx-figure-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter: contrast(1.02);
+  }
+
+  /* anchor offset for fixed nav */
+  .anchor{
+    position: relative;
+    top: -90px;
+    height: 1px;
+    width: 1px;
+    visibility: hidden;
+  }
+
+  @media(max-width:900px){
+    nav{ padding: 12px 18px; gap:18px; }
+    .nav-menu{ display:none; }
+    .vx-section{
+      flex-direction:column !important;
+      padding:110px 8vw 90px;
+    }
+    .vx-figure{ width:100%; }
+    .vx-text h1{ font-size:38px; }
+  }
 </style>
 </head>
 
 <body>
 
-<!-- =================== NAV (shared) =================== -->
+<!-- =============== TOP NAV =============== -->
+<nav>
+  <a class="brand" href="/index.html">
+    <img class="brand-mark" src="/assets/marks/mark_coord.svg" alt="">
+    <span class="brand-title">UNIVERSE &amp; HUMANITY</span>
+  </a>
+
+  <div class="nav-menu">
+    <a href="/index.html#overview" data-en="EXPLORE" data-zh="探索">EXPLORE</a>
+    <a href="/pages/volumes.html" data-en="VOLUMES" data-zh="卷著">VOLUMES</a>
+    <a href="/pages/publishing.html" data-en="PUBLISHING" data-zh="出版">PUBLISHING</a>
+    <a href="/pages/contact.html" data-en="CONTACT" data-zh="联系">CONTACT</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="lang-switch">
+      <span class="langbtn active" data-lang="en">EN</span>
+      <span class="langbtn" data-lang="zh">中文</span>
+    </div>
+  </div>
+</nav>
+
+<!-- shared language switch logic -->
 <script src="/shared/site.js"></script>
 
-<!-- =================== HERO =================== -->
+<!-- =============== NINE VOLUMES =============== -->
+<div id="nine-volumes" class="anchor"></div>
 <section class="vx-section">
   <div class="vx-text">
-    <h1>
-      NINE VOLUMES
-      <span>宇宙 · 结构 · 时间 · 生命 · 意识</span>
-    </h1>
-    <p>
-      A nine-volume structural dialogue between universe and humanity.
-      Not conclusions, but coordinates — designed to be rewritten by the future.
-    </p>
-    <a class="vx-link" href="/pages/nine-volumes.html">ENTER SERIES</a>
+    <div class="vx-kicker">SERIES</div>
+
+    <div class="lang lang-en active">
+      <h1>NINE VOLUMES</h1>
+      <div class="vx-sub">Universe · Structure · Time · Life · Mind · Intelligence · Civilization · Constraint · Unknown</div>
+      <p>
+        A nine-volume structural dialogue between universe and humanity.
+        Not conclusions, but coordinates — designed to be rewritten by the future.
+      </p>
+      <a class="vx-link" href="/pages/nine-volumes.html">ENTER SERIES</a>
+    </div>
+
+    <div class="lang lang-zh">
+      <h1>宇宙九卷</h1>
+      <div class="vx-sub">宇宙 · 结构 · 时间 · 生命 · 意识 · 智能 · 文明 · 约束 · 未知</div>
+      <p>
+        一套关于“宇宙与人类”的结构对话体系。
+        不是结论，而是坐标——为未来留下可重写的入口。
+      </p>
+      <a class="vx-link" href="/pages/nine-volumes.html">进入系列</a>
+    </div>
   </div>
 
   <div class="vx-figure">
-    <img class="sx-figure-img"
-         src="/assets/covers/cover_nine_volumes.svg"
-         alt="Nine Volumes Cover">
+    <img class="sx-figure-img" src="/assets/covers/cover_nine_volumes.svg" alt="">
   </div>
 </section>
 
-<!-- =================== DAO =================== -->
+<!-- =============== DAO =============== -->
+<div id="dao" class="anchor"></div>
 <section class="vx-section">
   <div class="vx-text">
-    <h1>
-      DAO
-      <span>公理接口 · Axiomatic Interface</span>
-    </h1>
-    <p>
-      The minimal structural constraint that determines
-      whether a system can exist, persist, and evolve.
-    </p>
-    <a class="vx-link" href="/pages/volumes/dao.html">READ DAO</a>
+    <div class="vx-kicker">INTERFACE</div>
+
+    <div class="lang lang-en active">
+      <h1>DAO</h1>
+      <div class="vx-sub">Axiomatic Interface · Minimal Constraint</div>
+      <p>
+        The smallest structural expression of constraint —
+        defining whether a system can exist, persist, and evolve.
+      </p>
+      <a class="vx-link" href="/pages/volumes/dao.html">READ DAO</a>
+    </div>
+
+    <div class="lang lang-zh">
+      <h1>宇宙之道</h1>
+      <div class="vx-sub">公理接口 · 从最小约束进入</div>
+      <p>
+        以最小的结构表达“约束”。
+        它决定：什么结构能存在、能持续、能演化。
+      </p>
+      <a class="vx-link" href="/pages/volumes/dao.html">进入 DAO</a>
+    </div>
   </div>
 
   <div class="vx-figure">
-    <img class="sx-figure-img"
-         src="/assets/covers/cover_the_dao.svg"
-         alt="DAO Cover">
+    <img class="sx-figure-img" src="/assets/covers/cover_the_dao.svg" alt="">
   </div>
 </section>
 
-<!-- =================== SUTRA =================== -->
+<!-- =============== SUTRA =============== -->
+<div id="sutra" class="anchor"></div>
 <section class="vx-section">
   <div class="vx-text">
-    <h1>
-      SUTRA
-      <span>引用接口 · Structural Language</span>
-    </h1>
-    <p>
-      A referenceable, composable structural language —
-      bridging mathematics, physics, and cognition.
-    </p>
-    <a class="vx-link" href="/pages/volumes/sutra.html">READ SUTRA</a>
+    <div class="vx-kicker">INTERFACE</div>
+
+    <div class="lang lang-en active">
+      <h1>SUTRA</h1>
+      <div class="vx-sub">Reference Interface · Structural Language</div>
+      <p>
+        A referenceable, composable structural language —
+        bridging mathematics, physics, and cognition.
+      </p>
+      <a class="vx-link" href="/pages/volumes/sutra.html">READ SUTRA</a>
+    </div>
+
+    <div class="lang lang-zh">
+      <h1>宇宙心经</h1>
+      <div class="vx-sub">引用接口 · 结构语言</div>
+      <p>
+        可引用、可拼接、可验证的结构表达。
+        用结构语言去理解世界，而不是堆概念。
+      </p>
+      <a class="vx-link" href="/pages/volumes/sutra.html">进入 SUTRA</a>
+    </div>
   </div>
 
   <div class="vx-figure">
-    <img class="sx-figure-img"
-         src="/assets/covers/cover_heart_sutra.svg"
-         alt="Sutra Cover">
+    <img class="sx-figure-img" src="/assets/covers/cover_heart_sutra.svg" alt="">
   </div>
 </section>
 
-<!-- =================== PARABLES =================== -->
+<!-- =============== PARABLES =============== -->
+<div id="parables" class="anchor"></div>
 <section class="vx-section">
   <div class="vx-text">
-    <h1>
-      PARABLES
-      <span>感知接口 · Perceptual Interface</span>
-    </h1>
-    <p>
-      When structure enters awareness —
-      through image, story, metaphor, and resonance.
-    </p>
-    <a class="vx-link" href="/pages/volumes/parables.html">READ PARABLES</a>
+    <div class="vx-kicker">INTERFACE</div>
+
+    <div class="lang lang-en active">
+      <h1>PARABLES</h1>
+      <div class="vx-sub">Perceptual Interface · Story & Image</div>
+      <p>
+        When structure enters awareness —
+        through image, story, metaphor, and resonance.
+      </p>
+      <a class="vx-link" href="/pages/volumes/parables.html">READ PARABLES</a>
+    </div>
+
+    <div class="lang lang-zh">
+      <h1>宇宙寓言</h1>
+      <div class="vx-sub">感知接口 · 故事与图像进入</div>
+      <p>
+        当结构进入意识：图像、寓言、隐喻、共振。
+        用“可感知”的方式，把结构带进大众心智。
+      </p>
+      <a class="vx-link" href="/pages/volumes/parables.html">进入 PARABLES</a>
+    </div>
   </div>
 
   <div class="vx-figure">
-    <img class="sx-figure-img"
-         src="/assets/covers/cover_parables.svg"
-         alt="Parables Cover">
+    <img class="sx-figure-img" src="/assets/covers/cover_parables.svg" alt="">
   </div>
 </section>
 
-<!-- =================== EPIC =================== -->
+<!-- =============== EPIC =============== -->
+<div id="epic" class="anchor"></div>
 <section class="vx-section">
   <div class="vx-text">
-    <h1>
-      EPIC
-      <span>时间接口 · Temporal Interface</span>
-    </h1>
-    <p>
-      Structure unfolding across time —
-      from cosmos to life, from civilization to the unknown.
-    </p>
-    <a class="vx-link" href="/pages/volumes/epic.html">READ EPIC</a>
+    <div class="vx-kicker">INTERFACE</div>
+
+    <div class="lang lang-en active">
+      <h1>EPIC</h1>
+      <div class="vx-sub">Temporal Interface · Unfolding Across Time</div>
+      <p>
+        Structure unfolding across time —
+        from cosmos to life, from civilization to the unknown.
+      </p>
+      <a class="vx-link" href="/pages/volumes/epic.html">READ EPIC</a>
+    </div>
+
+    <div class="lang lang-zh">
+      <h1>宇宙史诗</h1>
+      <div class="vx-sub">时间接口 · 沿时间展开理解</div>
+      <p>
+        结构在时间尺度上的展开：
+        从宇宙到生命，从文明到未知。
+      </p>
+      <a class="vx-link" href="/pages/volumes/epic.html">进入 EPIC</a>
+    </div>
   </div>
 
   <div class="vx-figure">
-    <img class="sx-figure-img"
-         src="/assets/covers/cover_cosmic_epic.svg"
-         alt="Epic Cover">
+    <img class="sx-figure-img" src="/assets/covers/cover_cosmic_epic.svg" alt="">
   </div>
 </section>
 
 </body>
 </html>
+
