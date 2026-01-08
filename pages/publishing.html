@@ -1,1 +1,335 @@
+<!-- pages/publishing.html  ✅整页直接替换（Publisher / Redirect Page） -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publishing | 出版</title>
+
+  <!-- 全站样式/脚本：绝对路径，避免相对路径乱跳 -->
+  <link rel="stylesheet" href="/shared/styles.css?v=1" />
+  <script defer src="/shared/site.js?v=1"></script>
+
+  <!-- 兜底：保证黑底 + 不被裁切 -->
+  <style>
+    html, body { height:auto; }
+    body { margin:0; background:#000; color:#fff; overflow-x:hidden; }
+  </style>
+</head>
+
+<body class="page">
+
+  <!-- ✅ 如果你有全站导航（固定在每页同一段），在这里粘贴你“已验证可用”的 nav 代码
+       ⚠️ 不要在这里新造 nav（避免再乱）
+       例如：<header class="site-header"> ... </header>
+  -->
+
+  <main class="sx-page">
+
+    <!-- HERO -->
+    <section class="sx-hero" id="publishing">
+      <div class="sx-hero-left">
+
+        <!-- ZH -->
+        <div class="lang lang-zh active">
+          <div class="sx-kicker">PUBLISHING</div>
+          <h1 class="sx-title">出版商入口</h1>
+          <div class="sx-sub">Official Releases · Redirect Page</div>
+
+          <p class="sx-lead">
+            本系列并非在线连载。<br />
+            所有卷著均以正式出版物形式发行。<br />
+            本站仅提供节选与结构导览。
+          </p>
+
+          <div class="sx-cta">
+            <a class="btn primary" href="/pages/volumes.html">返回卷著页</a>
+            <a class="btn ghost" href="/pages/contact.html">联系出版/合作</a>
+          </div>
+        </div>
+
+        <!-- EN -->
+        <div class="lang lang-en">
+          <div class="sx-kicker">PUBLISHING</div>
+          <h1 class="sx-title">Publisher Links</h1>
+          <div class="sx-sub">Official Releases · Redirect Page</div>
+
+          <p class="sx-lead">
+            This series is not published online.<br />
+            All volumes are officially released through publishers.<br />
+            Only excerpts and structural guidance are presented here.
+          </p>
+
+          <div class="sx-cta">
+            <a class="btn primary" href="/pages/volumes.html">Back to Volumes</a>
+            <a class="btn ghost" href="/pages/contact.html">Publishing / Contact</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- HERO RIGHT: 图位（你可换图） -->
+      <div class="sx-hero-right">
+        <div class="sx-figure">
+          <!-- 有图就用 img 替换占位：
+          <img class="sx-figure-img" src="/assets/volumes/publishing-hero.jpg" alt="Publishing Hero" />
+          -->
+          <div class="sx-figure-ph">
+            PUBLISHING
+            <div class="sx-figure-ph-sub">Replace with /assets/volumes/publishing-hero.jpg</div>
+          </div>
+        </div>
+
+        <div class="sx-figure-note lang lang-zh active">
+          提示：此页只做“跳转”，不做在线完整版阅读。
+        </div>
+        <div class="sx-figure-note lang lang-en">
+          Note: This page is for redirects only — no full online reading.
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID: 四卷入口 + 跳转 -->
+    <section class="sx-section" aria-label="Publisher Links">
+      <div class="sx-section-head">
+        <h2 class="lang lang-zh active">四卷 · 出版入口</h2>
+        <h2 class="lang lang-en">Four Volumes · Publisher Links</h2>
+
+        <div class="sx-section-desc lang lang-zh active">
+          每卷只给一句定位 + 官方跳转链接。
+        </div>
+        <div class="sx-section-desc lang lang-en">
+          One-line role + official redirect links.
+        </div>
+      </div>
+
+      <div class="sx-grid">
+
+        <!-- DAO -->
+        <article class="sx-card" id="dao">
+          <div class="sx-thumb">
+            <!-- 可替换缩略图
+            <img src="/assets/volumes/dao-thumb.jpg" alt="DAO cover" />
+            -->
+            DAO
+          </div>
+          <div class="sx-card-body">
+            <div class="sx-card-title">DAO · 公理接口</div>
+
+            <div class="sx-card-text lang lang-zh active">
+              结构约束的最小表达形式。
+            </div>
+            <div class="sx-card-text lang lang-en">
+              Axioms and minimal structural constraints.
+            </div>
+
+            <div class="sx-cta" style="margin-top:12px;">
+              <!-- ✅ 把 href 换成你的出版商链接 -->
+              <a class="btn primary" href="https://example.com/dao" target="_blank" rel="noopener">前往出版页面</a>
+              <a class="btn ghost" href="/volumes/dao.html">回到卷内介绍</a>
+            </div>
+
+            <details style="margin-top:14px;">
+              <summary class="sx-card-text lang lang-zh active">可选 · 更锋利版本</summary>
+              <summary class="sx-card-text lang lang-en">Optional · Sharper line</summary>
+
+              <div class="sx-card-text lang lang-zh active" style="margin-top:10px;">
+                若不存在最小结构约束，宇宙并非爆炸，而是瞬间解体。<br/>
+                存在不是因为复杂，而是因为克制。
+              </div>
+              <div class="sx-card-text lang lang-en" style="margin-top:10px;">
+                Without minimal constraints, the universe would not explode—it would dissolve.<br/>
+                Existence is born from restraint, not complexity.
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- SUTRA -->
+        <article class="sx-card" id="sutra">
+          <div class="sx-thumb">SUTRA</div>
+          <div class="sx-card-body">
+            <div class="sx-card-title">SUTRA · 引用接口</div>
+
+            <div class="sx-card-text lang lang-zh active">
+              可被组合、引用与验证的结构语言。
+            </div>
+            <div class="sx-card-text lang lang-en">
+              Citable, composable structural language.
+            </div>
+
+            <div class="sx-cta" style="margin-top:12px;">
+              <a class="btn primary" href="https://example.com/sutra" target="_blank" rel="noopener">前往出版页面</a>
+              <a class="btn ghost" href="/volumes/sutra.html">回到卷内介绍</a>
+            </div>
+
+            <details style="margin-top:14px;">
+              <summary class="sx-card-text lang lang-zh active">可选 · 更锋利版本</summary>
+              <summary class="sx-card-text lang lang-en">Optional · Sharper line</summary>
+
+              <div class="sx-card-text lang lang-zh active" style="margin-top:10px;">
+                真正的知识不是被理解，而是能在不同头脑中保持一致。
+              </div>
+              <div class="sx-card-text lang lang-en" style="margin-top:10px;">
+                Knowledge is not what is understood, but what remains consistent across minds.
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- PARABLES -->
+        <article class="sx-card" id="parables">
+          <div class="sx-thumb">PARABLES</div>
+          <div class="sx-card-body">
+            <div class="sx-card-title">PARABLES · 感知接口</div>
+
+            <div class="sx-card-text lang lang-zh active">
+              结构进入意识的可感知映射。
+            </div>
+            <div class="sx-card-text lang lang-en">
+              A perceptual mapping for structure to enter awareness.
+            </div>
+
+            <div class="sx-cta" style="margin-top:12px;">
+              <a class="btn primary" href="https://example.com/parables" target="_blank" rel="noopener">前往出版页面</a>
+              <a class="btn ghost" href="/volumes/parables.html">回到卷内介绍</a>
+            </div>
+
+            <details style="margin-top:14px;">
+              <summary class="sx-card-text lang lang-zh active">可选 · 更锋利版本</summary>
+              <summary class="sx-card-text lang lang-en">Optional · Sharper line</summary>
+
+              <div class="sx-card-text lang lang-zh active" style="margin-top:10px;">
+                当结构无法被公式承载，它会选择成为故事。
+              </div>
+              <div class="sx-card-text lang lang-en" style="margin-top:10px;">
+                When structure exceeds equations, it chooses narrative.
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- EPIC -->
+        <article class="sx-card" id="epic">
+          <div class="sx-thumb">EPIC</div>
+          <div class="sx-card-body">
+            <div class="sx-card-title">EPIC · 时间接口</div>
+
+            <div class="sx-card-text lang lang-zh active">
+              结构在时间尺度上的展开与持续。
+            </div>
+            <div class="sx-card-text lang lang-en">
+              Structure unfolded and sustained across time.
+            </div>
+
+            <div class="sx-cta" style="margin-top:12px;">
+              <a class="btn primary" href="https://example.com/epic" target="_blank" rel="noopener">前往出版页面</a>
+              <a class="btn ghost" href="/volumes/epic.html">回到卷内介绍</a>
+            </div>
+
+            <details style="margin-top:14px;">
+              <summary class="sx-card-text lang lang-zh active">可选 · 更锋利版本</summary>
+              <summary class="sx-card-text lang lang-en">Optional · Sharper line</summary>
+
+              <div class="sx-card-text lang lang-zh active" style="margin-top:10px;">
+                时间并不创造意义，它只是不断淘汰无法持续的结构。
+              </div>
+              <div class="sx-card-text lang lang-en" style="margin-top:10px;">
+                Time does not create meaning. It eliminates structures that cannot endure.
+              </div>
+            </details>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- EXCERPTS（可选）：每卷一段精彩片段（你稍后替换文本） -->
+    <section class="sx-section" id="excerpts">
+      <div class="sx-section-head">
+        <h2 class="lang lang-zh active">节选</h2>
+        <h2 class="lang lang-en">Excerpts</h2>
+
+        <div class="sx-section-desc lang lang-zh active">
+          只给一段“足够精彩”的片段，引导去购买。
+        </div>
+        <div class="sx-section-desc lang lang-en">
+          One strong excerpt per volume — then redirect to purchase.
+        </div>
+      </div>
+
+      <div class="sx-grid">
+
+        <article class="sx-card">
+          <div class="sx-card-body">
+            <div class="sx-card-title">DAO · Excerpt</div>
+            <div class="sx-card-text lang lang-zh active">
+              【在此粘贴 DAO 的精彩片段（100–180字）】
+            </div>
+            <div class="sx-card-text lang lang-en">
+              [Paste a DAO excerpt here (60–110 words).]
+            </div>
+          </div>
+        </article>
+
+        <article class="sx-card">
+          <div class="sx-card-body">
+            <div class="sx-card-title">SUTRA · Excerpt</div>
+            <div class="sx-card-text lang lang-zh active">
+              【在此粘贴 SUTRA 的精彩片段（100–180字）】
+            </div>
+            <div class="sx-card-text lang lang-en">
+              [Paste a SUTRA excerpt here (60–110 words).]
+            </div>
+          </div>
+        </article>
+
+        <article class="sx-card">
+          <div class="sx-card-body">
+            <div class="sx-card-title">PARABLES · Excerpt</div>
+            <div class="sx-card-text lang lang-zh active">
+              【在此粘贴 PARABLES 的精彩片段（100–180字）】
+            </div>
+            <div class="sx-card-text lang lang-en">
+              [Paste a PARABLES excerpt here (60–110 words).]
+            </div>
+          </div>
+        </article>
+
+        <article class="sx-card">
+          <div class="sx-card-body">
+            <div class="sx-card-title">EPIC · Excerpt</div>
+            <div class="sx-card-text lang lang-zh active">
+              【在此粘贴 EPIC 的精彩片段（100–180字）】
+            </div>
+            <div class="sx-card-text lang lang-en">
+              [Paste an EPIC excerpt here (60–110 words).]
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- FOOT NOTE（定调） -->
+    <section class="sx-section" aria-label="Note">
+      <div class="sx-card" style="padding:0;">
+        <div class="sx-card-body">
+          <div class="sx-card-title lang lang-zh active">声明</div>
+          <div class="sx-card-title lang lang-en">Statement</div>
+
+          <div class="sx-card-text lang lang-zh active">
+            本系列不提供“完整版在线阅读”。因为结构，必须被认真对待。
+          </div>
+          <div class="sx-card-text lang lang-en">
+            This series is not available for full online reading. Because structure deserves commitment.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
 
