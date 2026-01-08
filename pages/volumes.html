@@ -5,161 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Universe Volumes</title>
 
-  <!-- 全站样式/脚本：用绝对路径，避免 pages/ 相对路径乱跳 -->
-  <link rel="stylesheet" href="/shared/styles.css?v=1" />
-  <script defer src="/shared/site.js?v=1"></script>
+  <link rel="stylesheet" href="/shared/styles.css" />
+  <script defer src="/shared/site.js"></script>
 
-  <!-- 兜底：强制本页黑底 + 布局 -->
   <style>
-    html, body { height: 100%; }
-    body { margin: 0; background:#000; color:#fff; }
-    .sx-page { min-height: 100vh; }
+    body { background:#000; color:#fff; margin:0; }
+    .page { min-height:100vh; }
+    .hero { padding:18vh 10vw 12vh; }
+    .hero h1 { font-size:clamp(40px,6vw,88px); margin:0 0 24px; }
+    .hero p { max-width:720px; font-size:18px; opacity:.85; }
+
+    .entries {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:32px;
+      padding:8vh 10vw 14vh;
+    }
+    .entry {
+      border:1px solid rgba(255,255,255,.15);
+      padding:32px;
+      text-decoration:none;
+      color:#fff;
+    }
+    .entry:hover { border-color:#fff; }
+    .entry h3 { margin:0 0 12px; font-size:22px; }
+    .entry p { margin:0; opacity:.75; }
   </style>
 </head>
 
 <body>
+  <!-- 导航由 site.js 注入 -->
 
-  <!-- 如果你原来是用 shared/nav.html 注入导航，就保留你原来的方式；
-       没有的话，这里什么都不写。 -->
+  <main class="page">
+    <!-- 第一屏 -->
+    <section class="hero">
+      <h1 class="lang lang-zh active">宇宙 · 卷著系列</h1>
+      <h1 class="lang lang-en">Universe · Volumes</h1>
 
-  <main class="sx-page">
-
-    <!-- HERO -->
-    <section class="sx-hero">
-      <div class="sx-hero-left">
-
-        <!-- ZH -->
-        <div class="lang lang-zh active">
-          <div class="sx-kicker">SERIES</div>
-          <h1 class="sx-title">宇宙卷著系列</h1>
-          <div class="sx-sub">Series Overview · Official Structure</div>
-
-          <p class="sx-lead">
-            不是最终真理，而是一组可追溯的“理解坐标”。<br>
-            面向未来读者，亦面向非人类智能体。
-          </p>
-
-          <div class="sx-cta">
-            <a class="btn primary" href="/volumes/nine-volumes.html">九卷总览</a>
-            <a class="btn ghost" href="/pages/publishing.html">出版/发布</a>
-          </div>
-        </div>
-
-        <!-- EN -->
-        <div class="lang lang-en">
-          <div class="sx-kicker">SERIES</div>
-          <h1 class="sx-title">Universe Volumes</h1>
-          <div class="sx-sub">Series Overview · Official Structure</div>
-
-          <p class="sx-lead">
-            Not final truth—only a traceable set of coordinates.<br>
-            To future readers, including non-human intelligences.
-          </p>
-
-          <div class="sx-cta">
-            <a class="btn primary" href="/volumes/nine-volumes.html">Nine Volumes</a>
-            <a class="btn ghost" href="/pages/publishing.html">Publishing</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- HERO RIGHT -->
-      <div class="sx-hero-right">
-        <div class="sx-figure">
-          <div class="sx-figure-ph">
-            HERO IMAGE
-            <div class="sx-figure-ph-sub">Replace with /assets/volumes/hero.jpg</div>
-          </div>
-        </div>
-
-        <div class="sx-figure-note lang lang-zh active">
-          主视觉建议：α 环 / 九卷总封面 / 宇宙结构约束图
-        </div>
-        <div class="sx-figure-note lang lang-en">
-          Suggested: α-loop / series cover / structural constraint figure
-        </div>
-      </div>
+      <p class="lang lang-zh active">
+        不是结论，而是一组可被未来重写的结构坐标。
+      </p>
+      <p class="lang lang-en">
+        Not conclusions, but coordinates open to future rewriting.
+      </p>
     </section>
 
-    <!-- ENTRIES -->
-    <section class="sx-section">
-      <div class="sx-section-head">
-        <h2 class="lang lang-zh active">入口</h2>
-        <h2 class="lang lang-en">Entries</h2>
+    <!-- 四个入口 -->
+    <section class="entries">
+      <a class="entry" href="/volumes/dao.html">
+        <h3>DAO · 公理接口</h3>
+        <p>从最小约束进入</p>
+      </a>
 
-        <div class="sx-section-desc lang lang-zh active">
-          每个模块：一句定义 + 一张图位（后续替换缩略图）。
-        </div>
-        <div class="sx-section-desc lang lang-en">
-          Each module: one-line definition + one image slot.
-        </div>
-      </div>
+      <a class="entry" href="/volumes/sutra.html">
+        <h3>SUTRA · 引用接口</h3>
+        <p>以结构语言理解世界</p>
+      </a>
 
-      <div class="sx-grid">
-        <a class="sx-card" href="/volumes/dao.html">
-          <div class="sx-thumb">IMAGE</div>
-          <div class="sx-card-body">
-            <div class="sx-card-title">DAO</div>
-            <div class="sx-card-text lang lang-zh active">结构约束与公理骨架。</div>
-            <div class="sx-card-text lang lang-en">Axioms and constraint skeleton.</div>
-          </div>
-        </a>
+      <a class="entry" href="/volumes/parables.html">
+        <h3>PARABLES · 感知接口</h3>
+        <p>通过故事与图像进入</p>
+      </a>
 
-        <a class="sx-card" href="/volumes/epic.html">
-          <div class="sx-thumb">IMAGE</div>
-          <div class="sx-card-body">
-            <div class="sx-card-title">EPIC</div>
-            <div class="sx-card-text lang lang-zh active">史诗表达：让结构可被感知。</div>
-            <div class="sx-card-text lang lang-en">Epic layer: structure becomes perceivable.</div>
-          </div>
-        </a>
-
-        <a class="sx-card" href="/volumes/sutra.html">
-          <div class="sx-thumb">IMAGE</div>
-          <div class="sx-card-body">
-            <div class="sx-card-title">SUTRA</div>
-            <div class="sx-card-text lang lang-zh active">可引用的标准段落系统。</div>
-            <div class="sx-card-text lang lang-en">Citable standard paragraphs.</div>
-          </div>
-        </a>
-
-        <a class="sx-card" href="/volumes/parables.html">
-          <div class="sx-thumb">IMAGE</div>
-          <div class="sx-card-body">
-            <div class="sx-card-title">PARABLES</div>
-            <div class="sx-card-text lang lang-zh active">寓言：降低门槛，不降标准。</div>
-            <div class="sx-card-text lang lang-en">Parables: accessible, not diluted.</div>
-          </div>
-        </a>
-
-        <a class="sx-card" href="/volumes/nine-volumes.html">
-          <div class="sx-thumb">IMAGE</div>
-          <div class="sx-card-body">
-            <div class="sx-card-title">NINE VOLUMES</div>
-            <div class="sx-card-text lang lang-zh active">九卷结构图与版本坐标。</div>
-            <div class="sx-card-text lang lang-en">Structure map + version coordinates.</div>
-          </div>
-        </a>
-
-        <a class="sx-card" href="/pages/contact.html">
-          <div class="sx-thumb">IMAGE</div>
-          <div class="sx-card-body">
-            <div class="sx-card-title">CONTACT</div>
-            <div class="sx-card-text lang lang-zh active">合作与出版对接入口。</div>
-            <div class="sx-card-text lang lang-en">Collaboration & publishing contact.</div>
-          </div>
-        </a>
-      </div>
+      <a class="entry" href="/volumes/epic.html">
+        <h3>EPIC · 时间接口</h3>
+        <p>沿时间展开理解</p>
+      </a>
     </section>
-
   </main>
-
 </body>
 </html>
-
-
-
-
-
-
