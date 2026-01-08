@@ -1397,3 +1397,7 @@ nav{
 body{
   padding-top: 64px !important; /* 给导航让位，避免内容顶上来遮住导航 */
 }
+body{ padding-top: 64px; }
+@media (max-width: 768px){
+  body{ padding-top: 72px; }
+}
