@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" style="background:#050B20">
+  <!-- Book Cover: Cosmic Heart Sutra -->
+  
+  <!-- Title Area -->
+  <text x="200" y="100" font-family="Inter, sans-serif" font-size="32" font-weight="300" 
+        fill="#FFCC33" text-anchor="middle" letter-spacing="6">
+    宇宙与人类
+  </text>
+  
+  <!-- Main Title -->
+  <text x="200" y="150" font-family="Inter, sans-serif" font-size="48" font-weight="600" 
+        fill="#FFFFFF" text-anchor="middle" letter-spacing="4">
+    宇宙心经
+  </text>
+  
+  <!-- English Title -->
+  <text x="200" y="180" font-family="Inter, sans-serif" font-size="16" font-weight="400" 
+        fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="2">
+    COSMIC HEART SUTRA
+  </text>
+  
+  <!-- Central Design: Single Core Circle with Essence -->
+  <g transform="translate(200, 320)">
+    <!-- Concentric circles representing essence -->
+    <circle cx="0" cy="0" r="70" fill="none" stroke="#FFCC33" stroke-width="3" opacity="0.3"/>
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#FFCC33" stroke-width="2.5" opacity="0.5"/>
+    <circle cx="0" cy="0" r="30" fill="none" stroke="#FFCC33" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Central core - the essence -->
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="0" cy="0" r="8" fill="#FFCC33"/>
+    
+    <!-- Four cardinal directional lines (minimal) -->
+    <line x1="0" y1="-70" x2="0" y2="-80" stroke="#FFCC33" stroke-width="2"/>
+    <line x1="70" y1="0" x2="80" y2="0" stroke="#FFCC33" stroke-width="2"/>
+    <line x1="0" y1="70" x2="0" y2="80" stroke="#FFCC33" stroke-width="2"/>
+    <line x1="-70" y1="0" x2="-80" y2="0" stroke="#FFCC33" stroke-width="2"/>
+  </g>
+  
+  <!-- Subtitle -->
+  <text x="200" y="470" font-family="Inter, sans-serif" font-size="14" font-weight="300" 
+        fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="2">
+    精简版 · 最少的文字，最核心的洞见
+  </text>
+  
+  <!-- Icon -->
+  <text x="200" y="505" font-family="Inter, sans-serif" font-size="32" 
+        text-anchor="middle">
+    💎
+  </text>
+  
+  <!-- Core Statement -->
+  <text x="200" y="530" font-family="Inter, sans-serif" font-size="10" font-weight="300" 
+        fill="rgba(255,204,51,0.6)" text-anchor="middle" letter-spacing="1">
+    如心经之于般若
+  </text>
+  
+  <!-- MODIFIED: Publisher Info with Coordinate Mark -->
+  <g transform="translate(200, 560)">
+    <!-- Small α-coordinate mark -->
+    <g transform="translate(-50, -12) scale(0.25)">
+      <line x1="0" y1="50" x2="200" y2="50" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="0" y1="150" x2="200" y2="150" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="50" y1="0" x2="50" y2="200" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="150" y1="0" x2="150" y2="200" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="0" y1="100" x2="200" y2="100" stroke="#FFCC33" stroke-width="2"/>
+      <line x1="100" y1="0" x2="100" y2="200" stroke="#FFCC33" stroke-width="2"/>
+      <text x="160" y="45" font-family="Times New Roman, serif" font-size="48" fill="#FFCC33" font-weight="300">α</text>
+      <polygon points="200,100 190,95 190,105" fill="#FFCC33"/>
+      <polygon points="100,0 95,10 105,10" fill="#FFCC33"/>
+    </g>
+    
+    <!-- Text on right -->
+    <text x="5" y="-5" font-family="Inter, sans-serif" font-size="9" font-weight="400" 
+          fill="rgba(255,255,255,0.4)" text-anchor="start">
+      α-constraint framework
+    </text>
+    <text x="5" y="8" font-family="Inter, sans-serif" font-size="8" font-weight="300" 
+          fill="rgba(255,255,255,0.3)" text-anchor="start">
+      Alpha Coherence Institute
+    </text>
+  </g>
+</svg>

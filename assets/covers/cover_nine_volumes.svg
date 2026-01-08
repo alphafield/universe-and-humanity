@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" style="background:#050B20">
+  <!-- Book Cover: Nine Volumes -->
+  
+  <!-- Title Area -->
+  <text x="200" y="100" font-family="Inter, sans-serif" font-size="32" font-weight="300" 
+        fill="#FFCC33" text-anchor="middle" letter-spacing="6">
+    宇宙与人类
+  </text>
+  
+  <!-- Main Title -->
+  <text x="200" y="150" font-family="Inter, sans-serif" font-size="48" font-weight="600" 
+        fill="#FFFFFF" text-anchor="middle" letter-spacing="4">
+    宇宙九卷
+  </text>
+  
+  <!-- English Title -->
+  <text x="200" y="180" font-family="Inter, sans-serif" font-size="16" font-weight="400" 
+        fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="2">
+    NINE VOLUMES OF UNIVERSE
+  </text>
+  
+  <!-- Central Design: 3x3 Grid of Circles -->
+  <g transform="translate(200, 320)">
+    <!-- Row 1 -->
+    <circle cx="-80" cy="-80" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="0" cy="-80" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="80" cy="-80" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Row 2 -->
+    <circle cx="-80" cy="0" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="0" cy="0" r="16" fill="#FFCC33" stroke="none"/>
+    <circle cx="80" cy="0" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Row 3 -->
+    <circle cx="-80" cy="80" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="0" cy="80" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="80" cy="80" r="12" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Connecting Lines -->
+    <line x1="-80" y1="-80" x2="80" y2="80" stroke="#FFCC33" stroke-width="0.5" opacity="0.3"/>
+    <line x1="80" y1="-80" x2="-80" y2="80" stroke="#FFCC33" stroke-width="0.5" opacity="0.3"/>
+  </g>
+  
+  <!-- Subtitle -->
+  <text x="200" y="480" font-family="Inter, sans-serif" font-size="14" font-weight="300" 
+        fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="2">
+    科学理论版 · 完整框架
+  </text>
+  
+  <!-- Alpha Symbol -->
+  <text x="200" y="520" font-family="Inter, sans-serif" font-size="24" font-weight="300" 
+        fill="rgba(255,204,51,0.8)" text-anchor="middle" letter-spacing="3">
+    α = 相干度 / 噪声密度
+  </text>
+  
+  <!-- MODIFIED: Publisher Info with Coordinate Mark -->
+  <g transform="translate(200, 545)">
+    <!-- Small α-coordinate mark -->
+    <g transform="translate(-50, -12) scale(0.25)">
+      <line x1="0" y1="50" x2="200" y2="50" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="0" y1="150" x2="200" y2="150" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="50" y1="0" x2="50" y2="200" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="150" y1="0" x2="150" y2="200" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="0" y1="100" x2="200" y2="100" stroke="#FFCC33" stroke-width="2"/>
+      <line x1="100" y1="0" x2="100" y2="200" stroke="#FFCC33" stroke-width="2"/>
+      <text x="160" y="45" font-family="Times New Roman, serif" font-size="48" fill="#FFCC33" font-weight="300">α</text>
+      <polygon points="200,100 190,95 190,105" fill="#FFCC33"/>
+      <polygon points="100,0 95,10 105,10" fill="#FFCC33"/>
+    </g>
+    
+    <!-- Text on right -->
+    <text x="5" y="-5" font-family="Inter, sans-serif" font-size="9" font-weight="400" 
+          fill="rgba(255,255,255,0.4)" text-anchor="start">
+      α-constraint framework
+    </text>
+    <text x="5" y="8" font-family="Inter, sans-serif" font-size="8" font-weight="300" 
+          fill="rgba(255,255,255,0.3)" text-anchor="start">
+      Alpha Coherence Institute
+    </text>
+  </g>
+</svg>

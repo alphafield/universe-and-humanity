@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" style="background:#050B20">
+  <!-- Book Cover: Cosmic Parables with Curious+Serious Face -->
+  
+  <!-- Title Area -->
+  <text x="200" y="100" font-family="Inter, sans-serif" font-size="32" font-weight="300" 
+        fill="#FFCC33" text-anchor="middle" letter-spacing="6">
+    宇宙与人类
+  </text>
+  
+  <!-- Main Title -->
+  <text x="200" y="150" font-family="Inter, sans-serif" font-size="48" font-weight="600" 
+        fill="#FFFFFF" text-anchor="middle" letter-spacing="4">
+    宇宙寓言
+  </text>
+  
+  <!-- English Title -->
+  <text x="200" y="180" font-family="Inter, sans-serif" font-size="16" font-weight="400" 
+        fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="2">
+    COSMIC PARABLES
+  </text>
+  
+  <!-- Central Design: Layered Metaphor Circles -->
+  <g transform="translate(200, 320)">
+    <!-- Outermost layer - narrative -->
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#FFCC33" stroke-width="1" opacity="0.3" stroke-dasharray="5,5"/>
+    
+    <!-- Poetic layer -->
+    <circle cx="0" cy="0" r="75" fill="none" stroke="#FFCC33" stroke-width="1.5" opacity="0.4" stroke-dasharray="3,3"/>
+    
+    <!-- Metaphor layer -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#FFCC33" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Truth core -->
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#FFCC33" stroke-width="2.5"/>
+    
+    <!-- Central essence -->
+    <circle cx="0" cy="0" r="10" fill="#FFCC33"/>
+    
+    <!-- Radiating story threads -->
+    <line x1="0" y1="0" x2="0" y2="-100" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="70" y2="-70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="100" y2="0" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="70" y2="70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="0" y2="100" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="-70" y2="70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="-100" y2="0" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="-70" y2="-70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    
+    <!-- Story nodes -->
+    <circle cx="0" cy="-75" r="3" fill="#FFCC33" opacity="0.7"/>
+    <circle cx="75" cy="0" r="3" fill="#FFCC33" opacity="0.7"/>
+    <circle cx="0" cy="75" r="3" fill="#FFCC33" opacity="0.7"/>
+    <circle cx="-75" cy="0" r="3" fill="#FFCC33" opacity="0.7"/>
+  </g>
+  
+  <!-- Subtitle -->
+  <text x="200" y="480" font-family="Inter, sans-serif" font-size="14" font-weight="300" 
+        fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="2">
+    故事版 · 小光子与微观世界的运行
+  </text>
+  
+  <!-- NEW: Curious + Serious Explorer Face (Option B) -->
+  <g transform="translate(200, 507) scale(0.3)">
+    <!-- Face outline (slightly tilted for thinking pose) -->
+    <ellipse cx="0" cy="0" rx="65" ry="70" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Left eye: Curious (wide, questioning) -->
+    <circle cx="-22" cy="-10" r="14" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <circle cx="-22" cy="-10" r="6" fill="#FFCC33"/>
+    <path d="M -35 -25 Q -22 -30 -9 -25" fill="none" stroke="#FFCC33" stroke-width="1.5"/>
+    
+    <!-- Right eye: Serious (slightly narrowed, focused) -->
+    <ellipse cx="22" cy="-8" rx="10" ry="8" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    <ellipse cx="22" cy="-8" rx="4" ry="3" fill="#FFCC33"/>
+    <path d="M 10 -22 Q 22 -24 34 -22" fill="none" stroke="#FFCC33" stroke-width="1.5"/>
+    
+    <!-- Mouth: Slight thoughtful curve -->
+    <path d="M -25 28 Q 0 32 25 28" fill="none" stroke="#FFCC33" stroke-width="2"/>
+    
+    <!-- Thought process indicators (ascending dots) -->
+    <circle cx="45" cy="-5" r="2.5" fill="#FFCC33" opacity="0.7"/>
+    <circle cx="52" cy="-12" r="2" fill="#FFCC33" opacity="0.5"/>
+    <circle cx="57" cy="-20" r="1.5" fill="#FFCC33" opacity="0.3"/>
+    
+    <!-- Question becomes insight (? → !) -->
+    <g opacity="0.4">
+      <text x="-65" y="-10" font-family="Times New Roman, serif" font-size="14" fill="#FFCC33">?</text>
+      <line x1="-58" y1="-15" x2="55" y2="-25" stroke="#FFCC33" stroke-width="0.5" stroke-dasharray="2,2"/>
+      <text x="58" y="-25" font-family="Times New Roman, serif" font-size="14" fill="#FFCC33">!</text>
+    </g>
+    
+    <!-- Focus line (gaze direction) -->
+    <line x1="22" y1="-8" x2="65" y2="-15" stroke="#FFCC33" stroke-width="0.5" opacity="0.3"/>
+  </g>
+  
+  <!-- Publisher Info with α-Coordinate Mark -->
+  <g transform="translate(200, 545)">
+    <!-- Small α-coordinate mark -->
+    <g transform="translate(-50, -12) scale(0.25)">
+      <line x1="0" y1="50" x2="200" y2="50" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="0" y1="150" x2="200" y2="150" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="50" y1="0" x2="50" y2="200" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="150" y1="0" x2="150" y2="200" stroke="#FFCC33" stroke-width="0.5" opacity="0.15"/>
+      <line x1="0" y1="100" x2="200" y2="100" stroke="#FFCC33" stroke-width="2"/>
+      <line x1="100" y1="0" x2="100" y2="200" stroke="#FFCC33" stroke-width="2"/>
+      <text x="160" y="45" font-family="Times New Roman, serif" font-size="48" fill="#FFCC33" font-weight="300">α</text>
+      <polygon points="200,100 190,95 190,105" fill="#FFCC33"/>
+      <polygon points="100,0 95,10 105,10" fill="#FFCC33"/>
+    </g>
+    
+    <!-- Text on right -->
+    <text x="5" y="-5" font-family="Inter, sans-serif" font-size="9" font-weight="400" 
+          fill="rgba(255,255,255,0.4)" text-anchor="start">
+      α-constraint framework
+    </text>
+    <text x="5" y="8" font-family="Inter, sans-serif" font-size="8" font-weight="300" 
+          fill="rgba(255,255,255,0.3)" text-anchor="start">
+      Alpha Coherence Institute
+    </text>
+  </g>
+</svg>
