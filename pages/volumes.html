@@ -3,75 +3,454 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Universe Volumes</title>
+  <title>Universe Volumes | 宇宙卷著</title>
 
-  <link rel="stylesheet" href="/shared/styles.css" />
-  <script defer src="/shared/site.js"></script>
+  <!-- 全站样式/脚本（绝对路径） -->
+  <link rel="stylesheet" href="/shared/styles.css?v=1" />
+  <script defer src="/shared/site.js?v=1"></script>
 
+  <!-- Volumes page only (不污染全站) -->
   <style>
-    body { background:#000; color:#fff; margin:0; }
-    .page { min-height:100vh; }
-    .hero { padding:18vh 10vw 12vh; }
-    .hero h1 { font-size:clamp(40px,6vw,88px); margin:0 0 24px; }
-    .hero p { max-width:720px; font-size:18px; opacity:.85; }
+    html,body{background:#000;color:#fff;margin:0}
+    .page{padding-top:64px} /* 让内容避开 fixed header（若你的 header 高度不同，改这里） */
 
-    .entries {
+    /* ===== Section (SpaceX-like) ===== */
+    .vx-section{
+      position:relative;
+      min-height: calc(100vh - 64px);
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:32px;
-      padding:8vh 10vw 14vh;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 6vw;
+      align-items:center;
+      padding: 92px 7vw 72px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      overflow:hidden;
     }
-    .entry {
-      border:1px solid rgba(255,255,255,.15);
-      padding:32px;
+    .vx-left{max-width:720px}
+    .vx-kicker{
+      font-size:12px;
+      letter-spacing:.22em;
+      color:rgba(255,255,255,.52);
+      margin-bottom:14px;
+      text-transform:uppercase;
+    }
+    .vx-title{
+      font-size: clamp(40px, 5vw, 68px);
+      font-weight: 760;
+      letter-spacing: .06em;
+      margin: 0 0 10px;
+      color: #fff;
+    }
+    .vx-title strong{color:#FFCC33}
+    .vx-sub{
+      font-size:13px;
+      letter-spacing:.10em;
+      color:rgba(255,255,255,.50);
+      margin-bottom:22px;
+    }
+    .vx-lead{
+      font-size:16px;
+      line-height:1.95;
+      color:rgba(255,255,255,.78);
+      margin:0 0 22px;
+      max-width: 640px;
+    }
+    .vx-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+    .vx-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:40px;padding:0 16px;border-radius:999px;
+      font-size:13px;letter-spacing:.10em;
+      border:1px solid rgba(255,255,255,0.16);
       text-decoration:none;
-      color:#fff;
+      color:rgba(255,255,255,.86);
+      background:transparent;
     }
-    .entry:hover { border-color:#fff; }
-    .entry h3 { margin:0 0 12px; font-size:22px; }
-    .entry p { margin:0; opacity:.75; }
+    .vx-btn.primary{background:#FFCC33;color:#000;border-color:#FFCC33;font-weight:650}
+    .vx-btn.ghost:hover{border-color:rgba(255,204,51,.35)}
+
+    /* ===== Right figure placeholder ===== */
+    .vx-right{display:flex;justify-content:center;align-items:center}
+    .vx-figure{
+      width:min(520px, 100%);
+      aspect-ratio: 1/1;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(60% 60% at 30% 20%, rgba(255,204,51,0.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0));
+      overflow:hidden;
+      position:relative;
+    }
+    .vx-figure .ph{
+      position:absolute;inset:0;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      color:rgba(255,255,255,0.35);
+      font-size:12px;letter-spacing:.16em;
+      text-transform:uppercase;
+      gap:10px;
+    }
+    .vx-figure .ph small{
+      font-size:11px;opacity:.6;letter-spacing:.12em;text-transform:none;
+    }
+    .vx-note{
+      margin-top:12px;
+      font-size:12px;
+      color:rgba(255,255,255,.50);
+      letter-spacing:.06em;
+      text-align:center;
+      max-width:520px;
+    }
+
+    /* ===== Excerpt block ===== */
+    .vx-excerpt{
+      margin-top:26px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,0.10);
+    }
+    .vx-excerpt-title{
+      font-size:12px;
+      letter-spacing:.18em;
+      color:rgba(255,255,255,.55);
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .vx-quote{
+      font-size:14px;
+      line-height:1.9;
+      color:rgba(255,255,255,.72);
+      margin:0;
+      max-width: 680px;
+    }
+    .vx-quote em{color:rgba(255,204,51,.90);font-style:normal}
+
+    /* ===== Mobile ===== */
+    @media (max-width: 980px){
+      .vx-section{grid-template-columns:1fr; padding: 76px 6vw 56px}
+      .vx-right{order:-1}
+      .vx-note{text-align:left}
+    }
+
+    /* language show rule (你现有 JS 用 .lang.active) */
+    .lang{display:none}
+    .lang.active{display:block}
   </style>
 </head>
 
 <body>
-  <!-- 导航由 site.js 注入 -->
+  <!-- 这里放你的全站导航（如果你是用 JS 注入 nav，就保持你原来的注入方式；否则把 index 的 nav 直接复制到这里） -->
+  <!-- 建议：把 index.html 里的 header/nav 原样复制过来，确保 Series 下拉能回到 /pages/volumes.html -->
 
   <main class="page">
-    <!-- 第一屏 -->
-    <section class="hero">
-      <h1 class="lang lang-zh active">宇宙 · 卷著系列</h1>
-      <h1 class="lang lang-en">Universe · Volumes</h1>
 
-      <p class="lang lang-zh active">
-        不是结论，而是一组可被未来重写的结构坐标。
-      </p>
-      <p class="lang lang-en">
-        Not conclusions, but coordinates open to future rewriting.
-      </p>
+    <!-- =========================
+         0) 宇宙九卷
+         ========================= -->
+    <section class="vx-section" id="nine">
+      <div class="vx-left">
+        <div class="lang lang-zh active">
+          <div class="vx-kicker">SERIES</div>
+          <h1 class="vx-title">宇宙<strong>九卷</strong></h1>
+          <div class="vx-sub">九个坐标 · 可被未来重写</div>
+          <p class="vx-lead">
+            不是结论，而是一套可追溯的结构坐标：从宇宙到文明，从物理到意识。<br>
+            我们承认现有科学的全部成果，并在其上给出“相干 × 拓扑”的结构化表达。
+          </p>
+
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/nine-volumes.html">进入九卷总览</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html">出版 / 发布</a>
+          </div>
+
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">片段 · Preview</div>
+            <p class="vx-quote">
+              “每一次理论都在增加名词，而我们只增加一种约束：<em>α</em>。
+              它不替代已知，只把已知的可持续性条件写清楚。”
+            </p>
+          </div>
+        </div>
+
+        <div class="lang lang-en">
+          <div class="vx-kicker">SERIES</div>
+          <h1 class="vx-title">The <strong>Nine Volumes</strong></h1>
+          <div class="vx-sub">Nine coordinates · rewriteable by the future</div>
+          <p class="vx-lead">
+            Not conclusions—traceable coordinates: from universe to civilization, from physics to mind.<br>
+            We accept contemporary science as the baseline, then formalize a “coherence × topology” language on top.
+          </p>
+
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/nine-volumes.html">Open the Nine Volumes</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html">Publishing</a>
+          </div>
+
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">Preview</div>
+            <p class="vx-quote">
+              “Most frameworks add new nouns. We add one constraint: <em>α</em>.
+              It doesn’t replace what is known—only clarifies what can persist.”
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vx-right">
+        <div>
+          <div class="vx-figure">
+            <div class="ph">
+              COVER SLOT
+              <small>Insert: /assets/covers/cover_nine_volumes.svg</small>
+            </div>
+            <!-- 你要用图片就换成：
+            <img class="sx-figure-img" src="/assets/covers/cover_nine_volumes.svg" alt="Nine Volumes Cover">
+            -->
+          </div>
+          <div class="vx-note lang lang-zh active">图位：九卷总封面 / 结构坐标图</div>
+          <div class="vx-note lang lang-en">Image slot: Nine volumes cover / coordinate map</div>
+        </div>
+      </div>
     </section>
 
-    <!-- 四个入口 -->
-    <section class="entries">
-      <a class="entry" href="/volumes/dao.html">
-        <h3>DAO · 公理接口</h3>
-        <p>从最小约束进入</p>
-      </a>
+    <!-- =========================
+         1) DAO
+         ========================= -->
+    <section class="vx-section" id="dao">
+      <div class="vx-left">
+        <div class="lang lang-zh active">
+          <div class="vx-kicker">CORE</div>
+          <h2 class="vx-title">之道 · <strong>DAO</strong></h2>
+          <div class="vx-sub">公理接口 · 从最小约束进入</div>
+          <p class="vx-lead">
+            结构约束的最小表达形式。你不需要先相信任何结论，<br>
+            只需要接受：系统要持续演化，必须满足某种可检验的结构条件。
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/dao.html">进入 DAO</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#dao">购买 / 引用</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">片段 · Preview</div>
+            <p class="vx-quote">
+              “公理不是宣言。公理是：当你反驳它时，你会发现自己已经在使用它。”
+            </p>
+          </div>
+        </div>
 
-      <a class="entry" href="/volumes/sutra.html">
-        <h3>SUTRA · 引用接口</h3>
-        <p>以结构语言理解世界</p>
-      </a>
+        <div class="lang lang-en">
+          <div class="vx-kicker">CORE</div>
+          <h2 class="vx-title">The Dao · <strong>DAO</strong></h2>
+          <div class="vx-sub">Axiom Interface · enter through minimal constraints</div>
+          <p class="vx-lead">
+            The minimal language of structural constraints.<br>
+            No need to believe conclusions—only accept that sustained evolution requires testable conditions.
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/dao.html">Open DAO</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#dao">Get / Cite</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">Preview</div>
+            <p class="vx-quote">
+              “An axiom is not a proclamation. It’s what you inevitably rely on when you try to refute it.”
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <a class="entry" href="/volumes/parables.html">
-        <h3>PARABLES · 感知接口</h3>
-        <p>通过故事与图像进入</p>
-      </a>
-
-      <a class="entry" href="/volumes/epic.html">
-        <h3>EPIC · 时间接口</h3>
-        <p>沿时间展开理解</p>
-      </a>
+      <div class="vx-right">
+        <div>
+          <div class="vx-figure">
+            <div class="ph">
+              COVER SLOT
+              <small>Insert: /assets/covers/cover_the_dao.svg</small>
+            </div>
+          </div>
+          <div class="vx-note lang lang-zh active">图位：DAO 封面 / 约束骨架图</div>
+          <div class="vx-note lang lang-en">Image slot: DAO cover / constraint skeleton</div>
+        </div>
+      </div>
     </section>
+
+    <!-- =========================
+         2) SUTRA
+         ========================= -->
+    <section class="vx-section" id="sutra">
+      <div class="vx-left">
+        <div class="lang lang-zh active">
+          <div class="vx-kicker">REFERENCE</div>
+          <h2 class="vx-title">心经 · <strong>SUTRA</strong></h2>
+          <div class="vx-sub">引用接口 · 以结构语言理解世界</div>
+          <p class="vx-lead">
+            可被组合、引用与验证的结构表达。<br>
+            它不是解释一切，而是给出一套可以“拼接到任何学科”的句法。
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/sutra.html">进入 SUTRA</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#sutra">购买 / 引用</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">片段 · Preview</div>
+            <p class="vx-quote">
+              “当语言可组合，验证就不再依赖权威，而依赖结构之间是否相容。”
+            </p>
+          </div>
+        </div>
+
+        <div class="lang lang-en">
+          <div class="vx-kicker">REFERENCE</div>
+          <h2 class="vx-title">Heart Sutra · <strong>SUTRA</strong></h2>
+          <div class="vx-sub">Citable Interface · a composable structural language</div>
+          <p class="vx-lead">
+            Expressions designed to be combined, cited, and tested.<br>
+            Not to explain everything—but to provide syntax that can attach to any discipline.
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/sutra.html">Open SUTRA</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#sutra">Get / Cite</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">Preview</div>
+            <p class="vx-quote">
+              “When language is composable, verification stops depending on authority—and depends on structural compatibility.”
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vx-right">
+        <div>
+          <div class="vx-figure">
+            <div class="ph">
+              COVER SLOT
+              <small>Insert: /assets/covers/cover_heart_sutra.svg</small>
+            </div>
+          </div>
+          <div class="vx-note lang lang-zh active">图位：SUTRA 封面 / 标准段落系统</div>
+          <div class="vx-note lang lang-en">Image slot: SUTRA cover / citable paragraph system</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         3) PARABLES
+         ========================= -->
+    <section class="vx-section" id="parables">
+      <div class="vx-left">
+        <div class="lang lang-zh active">
+          <div class="vx-kicker">PERCEPTUAL</div>
+          <h2 class="vx-title">寓言 · <strong>PARABLES</strong></h2>
+          <div class="vx-sub">感知接口 · 通过故事与图像进入</div>
+          <p class="vx-lead">
+            结构进入意识的可感知映射。<br>
+            不是“降低标准”，而是把标准变成可以被直觉读取的形式。
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/parables.html">进入 PARABLES</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#parables">购买 / 分享</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">片段 · Preview</div>
+            <p class="vx-quote">
+              “寓言不是解释。寓言是让你先看见结构，然后你才会要求公式来负责。”
+            </p>
+          </div>
+        </div>
+
+        <div class="lang lang-en">
+          <div class="vx-kicker">PERCEPTUAL</div>
+          <h2 class="vx-title">Parables · <strong>PARABLES</strong></h2>
+          <div class="vx-sub">Perceptual Interface · enter via stories and images</div>
+          <p class="vx-lead">
+            A perceptible mapping of structure into awareness.<br>
+            Not “lowering the bar”—but making the bar readable by intuition.
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/parables.html">Open PARABLES</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#parables">Get / Share</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">Preview</div>
+            <p class="vx-quote">
+              “A parable doesn’t explain. It lets you see the structure first—then you demand the equations to take responsibility.”
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vx-right">
+        <div>
+          <div class="vx-figure">
+            <div class="ph">
+              COVER SLOT
+              <small>Insert: /assets/covers/cover_parables.svg</small>
+            </div>
+          </div>
+          <div class="vx-note lang lang-zh active">图位：PARABLES 封面 / 图像入口</div>
+          <div class="vx-note lang lang-en">Image slot: PARABLES cover / visual gateway</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         4) EPIC
+         ========================= -->
+    <section class="vx-section" id="epic">
+      <div class="vx-left">
+        <div class="lang lang-zh active">
+          <div class="vx-kicker">NARRATIVE</div>
+          <h2 class="vx-title">史诗 · <strong>EPIC</strong></h2>
+          <div class="vx-sub">时间接口 · 沿时间展开理解</div>
+          <p class="vx-lead">
+            结构在时间尺度上的展开与持续。<br>
+            把“为什么能持续存在”变成一条可以跟随的时间线，而不是一堆结论。
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/epic.html">进入 EPIC</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#epic">购买 / 发布</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">片段 · Preview</div>
+            <p class="vx-quote">
+              “史诗不是文学装饰，而是时间尺度上的验证：能走完的结构，才叫结构。”
+            </p>
+          </div>
+        </div>
+
+        <div class="lang lang-en">
+          <div class="vx-kicker">NARRATIVE</div>
+          <h2 class="vx-title">Cosmic Epic · <strong>EPIC</strong></h2>
+          <div class="vx-sub">Time Interface · structure unfolded in time</div>
+          <p class="vx-lead">
+            Structure, unfolded and tested over time.<br>
+            Not a pile of claims—an arc you can follow: what persists, and why.
+          </p>
+          <div class="vx-cta">
+            <a class="vx-btn primary" href="/volumes/epic.html">Open EPIC</a>
+            <a class="vx-btn ghost" href="/pages/publishing.html#epic">Get / Publish</a>
+          </div>
+          <div class="vx-excerpt">
+            <div class="vx-excerpt-title">Preview</div>
+            <p class="vx-quote">
+              “An epic is not decoration. It’s verification at the time-scale: only structures that can finish the arc deserve the name.”
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="vx-right">
+        <div>
+          <div class="vx-figure">
+            <div class="ph">
+              COVER SLOT
+              <small>Insert: /assets/covers/cover_cosmic_epic.svg</small>
+            </div>
+          </div>
+          <div class="vx-note lang lang-zh active">图位：EPIC 封面 / 时间展开图</div>
+          <div class="vx-note lang lang-en">Image slot: EPIC cover / time-unfolding map</div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </body>
 </html>
