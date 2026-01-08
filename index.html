@@ -437,66 +437,62 @@
 </head>
 
 <body>
+  <!-- =========================
+       NAV (single, stable)
+       ========================= -->
   <nav>
- <nav>
-  <a class="brand" href="./">
-    <img class="brand-mark" src="assets/Logo_Mark_White_Transparent.png" alt="Universe & Humanity">
-    <span class="brand-title">UNIVERSE &amp; HUMANITY</span>
-  </a>
+    <a class="brand" href="/index.html">
+      <img class="brand-mark" src="/assets/marks/alpha-coordinate-mark-transparent.svg" alt="α Mark">
+      <span class="brand-title">UNIVERSE &amp; HUMANITY</span>
+    </a>
 
-  <div class="nav-menu">
-    <a href="#alpha" data-en="ALPHA" data-zh="阿尔法无量纲">阿尔法无量纲</a>
-    <a href="#universe" data-en="UNIVERSE" data-zh="宇宙">宇宙</a>
+    <div class="nav-menu">
+      <a href="/pages/alpha.html" data-en="ALPHA" data-zh="阿尔法无量纲">阿尔法无量纲</a>
+      <a href="/pages/universe.html" data-en="UNIVERSE" data-zh="宇宙">宇宙</a>
 
-    <!-- Dropdown: Humanity -->
-    <div class="nav-dropdown">
-      <span data-en="HUMANITY ▾" data-zh="人类 ▾">人类 ▾</span>
-      <div class="nav-dropdown-content">
-        <div class="nav-dropdown-title" data-en="HUMAN EXPLORATION" data-zh="人类探索">人类探索</div>
-        <a href="#humanity" data-en="Humanity Overview" data-zh="人类概述">人类概述</a>
-        <a href="#thinkers" data-en="Thinkers" data-zh="思想家">思想家</a>
+      <!-- Dropdown: Humanity -->
+      <div class="nav-dropdown">
+        <span data-en="HUMANITY ▾" data-zh="人类 ▾">人类 ▾</span>
+        <div class="nav-dropdown-content">
+          <div class="nav-dropdown-title" data-en="HUMAN EXPLORATION" data-zh="人类探索">人类探索</div>
+          <a href="/pages/humanity.html" data-en="Humanity Overview" data-zh="人类概述">人类概述</a>
+          <a href="/pages/humanity.html#thinkers" data-en="Thinkers" data-zh="思想家">思想家</a>
+        </div>
+      </div>
+
+      <a href="/pages/civilization.html" data-en="CIVILIZATION" data-zh="文明">文明</a>
+
+      <!-- Dropdown: Series -->
+      <div class="nav-dropdown">
+        <span data-en="SERIES ▾" data-zh="《宇宙与人类》卷著 ▾">《宇宙与人类》卷著 ▾</span>
+
+        <div class="nav-dropdown-content">
+          <div class="nav-dropdown-title" data-en="VOLUMES" data-zh="卷著体系">卷著体系</div>
+
+          <a href="/pages/volumes.html#nine-volumes" data-en="Nine Volumes" data-zh="宇宙九卷">宇宙九卷</a>
+          <a href="/pages/volumes.html#cosmic-epic" data-en="Cosmic Epic" data-zh="宇宙史诗">宇宙史诗</a>
+          <a href="/pages/volumes.html#the-dao" data-en="DAO" data-zh="宇宙之道">宇宙之道</a>
+          <a href="/pages/volumes.html#heart-sutra" data-en="SUTRA" data-zh="宇宙心经">宇宙心经</a>
+          <a href="/pages/volumes.html#parables" data-en="PARABLES" data-zh="宇宙寓言">宇宙寓言</a>
+
+          <div class="nav-divider"></div>
+
+          <a href="/pages/publishing.html" data-en="Publishing" data-zh="出版与合作">出版与合作</a>
+          <a href="/pages/contact.html" data-en="Contact" data-zh="联系我们">联系我们</a>
+        </div>
       </div>
     </div>
 
-    <a href="#civilization" data-en="NEW CIVILIZATION" data-zh="新文明">新文明</a>
-
-    <!-- Dropdown: Series -->
-    <div class="nav-dropdown">
-      <span data-en="SERIES ▾" data-zh="《宇宙与人类》系列卷著 ▾">《宇宙与人类》系列卷著 ▾</span>
-
-      <!-- 关键：dropdown-content 必须放在这个 nav-dropdown 里面 -->
-      <div class="nav-dropdown-content">
-        <div class="nav-dropdown-title" data-en="FULL SERIES" data-zh="完整系列">完整系列</div>
-
-        <a href="pages/volumes.html#nine-volumes" data-en="Nine Volumes" data-zh="宇宙九卷">宇宙九卷</a>
-        <a href="pages/volumes.html#cosmic-epic" data-en="Cosmic Epic" data-zh="宇宙史诗">宇宙史诗</a>
-        <a href="pages/volumes.html#the-dao" data-en="Cosmic Dao" data-zh="宇宙之道">宇宙之道</a>
-        <a href="pages/volumes.html#heart-sutra" data-en="Heart Sutra" data-zh="宇宙心经">宇宙心经</a>
-        <a href="pages/volumes.html#parables" data-en="Parables" data-zh="宇宙寓言">宇宙寓言</a>
-
-        <div class="nav-divider"></div>
-
-        <a href="pages/volumes.html#publishing" data-en="Publishing & Collaboration" data-zh="出版与合作">出版与合作</a>
-        <a href="pages/contact.html" data-en="Contact" data-zh="联系我们">联系我们</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="nav-right">
-    <div class="lang-switch" id="langSwitch">
-      <span class="active" data-lang="en">EN</span>
-      <span data-lang="zh">中文</span>
-    </div>
-  </div>
-</nav>
-     
     <div class="nav-right">
-      <div class="lang-switch">
-  <span class="active" data-lang="en">EN</span>
-  <span data-lang="zh">中文</span>
-    </div>
+      <div class="lang-switch" id="langSwitch">
+        <span class="active" data-lang="en">EN</span>
+        <span data-lang="zh">中文</span>
+      </div>
     </div>
   </nav>
+
+  <!-- Hero -->
+
 
   <!-- Hero -->
   <section class="hero">
@@ -771,6 +767,7 @@
 
 </body>
 </html>
+
 
 
 
