@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" style="background:#050B20">
+  <!-- Book Cover: Cosmic Parables -->
+  
+  <!-- Title Area -->
+  <text x="200" y="100" font-family="Inter, sans-serif" font-size="32" font-weight="300" 
+        fill="#FFCC33" text-anchor="middle" letter-spacing="6">
+    宇宙与人类
+  </text>
+  
+  <!-- Main Title -->
+  <text x="200" y="150" font-family="Inter, sans-serif" font-size="48" font-weight="600" 
+        fill="#FFFFFF" text-anchor="middle" letter-spacing="4">
+    宇宙寓言
+  </text>
+  
+  <!-- English Title -->
+  <text x="200" y="180" font-family="Inter, sans-serif" font-size="16" font-weight="400" 
+        fill="rgba(255,255,255,0.6)" text-anchor="middle" letter-spacing="2">
+    COSMIC PARABLES
+  </text>
+  
+  <!-- Central Design: Layered Metaphor Circles -->
+  <g transform="translate(200, 320)">
+    <!-- Outermost layer - narrative -->
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#FFCC33" stroke-width="1" opacity="0.3" stroke-dasharray="5,5"/>
+    
+    <!-- Poetic layer -->
+    <circle cx="0" cy="0" r="75" fill="none" stroke="#FFCC33" stroke-width="1.5" opacity="0.4" stroke-dasharray="3,3"/>
+    
+    <!-- Metaphor layer -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#FFCC33" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Truth core -->
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#FFCC33" stroke-width="2.5"/>
+    
+    <!-- Central essence -->
+    <circle cx="0" cy="0" r="10" fill="#FFCC33"/>
+    
+    <!-- Radiating story threads -->
+    <line x1="0" y1="0" x2="0" y2="-100" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="70" y2="-70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="100" y2="0" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="70" y2="70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="0" y2="100" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="-70" y2="70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="-100" y2="0" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    <line x1="0" y1="0" x2="-70" y2="-70" stroke="#FFCC33" stroke-width="0.5" opacity="0.5"/>
+    
+    <!-- Story nodes -->
+    <circle cx="0" cy="-75" r="3" fill="#FFCC33" opacity="0.7"/>
+    <circle cx="75" cy="0" r="3" fill="#FFCC33" opacity="0.7"/>
+    <circle cx="0" cy="75" r="3" fill="#FFCC33" opacity="0.7"/>
+    <circle cx="-75" cy="0" r="3" fill="#FFCC33" opacity="0.7"/>
+  </g>
+  
+  <!-- Subtitle -->
+  <text x="200" y="480" font-family="Inter, sans-serif" font-size="14" font-weight="300" 
+        fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="2">
+    故事版 · 小光子与微观世界的运行
+  </text>
+  
+  <!-- Icon -->
+  <text x="200" y="520" font-family="Inter, sans-serif" font-size="32" 
+        text-anchor="middle">
+    🎭
+  </text>
+  
+  <!-- Publisher Info -->
+  <text x="200" y="565" font-family="Inter, sans-serif" font-size="12" font-weight="400" 
+        fill="rgba(255,255,255,0.5)" text-anchor="middle" letter-spacing="1">
+    ALPHA COHERENCE INSTITUTE
+  </text>
+</svg>
