@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .g{stroke:rgba(255,255,255,.22);stroke-width:1}
+      .a{stroke:rgba(255,204,51,.95);stroke-width:2;stroke-linecap:round}
+      .t{fill:rgba(255,204,51,.95);font:700 18px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial}
+    </style>
+  </defs>
+
+  <!-- faint grid -->
+  <path class="g" d="M12 16H52M12 32H52M12 48H52M16 12V52M32 12V52M48 12V52"></path>
+
+  <!-- axes -->
+  <path class="a" d="M10 32H54"></path>
+  <path class="a" d="M32 10V54"></path>
+
+  <!-- alpha -->
+  <text class="t" x="42" y="28">α</text>
+</svg>
