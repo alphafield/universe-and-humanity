@@ -713,7 +713,7 @@
 
   function bind(){
     const btns = document.querySelectorAll(".lang-switch span[data-lang]");
-    if (!btns.length) return; // 没找到按钮就不报错
+    if (!btns.length) return;
 
     btns.forEach(btn => {
       btn.addEventListener("click", (e) => {
@@ -723,11 +723,9 @@
       }, { passive: false });
     });
 
-    // 初始语言：localStorage -> 否则看当前哪个按钮有 active -> 否则中文
+    // 初始语言：localStorage -> 否则看当前 active -> 否则中文
     let lang = "zh";
-    try {
-      lang = localStorage.getItem(LS_KEY) || lang;
-    } catch(e){}
+    try { lang = localStorage.getItem(LS_KEY) || lang; } catch(e){}
     const activeBtn = document.querySelector('.lang-switch span.active[data-lang]');
     if (activeBtn) lang = activeBtn.dataset.lang;
 
@@ -740,9 +738,10 @@
     bind();
   }
 })();
-<script>
+</script>
 </body>
 </html>
+
 
 
 
