@@ -1401,3 +1401,8 @@ body{ padding-top: 64px; }
 @media (max-width: 768px){
   body{ padding-top: 72px; }
 }
+.scientists-scroll{
+  display:flex;
+  width:max-content;
+  animation: scroll 120s linear infinite;
+}
