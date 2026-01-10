@@ -1659,3 +1659,50 @@ body{ padding-top: 64px; }
   .site-footer__inner{ grid-template-columns: 1fr; }
   .site-footer__bottom{ flex-direction: column; }
 }
+/* =========================
+   OVERVIEW + 2 BANDS (SpaceX-style grid)
+   ========================= */
+.band-grid{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items:center;
+}
+.band-grid.reverse{
+  grid-template-columns: 0.95fr 1.05fr;
+}
+.band-copy{ max-width: 560px; }
+.band-kicker{
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,204,51,0.92);
+  margin-bottom: 12px;
+  font-weight: 800;
+}
+.band-card{
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  overflow:hidden;
+  background: rgba(0,0,0,0.25);
+  box-shadow: 0 0 60px rgba(0,0,0,0.35);
+}
+.band-card img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.band-caption{
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.band-caption b{ color: rgba(255,204,51,0.95); font-weight: 800; }
+
+@media (max-width: 900px){
+  .band-grid,
+  .band-grid.reverse{ grid-template-columns: 1fr; gap: 24px; }
+  .band-copy{ max-width: 100%; }
+}
