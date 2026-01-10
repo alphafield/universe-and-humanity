@@ -1706,3 +1706,28 @@ body{ padding-top: 64px; }
   .band-grid.reverse{ grid-template-columns: 1fr; gap: 24px; }
   .band-copy{ max-width: 100%; }
 }
+.scientists-section{
+  position:absolute;
+  bottom: 5px;
+  left:0;
+  width:100%;
+  padding: 15px 0;
+  background: transparent;
+  overflow:hidden;
+  z-index: 10;
+  pointer-events:auto;
+}
+
+.scientists-scroll{
+  display:flex;
+  width:max-content;
+  animation: scroll 260s linear infinite;
+  will-change: transform;
+}
+
+.scientists-scroll:hover{ animation-play-state: paused; }
+
+@keyframes scroll{
+  0% { transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
