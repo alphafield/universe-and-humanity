@@ -1016,5 +1016,35 @@
 })();
 </script>
 
+<script>
+(function(){
+  const track = document.getElementById('scientistsTrack');
+  if(!track) return;
+
+  // 如果你之前有其他脚本把 animation 覆盖成 none，这里强制恢复
+  track.style.animation = 'scroll 260s linear infinite';
+
+  // 复制一份：你的 keyframes 是 -50%，所以需要至少两份内容
+  const base = Array.from(track.children);
+  if(base.length === 0) return;
+
+  // 先清掉可能的重复（避免越复制越多：仅保留第一次加载时的 base 数量）
+  // 如果你确定目前没有重复，也可以删掉这段
+  // （这里保守：不删，避免误删你手工加的卡片）
+
+  // 复制直到 track 的宽度 >= 2 * 视口宽（确保滚动时不断档）
+  const minWidth = window.innerWidth * 2;
+  let guard = 0;
+
+  while(track.scrollWidth < minWidth && guard < 30){
+    base.forEach(node => track.appendChild(node.cloneNode(true)));
+    guard++;
+  }
+
+  // 再复制一遍，确保“前半段”和“后半段”几乎一致（让 -50% 真正无缝）
+  base.forEach(node => track.appendChild(node.cloneNode(true)));
+})();
+</script>
+
 
 
