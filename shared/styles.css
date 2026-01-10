@@ -1731,3 +1731,125 @@ body{ padding-top: 64px; }
   0% { transform: translateX(0); }
   100%{ transform: translateX(-50%); }
 }
+/* =========================
+   FOOTER — alignment patch
+   ========================= */
+
+/* 1) 统一宽度与内边距，让 footer 不“散” */
+footer{
+  padding: 64px 0 36px;
+}
+
+/* 2) 三列网格：左列更“文案列”，右两列更“导航列” */
+.footer-inner{
+  width: min(1200px, calc(100% - 120px));
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr 0.9fr;
+  gap: 56px;
+  align-items: start;
+}
+
+/* 3) 标题/正文/链接的排版基线统一 */
+.footer-desc{
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.62);
+  max-width: 560px;
+}
+
+.footer-col h4{
+  margin-top: 4px;
+  margin-bottom: 14px;
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.52);
+}
+
+/* 链接列表：更紧凑、更像 SpaceX */
+.footer-links{
+  gap: 12px;
+}
+.footer-links a{
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.72);
+}
+.footer-links a:hover{
+  color: rgba(255,204,51,0.95);
+}
+
+/* 4) “时间戳/链接”那一块不要挤在一行，变成节奏更稳的块 */
+.footer-badge{
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  max-width: 520px;
+}
+.footer-badge b{
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+}
+.footer-badge span{
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.78);
+}
+
+/* 5) footer-meta：改成一行“细导航”，并与上面保持一致的间距 */
+.footer-meta{
+  margin-top: 14px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+.footer-meta a{
+  text-decoration: none;
+  color: rgba(255,255,255,0.70);
+}
+.footer-meta a:hover{
+  color: rgba(255,204,51,0.95);
+}
+
+/* 6) 底部条：不要把右侧推到极右，改为“同宽收口” */
+.footer-bottom{
+  width: min(1200px, calc(100% - 120px));
+  margin: 26px auto 0;
+  padding-top: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+/* 让右侧链接更像一个 group */
+.footer-bottom > div:last-child{
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+}
+
+/* 7) 响应式：小屏改一列，不拥挤 */
+@media (max-width: 1100px){
+  .footer-inner{
+    width: min(1100px, calc(100% - 40px));
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer-bottom{
+    width: min(1100px, calc(100% - 40px));
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
