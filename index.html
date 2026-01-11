@@ -5,6 +5,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Universe and Humanity | 宇宙与人类</title>
+  <style>
+  /* EMERGENCY LOCK — make page non-white even if external CSS fails */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+  }
+  a{ color:inherit; text-decoration:none; }
+  img, video{ max-width:100%; display:block; }
+
+  /* basic nav so it doesn't collapse */
+  nav{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index:4000;
+    padding: 12px 40px;
+    display:flex;
+    align-items:center;
+    gap: 28px;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(10px);
+  }
+  .nav-menu{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .nav-right{ margin-left:auto; display:flex; align-items:center; gap:16px; }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{ width:18px; height:18px; }
+  .brand-title{ letter-spacing:.12em; font-size:13px; opacity:.92; }
+
+  /* hero frame to avoid giant white block */
+  .hero{ min-height: 100vh; padding-top:72px; position:relative; }
+  .hero-content{ max-width: 720px; padding: 80px 40px 0; }
+  .hero-button{ display:inline-block; margin-top:22px; padding:12px 18px; border:1px solid rgba(255,255,255,.25); }
+
+  /* bands basic grid so it won't stack weirdly */
+  .uh-band{ padding: 110px 0; border-top:1px solid rgba(255,255,255,.06); }
+  .uh-band--dim{ background: rgba(255,255,255,.03); }
+  .uh-band-inner{ width:min(1200px, 92vw); margin:0 auto; }
+  .uh-band-grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items:center; }
+  .uh-band-grid.reverse{ grid-template-columns: .9fr 1.1fr; }
+  .uh-media-card{ border:1px solid rgba(255,255,255,.08); border-radius:18px; overflow:hidden; }
+  .uh-caption{ padding:12px 14px; font-size:13px; opacity:.9; border-top:1px solid rgba(255,255,255,.08); }
+  .uh-kicker{ font-size:12px; letter-spacing:.22em; opacity:.65; margin-bottom:10px; }
+  .uh-title{ font-size:34px; line-height:1.12; margin-bottom:14px; }
+  .uh-lead{ font-size:16px; line-height:1.85; opacity:.9; margin: 10px 0; }
+  .uh-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+  .uh-btn{ border:1px solid rgba(255,255,255,.24); padding:11px 14px; border-radius:999px; font-size:13px; }
+  .uh-btn.ghost{ opacity:.8; }
+
+  /* footer basic */
+  footer{ border-top:1px solid rgba(255,255,255,.08); padding: 56px 0 20px; }
+  .footer-inner{ width:min(1200px,92vw); margin:0 auto; display:grid; grid-template-columns: 1.4fr .8fr .8fr; gap:50px; }
+  .footer-bottom{ width:min(1200px,92vw); margin:18px auto 0; padding-top:18px; border-top:1px solid rgba(255,255,255,.06); display:flex; justify-content:space-between; gap:16px; font-size:12px; opacity:.75; }
+
+  @media (max-width: 920px){
+    nav{ padding: 12px 18px; }
+    .hero-content{ padding: 70px 18px 0; }
+    .uh-band-grid, .footer-inner{ grid-template-columns: 1fr; gap: 26px; }
+    .footer-bottom{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+
 <link rel="stylesheet" href="/shared/styles.css?v=1">
 
 
@@ -417,6 +481,7 @@
 
 </body>
 </html>
+
 
 
 
