@@ -2737,3 +2737,36 @@ footer{
   .uh-band-grid.reverse .uh-band-copy{ order: 1; }
   .uh-lead{ max-width: 70ch; }
 }
+@keyframes scroll{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
+}
+.scientists-section{
+  margin-top: 56px;
+  padding: 22px 0 30px;
+  overflow:hidden;
+}
+.scientists-scroll{
+  display:flex;
+  gap: 14px;
+  align-items:stretch;
+  will-change: transform;
+}
+.scientist-card{
+  flex: 0 0 auto;
+  width: 220px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(0,0,0,.35);
+}
+.scientist-avatar{
+  width: 36px; height: 36px;
+  border-radius: 12px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight: 700;
+  background: rgba(255,255,255,.10);
+  margin-bottom: 10px;
+}
+.scientist-year{ font-size:12px; opacity:.75; margin: 4px 0; }
+.scientist-blurb{ font-size:13px; opacity:.9; line-height:1.35; }
