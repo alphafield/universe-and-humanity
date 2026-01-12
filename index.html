@@ -79,52 +79,31 @@
   <!-- =========================
        NAV
        ========================= -->
-  <nav>
-    <a class="brand" href="/index.html">
-      <img class="brand-mark" src="/assets/marks/mark_coord.svg" alt="mark">
-      <span class="brand-title">UNIVERSE &amp; HUMANITY</span>
-    </a>
+ <nav class="uh-topnav">
+  <!-- 1) LOGO 不动（标 + UNIVERSE & HUMANITY） -->
+  <a class="uh-brand" href="/index.html" aria-label="Home">
+    <img class="uh-brand-mark" src="/assets/marks/mark_coord.svg" alt="mark">
+    <span class="uh-brand-title">UNIVERSE &amp; HUMANITY</span>
+  </a>
 
-    <div class="nav-menu">
-      <a href="/pages/alpha.html" data-en="ALPHA" data-zh="阿尔法无量纲">阿尔法无量纲</a>
-      <a href="/pages/universe.html" data-en="UNIVERSE" data-zh="宇宙">宇宙</a>
+  <!-- 2) 新导航（5项） -->
+  <div class="uh-menu" aria-label="Primary">
+    <a href="/pages/volumes.html#nine-volumes">宇宙九卷</a>
+    <a href="/pages/volumes.html#cosmic-epic">宇宙史诗</a>
+    <a href="/pages/volumes.html#the-dao">宇宙之道</a>
+    <a href="/pages/volumes.html#heart-sutra">宇宙心经</a>
+    <a href="/pages/volumes.html#parables">宇宙寓言</a>
+  </div>
 
-      <div class="nav-dropdown">
-        <span data-en="HUMANITY ▾" data-zh="人类 ▾">人类 ▾</span>
-        <div class="nav-dropdown-content">
-          <div class="nav-dropdown-title" data-en="HUMAN EXPLORATION" data-zh="人类探索">人类探索</div>
-          <a href="/pages/humanity.html" data-en="Humanity Overview" data-zh="人类概述">人类概述</a>
-          <a href="/pages/humanity.html#thinkers" data-en="Thinkers" data-zh="思想家">思想家</a>
-        </div>
-      </div>
-
-      <a href="/pages/civilization.html" data-en="CIVILIZATION" data-zh="文明">文明</a>
-
-      <div class="nav-dropdown">
-        <span data-en="SERIES ▾" data-zh="《宇宙与人类》卷著 ▾">《宇宙与人类》卷著 ▾</span>
-        <div class="nav-dropdown-content">
-          <div class="nav-dropdown-title" data-en="VOLUMES" data-zh="卷著体系">卷著体系</div>
-          <a href="/pages/volumes.html#nine-volumes" data-en="Nine Volumes" data-zh="宇宙九卷">宇宙九卷</a>
-          <a href="/pages/volumes.html#cosmic-epic" data-en="Cosmic Epic" data-zh="宇宙史诗">宇宙史诗</a>
-          <a href="/pages/volumes.html#the-dao" data-en="DAO" data-zh="宇宙之道">宇宙之道</a>
-          <a href="/pages/volumes.html#heart-sutra" data-en="SUTRA" data-zh="宇宙心经">宇宙心经</a>
-          <a href="/pages/volumes.html#parables" data-en="PARABLES" data-zh="宇宙寓言">宇宙寓言</a>
-
-          <div class="nav-divider"></div>
-
-          <a href="/pages/publishing.html" data-en="Publishing" data-zh="出版与合作">出版与合作</a>
-          <a href="/pages/contact.html" data-en="Contact" data-zh="联系我们">联系我们</a>
-        </div>
-      </div>
+  <!-- 3) 语言 -->
+  <div class="uh-right">
+    <div class="uh-lang" id="langSwitch">
+      <button type="button" class="uh-lang-btn" data-lang="en">EN</button>
+      <button type="button" class="uh-lang-btn is-active" data-lang="zh">中文</button>
     </div>
+  </div>
+</nav>
 
-    <div class="nav-right">
-      <div class="lang-switch" id="langSwitch">
-        <span class="active" data-lang="en">EN</span>
-        <span data-lang="zh">中文</span>
-      </div>
-    </div>
-  </nav>
 
   <!-- =========================
        HERO
@@ -339,83 +318,71 @@
   </section>
 
 </section>
-<footer>
+  
+<footer class="site-footer">
   <div class="footer-inner">
-
-    <!-- Brand / Mission -->
-    <div>
+    <!-- Col 1: Identity -->
+    <div class="footer-col footer-col--brand">
       <div class="footer-brand">
-        <img src="/assets/marks/mark_coord.svg" alt="mark">
-        <div class="footer-title" data-en="UNIVERSE & HUMANITY" data-zh="宇宙与人类">宇宙与人类</div>
+        <img src="/assets/marks/mark_coord.svg" alt="U&H mark" />
+        <div class="footer-title">UNIVERSE &amp; HUMANITY</div>
       </div>
 
-      <div class="footer-desc"
-           data-en="A public interface for the Universe & Humanity volumes — connecting questions, figures, and publication timestamps. Mechanistic details live in the α Field Institute."
-           data-zh="《宇宙与人类》卷著的公开接口：连接问题、图谱与发表时间戳。更技术性的机理细节由 α 场研究院承载。">
-        《宇宙与人类》卷著的公开接口：连接问题、图谱与发表时间戳。更技术性的机理细节由 α 场研究院承载。
-      </div>
+      <p class="footer-desc">
+        《宇宙与人类》是一套“文明接口”。它以 α 为结构约束语言，
+        连接问题、图谱与发表时间戳，并保持对未来的极端开放。
+      </p>
 
+      <!-- 时间戳摘要（不抢戏，但很有“体系感”） -->
       <div class="footer-badge">
-        <b data-en="TIMESTAMP" data-zh="时间戳">时间戳</b>
-        <span data-en="First public release: 2025-12-25 (Nature Physics preprint record)"
-              data-zh="首次公开：2025-12-25（Nature Physics 预印记录）">
-          首次公开：2025-12-25（Nature Physics 预印记录）
-        </span>
+        <b>TIME-STAMP</b>
+        <span>First public record: 2025-12-25</span>
+        <span>Journal track: Nature Physics (preprint log)</span>
       </div>
 
       <div class="footer-meta">
-        <span data-en="Links:" data-zh="链接：">链接：</span>
-        <a href="/pages/publishing.html" data-en="Figures / Timestamps" data-zh="图谱 / 时间戳">图谱 / 时间戳</a>
-        <a href="/pages/contact.html" data-en="Contact" data-zh="联系">联系</a>
+        <a href="/pages/timestamp.html">发表时间戳</a>
+        <a href="/pages/atlas.html">图谱</a>
+        <a href="/pages/contact.html">联系</a>
       </div>
     </div>
 
-    <!-- Site -->
+    <!-- Col 2: Site / Interface -->
     <div class="footer-col">
-      <h4 data-en="U&H SITE" data-zh="U&H 网站">U&H 网站</h4>
+      <h4>U&amp;H 网站</h4>
       <div class="footer-links">
-        <a href="/pages/alpha.html" data-en="α Overview" data-zh="α 概览">α 概览</a>
-        <a href="/pages/universe.html" data-en="Universe" data-zh="宇宙">宇宙</a>
-        <a href="/pages/humanity.html" data-en="Humanity" data-zh="人类">人类</a>
-        <a href="/pages/civilization.html" data-en="Civilization" data-zh="文明">文明</a>
-        <a href="/pages/volumes.html" data-en="Volumes" data-zh="卷著">卷著</a>
+        <a href="/index.html#overview">α 概览</a>
+        <a href="/pages/alpha.html">α 无量纲</a>
+        <a href="/pages/universe.html">宇宙</a>
+        <a href="/pages/humanity.html">人类</a>
+        <a href="/pages/civilization.html">文明</a>
+        <a href="/pages/volumes.html">卷著入口</a>
       </div>
     </div>
 
-    <!-- Ecosystem -->
+    <!-- Col 3: Ecosystem / Mirrors -->
     <div class="footer-col">
-      <h4 data-en="ECOSYSTEM" data-zh="生态接口">生态接口</h4>
+      <h4>生态接口</h4>
       <div class="footer-links">
-        <!-- 这里用“占位但不乱”的方式：没域名/页面就先用 #，等你确定再替换 -->
-        <a href="#" data-en="α Field Institute (technical library)" data-zh="α 场研究院（技术资源库）">α 场研究院（技术资源库）</a>
-        <a href="#" data-en="SunPhoton (applications)" data-zh="SunPhoton（应用接口）">SunPhoton（应用接口）</a>
-        <a href="https://clinquant-swan-eeaafe.netlify.app/publications"
-           data-en="Publications Archive (mirror)"
-           data-zh="发表归档（镜像）">
-          发表归档（镜像）
-        </a>
+        <a href="/pages/institute.html">α 场研究院（技术资源库）</a>
+        <a href="/pages/applications.html">应用接口</a>
+        <a href="/pages/archive.html">发表归档（镜像）</a>
+        <a href="/pages/sunphoton.html">SunPhoton</a>
       </div>
     </div>
-
   </div>
 
   <div class="footer-bottom">
-    <div data-en="© 2026 Universe & Humanity. All rights reserved."
-         data-zh="© 2026 宇宙与人类。保留所有权利。">
-      © 2026 宇宙与人类。保留所有权利。
-    </div>
-
+    <div>© 2026 宇宙与人类。保留所有权利。</div>
     <div>
-      <a href="/pages/publishing.html"
-         data-en="Publication timestamps"
-         data-zh="发表时间戳">
-        发表时间戳
-      </a>
-      <span style="opacity:.35;"> · </span>
-      <a href="/pages/contact.html" data-en="Contact" data-zh="联系">联系</a>
+      <a href="/pages/timestamp.html">发表时间戳</a>
+      <span style="opacity:.35;">|</span>
+      <a href="/pages/contact.html">联系</a>
     </div>
   </div>
 </footer>
+
+  
 <!-- =========================
        SCRIPTS (MUST be before </body>)
        ========================= -->
@@ -481,6 +448,7 @@
 
 </body>
 </html>
+
 
 
 
